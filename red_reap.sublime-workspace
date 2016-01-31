@@ -160,13 +160,21 @@
 	"buffers":
 	[
 		{
-			"contents": "'use strict';\n\nangular.module('redreapApp').config(function ($routeProvider) {\n  $routeProvider.when('/', {\n    templateUrl: 'app/main/main.html',\n    controller: 'MainController',\n    controllerAs: 'main'\n  });\n});\n//# sourceMappingURL=main.js.map",
+			"contents": "'use strict';\n\nangular.module('redreapApp').config(function ($routeProvider) {\n  $routeProvider.when('/', {\n    templateUrl: 'app/main/main.html',\n    controller: 'MainController',\n    controllerAs: 'main'\n  });\n});\n//# sourceMappingURL=main.js.map\n",
 			"file": ".tmp/app/main/main.js",
 			"file_size": 249,
-			"file_write_time": 130985659481880415,
+			"file_write_time": 130985898197948122,
 			"settings":
 			{
-				"buffer_size": 248,
+				"buffer_size": 249,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/routes.js",
+			"settings":
+			{
+				"buffer_size": 712,
 				"line_ending": "Unix"
 			}
 		},
@@ -179,24 +187,18 @@
 			}
 		},
 		{
-			"contents": "$icon-font-path: \"../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/\";\n@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';\n$fa-font-path: \"../bower_components/font-awesome/fonts\";\n@import '../bower_components/font-awesome/scss/font-awesome';\n\n/**\n * App-wide Styles\n */\n\n.browserupgrade {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n// Component styles are injected through grunt\n// injector\n@import 'admin/admin.scss';\n@import 'main/main.scss';\n@import '../components/footer/footer.scss';\n@import '../components/modal/modal.scss';\n// endinjector",
 			"file": "client/app/app.scss",
-			"file_size": 643,
-			"file_write_time": 130985680891032258,
 			"settings":
 			{
-				"buffer_size": 642,
+				"buffer_size": 643,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "'use strict';\n\n(function() {\n\nclass MainController {\n\n  constructor($http) {\n    this.$http = $http;\n    this.awesomeThings = [];\n\n    $http.get('/api/things').then(response => {\n      this.awesomeThings = response.data;\n    });\n  }\n\n  addThing() {\n    if (this.newThing) {\n      this.$http.post('/api/things', { name: this.newThing });\n      this.newThing = '';\n    }\n  }\n\n  deleteThing(thing) {\n    this.$http.delete('/api/things/' + thing._id);\n  }\n}\n\nangular.module('redreapApp')\n  .controller('MainController', MainController);\n\n})();",
 			"file": "client/app/main/main.controller.js",
-			"file_size": 540,
-			"file_write_time": 130985654621790520,
 			"settings":
 			{
-				"buffer_size": 539,
+				"buffer_size": 540,
 				"line_ending": "Unix"
 			}
 		},
@@ -205,6 +207,14 @@
 			"settings":
 			{
 				"buffer_size": 349,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/app.js",
+			"settings":
+			{
+				"buffer_size": 5700,
 				"line_ending": "Unix"
 			}
 		},
@@ -253,15 +263,8 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Kanav/Documents/redreap",
-		"/C/Users/Kanav/Documents/redreap/client",
-		"/C/Users/Kanav/Documents/redreap/client/app",
-		"/C/Users/Kanav/Documents/redreap/client/app/admin",
-		"/C/Users/Kanav/Documents/redreap/client/app/main",
-		"/C/Users/Kanav/Documents/redreap/client/components",
-		"/C/Users/Kanav/Documents/redreap/client/components/auth",
-		"/C/Users/Kanav/Documents/redreap/server",
-		"/C/Users/Kanav/Documents/redreap/server/views"
+		"/C/Users/Kanav/Documents/red-reap",
+		"/C/Users/Kanav/Documents/red-reap/server"
 	],
 	"file_history":
 	[
@@ -461,7 +464,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -470,7 +473,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 248,
+						"buffer_size": 249,
 						"regions":
 						{
 						},
@@ -489,11 +492,41 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "server/routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 712,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3,
+								3
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "client/app/main/main.html",
 					"semi_transient": false,
 					"settings":
@@ -505,8 +538,8 @@
 						"selection":
 						[
 							[
-								490,
-								490
+								17,
+								17
 							]
 						],
 						"settings":
@@ -519,16 +552,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "client/app/app.scss",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 642,
+						"buffer_size": 643,
 						"regions":
 						{
 						},
@@ -547,16 +580,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "client/app/main/main.controller.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 539,
+						"buffer_size": 540,
 						"regions":
 						{
 						},
@@ -577,11 +610,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "client/app/admin/admin.controller.js",
 					"semi_transient": false,
 					"settings":
@@ -605,11 +638,41 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
+					"file": "server/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5700,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5700,
+								5700
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1716.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"semi_transient": false,
 					"settings":
 					{
@@ -632,7 +695,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
