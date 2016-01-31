@@ -38,11 +38,6 @@ function startServer() {
   });
 }
 
-/* START BLOCK ==================================================== */
-
-
-/* END BLOCK ==================================================== */
-
 setImmediate(startServer);
 
 // Expose app
