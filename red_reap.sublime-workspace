@@ -4,16 +4,36 @@
 		"selected_items":
 		[
 			[
+				"user",
+				"userController"
+			],
+			[
+				"get",
+				"getRefresh"
+			],
+			[
+				"Token",
+				"TokenSchema"
+			],
+			[
+				"refr",
+				"refreshToken"
+			],
+			[
+				"ref",
+				"refresh"
+			],
+			[
+				"url",
+				"urlParams"
+			],
+			[
 				"control",
 				"controllerAs"
 			],
 			[
 				"contr",
 				"controllerAs"
-			],
-			[
-				"user",
-				"userData"
 			],
 			[
 				"contro",
@@ -30,10 +50,6 @@
 			[
 				"is",
 				"isLoggedIn"
-			],
-			[
-				"get",
-				"getToken"
 			],
 			[
 				"Auth",
@@ -159,72 +175,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "'use strict';\n\nangular.module('redreapApp').config(function ($routeProvider) {\n  $routeProvider.when('/', {\n    templateUrl: 'app/main/main.html',\n    controller: 'MainController',\n    controllerAs: 'main'\n  });\n});\n//# sourceMappingURL=main.js.map\n",
-			"file": ".tmp/app/main/main.js",
-			"file_size": 249,
-			"file_write_time": 130985898197948122,
-			"settings":
-			{
-				"buffer_size": 249,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "server/routes.js",
-			"settings":
-			{
-				"buffer_size": 712,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "client/app/main/main.html",
-			"settings":
-			{
-				"buffer_size": 490,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "client/app/app.scss",
-			"settings":
-			{
-				"buffer_size": 643,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "client/app/main/main.controller.js",
-			"settings":
-			{
-				"buffer_size": 540,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "client/app/admin/admin.controller.js",
-			"settings":
-			{
-				"buffer_size": 349,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "server/app.js",
-			"settings":
-			{
-				"buffer_size": 5700,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -264,10 +214,101 @@
 	"expanded_folders":
 	[
 		"/C/Users/Kanav/Documents/red-reap",
-		"/C/Users/Kanav/Documents/red-reap/server"
+		"/C/Users/Kanav/Documents/red-reap/client",
+		"/C/Users/Kanav/Documents/red-reap/client/app",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u",
+		"/C/Users/Kanav/Documents/red-reap/client/assets/images",
+		"/C/Users/Kanav/Documents/red-reap/client/components",
+		"/C/Users/Kanav/Documents/red-reap/client/components/auth",
+		"/C/Users/Kanav/Documents/red-reap/client/components/modal",
+		"/C/Users/Kanav/Documents/red-reap/client/components/navbar",
+		"/C/Users/Kanav/Documents/red-reap/client/components/util",
+		"/C/Users/Kanav/Documents/red-reap/server",
+		"/C/Users/Kanav/Documents/red-reap/server/api",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit",
+		"/C/Users/Kanav/Documents/red-reap/server/api/validate",
+		"/C/Users/Kanav/Documents/red-reap/server/config"
 	],
 	"file_history":
 	[
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/mainService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.html",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/userCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/userRouter.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/userService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.constant.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.scss",
+		"/C/Users/Kanav/Desktop/app/app.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/home/homeCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.routes.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/home/homeService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/homeCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/homeService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/mainCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/index.html",
+		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.html",
+		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.scss",
+		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.service.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/auth/auth.service.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.html",
+		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/user/user.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/user/user.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/user/index.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/util/util.module.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/util/util.service.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.directive.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.html",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.module.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.router.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.scss",
+		"/C/Users/Kanav/Documents/red-reap/server/config/local.env.js",
+		"/C/Users/Kanav/Documents/red-reap/server/app.js",
+		"/C/Users/Kanav/Documents/red-reap/server/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/routes.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.controller.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/auth/auth.module.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/mongoose-error/mongoose-error.directive.js",
+		"/C/Users/Kanav/Documents/red-reap/client/robots.txt",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/user.html",
+		"/C/Users/Kanav/Documents/red-reap/client/app/account/account.js",
+		"/C/Users/Kanav/Documents/red-reap/server/auth/auth.service.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.events.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/top.html",
+		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.po.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/validate/index.js",
+		"/C/Users/Kanav/Downloads/ferristic",
+		"/C/Users/Kanav/Documents/red-reap/server/config/environment/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/config/environment/production.js",
+		"/C/Users/Kanav/Documents/red-reap/server/config/environment/development.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.controller.js",
+		"/C/Users/Kanav/Desktop/backupcon.js",
+		"/C/Users/Kanav/Documents/red-reap/.gitignore",
+		"/C/Users/Kanav/Documents/snootest/snoocore-examples/oauth/oauth-explicit-permanent-1.js",
+		"/C/Users/Kanav/Downloads/red-reap/server/app.js",
+		"/C/Users/Kanav/Documents/snootest/snoocore-examples/express-web/app.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/redditauth.controller.js",
+		"/C/Users/Kanav/Documents/Projects/mean-machine-code-master/17-user-crm/server.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/redditauth.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/auth/index.js",
+		"/C/Users/Kanav/Documents/red-reap/.tmp/app/main/main.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.scss",
 		"/C/Users/Kanav/Documents/redreap/client/app/main/main.html",
 		"/C/Users/Kanav/Documents/redreap/client/index.html",
 		"/C/Users/Kanav/Downloads/mean-machine-code-master/11-angular-start/js/app.js",
@@ -318,84 +359,7 @@
 		"/C/Users/Kanav/AppData/Local/Microsoft/Windows/INetCache/IE/SLTVGW8Y/.config[1].config",
 		"/C/Users/Kanav/Documents/Projects/sample-orga/app/models/user.js",
 		"/C/Users/Kanav/Documents/Projects/api-intro/package.json",
-		"/C/Users/Kanav/Documents/Projects/api-intro/app.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/js/app.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/server.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/css/style.css",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/server.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/js/app.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/index.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/js/app.routes.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/home.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/about.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/contact.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/index.html",
-		"/C/Users/Kanav/Documents/Projects/angular-intro/index.html",
-		"/C/Users/Kanav/Documents/Projects/angular-intro/js/app.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/app/models/user.js",
-		"/C/Users/Kanav/Documents/Projects/intro-api/server.js",
-		"/C/Users/Kanav/Documents/Projects/intro-api/package.json",
-		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/body-parser/package.json",
-		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/bson/ext/index.js",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/config.cfg",
-		"/C/Users/Kanav/Documents/Projects/httpserv/server.js",
-		"/C/Users/Kanav/Documents/Projects/mongotest/server.js",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/client/app/main/main.controller.js",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/client/app/main/main.html",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/client/index.html",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/package.json",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/bower.json",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/allcards.txt",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/client/components/footer/footer.html",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/client/components/navbar/navbar.html",
-		"/C/Users/Kanav/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-mousemap",
-		"/C/Users/Kanav/Documents/Projects/project1/Vagrantfile",
-		"/C/Users/Kanav/Desktop/To Learn.txt",
-		"/C/Users/Kanav/Desktop/Download VOD.bat",
-		"/C/Users/Kanav/Desktop/Watch.bat",
-		"/C/Users/Kanav/Documents/Backup/Now/Utilities/AutoRecordGO.ahk",
-		"/D/Music/Futuremark.3DMark.Professional.Edition.v1.5.915-NEWiSO/n-f15915.nfo",
-		"/C/Users/Kanav/Downloads/Sony Vegas Pro 13.0 build 310 (64 bit) (patch KHG) [ChingLiu]/ChingLiu.Install.Notes.nfo",
-		"/C/Users/Kanav/Downloads/Stardock Start10 1.0 Pre-Activated [4realtorrentz]/painter.nfo",
-		"/C/Users/Kanav/AppData/Local/Temp/fz3temp-1/admins.cfg",
-		"/C/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.8.1/plugins/synced_folders/rsync/helper.rb",
-		"/C/Users/Kanav/Documents/Projects/project1/app/index.html",
-		"/C/Users/Kanav/Documents/Projects/project1/provisioning/nodejs.sh",
-		"/C/Users/Kanav/Documents/Projects/project1/app/test.html",
-		"/C/Users/Kanav/Documents/Projects/project1/provisioning/nginx.sh",
-		"/C/Users/Kanav/Documents/Projects/project1/app/bin/www",
-		"/C/Users/Kanav/Documents/Backup/Now/Utilities/cmder/README.md",
-		"/C/Users/Kanav/Downloads/cmder/README.md",
-		"/C/Users/Kanav/Downloads/cmder/config/user-startup.cmd",
-		"/C/Users/Kanav/Downloads/cmder/config/settings",
-		"/C/Users/Kanav/Downloads/cmder/config/ConEmu.xml",
-		"/C/Users/Kanav/Desktop/Mafia Game.txt",
-		"/C/Users/Kanav/Desktop/xhair.txt",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/x.cfg",
-		"/C/Users/Kanav/AppData/Local/Temp/fz3temp-1/inhouse.cfg",
-		"/C/Users/Kanav/Desktop/LA/HW.txt",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/game.cfg",
-		"/C/Users/Kanav/Desktop/serial.c",
-		"/C/Users/Kanav/Desktop/mpi.c",
-		"/C/Users/Kanav/Desktop/openMP.c",
-		"/C/Users/Kanav/Desktop/1d.c",
-		"/C/Users/Kanav/AppData/Local/Temp/fz3temp-1/server.cfg",
-		"/C/Users/Kanav/AppData/Local/Temp/fz3temp-1/1v1.cfg",
-		"/C/Users/Kanav/AppData/Local/Temp/fz3temp-1/practice.cfg",
-		"/C/Users/Kanav/Downloads/trainyournade.sp",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/gamestate_integration_c4timer.cfg",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-windows/addons/sourcemod/scripting/adminmenu.sp",
-		"/C/Users/Kanav/Desktop/csgo/addons/sourcemod/adminmenu.sp",
-		"/C/Users/Kanav/AppData/Local/Temp/fz3temp-1/adminmenu.smx",
-		"/C/Users/Kanav/Downloads/csgo_c4timer/csgo_c4timer/gamestate_integration_c4timer.cfg",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/admin_groups.cfg",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/admin_overrides.cfg",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/adminmenu_cfgs.txt",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/adminmenu_custom.txt",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/adminmenu_grouping.txt",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/adminmenu_sorting.txt",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/admins.cfg",
-		"/C/Users/Kanav/Downloads/sourcemod-1.7.3-git5280-linux/addons/sourcemod/configs/admins_simple.ini"
+		"/C/Users/Kanav/Documents/Projects/api-intro/app.js"
 	],
 	"find":
 	{
@@ -406,6 +370,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -413,6 +378,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ng-scope",
+			"main.html",
+			"ng-controller",
+			"userFactory",
+			"config",
+			"redditauth",
 			"forcepreload",
 			"app",
 			"messagemode2",
@@ -449,6 +420,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"mainFactory",
+			"validate",
 			"ASHTON CHECKS",
 			"XERI SAVES",
 			"AJ & PRAB",
@@ -464,240 +437,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": ".tmp/app/main/main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 249,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								215,
-								215
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "server/routes.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 712,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3,
-								3
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "client/app/main/main.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 490,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17,
-								17
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "client/app/app.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 643,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								642,
-								642
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "client/app/main/main.controller.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 540,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								368,
-								368
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "client/app/admin/admin.controller.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 349,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								349,
-								349
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "server/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5700,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5700,
-								5700
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1716.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -707,7 +448,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 29.0
 	},
 	"layout":
 	{
@@ -740,7 +481,7 @@
 	"project": "red_reap.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -778,7 +519,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 283.0,
+	"side_bar_width": 270.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -5,14 +5,13 @@
 'use strict';
 
 import errors from './components/errors';
+import config from './config/environment';
 import path from 'path';
 
 export default function(app) {
-  // Insert routes below
-  app.use('/api/things', require('./api/thing'));
-  app.use('/api/users', require('./api/user'));
-  app.use('/auth', require('./auth'));
+  // app.use('/auth', require('./auth'));
 
+  app.use('/api/reddit', require('./api/reddit'));
   app.use('/api/validate', require('./api/validate'));
 
   // All undefined asset or api routes should return a 404
@@ -20,7 +19,7 @@ export default function(app) {
    .get(errors[404]);
 
   // All other routes should redirect to the index.html
-  app.route('/*')
+  app.route('/*') 
     .get((req, res) => {
       res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
     });

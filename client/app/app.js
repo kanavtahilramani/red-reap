@@ -2,8 +2,8 @@
 
 angular.module('redreapApp', [
   'redreapApp.auth',
-  'redreapApp.admin',
   'redreapApp.constants',
+  'mainService',
   'ngCookies',
   'ngResource',
   'ngSanitize',

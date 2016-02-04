@@ -1,15 +1,15 @@
 /**
- * User model events
+ * Reddit model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-import User from './user.model';
-var UserEvents = new EventEmitter();
+var Reddit = require('./reddit.model');
+var RedditEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-UserEvents.setMaxListeners(0);
+RedditEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  User.schema.post(e, emitEvent(event));
+  Reddit.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    UserEvents.emit(event + ':' + doc._id, doc);
-    UserEvents.emit(event, doc);
+    RedditEvents.emit(event + ':' + doc._id, doc);
+    RedditEvents.emit(event, doc);
   }
 }
 
-export default UserEvents;
+export default RedditEvents;

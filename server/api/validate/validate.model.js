@@ -1,10 +1,8 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
-var AuthSchema   = new Schema({
+var TokenSchema   = new Schema({
 	refresh: String
-	// username: { type: String, required: true, index: { unique: true }},
-	// password: { type: String, required: true, select: false }
-});
+}, { collection: 'token'});
 
-module.exports = mongoose.model('RedditAuth', AuthSchema);
+module.exports = mongoose.model('Token', TokenSchema);

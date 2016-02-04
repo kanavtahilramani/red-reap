@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newThing;
+var newReddit;
 
-describe('Thing API:', function() {
+describe('Reddit API:', function() {
 
-  describe('GET /api/things', function() {
-    var things;
+  describe('GET /api/reddit', function() {
+    var reddits;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things')
+        .get('/api/reddit')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          things = res.body;
+          reddits = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      things.should.be.instanceOf(Array);
+      reddits.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/things', function() {
+  describe('POST /api/reddit', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/things')
+        .post('/api/reddit')
         .send({
-          name: 'New Thing',
-          info: 'This is the brand new thing!!!'
+          name: 'New Reddit',
+          info: 'This is the brand new reddit!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          newThing = res.body;
+          newReddit = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created thing', function() {
-      newThing.name.should.equal('New Thing');
-      newThing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the newly created reddit', function() {
+      newReddit.name.should.equal('New Reddit');
+      newReddit.info.should.equal('This is the brand new reddit!!!');
     });
 
   });
 
-  describe('GET /api/things/:id', function() {
-    var thing;
+  describe('GET /api/reddit/:id', function() {
+    var reddit;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things/' + newThing._id)
+        .get('/api/reddit/' + newReddit._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          thing = res.body;
+          reddit = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      thing = {};
+      reddit = {};
     });
 
-    it('should respond with the requested thing', function() {
-      thing.name.should.equal('New Thing');
-      thing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the requested reddit', function() {
+      reddit.name.should.equal('New Reddit');
+      reddit.info.should.equal('This is the brand new reddit!!!');
     });
 
   });
 
-  describe('PUT /api/things/:id', function() {
-    var updatedThing;
+  describe('PUT /api/reddit/:id', function() {
+    var updatedReddit;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/things/' + newThing._id)
+        .put('/api/reddit/' + newReddit._id)
         .send({
-          name: 'Updated Thing',
-          info: 'This is the updated thing!!!'
+          name: 'Updated Reddit',
+          info: 'This is the updated reddit!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          updatedThing = res.body;
+          updatedReddit = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedThing = {};
+      updatedReddit = {};
     });
 
-    it('should respond with the updated thing', function() {
-      updatedThing.name.should.equal('Updated Thing');
-      updatedThing.info.should.equal('This is the updated thing!!!');
+    it('should respond with the updated reddit', function() {
+      updatedReddit.name.should.equal('Updated Reddit');
+      updatedReddit.info.should.equal('This is the updated reddit!!!');
     });
 
   });
 
-  describe('DELETE /api/things/:id', function() {
+  describe('DELETE /api/reddit/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/reddit/' + newReddit._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Thing API:', function() {
         });
     });
 
-    it('should respond with 404 when thing does not exist', function(done) {
+    it('should respond with 404 when reddit does not exist', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/reddit/' + newReddit._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

@@ -10,10 +10,6 @@ mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
 
-// Include libs
-var creds = require('./config/local.env');
-var cookieParser = require('cookie-parser');
-
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {
@@ -21,13 +17,9 @@ mongoose.connection.on('error', function(err) {
   process.exit(-1);
 });
 
-// Populate databases with sample data
-if (config.seedDB) { require('./config/seed'); }
-
 // Setup server
 var app = express();
 var server = http.createServer(app);
-app.use(cookieParser());
 require('./config/express')(app);
 require('./routes')(app);
 
