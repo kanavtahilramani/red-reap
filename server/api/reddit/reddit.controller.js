@@ -15,68 +15,27 @@ function getUser(username) {
   return User.findOne({ 'username': username});
 }
 
+function saveUser(user) {
+  user.save(function (err) {
+    if (err)
+      console.log(err);
+
+    user.save();
+  });
+}
+
 function getUserData(req, res) {
-    console.log("\n\n===============================\n\n" + "CREATED USER, SAVING" + "\n\n==============================\n\n");
     var userData = new User({username: req.params.username});
-    console.log("\n\n===============================\n\n" + "LINE 21" + "\n\n==============================\n\n");
-    getTopComment(req, res, function(result) {
-      console.log("\n\n===============================\n\n" + "LINE 23" + "\n\n==============================\n\n");
-      userData.topComment = result;
-      console.log("\n\n===============================\n\n" + "LINE 25" + "\n\n==============================\n\n");
 
-      getKarma(req, res, function(response) {
-        userData.karma = response;
-        console.log("\n\n===============================\n\n" + "LINE 29" + "\n\n==============================\n\n");
-
-        userData.save(function (err) {
-          if (err)
-            res.send(err);
-          userData.save();
-        })
-      })
+    getTopComment(req, res, function(comment) {
+      userData.topComment.body = comment;
+      getKarma(req, res, function(score) {
+        userData.karma = score;
+        saveUser(userData);
+        res.send(userData);
+      });
     });
-    
-    return userData;
 }
-
-function getUserData(req, res) {
-    console.log("\n\n===============================\n\n" + "CREATED USER, SAVING" + "\n\n==============================\n\n");
-    var userData = new User({username: req.params.username});
-    console.log("\n\n===============================\n\n" + "LINE 21" + "\n\n==============================\n\n");
-      userData.topComment = getTopComment(req, res);
-      console.log("\n\n===============================\n\n" + "LINE 25" + "\n\n==============================\n\n");
-        userData.karma = getKarma(req, res);
-        console.log("\n\n===============================\n\n" + "LINE 29" + "\n\n==============================\n\n");
-
-        userData.save(function (err) {
-          if (err)
-            res.send(err);
-          userData.save();
-          console.log("\n\n===============================\n\n" + "RETURNING" + "\n\n==============================\n\n");
-          return userData;
-        });
-}
-
-// function getUserData(req, res) {
-//     console.log("\n\n===============================\n\n" + "CREATED USER, SAVING" + "\n\n==============================\n\n");
-//     var userData = new User({username: req.params.username});
-//     console.log("\n\n===============================\n\n" + "LINE 21" + "\n\n==============================\n\n");
-//     getTopComment(req, res).then(function(result) {
-//          userData.topComment = result;
-//          console.log("\n\n===============================\n\n" + "LINE 23" + "\n\n==============================\n\n");
-//          getKarma(req, res).then(function(response) {
-//             userData.karma = response;
-//             console.log("\n\n===============================\n\n" + "LINE 25" + "\n\n==============================\n\n");
-//             userData.save(function (err) {
-//             if (err)
-//               res.send(err);
-//             userData.save();
-//             })
-//             console.log("\n\n===============================\n\n" + "LINE 29" + "\n\n==============================\n\n");
-//             return userData;
-//           })
-//          });   
-// }
 
 var reddit = new Snoocore({
     userAgent: 'web:red-reap:0.0.1 by (/u/ferristic)',
@@ -94,6 +53,7 @@ var reddit = new Snoocore({
     reddit.setRefreshToken(data.refresh.toString());
   });
 
+// '/api/reddit/:username/'
 export function checkUser (req, res) {
   getUser(req.params.username).then(function(userData) {
       if (userData != null) { // add our time constraint
@@ -102,14 +62,11 @@ export function checkUser (req, res) {
       }
 
       else {
-        getUserData(req, res, (function(user) {
-          console.log("\n\n===============================\n\n" + "SENDING" + "\n\n==============================\n\n");
-          return res.send(user);
-        }));
+        getUserData(req, res, saveUser);
       }
   });
 }
-
+ 
 export function getUserComments (req, res) {
   // console.log("===========================\n\n" + r + "\n\n==============================");
   reddit('/user/' + req.params.username + '/comments/').get().then(function(result) {
@@ -117,17 +74,17 @@ export function getUserComments (req, res) {
   });
 }
 
-export function getTopComment (req, res) {
+export function getTopComment (req, res, callback) {
       reddit('/user/' + req.params.username + '/comments/').get({
         limit: 1,
         sort: 'top'
       }).then(function(response) {
-          return response.data.children[0].data.body;
+        callback(response.data.children[0].data.body.toString());
       });
 }
 
-export function getKarma (req, res) {
+export function getKarma (req, res, callback) {
   reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
-    return response.data.comment_karma;
+    callback(parseInt(response.data.comment_karma));
   });
 }
