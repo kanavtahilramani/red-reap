@@ -5,9 +5,23 @@ var UserSchema = new Schema({
 	username: {type: String, unique: true},
 	topComment: {
 		score: Number,
-		body: String
+		subreddit: String,
+		body: String,
+		permalink: String
 	},
-	karma: Number
+	topSubmission: {
+		score: Number,
+		subreddit: String,
+		title: String,
+		permalink: String
+	},
+	commentKarma: Number,
+	linkKarma: Number,
+	creationDate: Number,
+	nsfwComments: Number,
+	nsfwSubmissions: Number,
+	lastUpdated: Number
+
 }, { collection: 'user'});
 
 module.exports = mongoose.model('User', UserSchema);

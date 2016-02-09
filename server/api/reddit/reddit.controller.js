@@ -10,7 +10,7 @@ function getRefresh() {
   return Token.findOne();
 }
 
-function getUser(username) {
+function findUser(username) {
   // console.log("\n\n===============================\n\n" + User.findOne({ 'username': username}) + "\n\n==============================\n\n");
   return User.findOne({ 'username': username});
 }
@@ -24,17 +24,35 @@ function saveUser(user) {
   });
 }
 
-function getUserData(req, res) {
+function createUser(req, res) {
     var userData = new User({username: req.params.username});
 
     getTopComment(req, res, function(comment) {
-      userData.topComment.body = comment;
-      getKarma(req, res, function(score) {
-        userData.karma = score;
-        saveUser(userData);
-        res.send(userData);
+      userData.topComment.body = comment.body;
+      userData.topComment.score = comment.score;
+      userData.topComment.subreddit = comment.subreddit;
+
+      getKarmaAndDate(req, res, function(scores) {
+        userData.commentKarma = scores.comments;
+        userData.linkKarma = scores.submissions;
+        userData.creationDate = scores.created;
+
+        getTopSubmission(req, res, function(submission) {
+          userData.topSubmission.score = submission.score;
+          userData.topSubmission.subreddit = submission.subreddit;
+          userData.topSubmission.title = submission.title;
+          userData.topSubmission.permalink = submission.permalink;
+
+
+          saveUser(userData);
+          res.send(userData);         
+        });
       });
     });
+}
+
+function updateUser(req, res) {
+
 }
 
 var reddit = new Snoocore({
@@ -55,20 +73,18 @@ var reddit = new Snoocore({
 
 // '/api/reddit/:username/'
 export function checkUser (req, res) {
-  getUser(req.params.username).then(function(userData) {
+  findUser(req.params.username).then(function(userData) {
       if (userData != null) { // add our time constraint
-          console.log("\n\n===============================\n\n" + "USER IS NOT NULL, RETURN FROM DB" + "\n\n==============================\n\n");
           return res.send(userData);
       }
 
       else {
-        getUserData(req, res, saveUser);
+        createUser(req, res);
       }
   });
 }
  
 export function getUserComments (req, res) {
-  // console.log("===========================\n\n" + r + "\n\n==============================");
   reddit('/user/' + req.params.username + '/comments/').get().then(function(result) {
       return res.send(JSON.stringify(result, null, 4));
   });
@@ -79,12 +95,43 @@ export function getTopComment (req, res, callback) {
         limit: 1,
         sort: 'top'
       }).then(function(response) {
-        callback(response.data.children[0].data.body.toString());
+        var comment = {};
+        comment.score = parseInt(response.data.children[0].data.score);
+        comment.body = response.data.children[0].data.body.toString();
+        comment.subreddit = response.data.children[0].data.subreddit.toString();
+        callback(comment);
       });
 }
 
-export function getKarma (req, res, callback) {
+export function getTopSubmission (req, res, callback) {
+    reddit('/user/' + req.params.username + '/submitted/').get({
+        limit: 1,
+        sort: 'top'
+    }).then(function(response) {
+        var submission = {};
+        submission.score = response.data.children[0].data.score;
+        submission.subreddit = response.data.children[0].data.subreddit;
+        submission.title = response.data.children[0].data.title;
+        submission.permalink = 'https://www.reddit.com' + response.data.children[0].data.permalink;
+        callback(submission);
+      });
+}
+
+export function getNSFWComments (req, res, callback) {
+    
+}
+
+export function getNSFWSubmissions (req, res, callback) {
+    
+}
+
+export function getKarmaAndDate (req, res, callback) {
   reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
-    callback(parseInt(response.data.comment_karma));
+    var details = {};
+    details.comments = parseInt(response.data.comment_karma);
+    details.submissions = parseInt(response.data.link_karma);
+    details.created = parseInt(response.data.created_utc);
+    callback(details);
+    // return res.send(response);
   });
 }

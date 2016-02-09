@@ -18,7 +18,10 @@ var router = express.Router();
 
 // router.get('/', controller.index);
 router.get('/:username', controller.checkUser);
-router.get('/:username/top', controller.getTopComment);
-router.get('/:username/karma', controller.getKarma);
+router.get('/:username/topComment', controller.getTopComment);
+router.get('/:username/topSubmission', controller.getTopSubmission);
+router.get('/:username/nsfwComments', controller.getNSFWComments);
+router.get('/:username/nsfwSubmissions', controller.getNSFWSubmissions);
+router.get('/:username/karma', controller.getKarmaAndDate);
 
 module.exports = router;
