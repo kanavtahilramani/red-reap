@@ -1,5 +1,16 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+// var CommentSchema = require('./comment.model');
+
+var CommentSchema = new Schema({
+	score: Number,
+	nsfw: Boolean,
+	body: String,
+	edited: Boolean,
+	subreddit: String,
+	created: Number,
+	upvotes: Number
+});
 
 var UserSchema = new Schema({
 	username: {type: String, unique: true},
@@ -16,12 +27,13 @@ var UserSchema = new Schema({
 		permalink: String
 	},
 	commentKarma: Number,
-	linkKarma: Number,
+	linkKarma: Number, 
 	creationDate: Number,
 	nsfwComments: Number,
 	nsfwSubmissions: Number,
-	lastUpdated: Number
-
+	lastUpdated: Number,
+	test: String,
+	comments: [CommentSchema]
 }, { collection: 'user'});
 
 module.exports = mongoose.model('User', UserSchema);

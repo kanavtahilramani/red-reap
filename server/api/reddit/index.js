@@ -23,5 +23,6 @@ router.get('/:username/topSubmission', controller.getTopSubmission);
 router.get('/:username/nsfwComments', controller.getNSFWComments);
 router.get('/:username/nsfwSubmissions', controller.getNSFWSubmissions);
 router.get('/:username/karma', controller.getKarmaAndDate);
+router.get('/:username/allComments', controller.getUserComments);
 
 module.exports = router;

@@ -6,12 +6,28 @@ import Token from '../validate/validate.model';
 import User from '../user/user.model';
 import Snoocore from 'snoocore';
 
+var reddit = new Snoocore({
+    userAgent: 'web:red-reap:0.0.1 by (/u/ferristic)',
+    throttle: 0,
+    oauth: {
+        type: 'explicit',
+        duration: 'permanent',
+        key: creds.client_id,
+        secret: creds.redsecret,
+        redirectUri: 'http://localhost:9000/api/validate/redirect',
+        scope: [ 'identity', 'read', 'history', 'flair' ]
+    }
+});
+
+  getRefresh().then(function(data) {
+    reddit.setRefreshToken(data.refresh.toString());
+  });
+
 function getRefresh() {
   return Token.findOne();
 }
 
 function findUser(username) {
-  // console.log("\n\n===============================\n\n" + User.findOne({ 'username': username}) + "\n\n==============================\n\n");
   return User.findOne({ 'username': username});
 }
 
@@ -19,12 +35,10 @@ function saveUser(user) {
   user.save(function (err) {
     if (err)
       console.log(err);
-
-    user.save();
   });
 }
 
-function createUser(req, res) {
+function createUser(req, res, callback) {
     var userData = new User({username: req.params.username});
 
     getTopComment(req, res, function(comment) {
@@ -43,9 +57,22 @@ function createUser(req, res) {
           userData.topSubmission.title = submission.title;
           userData.topSubmission.permalink = submission.permalink;
 
-
-          saveUser(userData);
-          res.send(userData);         
+          getUserComments(req, res, function(allComments) {
+            allComments.forEach(function(commentSlice) {
+              commentSlice.data.children.forEach(function(currentComment) {
+                userData.comments.push({
+                                    score: currentComment.data.score,
+                                    nsfw: currentComment.data.over_18,
+                                    body: currentComment.data.body,
+                                    edited: currentComment.data.edited,
+                                    subreddit: currentComment.data.subreddit,
+                                    created: currentComment.data.created_utc,
+                                    upvotes: currentComment.data.ups
+                                    });
+              });
+            }); // end outer FOR
+            callback(userData);
+          }); 
         });
       });
     });
@@ -55,22 +82,6 @@ function updateUser(req, res) {
 
 }
 
-var reddit = new Snoocore({
-    userAgent: 'web:red-reap:0.0.1 by (/u/ferristic)',
-    oauth: {
-        type: 'explicit',
-        duration: 'permanent',
-        key: creds.client_id,
-        secret: creds.redsecret,
-        redirectUri: 'http://localhost:9000/api/validate/redirect',
-        scope: [ 'identity', 'read', 'history', 'flair' ]
-    }
-  });
-
-  getRefresh().then(function(data) {
-    reddit.setRefreshToken(data.refresh.toString());
-  });
-
 // '/api/reddit/:username/'
 export function checkUser (req, res) {
   findUser(req.params.username).then(function(userData) {
@@ -79,15 +90,41 @@ export function checkUser (req, res) {
       }
 
       else {
-        createUser(req, res);
+        createUser(req, res, function(user) {
+          console.log("\n\nSaving.\n\n");
+          saveUser(user);
+        });
       }
   });
 }
  
-export function getUserComments (req, res) {
-  reddit('/user/' + req.params.username + '/comments/').get().then(function(result) {
-      return res.send(JSON.stringify(result, null, 4));
-  });
+export function getUserComments (req, res, callback) {
+  function loop(slice, prevComment) {
+    if (slice.data.children.length < 100 || i >= 10) {
+      callback(slices);
+      return;
+    }
+    i++;
+    reddit('/user/' + username + '/comments/').get({ limit: 100, after: prevComment }).then(function(currentSlice) {
+      if (currentSlice.data.children.length == 0) {
+        return;
+      }
+      slices.push(slice);
+      loop(currentSlice, currentSlice.data.children[currentSlice.data.children.length-1].data.name);
+    });
+  }
+
+  var slices = [];
+  var username = req.params.username;
+  var i = 1;
+
+  reddit('/user/' + username + '/comments/').get({ limit: 100 }).then(function(firstSlice) {
+    if (firstSlice.data.children.length == 0) {
+      return;
+    }
+    slices.push(firstSlice);
+    loop(firstSlice, firstSlice.data.children[firstSlice.data.children.length-1].data.name);
+  });  
 }
 
 export function getTopComment (req, res, callback) {
@@ -104,7 +141,7 @@ export function getTopComment (req, res, callback) {
 }
 
 export function getTopSubmission (req, res, callback) {
-    reddit('/user/' + req.params.username + '/submitted/').get({
+    reddit('/user/' + req.params.username + '/submitted/').get({ /* need to add raw json later */
         limit: 1,
         sort: 'top'
     }).then(function(response) {
@@ -113,7 +150,8 @@ export function getTopSubmission (req, res, callback) {
         submission.subreddit = response.data.children[0].data.subreddit;
         submission.title = response.data.children[0].data.title;
         submission.permalink = 'https://www.reddit.com' + response.data.children[0].data.permalink;
-        callback(submission);
+        // callback(submission);
+        return res.send(response);
       });
 }
 
@@ -132,6 +170,5 @@ export function getKarmaAndDate (req, res, callback) {
     details.submissions = parseInt(response.data.link_karma);
     details.created = parseInt(response.data.created_utc);
     callback(details);
-    // return res.send(response);
   });
 }
