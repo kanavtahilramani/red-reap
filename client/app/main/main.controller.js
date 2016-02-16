@@ -1,20 +1,24 @@
 'use strict';
 
 angular.module('redreapApp')
-  .controller('MainController', function(User) {
+  .controller('MainController', function(User, $location) {
   		var vm = this;
-		
-		vm.all = function(username) {
-			User.getAll(username)
-				.success(function(data) {
-					vm.block = data;
-				});
-		};
 
-		vm.topComment = function(username) {
-			User.getTop(username)
-				.success(function(data) {
-					vm.comment = data;
+		vm.search = function(username) {
+			// add processing
+				User.getUser(username, function() {
+					$location.path('/user/' + username);
 				});
+					
+					// vm.commentKarma = data.commentKarma;
+					// vm.linkKarma = data.linkKarma;
+					// vm.username = username;
+					// vm.topSubmission = data.topSubmission;
+					// vm.topComment = data.topComment;
+					// var current = new Date();
+					// var creation = new Date(data.creationDate);
+					// vm.accountAge = Math.round((current-creation));
+					// console.log(vm.accountAge);
+				// });
 		};
   });

@@ -1,0 +1,25 @@
+<navbar></navbar>
+
+<div ng-if="user.processing" class="container">
+	<p>processing!</p>
+</div>
+<div ng-if="!user.processing" class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="col-lg-5">
+				<!-- <div class="jumbotron text-center"> -->
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<p class="text-center">{{user.redditUser.data.commentKarma}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<p class="text-center">testing2</p>
+			</div>
+			<div class="col-lg-2">
+				<p class="text-center">testing3</p>
+			</div>
+		</div>
+	</div>
+</div>

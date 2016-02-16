@@ -40,6 +40,7 @@ function saveUser(user) {
 
 function createUser(req, res, callback) {
     var userData = new User({username: req.params.username});
+    var userComments = [];
 
     getTopComment(req, res, function(comment) {
       userData.topComment.body = comment.body;
@@ -60,7 +61,7 @@ function createUser(req, res, callback) {
           getUserComments(req, res, function(allComments) {
             allComments.forEach(function(commentSlice) {
               commentSlice.data.children.forEach(function(currentComment) {
-                userData.comments.push({
+                userComments.push({
                                     score: currentComment.data.score,
                                     nsfw: currentComment.data.over_18,
                                     body: currentComment.data.body,
@@ -93,6 +94,7 @@ export function checkUser (req, res) {
         createUser(req, res, function(user) {
           console.log("\n\nSaving.\n\n");
           saveUser(user);
+          return res.send(user);
         });
       }
   });
@@ -150,8 +152,8 @@ export function getTopSubmission (req, res, callback) {
         submission.subreddit = response.data.children[0].data.subreddit;
         submission.title = response.data.children[0].data.title;
         submission.permalink = 'https://www.reddit.com' + response.data.children[0].data.permalink;
-        // callback(submission);
-        return res.send(response);
+        callback(submission);
+        // return res.send(response);
       });
 }
 

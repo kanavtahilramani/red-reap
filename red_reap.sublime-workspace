@@ -4,12 +4,32 @@
 		"selected_items":
 		[
 			[
-				"com",
-				"commentData"
+				"creat",
+				"createUser"
+			],
+			[
+				"topS",
+				"topSubmission"
+			],
+			[
+				"topC",
+				"topComment"
+			],
+			[
+				"top",
+				"topS"
+			],
+			[
+				"sub",
+				"submission"
 			],
 			[
 				"comm",
-				"comments"
+				"commentKarma"
+			],
+			[
+				"com",
+				"commentSlice"
 			],
 			[
 				"Comm",
@@ -22,10 +42,6 @@
 			[
 				"par",
 				"parseInt"
-			],
-			[
-				"sub",
-				"submission"
 			],
 			[
 				"perm",
@@ -58,10 +74,6 @@
 			[
 				"User",
 				"UserSchema"
-			],
-			[
-				"top",
-				"topComment"
 			],
 			[
 				"Token",
@@ -216,21 +228,10 @@
 	"buffers":
 	[
 		{
-			"contents": "'use strict';\n\n// import Reddit from './reddit.model';\nimport creds from '../../config/local.env';\nimport Token from '../validate/validate.model';\nimport User from '../user/user.model';\nimport Snoocore from 'snoocore';\n\nfunction getRefresh() {\n  return Token.findOne();\n}\n\nfunction findUser(username) {\n  // console.log(\"\\n\\n===============================\\n\\n\" + User.findOne({ 'username': username}) + \"\\n\\n==============================\\n\\n\");\n  return User.findOne({ 'username': username});\n}\n\nfunction saveUser(user) {\n  user.save(function (err) {\n    if (err)\n      console.log(err);\n\n    user.save();\n    // callback();\n  });\n}\n\nfunction createUser(req, res) {\n    var userData = new User({username: req.params.username});\n\n    getTopComment(req, res, function(comment) {\n      userData.topComment.body = comment.body;\n      userData.topComment.score = comment.score;\n      userData.topComment.subreddit = comment.subreddit;\n\n      getKarmaAndDate(req, res, function(scores) {\n        userData.commentKarma = scores.comments;\n        userData.linkKarma = scores.submissions;\n        userData.creationDate = scores.created;\n\n        getTopSubmission(req, res, function(submission) {\n          userData.topSubmission.score = submission.score;\n          userData.topSubmission.subreddit = submission.subreddit;\n          userData.topSubmission.title = submission.title;\n          userData.topSubmission.permalink = submission.permalink;\n\n          getUserComments(req, res, function(allComments) {\n            allComments.forEach(function(commentSlice) {\n\n              commentSlice.data.children.forEach(function(currentComment) {\n                console.log(\"\\n\\n====================\\n\\n\" + currentComment.data.body + \"\\n\\n====================\\n\\n\");\n                // userData.comments.push({\n                //                     score: currentComment.data.score,\n                //                     nsfw: currentComment.data.over_18,\n                //                     body: currentComment.data.body,\n                //                     edited: currentComment.data.edited,\n                //                     subreddit: currentComment.data.subreddit,\n                //                     created: currentComment.data.created_utc,\n                //                     upvotes: currentComment.data.ups\n                //                     });\n               // userData.comments.push({new Comment});\n               userData.update(\n                            { $push: {comments.body}}\n               )\n               // userData.comments[0].body = currentComment.data.body;\n               // console.log(\"\\n\\n====================\\n\\n\" + currentComment.data.body + \"\\n\\n====================\\n\\n\");\n               // userData.comments.push({com: currentComment.data.body});\n\n              });\n            });\n            saveUser(userData);\n          }); // end getUserComments       \n        });\n      });\n    });\n}\n\nfunction updateUser(req, res) {\n\n}\n\nvar reddit = new Snoocore({\n    userAgent: 'web:red-reap:0.0.1 by (/u/ferristic)',\n    throttle: 0,\n    oauth: {\n        type: 'explicit',\n        duration: 'permanent',\n        key: creds.client_id,\n        secret: creds.redsecret,\n        redirectUri: 'http://localhost:9000/api/validate/redirect',\n        scope: [ 'identity', 'read', 'history', 'flair' ]\n    }\n  });\n\n  getRefresh().then(function(data) {\n    reddit.setRefreshToken(data.refresh.toString());\n  });\n\n// '/api/reddit/:username/'\nexport function checkUser (req, res) {\n  findUser(req.params.username).then(function(userData) {\n      if (userData != null) { // add our time constraint\n          return res.send(userData);\n      }\n\n      else {\n        createUser(req, res);\n      }\n  });\n}\n \nexport function getUserComments (req, res, callback) {\n  var slices = [];\n  var username = req.params.username;\n  var i = 1;\n\n  reddit('/user/' + username + '/comments/').get({ limit: 100 }).then(function(firstSlice) {\n    if (firstSlice.data.children.length == 0) {\n      return;\n    }\n    slices.push(firstSlice);\n    loop(firstSlice, firstSlice.data.children[firstSlice.data.children.length-1].data.name);\n  });\n\n  function loop(slice, prevComment) {\n    if (slice.data.children.length < 100 || i >= 10) {\n      console.log('Done.\\n');\n      callback(slices);\n      // return res.send(slices);\n      return;\n    }\n    console.log(i + '\\n');\n    i++;\n    reddit('/user/' + username + '/comments/').get({ limit: 100, after: prevComment }).then(function(currentSlice) {\n      if (currentSlice.data.children.length == 0) {\n        // return res.send(slices);\n        return;\n      }\n      slices.push(slice);\n      loop(currentSlice, currentSlice.data.children[currentSlice.data.children.length-1].data.name);\n    });\n  }\n  callback(slices);\n  // return res.send(slices);\n}\n\n  // var children = [];\n\n  // function handleSlice(slice) {\n  //   if (slice.empty) {\n  //     return res.send(children);\n  //   }\n\n  //   // printSlice(slice);\n  //   children = children.concat(slice.children);\n  //   return slice.next().then(handleSlice);\n  // }\n\n  // reddit('/user/' + req.params.username + '/comments/').get({\n  //   limit: 100\n  // }).then(handleSlice);\n\n\n  // var i = 0;\n  // var total = 0;\n\n  // // reddit('/hot').listing({ limit: 100 }).then(loop);\n  // reddit('/user/' + req.params.username + '/comments/').get({ limit: 100 }).then(loop);\n\n  \n\n  //   total += slice.children.length;\n  //   i++\n  //   console.log(i, 'children: ' + slice.children.length, 'total: ' + total);\n  //   return slice.next().then(loop);\n  // }\n\n  //     // return res.send(JSON.stringify(result, null, 4));\n  //     return res.send(result);\n  // });\n\nexport function getTopComment (req, res, callback) {\n      reddit('/user/' + req.params.username + '/comments/').get({\n        limit: 1,\n        sort: 'top'\n      }).then(function(response) {\n        // return res.send(response);\n        var comment = {};\n        comment.score = parseInt(response.data.children[0].data.score);\n        comment.body = response.data.children[0].data.body.toString();\n        comment.subreddit = response.data.children[0].data.subreddit.toString();\n        callback(comment);\n      });\n}\n\nexport function getTopSubmission (req, res, callback) {\n    reddit('/user/' + req.params.username + '/submitted/').get({ /* need to add raw json later */\n        limit: 1,\n        sort: 'top'\n    }).then(function(response) {\n        var submission = {};\n        submission.score = response.data.children[0].data.score;\n        submission.subreddit = response.data.children[0].data.subreddit;\n        submission.title = response.data.children[0].data.title;\n        submission.permalink = 'https://www.reddit.com' + response.data.children[0].data.permalink;\n        callback(submission);\n      });\n}\n\nexport function getNSFWComments (req, res, callback) {\n    \n}\n\nexport function getNSFWSubmissions (req, res, callback) {\n    \n}\n\nexport function getKarmaAndDate (req, res, callback) {\n  reddit('/user/' + req.params.username + '/about/').get().then(function(response) {\n    var details = {};\n    details.comments = parseInt(response.data.comment_karma);\n    details.submissions = parseInt(response.data.link_karma);\n    details.created = parseInt(response.data.created_utc);\n    callback(details);\n    // return res.send(response);\n  });\n}",
 			"file": "server/api/reddit/reddit.controller.js",
-			"file_size": 7329,
-			"file_write_time": 130995596203697754,
 			"settings":
 			{
-				"buffer_size": 7324,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "server/api/reddit/index.js",
-			"settings":
-			{
-				"buffer_size": 1025,
+				"buffer_size": 5593,
 				"line_ending": "Unix"
 			}
 		},
@@ -238,18 +239,7 @@
 			"file": "server/api/user/user.model.js",
 			"settings":
 			{
-				"buffer_size": 815,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "var mongoose = require('mongoose');\nvar Schema = mongoose.Schema;\n\nvar CommentSchema = new Schema({\n	comments: {\n			score: Number,\n			nsfw: Boolean,\n			body: String,\n			edited: Boolean,\n			subreddit: String,\n			created: Number,\n			upvotes: Number,\n			}\n});\n\nmodule.exports = ('Comment', CommentSchema);",
-			"file": "server/api/user/comment.model.js",
-			"file_size": 340,
-			"file_write_time": 130995388195359775,
-			"settings":
-			{
-				"buffer_size": 302,
+				"buffer_size": 797,
 				"line_ending": "Windows"
 			}
 		}
@@ -307,16 +297,20 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/comment.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.constant.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/validate/index.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.controller.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.model.js",
 		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/kanav.cfg",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.model.js",
 		"/C/Users/Kanav/Documents/red-reap/server/app.js",
 		"/C/Users/Kanav/Documents/red-reap/server/config/environment/index.js",
 		"/C/Users/Kanav/Documents/red-reap/server/config/environment/production.js",
 		"/C/Users/Kanav/Documents/red-reap/server/config/environment/development.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.html",
 		"/C/Users/Kanav/Documents/red-reap/client/app/main/mainService.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.js",
@@ -325,13 +319,11 @@
 		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.controller.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/u/userRouter.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.controller.js",
 		"/C/Users/Kanav/Documents/red-reap/server/index.js",
 		"/C/Users/Kanav/Downloads/black.swan.(2010).eng.1cd.(4206141)/black.swan.(4206141).nfo",
 		"/C/Users/Kanav/Documents/red-reap/client/app/app.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/u/userCtrl.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/u/userService.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/app.constant.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.scss",
 		"/C/Users/Kanav/Desktop/app/app.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/home/homeCtrl.js",
@@ -369,7 +361,6 @@
 		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.model.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.events.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.spec.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.spec.js",
 		"/C/Users/Kanav/Documents/red-reap/client/app/u/top.html",
 		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.spec.js",
 		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.po.js",
@@ -433,8 +424,7 @@
 		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/authService.js",
 		"/C/Users/Kanav/Documents/Projects/sample-org/app/models/user.js",
 		"/C/Users/Kanav/AppData/Local/Microsoft/Windows/INetCache/IE/SLTVGW8Y/.config[1].config",
-		"/C/Users/Kanav/Documents/Projects/sample-orga/app/models/user.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/package.json"
+		"/C/Users/Kanav/Documents/Projects/sample-orga/app/models/user.js"
 	],
 	"find":
 	{
@@ -515,7 +505,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -524,15 +514,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7324,
+						"buffer_size": 5593,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2977,
-								2977
+								0,
+								0
 							]
 						],
 						"settings":
@@ -542,68 +532,6 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 221.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "server/api/reddit/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1025,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1025,
-								1025
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 2,
-					"file": "server/api/user/user.model.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 815,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								685,
-								685
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -611,20 +539,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "server/api/user/comment.model.js",
+					"buffer": 1,
+					"file": "server/api/user/user.model.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 302,
+						"buffer_size": 797,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								252,
-								252
+								0,
+								0
 							]
 						],
 						"settings":
@@ -636,7 +564,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -659,18 +587,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.580444960104,
 			1.0
 		],
 		"rows":
