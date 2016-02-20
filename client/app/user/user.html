@@ -3,23 +3,51 @@
 <div ng-if="user.processing" class="container">
 	<p>processing!</p>
 </div>
+
 <div ng-if="!user.processing" class="container">
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="col-lg-5">
-				<!-- <div class="jumbotron text-center"> -->
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<p class="text-center">{{user.redditUser.data.commentKarma}}</p>
-					</div>
+		<div class="col-lg-4 col-lg-offset-4">
+			<div class="panel panel-primary user col-lg-offset-2">
+				<div class="panel-heading text-center">
+					<h3 class="panel-title"><strong>/u/{{user.redditUser.data.username}}</strong></h3>
+				</div>
+				<div class="panel-body">
+					<dl class="dl">
+						<dt>redditor for</dt>
+						<dd>{{user.accountCreation.age}}</dd>
+						<!-- <dd>{{user.accountCreation.date}}</dd> -->
+						<!-- <dd>2.18.16</dd> -->
+						<!-- <dd>Feb 18 2016</dd> -->
+					</dl>
+					<!-- <p class="label-title"></p> -->
+					<!-- <p class="value text-center">{{user.redditUser.data.commentKarma}}</p> -->
 				</div>
 			</div>
-			<div class="col-lg-5">
-				<p class="text-center">testing2</p>
+		</div>
+	</div>
+	<div class="row first">
+		<div class="col-lg-3">
+			<div class="panel panel-primary karma">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<strong>karma</strong>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<dl class="dl-horizontal">
+						<dt>comment karma</dt>
+						<dd>{{user.redditUser.data.commentKarma}}</dd>
+						<dt>link karma</dt>
+						<dd>{{user.redditUser.data.linkKarma}}</dd>
+					</dl>
+				</div>
 			</div>
-			<div class="col-lg-2">
-				<p class="text-center">testing3</p>
-			</div>
+		</div>
+		<div class="col-lg-5">
+			<p class="text-center"></p>
+		</div>
+		<div class="col-lg-2">
+			<p class="text-center"></p>
 		</div>
 	</div>
 </div>

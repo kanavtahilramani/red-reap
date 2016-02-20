@@ -50,8 +50,8 @@ function createUser(req, res, callback) {
       getKarmaAndDate(req, res, function(scores) {
         userData.commentKarma = scores.comments;
         userData.linkKarma = scores.submissions;
-        userData.creationDate = scores.created;
-
+        userData.creationDate = (scores.created)*1000;
+        
         getTopSubmission(req, res, function(submission) {
           userData.topSubmission.score = submission.score;
           userData.topSubmission.subreddit = submission.subreddit;
@@ -99,14 +99,37 @@ export function checkUser (req, res) {
       }
   });
 }
+
+export function aboutUser (req, res) {
+  var username = req.params.username;
+  // reddit('/user/' + username + '/about/').get().then(res.send);
+  reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
+    return res.send(response);
+  });
+}
+
+export function getSubredditInfo (req, res) {
+  reddit('/r/' + req.params.subreddit + '/hot').listing().then(function(data) {
+    return res.send(data);
+  });
+}
+
+export function getSubmissionComments (req, res) {
+  reddit('/r/AskReddit/comments/463u73').get().then(function(data) {
+    return res.send(data);
+  });
+}
  
 export function getUserComments (req, res, callback) {
   function loop(slice, prevComment) {
     if (slice.data.children.length < 100 || i >= 10) {
       callback(slices);
+      // return res.send(slices);
       return;
     }
+
     i++;
+
     reddit('/user/' + username + '/comments/').get({ limit: 100, after: prevComment }).then(function(currentSlice) {
       if (currentSlice.data.children.length == 0) {
         return;
@@ -139,6 +162,7 @@ export function getTopComment (req, res, callback) {
         comment.body = response.data.children[0].data.body.toString();
         comment.subreddit = response.data.children[0].data.subreddit.toString();
         callback(comment);
+        // return res.send(response);
       });
 }
 

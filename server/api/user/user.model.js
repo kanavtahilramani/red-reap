@@ -32,7 +32,6 @@ var UserSchema = new Schema({
 	nsfwComments: Number,
 	nsfwSubmissions: Number,
 	lastUpdated: Number,
-	test: String,
 	comments: [CommentSchema]
 }, { collection: 'user'});
 
