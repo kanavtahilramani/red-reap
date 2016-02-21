@@ -15,6 +15,7 @@ angular.module('redreapApp')
             vm.redditUser = User.getUserData();
             User.getAge(function(accountAge) {
               vm.accountCreation = accountAge;
+              // console.log(vm.redditUser.data.data);
               vm.processing = false;
             });
         });
