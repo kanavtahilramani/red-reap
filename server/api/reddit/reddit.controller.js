@@ -46,6 +46,7 @@ function createUser(req, res, callback) {
     var date, currentMonth, currentYear;
     var currentCommentScore = 0,
         currentPostCount = 0;
+    var hourTracker = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
 
      getUserComments(req, res, function(allComments) { /* get all user comments */
         date = new Date(allComments[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
@@ -80,6 +81,9 @@ function createUser(req, res, callback) {
                 currentCommentScore = 0;
                 currentPostCount = 0;
               }
+
+              currentHour = date.getHours(); //get UTC hour comment was posted
+              hourTracker[currentHour]++; //increment count for that hour dfsdfd
           });
         });
 
