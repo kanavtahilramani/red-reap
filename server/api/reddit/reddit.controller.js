@@ -41,46 +41,71 @@ function saveUser(user) {
 function createUser(req, res, callback) {
     var userData = new User({username: req.params.username});
     var userComments = [];
+    // var monthNames = ["January", "February", "March", "April", "May", "June",
+                      // "July", "August", "September", "October", "November", "December"];
+    var date, currentMonth, currentYear;
+    var currentCommentScore = 0,
+        currentPostCount = 0;
 
-    getTopComment(req, res, function(comment) {
-      userData.topComment.body = comment.body;
-      userData.topComment.score = comment.score;
-      userData.topComment.subreddit = comment.subreddit;
+     getUserComments(req, res, function(allComments) { /* get all user comments */
+        date = new Date(allComments[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
+        currentMonth = date.getMonth();
+        currentYear = date.getFullYear();
 
-      getKarmaAndDate(req, res, function(scores) {
-        userData.commentKarma = scores.comments;
-        userData.linkKarma = scores.submissions;
-        userData.creationDate = (scores.created)*1000;
-        
-        getTopSubmission(req, res, function(submission) {
-          userData.topSubmission.score = submission.score;
-          userData.topSubmission.subreddit = submission.subreddit;
-          userData.topSubmission.title = submission.title;
-          userData.topSubmission.permalink = submission.permalink;
+        allComments.forEach(function(commentSlice) {
+          commentSlice.data.children.forEach(function(currentComment) {
+            // userComments.push({
+            //                     score: currentComment.data.score,
+            //                     nsfw: currentComment.data.over_18,
+            //                     body: currentComment.data.body,
+            //                     edited: currentComment.data.edited,
+            //                     subreddit: currentComment.data.subreddit,
+            //                     created: currentComment.data.created_utc,
+            //                     upvotes: currentComment.data.ups
+            //                   });
+              date = new Date(currentComment.data.created_utc * 1000);
+              if (date.getMonth() == currentMonth && date.getFullYear() == currentYear) {
+                  currentCommentScore += currentComment.data.score;
+                  currentPostCount++;
+              }
+              else {
+                userData.data.push({
+                                    month: currentMonth,
+                                    year: currentYear,
+                                    commentKarmaForMonth: currentCommentScore,
+                                    postsForMonth: currentPostCount
+                                  });
+                currentMonth = date.getMonth();
+                currentYear = date.getFullYear();
+                currentCommentScore = 0;
+                currentPostCount = 0;
+              }
+          });
+        });
 
-          getUserComments(req, res, function(allComments) {
-            allComments.forEach(function(commentSlice) {
-              commentSlice.data.children.forEach(function(currentComment) {
-                userComments.push({
-                                    score: currentComment.data.score,
-                                    nsfw: currentComment.data.over_18,
-                                    body: currentComment.data.body,
-                                    edited: currentComment.data.edited,
-                                    subreddit: currentComment.data.subreddit,
-                                    created: currentComment.data.created_utc,
-                                    upvotes: currentComment.data.ups
-                                    });
-              });
-            }); // end outer FOR
-            callback(userData);
-          }); 
+        getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
+          userData.karma.totalCommentScore = scores.comments;
+          userData.karma.totalLinkScore = scores.submissions;
+          userData.creationTime = (scores.created)*1000;
+
+          callback(userData);
         });
       });
-    });
-}
 
-function updateUser(req, res) {
+    // getTopComment(req, res, function(comment) {
+    //   userData.topComment.body = comment.body;
+    //   userData.topComment.score = comment.score;
+    //   userData.topComment.subreddit = comment.subreddit;
 
+        // getTopSubmission(req, res, function(submission) {
+        //   userData.topSubmission.score = submission.score;
+        //   userData.topSubmission.subreddit = submission.subreddit;
+        //   userData.topSubmission.title = submission.title;
+        //   userData.topSubmission.permalink = submission.permalink;          
+      //     }); 
+      //   });
+      // });
+    // }); 
 }
 
 // '/api/reddit/:username/'
@@ -100,26 +125,16 @@ export function checkUser (req, res) {
   });
 }
 
-export function aboutUser (req, res) {
-  var username = req.params.username;
-  // reddit('/user/' + username + '/about/').get().then(res.send);
+export function getKarmaAndDate (req, res, callback) {
   reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
-    return res.send(response);
+    var details = {};
+    details.comments = parseInt(response.data.comment_karma);
+    details.submissions = parseInt(response.data.link_karma);
+    details.created = parseInt(response.data.created_utc);
+    callback(details);
   });
 }
 
-export function getSubredditInfo (req, res) {
-  reddit('/r/' + req.params.subreddit + '/hot').listing().then(function(data) {
-    return res.send(data);
-  });
-}
-
-export function getSubmissionComments (req, res) {
-  reddit('/r/AskReddit/comments/463u73').get().then(function(data) {
-    return res.send(data);
-  });
-}
- 
 export function getUserComments (req, res, callback) {
   function loop(slice, prevComment) {
     if (slice.data.children.length < 100 || i >= 10) {
@@ -152,6 +167,9 @@ export function getUserComments (req, res, callback) {
   });  
 }
 
+/* ===============================NOT USED================================= */
+/* ======================================================================== */
+
 export function getTopComment (req, res, callback) {
       reddit('/user/' + req.params.username + '/comments/').get({
         limit: 1,
@@ -181,20 +199,22 @@ export function getTopSubmission (req, res, callback) {
       });
 }
 
-export function getNSFWComments (req, res, callback) {
-    
-}
-
-export function getNSFWSubmissions (req, res, callback) {
-    
-}
-
-export function getKarmaAndDate (req, res, callback) {
+export function aboutUser (req, res) {
+  var username = req.params.username;
+  // reddit('/user/' + username + '/about/').get().then(res.send);
   reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
-    var details = {};
-    details.comments = parseInt(response.data.comment_karma);
-    details.submissions = parseInt(response.data.link_karma);
-    details.created = parseInt(response.data.created_utc);
-    callback(details);
+    return res.send(response);
+  });
+}
+
+export function getSubredditInfo (req, res) {
+  reddit('/r/' + req.params.subreddit + '/hot').listing().then(function(data) {
+    return res.send(data);
+  });
+}
+
+export function getSubmissionComments (req, res) {
+  reddit('/r/AskReddit/comments/463u73').get().then(function(data) {
+    return res.send(data);
   });
 }

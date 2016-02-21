@@ -22,10 +22,10 @@ angular.module('mainService', [])
 
 			var accountCreation = {}; /* to be returned */
 			var i = 0; /* keeps track of number of units tracked, max two */
-			var creationTime = new Date(userData.data.creationDate);
+			var registrationTime = new Date(userData.data.creationTime);
 			var currentTime = new Date(); /* Date object representing current time */
-			accountCreation.date = creationTime.getDate();
-			var difference = new Date(Math.round((currentTime.getTime()-userData.data.creationDate))); /* Date object representing difference between creation and current time */
+			accountCreation.date = (registrationTime.getMonth() + '.' + registrationTime.getDate() + '.' + registrationTime.getFullYear().toString().substring(2,4));
+			var difference = new Date(Math.round((currentTime.getTime()-userData.data.creationTime))); /* Date object representing difference between creation and current time */
 			var timeDiff = difference.getTime() / 1000; /* Time difference in seconds */
 			var readable = ""; /* Human readable timestamp */
 

@@ -12,6 +12,14 @@ var CommentSchema = new Schema({
 	upvotes: Number
 });
 
+var MonthSchema = new Schema({
+	month: String,
+	year: Number,
+	commentKarmaForMonth: Number,
+	linkKarmaForMonth: Number,
+	postsForMonth: Number
+});
+
 var UserSchema = new Schema({
 	username: {type: String, unique: true},
 	topComment: {
@@ -26,13 +34,18 @@ var UserSchema = new Schema({
 		title: String,
 		permalink: String
 	},
-	commentKarma: Number,
-	linkKarma: Number, 
-	creationDate: Number,
+	karma: {
+		totalCommentScore: Number,
+		totalLinkScore: Number,
+		commentScore: Number,
+		linkScore: Number
+	},
+	creationTime: Number,
 	nsfwComments: Number,
 	nsfwSubmissions: Number,
 	lastUpdated: Number,
-	comments: [CommentSchema]
+	comments: [CommentSchema],
+	data: [MonthSchema]
 }, { collection: 'user'});
 
 module.exports = mongoose.model('User', UserSchema);

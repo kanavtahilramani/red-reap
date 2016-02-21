@@ -1,3 +1,8 @@
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js" charset="utf-8"></script>
+</head>
+
 <navbar></navbar>
 
 <div ng-if="user.processing" class="container">
@@ -12,15 +17,15 @@
 					<h3 class="panel-title"><strong>/u/{{user.redditUser.data.username}}</strong></h3>
 				</div>
 				<div class="panel-body">
-					<dl class="dl">
+					<dl class="dl-horizontal">
 						<dt>redditor for</dt>
 						<dd>{{user.accountCreation.age}}</dd>
-						<!-- <dd>{{user.accountCreation.date}}</dd> -->
-						<!-- <dd>2.18.16</dd> -->
-						<!-- <dd>Feb 18 2016</dd> -->
+						<dt></dt>
+						<dd id="fineprint">since {{user.accountCreation.date}}</dd>
+						<!-- add data avail. -->
+						<!-- tooltip -->
+						<line-plot></line-plot>
 					</dl>
-					<!-- <p class="label-title"></p> -->
-					<!-- <p class="value text-center">{{user.redditUser.data.commentKarma}}</p> -->
 				</div>
 			</div>
 		</div>
@@ -36,9 +41,9 @@
 				<div class="panel-body">
 					<dl class="dl-horizontal">
 						<dt>comment karma</dt>
-						<dd>{{user.redditUser.data.commentKarma}}</dd>
+						<dd>{{user.redditUser.data.karma.totalCommentScore}}</dd>
 						<dt>link karma</dt>
-						<dd>{{user.redditUser.data.linkKarma}}</dd>
+						<dd>{{user.redditUser.data.karma.totalLinkScore}}</dd>
 					</dl>
 				</div>
 			</div>
