@@ -43,10 +43,11 @@ function createUser(req, res, callback) {
     var userComments = [];
     // var monthNames = ["January", "February", "March", "April", "May", "June",
                       // "July", "August", "September", "October", "November", "December"];
-    var date, currentMonth, currentYear;
+    var date, currentMonth, currentYear, currentHour;
     var currentCommentScore = 0,
         currentPostCount = 0;
     var hourTracker = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
+    var hourScorer = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
 
      getUserComments(req, res, function(allComments) { /* get all user comments */
         date = new Date(allComments[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
@@ -83,9 +84,19 @@ function createUser(req, res, callback) {
               }
 
               currentHour = date.getHours(); //get UTC hour comment was posted
-              hourTracker[currentHour]++; //increment count for that hour dfsdfd
+              hourTracker[currentHour]++; //increment count for that hour
+              hourScorer[currentHour] += currentComment.data.score; //add comment's score to running total for hour
           });
         });
+
+        for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
+        {
+          userData.hour.push({
+            hour: i,
+            postsForHour: hourTracker[i],
+            commentKarmaForHour: hourScorer[i]
+          });
+        }
 
         getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
           userData.karma.totalCommentScore = scores.comments;

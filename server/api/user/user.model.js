@@ -20,6 +20,12 @@ var MonthSchema = new Schema({
 	postsForMonth: Number
 });
 
+var HourSchema = new Schema({
+	hour: Number,
+	postsForHour: Number,
+	commentKarmaForHour: Number
+});
+
 var UserSchema = new Schema({
 	username: {type: String, unique: true},
 	topComment: {
@@ -45,7 +51,8 @@ var UserSchema = new Schema({
 	nsfwSubmissions: Number,
 	lastUpdated: Number,
 	comments: [CommentSchema],
-	data: [MonthSchema]
+	data: [MonthSchema],
+	hour: [HourSchema]
 }, { collection: 'user'});
 
 module.exports = mongoose.model('User', UserSchema);
