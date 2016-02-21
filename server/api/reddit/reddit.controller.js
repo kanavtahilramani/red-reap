@@ -77,6 +77,7 @@ function createUser(req, res, callback) {
                                   });
                 currentMonth = date.getMonth();
                 currentYear = date.getFullYear();
+                // set current comment score to 0
                 currentCommentScore = 0;
                 currentPostCount = 0;
               }
