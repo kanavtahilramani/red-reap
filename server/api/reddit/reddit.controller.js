@@ -46,7 +46,10 @@ function createUser(req, res, callback) {
     var date, currentMonth, currentYear, currentHour, currentDay;
     var currentCommentScore = 0,
         currentPostCount = 0,
-        totalCommentCount = 0;
+        totalCommentCount = 0,
+        totalEditedCommentCount = 0,
+        totalEditedTimeRange = 0;
+    var editedTimes = []; //stores all times of edits
     var hourTracker = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
     var hourScorer = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
     var dayTracker = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
@@ -96,17 +99,32 @@ function createUser(req, res, callback) {
               dayTracker[currentDay]++; //increment count for that day
               dayScorer[currentDay] += currentComment.data.score; //add comment's score to running total for day
 
-              if (testTrue)
+              /*if (testTrue)
               {
                 testTrue = false;
-                console.log(currentComment);
-              }
+                console.log(currentComment); //log first comment response
+              }*/
 
               totalCommentCount++; //track total number of comments
+              if (currentComment.data.edited != false)
+              {
+                if (currentComment.data.edited != true) //certain old comments only have 'true' stored
+                {
+                  totalEditedCommentCount++; //add to count of edited comments
+                  totalEditedTimeRange += currentComment.data.edited - currentComment.data.created_utc; //add time difference of last edit
+                  editedTimes.push(currentComment.data.edited - currentComment.data.created_utc); //store it for later
+                  console.log(currentComment.data.edited + "  " + currentComment.data.created_utc);
+                }
+                //console.log(currentComment.data.edited + "  " + currentComment.data.created_utc);
+              }
           });
         });
 
         userData.totalComments = totalCommentCount;
+        userData.totalEditedComments = totalEditedCommentCount;
+        userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount;
+        editedTimes.sort(); //sort lowest to highest
+        userData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
 
         for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
         {
