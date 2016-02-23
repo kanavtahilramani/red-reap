@@ -43,11 +43,16 @@ function createUser(req, res, callback) {
     var userComments = [];
     // var monthNames = ["January", "February", "March", "April", "May", "June",
                       // "July", "August", "September", "October", "November", "December"];
-    var date, currentMonth, currentYear, currentHour;
+    var date, currentMonth, currentYear, currentHour, currentDay;
     var currentCommentScore = 0,
-        currentPostCount = 0;
+        currentPostCount = 0,
+        totalCommentCount = 0;
     var hourTracker = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
     var hourScorer = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
+    var dayTracker = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
+    var dayScorer = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
+
+    var testTrue = true;
 
      getUserComments(req, res, function(allComments) { /* get all user comments */
         date = new Date(allComments[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
@@ -86,8 +91,22 @@ function createUser(req, res, callback) {
               currentHour = date.getHours(); //get UTC hour comment was posted
               hourTracker[currentHour]++; //increment count for that hour
               hourScorer[currentHour] += currentComment.data.score; //add comment's score to running total for hour
+
+              currentDay = date.getDay(); //get day 0-6
+              dayTracker[currentDay]++; //increment count for that day
+              dayScorer[currentDay] += currentComment.data.score; //add comment's score to running total for day
+
+              if (testTrue)
+              {
+                testTrue = false;
+                console.log(currentComment);
+              }
+
+              totalCommentCount++; //track total number of comments
           });
         });
+
+        userData.totalComments = totalCommentCount;
 
         for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
         {
@@ -95,6 +114,15 @@ function createUser(req, res, callback) {
             hour: i,
             postsForHour: hourTracker[i],
             commentKarmaForHour: hourScorer[i]
+          });
+        }
+
+        for (var i = 0; i < dayTracker.length; i++) //store comment hourly data
+        {
+          userData.day.push({
+            day: i,
+            postsForDay: dayTracker[i],
+            commentKarmaForDay: dayScorer[i]
           });
         }
 

@@ -20,6 +20,12 @@ var MonthSchema = new Schema({
 	postsForMonth: Number
 });
 
+var DaySchema = new Schema({
+	day: Number,
+	postsForDay: Number,
+	commentKarmaForDay: Number
+});
+
 var HourSchema = new Schema({
 	hour: Number,
 	postsForHour: Number,
@@ -47,11 +53,13 @@ var UserSchema = new Schema({
 		linkScore: Number
 	},
 	creationTime: Number,
+	totalComments: Number,
 	nsfwComments: Number,
 	nsfwSubmissions: Number,
 	lastUpdated: Number,
 	comments: [CommentSchema],
 	data: [MonthSchema],
+	day: [DaySchema],
 	hour: [HourSchema]
 }, { collection: 'user'});
 
