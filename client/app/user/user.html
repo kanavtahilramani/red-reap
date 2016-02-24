@@ -22,15 +22,19 @@
 						<dd>{{user.accountCreation.age}}</dd>
 						<dt></dt>
 						<dd id="fineprint">since {{user.accountCreation.date}}</dd>
+						<dt id="need-space">data starts at</dt>
+						<dd>{{user.accountCreation.available}}</dd>
 						<!-- add data avail. -->
 						<!-- tooltip -->
-						<line-plot></line-plot>
 					</dl>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row first">
+	<div class="row first vertical-align">
+		<div class="col-lg-2">
+			<p class="text-center"></p>
+		</div>
 		<div class="col-lg-3">
 			<div class="panel panel-primary karma">
 				<div class="panel-heading">
@@ -49,10 +53,18 @@
 			</div>
 		</div>
 		<div class="col-lg-5">
-			<p class="text-center"></p>
-		</div>
-		<div class="col-lg-2">
-			<p class="text-center"></p>
+
 		</div>
 	</div>
+	<div class="row vertical-align">
+		<div class="linePlot">
+			<line-plot></line-plot>
+		</div>
+	</div>
+	<div class="row vertical-align">
+		<div class="karmaPlot">
+				<bar-chart></bar-chart>
+			</div>
+	</div>
+	<div class="row"><br><p>lol</p></div>
 </div>

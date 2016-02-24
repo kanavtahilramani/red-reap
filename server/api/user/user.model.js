@@ -14,6 +14,7 @@ var CommentSchema = new Schema({
 
 var MonthSchema = new Schema({
 	month: String,
+	date: Number,
 	year: Number,
 	commentKarmaForMonth: Number,
 	linkKarmaForMonth: Number,
@@ -45,7 +46,8 @@ var UserSchema = new Schema({
 	nsfwSubmissions: Number,
 	lastUpdated: Number,
 	comments: [CommentSchema],
-	data: [MonthSchema]
+	data: [MonthSchema],
+	availableFrom: Number
 }, { collection: 'user'});
 
 module.exports = mongoose.model('User', UserSchema);

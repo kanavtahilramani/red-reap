@@ -38,11 +38,24 @@ function saveUser(user) {
   });
 }
 
+function checkIfDateExists(dates, currentMonth, currentYear) {
+  var index = -1;
+  dates.forEach(function(date, i) {
+    if (date.month == currentMonth && date.year == currentYear) {
+      console.log(i + "\n" + "Checking stored " + date.month + date.year + " vs " + currentMonth + currentYear);
+      index = i;
+    }
+  });
+  return index;
+}
+
 function createUser(req, res, callback) {
     var userData = new User({username: req.params.username});
     var userComments = [];
-    // var monthNames = ["January", "February", "March", "April", "May", "June",
-                      // "July", "August", "September", "October", "November", "December"];
+    var dateData = [];
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+                      "July", "August", "September", "October", "November", "December"];
+    var earliestComment = Number.MAX_VALUE;
     var date, currentMonth, currentYear;
     var currentCommentScore = 0,
         currentPostCount = 0;
@@ -63,14 +76,29 @@ function createUser(req, res, callback) {
             //                     created: currentComment.data.created_utc,
             //                     upvotes: currentComment.data.ups
             //                   });
+
+              if (currentComment.data.created_utc < earliestComment) {
+                earliestComment = currentComment.data.created_utc;
+              }
+
               date = new Date(currentComment.data.created_utc * 1000);
               if (date.getMonth() == currentMonth && date.getFullYear() == currentYear) {
                   currentCommentScore += currentComment.data.score;
                   currentPostCount++;
               }
+              else if (checkIfDateExists(dateData, monthNames[currentMonth], currentYear) > -1) {
+                  var i = checkIfDateExists(dateData, monthNames[currentMonth], currentYear);
+                  dateData[i].commentKarmaForMonth += currentComment.data.score;
+                  dateData[i].postsForMonth++;
+                  currentMonth = date.getMonth();
+                  currentYear = date.getFullYear();
+                  currentCommentScore = 0;
+                  currentPostCount = 0;
+              }
               else {
-                userData.data.push({
-                                    month: currentMonth,
+                dateData.push({
+                                    month: monthNames[currentMonth],
+                                    date: ("0" + date.getDate()).slice(-2),
                                     year: currentYear,
                                     commentKarmaForMonth: currentCommentScore,
                                     postsForMonth: currentPostCount
@@ -82,6 +110,9 @@ function createUser(req, res, callback) {
               }
           });
         });
+        console.log("\n\n=================== " + dateData.length + " ================\n\n");
+        userData.data = dateData;
+        userData.availableFrom = earliestComment*1000;
 
         getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
           userData.karma.totalCommentScore = scores.comments;
@@ -91,21 +122,6 @@ function createUser(req, res, callback) {
           callback(userData);
         });
       });
-
-    // getTopComment(req, res, function(comment) {
-    //   userData.topComment.body = comment.body;
-    //   userData.topComment.score = comment.score;
-    //   userData.topComment.subreddit = comment.subreddit;
-
-        // getTopSubmission(req, res, function(submission) {
-        //   userData.topSubmission.score = submission.score;
-        //   userData.topSubmission.subreddit = submission.subreddit;
-        //   userData.topSubmission.title = submission.title;
-        //   userData.topSubmission.permalink = submission.permalink;          
-      //     }); 
-      //   });
-      // });
-    // }); 
 }
 
 // '/api/reddit/:username/'
@@ -139,7 +155,6 @@ export function getUserComments (req, res, callback) {
   function loop(slice, prevComment) {
     if (slice.data.children.length < 100 || i >= 10) {
       callback(slices);
-      // return res.send(slices);
       return;
     }
 
@@ -167,6 +182,8 @@ export function getUserComments (req, res, callback) {
   });  
 }
 
+/* ======================================================================== */
+/* ======================================================================== */
 /* ===============================NOT USED================================= */
 /* ======================================================================== */
 

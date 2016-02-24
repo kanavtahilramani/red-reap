@@ -120,6 +120,8 @@ angular.module('mainService', [])
 			}
 
 			accountCreation.age = readable;
+			var availableDate = new Date(userData.data.availableFrom);
+			accountCreation.available = availableDate.getMonth() + "." + availableDate.getDate() + "." + availableDate.getFullYear();
 			callback(accountCreation);
 		}
 	}
