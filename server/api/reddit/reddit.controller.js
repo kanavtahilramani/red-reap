@@ -50,6 +50,8 @@ function createUser(req, res, callback) {
         totalEditedCommentCount = 0,
         totalEditedTimeRange = 0;
     var editedTimes = []; //stores all times of edits
+    var commentLengths = []; //store lengths of comments
+    var commentSubreddits = []; //store subreddits comments are in
     var hourTracker = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
     var hourScorer = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
     var dayTracker = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
@@ -113,10 +115,25 @@ function createUser(req, res, callback) {
                   totalEditedCommentCount++; //add to count of edited comments
                   totalEditedTimeRange += currentComment.data.edited - currentComment.data.created_utc; //add time difference of last edit
                   editedTimes.push(currentComment.data.edited - currentComment.data.created_utc); //store it for later
-                  console.log(currentComment.data.edited + "  " + currentComment.data.created_utc);
+                  //console.log(currentComment.data.edited + "  " + currentComment.data.created_utc);
                 }
                 //console.log(currentComment.data.edited + "  " + currentComment.data.created_utc);
               }
+
+              commentLengths.push(currentComment.data.body.toString().length); //store length of current comment
+              commentSubreddits.push(currentComment.data.subreddit.toString()); //store subreddit comment is in
+
+              //store metadata on each comment
+              userData.comMeta.push({
+                subreddit: currentComment.data.subreddit.toString(),
+                link: currentComment.data.link_url.toString(),
+                length: currentComment.data.body.toString().length,
+                hour: currentHour,
+                day: currentDay,
+                month: currentMonth,
+                year: currentYear
+              });
+
           });
         });
 
@@ -125,6 +142,9 @@ function createUser(req, res, callback) {
         userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount;
         editedTimes.sort(); //sort lowest to highest
         userData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
+
+        var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
+        userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
 
         for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
         {

@@ -32,6 +32,16 @@ var HourSchema = new Schema({
 	commentKarmaForHour: Number
 });
 
+var ComMetaSchema = new Schema({
+	subreddit: String,
+	link: String,
+	length: Number,
+	hour: Number,
+	day: Number,
+	month: Number,
+	year: Number,
+});
+
 var UserSchema = new Schema({
 	username: {type: String, unique: true},
 	topComment: {
@@ -57,13 +67,15 @@ var UserSchema = new Schema({
 	totalEditedComments: Number,
 	avgEditTime: Number,
 	medEditTime: Number,
+	avgCommentLength: Number,
 	nsfwComments: Number,
 	nsfwSubmissions: Number,
 	lastUpdated: Number,
 	comments: [CommentSchema],
 	data: [MonthSchema],
 	day: [DaySchema],
-	hour: [HourSchema]
+	hour: [HourSchema],
+	comMeta: [ComMetaSchema]
 }, { collection: 'user'});
 
 module.exports = mongoose.model('User', UserSchema);
