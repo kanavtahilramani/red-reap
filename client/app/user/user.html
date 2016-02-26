@@ -1,58 +1,158 @@
 <head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
 </head>
 
-<navbar></navbar>
+<navbar id="top" class="navbar navbar-inverse navbar-static-top"></navbar>
 
-<div ng-if="user.processing" class="container">
+<div ng-if="user.processing">
 	<p>processing!</p>
 </div>
 
-<div ng-if="!user.processing" class="container">
-	<div class="row">
-		<div class="col-lg-4 col-lg-offset-4">
-			<div class="panel panel-primary user col-lg-offset-2">
-				<div class="panel-heading text-center">
-					<h3 class="panel-title"><strong>/u/{{user.redditUser.data.username}}</strong></h3>
-				</div>
-				<div class="panel-body">
-					<dl class="dl-horizontal">
-						<dt>redditor for</dt>
-						<dd>{{user.accountCreation.age}}</dd>
-						<dt></dt>
-						<dd id="fineprint">since {{user.accountCreation.date}}</dd>
-						<!-- add data avail. -->
-						<!-- tooltip -->
-						<line-plot></line-plot>
-					</dl>
-				</div>
-			</div>
-		</div>
+<div ng-if="!user.processing" class="row fixed">
+	<div class="col-lg-2">
+
+		<div class="sideleft">
+
+		<h2>Categories</h2>
+
+		<li style="list-style-type: none;"> <a onclick="initScroll('top'); return false;" href="#"> User Information </a> </li>
+		<li style="list-style-type: none;"> <a onclick="initScroll('activity'); return false;" href="#"> Activity </a> </li>
+		<li style="list-style-type: none;"> <a onclick="initScroll('karma'); return false;" href="#"> Karma </a> </li>
+		<li style="list-style-type: none;"> <a onclick="initScroll('verbiage'); return false;" href="#"> Verbiage </a> </li>
+		<li style="list-style-type: none;"> <a onclick="initScroll('submissions'); return false;" href="#"> Submissions </a> </li>
+
+		</div>﻿
 	</div>
-	<div class="row first">
-		<div class="col-lg-3">
-			<div class="panel panel-primary karma">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<strong>karma</strong>
-					</h3>
-				</div>
-				<div class="panel-body">
-					<dl class="dl-horizontal">
-						<dt>comment karma</dt>
-						<dd>{{user.redditUser.data.karma.totalCommentScore}}</dd>
-						<dt>link karma</dt>
-						<dd>{{user.redditUser.data.karma.totalLinkScore}}</dd>
-					</dl>
-				</div>
-			</div>
+    <div class="col-lg-8 nopadding" style="background: white;">
+		<div id="user-info" class="jumbotron jumbotron-special">
+	    	<h1 class="intro" align="center"><em>/u/</em>{{user.redditUser.data.username}}</h1>
+
+	    	<div class="jumbotron-content">
+	    		<div class="row" style="text-align: center;">
+	    			<div class="col-md-3">
+	    				<p class="toptext">Joined</p>
+	    				<p class="primary">{{user.accountCreation.date}}</p>
+		    		</div>
+		    		<div class="col-md-3">
+	    				<p class="toptext">Redditor for</p>
+	    				<p class="primary">{{user.accountCreation.age}}</p>
+		    		</div>
+	    			<div class="col-md-3">
+		    			<p class="toptext">Earliest Data From</p>
+		    			<p class="primary">{{user.accountCreation.date}}</p> 
+		    		</div>
+		    		<div class="col-md-3">
+		    			<p class="toptext">Gender</p>
+		    			<p class="primary">Male</p>
+		    		</div>
+		    		<div class="col-md-3">
+	    				<p class="toptext">Timezone</p>
+	    				<p class="primary">Eastern</p>
+		    		</div>
+		    		<div class="col-md-3">
+	    				<p class="toptext">Location</p>
+	    				<p class="primary">Maine, US</p>
+		    		</div>
+	    			<div class="col-md-3">
+		    			<p class="toptext">Total Submissions</p>
+		    			<p class="primary">150</p> 
+		    		</div>
+		    		<div class="col-md-3">
+		    			<p class="toptext">Total Words</p>
+		    			<p class="primary" text-align="center">3048</p>
+		    		</div>
+		    	</div>
+			    <p class="bottomtext">Subreddits<p class="bottomPrimary">AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs </p></p>
+			    <p class="bottomtext">Likes<p class="bottomPrimary">Long walks on the beach</p></p>
+	   		</div>
+
+	  	</div>
+	
+	  	<div id="activity" class="contentdisp">
+			<dl class="dl-horizontal">
+				<p class="contentheader">Activity</p>
+				<p class="contentsubheader">Active approximately 2 hours per week.</p>
+				<svg></svg>
+				<p class="contentsubheader">Mostly positive submissions.</p>
+				<h1 class="chart">Positivity/Negativity of Submissions</h1>
+				<div id="chart"></div>
+			</dl>
 		</div>
-		<div class="col-lg-5">
-			<p class="text-center"></p>
+
+		<hr style="width: 75%;">
+		
+	  	<div id="karma" class="contentdisp">
+
+			<dl class="dl-horizontal">
+				<p class="contentheader">Karma</p>
+				<p class="contentsubheader">comment karma</p>
+				<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
+				<p class="contentsubheader">link karma</p>
+				<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
+				<!-- add data avail. -->
+				<!-- tooltip -->
+			</dl>
+
 		</div>
-		<div class="col-lg-2">
-			<p class="text-center"></p>
+
+		<hr style="width: 75%;">
+
+		<div  id="verbiage" class="contentdisp">
+
+			<dl class="dl-horizontal">
+				<p class="contentheader">Verbiage</p>
+				<p class="contentsubheader">comment karma</p>
+				<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
+				<p class="contentsubheader">link karma</p>
+				<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
+				<!-- add data avail. -->
+				<!-- tooltip -->
+			</dl>
+
+		</div>
+
+		<hr style="width: 75%;">
+
+		<div id="submissions" class="contentdisp">
+
+			<dl class="dl-horizontal">
+				<p class="contentheader">Submissions</p>
+				<p class="contentsubheader">comment karma</p>
+				<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
+				<p class="contentsubheader">link karma</p>
+				<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
+				<!-- add data avail. -->
+				<!-- tooltip -->
+			</dl>
+
 		</div>
 	</div>
 </div>
+<!-- <div class="row first">
+	<div class="col-lg-3">
+		<div class="panel panel-primary karma">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<strong>karma</strong>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<dl class="dl-horizontal">
+					<dt>comment karma</dt>
+					<dd>{{user.redditUser.data.karma.totalCommentScore}}</dd>
+					<dt>link karma</dt>
+					<dd>{{user.redditUser.data.karma.totalLinkScore}}</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<p class="text-center"></p>
+	</div>
+	<div class="col-lg-2">
+		<p class="text-center"></p>
+	</div>
+</div> -->
