@@ -7,3 +7,6 @@ client/bower_components
 dist
 /server/config/local.env.js
 npm-debug.log
+red_reap.sublime-workspace
+red_reap.sublime-project
+corenlp

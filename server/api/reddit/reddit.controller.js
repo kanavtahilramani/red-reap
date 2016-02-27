@@ -5,6 +5,8 @@ import creds from '../../config/local.env';
 import Token from '../validate/validate.model';
 import User from '../user/user.model';
 import Snoocore from 'snoocore';
+import NLP from 'stanford-corenlp';
+import path from 'path';
 
 var reddit = new Snoocore({
     userAgent: 'web:red-reap:0.0.1 by (/u/ferristic)',
@@ -19,9 +21,20 @@ var reddit = new Snoocore({
     }
 });
 
-  getRefresh().then(function(data) {
-    reddit.setRefreshToken(data.refresh.toString());
-  });
+var config = {
+  'nlpPath': ('./corenlp'), //the path of corenlp
+  'version':'3.5.2', //what version of corenlp are you using
+  'annotators': ['tokenize','ssplit','pos','parse','sentiment','depparse','quote'], //optional!
+  'extra' : {
+      'depparse.extradependencie': 'MAXIMAL'
+    }
+};
+
+var coreNLP = new NLP.StanfordNLP(config);
+
+getRefresh().then(function(data) {
+  reddit.setRefreshToken(data.refresh.toString());
+});
 
 function getRefresh() {
   return Token.findOne();
@@ -42,7 +55,6 @@ function checkIfDateExists(dates, currentMonth, currentYear) {
   var index = -1;
   dates.forEach(function(date, i) {
     if (date.month == currentMonth && date.year == currentYear) {
-      console.log(i + "\n" + "Checking stored " + date.month + date.year + " vs " + currentMonth + currentYear);
       index = i;
     }
   });
@@ -56,9 +68,20 @@ function createUser(req, res, callback) {
     var monthNames = ["January", "February", "March", "April", "May", "June",
                       "July", "August", "September", "October", "November", "December"];
     var earliestComment = Number.MAX_VALUE;
-    var date, currentMonth, currentYear;
+    var date, currentMonth, currentYear, currentHour, currentDay;
     var currentCommentScore = 0,
-        currentPostCount = 0;
+        currentPostCount    = 0,
+        totalCommentCount   = 0,
+        totalEditedCommentCount = 0,
+        totalEditedTimeRange = 0;
+
+    var editedTimes = []; //stores all times of edits
+    var commentLengths = []; //store lengths of comments
+    var commentSubreddits = []; //store subreddits comments are in
+    var hourTracker = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
+    var hourScorer = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
+    var dayTracker = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
+    var dayScorer = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
 
      getUserComments(req, res, function(allComments) { /* get all user comments */
         date = new Date(allComments[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
@@ -67,16 +90,7 @@ function createUser(req, res, callback) {
 
         allComments.forEach(function(commentSlice) {
           commentSlice.data.children.forEach(function(currentComment) {
-            // userComments.push({
-            //                     score: currentComment.data.score,
-            //                     nsfw: currentComment.data.over_18,
-            //                     body: currentComment.data.body,
-            //                     edited: currentComment.data.edited,
-            //                     subreddit: currentComment.data.subreddit,
-            //                     created: currentComment.data.created_utc,
-            //                     upvotes: currentComment.data.ups
-            //                   });
-
+            userComments.push(currentComment.data.body);
               if (currentComment.data.created_utc < earliestComment) {
                 earliestComment = currentComment.data.created_utc;
               }
@@ -108,20 +122,156 @@ function createUser(req, res, callback) {
                 currentCommentScore = 0;
                 currentPostCount = 0;
               }
+
+              currentHour = date.getHours(); //get UTC hour comment was posted
+              hourTracker[currentHour]++; //increment count for that hour
+              hourScorer[currentHour] += currentComment.data.score; //add comment's score to running total for hour
+
+              currentDay = date.getDay(); //get day 0-6
+              dayTracker[currentDay]++; //increment count for that day
+              dayScorer[currentDay] += currentComment.data.score; //add comment's score to running total for day
+
+              totalCommentCount++; //track total number of comments
+              if (currentComment.data.edited != false)
+              {
+                if (currentComment.data.edited != true) //certain old comments only have 'true' stored
+                {
+                  totalEditedCommentCount++; //add to count of edited comments
+                  totalEditedTimeRange += currentComment.data.edited - currentComment.data.created_utc; //add time difference of last edit
+                  editedTimes.push(currentComment.data.edited - currentComment.data.created_utc); //store it for later
+                }
+              }
+
+              commentLengths.push(currentComment.data.body.toString().length); //store length of current comment
+              commentSubreddits.push(currentComment.data.subreddit.toString()); //store subreddit comment is in
+
+              //store metadata on each comment
+              userData.comMeta.push({
+                subreddit: currentComment.data.subreddit.toString(),
+                link: currentComment.data.link_url.toString(),
+                length: currentComment.data.body.toString().length,
+                hour: currentHour,
+                day: currentDay,
+                month: currentMonth,
+                year: currentYear
+              });
           });
         });
-        console.log("\n\n=================== " + dateData.length + " ================\n\n");
-        userData.data = dateData;
-        userData.availableFrom = earliestComment*1000;
 
-        getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
-          userData.karma.totalCommentScore = scores.comments;
-          userData.karma.totalLinkScore = scores.submissions;
-          userData.creationTime = (scores.created)*1000;
+        userData.totalComments = totalCommentCount;
+        userData.totalEditedComments = totalEditedCommentCount;
+        userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount;
+        editedTimes.sort(); //sort lowest to highest
+        userData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
 
-          callback(userData);
-        });
-      });
+        var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
+        userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
+
+        for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
+        {
+          userData.hour.push({
+            hour: i,
+            postsForHour: hourTracker[i],
+            commentKarmaForHour: hourScorer[i]
+          });
+        }
+
+        for (var i = 0; i < dayTracker.length; i++) //store comment hourly data
+        {
+          userData.day.push({
+            day: i,
+            postsForDay: dayTracker[i],
+            commentKarmaForDay: dayScorer[i]
+          });
+        }
+
+        positivity(userComments, function(sentenceCount, negativeSentenceCounts, negativeSample) {
+            userData.data = dateData;
+            userData.availableFrom = earliestComment*1000;
+            userData.negativePercentage = (negativeSentenceCounts / sentenceCount).toPrecision(2) * 100;
+            userData.negativeExample = negativeSample;
+
+            getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
+              userData.karma.totalCommentScore = scores.comments;
+              userData.karma.totalLinkScore = scores.submissions;
+              userData.creationTime = (scores.created)*1000;
+
+              callback(userData);
+            });
+        });      
+  });
+}
+
+function positivity (comments, callback) {
+    var sentenceCounter = 0,
+        negativeSentenceCount = 0,
+        negativeCommentCount = 0,
+        negativeComments = [];
+
+    comments.forEach(function(currentComment, i) {
+        coreNLP.process(currentComment, function(err, result) {
+          if (Array.isArray(result.document.sentences.sentence)) {
+            result.document.sentences.sentence.forEach(function(x) {
+                sentenceCounter = sentenceCounter + 1;
+                // console.log(sentenceCounter + "\n");
+                if (Array.isArray(x.tokens.token)) {
+                    x.tokens.token.forEach(function(y) {
+                        if (y.sentiment == "Very negative") {
+                            if (negativeCommentCount < 3) {
+                              negativeComments.push({content: currentComment, trigger: y.word});
+                              negativeCommentCount++;
+                            }
+                            negativeSentenceCount++;
+                            return;
+                        }
+                        // console.log(y.sentiment + 1);
+                    });
+                }
+                else {
+                  if (x.tokens.token.sentiment == "Very negative") {
+                      if (negativeCommentCount < 3) {
+                              negativeComments.push({content: currentComment, trigger: x.tokens.token.word});
+                              negativeCommentCount++;
+                      }
+                      negativeSentenceCount++;
+                  }
+                }
+            });
+          }
+          else {
+              sentenceCounter = sentenceCounter + 1;
+
+              if (Array.isArray(result.document.sentences.sentence.tokens.token)) {
+                  result.document.sentences.sentence.tokens.token.forEach(function(z) {
+                      if (z.sentiment == "Very negative") {
+                        if (negativeCommentCount < 3) {
+                              negativeComments.push({content: currentComment, trigger: z.word});
+                              negativeCommentCount++;
+                        }
+                        negativeSentenceCount++;
+                        return;
+                      }
+                  });
+              }
+              else {
+                  if (result.document.sentences.sentence.tokens.token.sentiment == "Very negative") {
+                      if (negativeCommentCount < 3) {
+                            nnegativeComments.push({content: currentComment, trigger: result.document.sentences.sentence.tokens.token.word});
+                            negativeCommentCount++;
+                      }
+                      negativeSentenceCount++;
+                  }
+              }
+          }
+          if (i === comments.length-1) {
+          console.log("\n\ncallback time\n\n" + i);
+          callback(sentenceCounter, negativeSentenceCount, negativeComments);
+          return;
+          }
+      }); 
+      
+    });
+    return;
 }
 
 // '/api/reddit/:username/'

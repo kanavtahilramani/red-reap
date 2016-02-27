@@ -36,6 +36,10 @@
   stroke-width: 1.5px;
 }
 
+.intro-nlp {
+	width: 120%;
+}
+
 .bar {
 	fill: orange;
 }
@@ -46,6 +50,10 @@
 
 .x.axis path {
 	display: none;
+}
+
+.example-comment {
+	padding-left: 20pt;
 }
 
 .d3-tip {
@@ -80,6 +88,93 @@
 	align-items: center;
 }
 
-.need-space {
+.jumbotron-special {
+	background-color:#282828;
+    width: 100%;
+}
+
+#need-space {
 	margin-top: 15px;
+}
+
+.no-new-line {
+	display: inline;
+}
+
+.nopadding {
+   padding: 0;
+   margin: 0;
+}
+
+hr {
+    background-color: white;
+}
+
+h1.intro {
+    color: white;
+    margin-bottom: 25px;
+}
+
+h1.intro em{
+	color: white;
+	font-size: 40px;
+	font-style: normal;
+}
+
+p.toptext {
+	color: #949DA2;
+	font-size: 15px;
+}
+
+p.primary {
+	color: white;
+	font-size: 17px;
+	font-style: normal;
+}
+
+p.bottomtext {
+    color: #949DA2;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+p.bottomPrimary {
+    color: white;
+    font-size: 17px;
+    font-style: normal;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.contentdisp {
+	background-color:white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p.contentheader {
+    color: black;
+    font-size: 25px;
+}
+
+p.contentsubheader {
+    color: black;
+    font-size: 15px;
+}
+
+p.contenttext {
+    color: black;
+    font-size: 13px;
+}
+
+.row.fixed {
+    width:100%;
+    background: #EAEAEA;
+}
+
+.navbar {
+ 	background: #D22E2E; // different red
+ 	margin-bottom: 0px;
 }

@@ -10,6 +10,111 @@
 </div>
 
 <div ng-if="!user.processing" class="container">
+	<div class="row fixed">
+		<div class="col-lg-12 nopadding">
+			<div class="jumbotron jumbotron-special">
+		    	<h1 class="intro" align="center"><em>/u/</em>{{user.redditUser.data.username}}</h1>
+
+		    	<div class="jumbotron-content">
+		    		<div class="row text-center">
+		    			<div class="col-md-3">
+		    				<p class="toptext">Joined</p>
+		    				<p class="primary">{{user.accountCreation.date}}</p>
+			    		</div>
+			    		<div class="col-md-3">
+		    				<p class="toptext">Redditor for</p>
+		    				<p class="primary">{{user.accountCreation.age}}</p>
+			    		</div>
+		    			<div class="col-md-3">
+			    			<p class="toptext">Earliest Data From</p>
+			    			<p class="primary">{{user.accountCreation.date}}</p> 
+			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Gender</p>
+			    			<p class="primary">Male</p>
+			    		</div>
+			    		<div class="col-md-3">
+		    				<p class="toptext">Timezone</p>
+		    				<p class="primary">Eastern</p>
+			    		</div>
+			    		<div class="col-md-3">
+		    				<p class="toptext">Location</p>
+		    				<p class="primary">Maine, US</p>
+			    		</div>
+		    			<div class="col-md-3">
+			    			<p class="toptext">Total Submissions</p>
+			    			<p class="primary">150</p> 
+			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Total Words</p>
+			    			<p class="primary" text-align="center">3048</p>
+			    		</div>
+			    	</div>
+				    <p class="bottomtext">Subreddits
+				    	<p class="bottomPrimary">AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs 
+				    	</p>
+				    </p>
+				    <p class="bottomtext">Likes
+				    	<p class="bottomPrimary">Long walks on the beach</p>
+				    </p>
+		   		</div>
+		  	</div>
+		
+		  	<div class="contentdisp">
+				<dl class="dl-horizontal">
+					<p class="contentheader">Activity</p>
+					<p class="contentsubheader">Active approximately 2 hours per week.</p>
+					<svg></svg>
+					<p class="contentsubheader">Mostly positive submissions.</p>
+					<h1 class="chart">Positivity/Negativity of Submissions</h1>
+					<div id="chart"></div>
+				</dl>
+			</div>
+
+			<hr style="width: 75%;">
+			
+		  	<div class="contentdisp">
+				<dl class="dl-horizontal">
+					<p class="contentheader">Karma</p>
+					<p class="contentsubheader">comment karma</p>
+					<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
+					<p class="contentsubheader">link karma</p>
+					<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
+					<!-- add data avail. -->
+					<!-- tooltip -->
+				</dl>
+			</div>
+
+			<hr style="width: 75%;">
+			<div class="contentdisp">
+				<dl class="dl-horizontal">
+					<p class="contentheader">Verbiage</p>
+					<p class="contentsubheader">comment karma</p>
+					<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
+					<p class="contentsubheader">link karma</p>
+					<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
+					<!-- add data avail. -->
+					<!-- tooltip -->
+				</dl>
+
+			</div>
+
+			<hr style="width: 75%;">
+
+			<div class="contentdisp">
+				<dl class="dl-horizontal">
+					<p class="contentheader">Submissions</p>
+					<p class="contentsubheader">comment karma</p>
+					<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
+					<p class="contentsubheader">link karma</p>
+					<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
+					<!-- add data avail. -->
+					<!-- tooltip -->
+				</dl>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-lg-4 col-lg-offset-4">
 			<div class="panel panel-primary user col-lg-offset-2">
@@ -23,7 +128,7 @@
 						<dt></dt>
 						<dd id="fineprint">since {{user.accountCreation.date}}</dd>
 						<dt id="need-space">data starts at</dt>
-						<dd>{{user.accountCreation.available}}</dd>
+						<dd id="need-space">{{user.accountCreation.available}}</dd>
 						<!-- add data avail. -->
 						<!-- tooltip -->
 					</dl>
@@ -52,8 +157,38 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-5">
-
+		<div class="col-lg-2"></div>
+		<div class="col-lg-4">
+			<div class="panel panel-primary intro-nlp">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<strong>sentiment analysis</strong>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<dl class="dl-horizontal">
+						<dt>% of negative sentences</dt>
+						<dd>{{user.redditUser.data.negativePercentage}}</dd>
+						<hr>
+						<p><strong>determined from</strong></p>
+						<div ng-if="user.example1">
+							<p class="example-comment no-new-line"><i>- {{user.example1[0]}}</i></p>
+							<p class="no-new-line"><strong><i>{{user.example1[1]}}</i></strong></p>
+							<p class="no-new-line"><i>{{user.example1[2]}}</i></p>
+						</div>
+						<div ng-if="user.example2" id="need-space">
+							<p class="example-comment no-new-line"><i>- {{user.example2[0]}}</i></p>
+							<p class="no-new-line"><strong><i>{{user.example2[1]}}</i></strong></p>
+							<p class="no-new-line"><i>{{user.example2[2]}}</i></p>
+						</div>
+						<div ng-if="user.example3" id="need-space">
+							<p class="example-comment no-new-line"><i>- {{user.example3[0]}}</i></p>
+							<p class="no-new-line"><strong><i>{{user.example3[1]}}</i></strong></p>
+							<p class="no-new-line"><i>{{user.example3[2]}}</i></p>
+						</div>
+					</dl>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row vertical-align">
@@ -66,5 +201,9 @@
 				<bar-chart></bar-chart>
 			</div>
 	</div>
-	<div class="row"><br><p>lol</p></div>
+	<div class="row">
+		<div ng-repeat="num in user.test">
+			{{num}}
+		</div>
+	</div>
 </div>

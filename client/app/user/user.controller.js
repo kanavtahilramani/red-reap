@@ -5,7 +5,7 @@ angular.module('redreapApp')
   		var vm = this;
       vm.processing = true;
       vm.redditUser = User.getUserData();
-
+      vm.testing = "hello";
       var current = new Date();
       var creation;
 
@@ -15,8 +15,12 @@ angular.module('redreapApp')
             vm.redditUser = User.getUserData();
             User.getAge(function(accountAge) {
               vm.accountCreation = accountAge;
-              // console.log(vm.redditUser.data.data);
-              vm.processing = false;
+              User.getExamples(function(exampleComments) {
+                vm.example1 = exampleComments[1];
+                vm.example2 = exampleComments[2];
+                vm.example3 = exampleComments[3];
+                vm.processing = false;
+              });
             });
         });
       }
@@ -25,7 +29,12 @@ angular.module('redreapApp')
       else {
         User.getAge(function(accountAge) {
             vm.accountCreation = accountAge;
-            vm.processing = false;
+            User.getExamples(function(exampleComments) {
+                vm.example1 = exampleComments[1];
+                vm.example2 = exampleComments[2];
+                vm.example3 = exampleComments[3];
+                vm.processing = false;
+            });
         });
       }
   });

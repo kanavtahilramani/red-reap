@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"nega",
+				"negativeSample"
+			],
+			[
+				"sen",
+				"sentenceCount"
+			],
+			[
+				"sente",
+				"sentenceCount"
+			],
+			[
+				"sent",
+				"sentiment"
+			],
+			[
+				"exam",
+				"exampleComments"
+			],
+			[
+				"negati",
+				"negativeComments"
+			],
+			[
+				"se",
+				"sentenceCount"
+			],
+			[
+				"user",
+				"userData"
+			],
+			[
+				"negativ",
+				"negativeSentenceCount"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
 				"creat",
 				"createUser"
 			],
@@ -66,10 +106,6 @@
 			[
 				"ref",
 				"refreshToken"
-			],
-			[
-				"user",
-				"userData"
 			],
 			[
 				"User",
@@ -227,22 +263,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "server/api/reddit/reddit.controller.js",
-			"settings":
-			{
-				"buffer_size": 5593,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "server/api/user/user.model.js",
-			"settings":
-			{
-				"buffer_size": 797,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -281,22 +301,42 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Kanav/Documents/red-reap",
-		"/C/Users/Kanav/Documents/red-reap/client",
-		"/C/Users/Kanav/Documents/red-reap/client/app",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main",
-		"/C/Users/Kanav/Documents/red-reap/client/app/u",
-		"/C/Users/Kanav/Documents/red-reap/client/bower_components",
-		"/C/Users/Kanav/Documents/red-reap/server",
-		"/C/Users/Kanav/Documents/red-reap/server/api",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user",
-		"/C/Users/Kanav/Documents/red-reap/server/api/validate",
-		"/C/Users/Kanav/Documents/red-reap/server/config",
-		"/C/Users/Kanav/Documents/red-reap/server/config/environment"
+		"/C/Users/Kanav/Documents/red/red-reap",
+		"/C/Users/Kanav/Documents/red/red-reap/client",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar",
+		"/C/Users/Kanav/Documents/red/red-reap/server",
+		"/C/Users/Kanav/Documents/red/red-reap/server/api",
+		"/C/Users/Kanav/Documents/red/red-reap/server/api/reddit",
+		"/C/Users/Kanav/Documents/red/red-reap/server/api/user"
 	],
 	"file_history":
 	[
+		"/C/Users/Kanav/Desktop/backup/red-reap/.gitignore",
+		"/C/Users/Kanav/Documents/red/red-reap/.gitignore",
+		"/C/Users/Kanav/Documents/red/red-reap/.git/COMMIT_EDITMSG",
+		"/C/Users/Kanav/Documents/red/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/api/user/user.model.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.service.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.html",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.scss",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.html",
+		"/C/Users/Kanav/Documents/Projects/mean-machine-code-master/17-user-crm/public/assets/css/style.css",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/donut/donut.directive.js",
+		"/C/Users/Kanav/Documents/red/red-reap/.tmp/app/app.css",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.html",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.scss",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.directive.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/app.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/index.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/routes.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.spec.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.controller.js",
 		"/C/Users/Kanav/Documents/red-reap/server/api/user/comment.model.js",
@@ -401,30 +441,7 @@
 		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/login.html",
 		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.js",
 		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/users/all.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.routes.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/users/single.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/pages/users/single.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/assets/css/style.css",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/mainCtrl.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/app/routes/api.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/index.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/home.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/services/authService.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/home.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/pages/home.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/index.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/controllers/mainCtrl.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/index.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/package.json",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/login.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userController.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/config.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/server.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/services/userService.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/authService.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/app/models/user.js",
-		"/C/Users/Kanav/AppData/Local/Microsoft/Windows/INetCache/IE/SLTVGW8Y/.config[1].config",
-		"/C/Users/Kanav/Documents/Projects/sample-orga/app/models/user.js"
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.routes.js"
 	],
 	"find":
 	{
@@ -443,6 +460,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"navbar",
+			"fixed",
+			"webkit",
+			".spinner",
 			"topComment",
 			"comments",
 			"zoom_sensitivity",
@@ -505,68 +526,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "server/api/reddit/reddit.controller.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5593,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "server/api/user/user.model.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 797,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
