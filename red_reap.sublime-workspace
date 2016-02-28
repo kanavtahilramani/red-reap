@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"adjPerP",
+				"adjPerP"
+			],
+			[
+				"adjPer",
+				"adjPerVN"
+			],
+			[
+				"veryP",
+				"veryPosAdEx"
+			],
+			[
+				"ver",
+				"veryNegAdEx"
+			],
+			[
+				"nAdjs",
+				"negativeAdjs"
+			],
+			[
 				"nega",
 				"negativeSample"
 			],
@@ -263,16 +283,35 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "server/api/reddit/reddit.controller.js",
+			"settings":
+			{
+				"buffer_size": 22591,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/api/user/user.model.js",
+			"settings":
+			{
+				"buffer_size": 1916,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/user/user.html",
+			"settings":
+			{
+				"buffer_size": 9236,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
-	"build_system_choices":
-	[
-	],
-	"build_varint": "",
 	"command_palette":
 	{
 		"height": 150.0,
-		"last_filter": "Package Control:in",
 		"selected_items":
 		[
 			[
@@ -284,11 +323,7 @@
 	},
 	"console":
 	{
-		"height": 126.0,
-		"history":
-		[
-			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
-		]
+		"height": 126.0
 	},
 	"distraction_free":
 	{
@@ -299,21 +334,12 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/C/Users/Kanav/Documents/red/red-reap",
-		"/C/Users/Kanav/Documents/red/red-reap/client",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/user",
-		"/C/Users/Kanav/Documents/red/red-reap/client/components",
-		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar",
-		"/C/Users/Kanav/Documents/red/red-reap/server",
-		"/C/Users/Kanav/Documents/red/red-reap/server/api",
-		"/C/Users/Kanav/Documents/red/red-reap/server/api/reddit",
-		"/C/Users/Kanav/Documents/red/red-reap/server/api/user"
-	],
 	"file_history":
 	[
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/.tmp/app/user/user.js",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/user/user.model.js",
+		"/C/Users/Julian Esteban/Desktop/testnlp/node-stanford-corenlp-master/examples/sentiments.js",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/reddit/reddit.controller.js",
 		"/C/Users/Kanav/Desktop/backup/red-reap/.gitignore",
 		"/C/Users/Kanav/Documents/red/red-reap/.gitignore",
 		"/C/Users/Kanav/Documents/red/red-reap/.git/COMMIT_EDITMSG",
@@ -437,19 +463,15 @@
 		"/C/Users/Kanav/Documents/Projects/hearthbase/.gitignore",
 		"/C/Users/Kanav/Downloads/The.Witness-HI2U/hi2u.nfo",
 		"/C/Users/Kanav/Documents/Projects/workflow/package.json",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userCtrl.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/login.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/users/all.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.routes.js"
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userCtrl.js"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
 			""
@@ -460,6 +482,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"vnExCount",
+			":",
+			"console.log",
 			"navbar",
 			"fixed",
 			"webkit",
@@ -526,8 +551,91 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "server/api/reddit/reddit.controller.js",
+					"settings":
+					{
+						"buffer_size": 22591,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15908,
+								15908
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5275.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "server/api/user/user.model.js",
+					"settings":
+					{
+						"buffer_size": 1916,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								543,
+								543
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 413.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "client/app/user/user.html",
+					"settings":
+					{
+						"buffer_size": 9236,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8218,
+								8218
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2528.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -566,8 +674,6 @@
 	{
 		"height": 0.0
 	},
-	"pinned_build_system": "",
-	"project": "red_reap.sublime-project",
 	"replace":
 	{
 		"height": 62.0
@@ -576,7 +682,6 @@
 	"select_file":
 	{
 		"height": 0.0,
-		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -585,32 +690,15 @@
 	"select_project":
 	{
 		"height": 0.0,
-		"last_filter": "",
 		"selected_items":
 		[
 		],
 		"width": 0.0
-	},
-	"select_symbol":
-	{
-		"height": 0.0,
-		"last_filter": "",
-		"selected_items":
-		[
-		],
-		"width": 0.0
-	},
-	"selected_group": 0,
-	"settings":
-	{
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 236.0,
-	"status_bar_visible": true,
-	"template_settings":
-	{
-	}
+	"side_bar_width": 194.0,
+	"status_bar_visible": true
 }

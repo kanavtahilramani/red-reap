@@ -24,7 +24,7 @@ var reddit = new Snoocore({
 var config = {
   'nlpPath': ('./corenlp'), //the path of corenlp
   'version':'3.5.2', //what version of corenlp are you using
-  'annotators': ['tokenize','ssplit','pos','parse','sentiment','depparse','quote'], //optional!
+  'annotators': ['tokenize','ssplit','pos', 'lemma', 'ner','parse','sentiment','depparse','quote'], //optional!
   'extra' : {
       'depparse.extradependencie': 'MAXIMAL'
     }
@@ -185,11 +185,24 @@ function createUser(req, res, callback) {
           });
         }
 
-        positivity(userComments, function(sentenceCount, negativeSentenceCounts, negativeSample) {
+        positivity(userComments, function(sentenceCount, negativeSentenceCounts, negativeSample, vnAdjs, nAdjs, pAdjs, vpAdjs, exVN, exN, exP, exVP, vnPerin, nPerin, pPerin, vpPerin) {
             userData.data = dateData;
             userData.availableFrom = earliestComment*1000;
-            userData.negativePercentage = (negativeSentenceCounts / sentenceCount).toPrecision(2) * 100;
+            userData.negativePercentage = (negativeSentenceCounts / sentenceCount).toPrecision(3) * 100;
             userData.negativeExample = negativeSample;
+            
+            userData.veryNegativeAdjs = vnAdjs;
+            userData.negativeAdjs = nAdjs;
+            userData.positiveAdjs = pAdjs;
+            userData.veryPositiveAdjs = vpAdjs;
+            userData.vnEx = exVN;
+            userData.nEx = exN;
+            userData.pEx = exP;
+            userData.vpEx = exVP;
+            userData.vnPer = vnPerin.toPrecision(3);
+            userData.nPer = nPerin.toPrecision(3);
+            userData.pPer = pPerin.toPrecision(3);
+            userData.vpPer = vpPerin.toPrecision(3);
 
             getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
               userData.karma.totalCommentScore = scores.comments;
@@ -206,16 +219,66 @@ function positivity (comments, callback) {
     var sentenceCounter = 0,
         negativeSentenceCount = 0,
         negativeCommentCount = 0,
-        negativeComments = [];
+        negativeComments = [],
+        veryNegAdEx = [],
+        negAdEx = [],
+        posAdEx = [],
+        veryPosAdEx = [],
+        adjVN = 0,
+        adjN = 0,
+        adjP = 0,
+        adjVP = 0,
+        adjPerVN = 0,
+        adjPerN = 0,
+        adjPerP = 0,
+        adjPerVP = 0,
+        vnExCount = 0,
+        nExCount = 0,
+        pExCount = 0,
+        vpExCount = 0;
 
     comments.forEach(function(currentComment, i) {
         coreNLP.process(currentComment, function(err, result) {
+          
           if (Array.isArray(result.document.sentences.sentence)) {
             result.document.sentences.sentence.forEach(function(x) {
                 sentenceCounter = sentenceCounter + 1;
                 // console.log(sentenceCounter + "\n");
                 if (Array.isArray(x.tokens.token)) {
                     x.tokens.token.forEach(function(y) {
+                        //checking and counting sentiment if its an adjective
+                        if (y.POS == 'JJ'|| y.POS == 'JJR' || y.POS == 'JJS'){
+                            if (y.sentiment== "Very negative"){
+                              if (vnExCount<=20){
+                                vnExCount++;
+                                veryNegAdEx.push({adjective: y.word});
+                              }
+                              adjVN++;
+                            }
+                            if (y.sentiment== "Negative"){
+                              if (nExCount<=20){
+                                nExCount++;
+                                negAdEx.push({adjective: y.word});
+                              }
+                              adjN++;
+                            }
+                            if (y.sentiment== "Positive"){
+                              if (pExCount<=20){
+                                pExCount++;
+                                posAdEx.push({adjective: y.word});
+                              }
+                              adjP++;
+                            }
+                            if (y.sentiment== "Very positive"){
+                              if (vpExCount<=20){
+                                vpExCount++;
+                                veryPosAdEx.push({adjective: y.word});
+                              }
+                              adjVP++;
+                            }
+
+                        }
+
                         if (y.sentiment == "Very negative") {
                             if (negativeCommentCount < 3) {
                               negativeComments.push({content: currentComment, trigger: y.word});
@@ -228,6 +291,38 @@ function positivity (comments, callback) {
                     });
                 }
                 else {
+                  //checking and counting sentiment if its an adjective
+                  if (x.tokens.token.POS == 'JJ' || x.tokens.token.POS == 'JJR' || x.tokens.token.POS == 'JJS'){
+                      if (x.tokens.token.sentiment== "Very negative"){
+                        if (vnExCount<=20){
+                          vnExCount++;
+                          veryNegAdEx.push({adjective: x.tokens.token.word});
+                          }
+                        adjVN++;
+                      }
+                      if (x.tokens.token.sentiment== "Negative"){
+                        if (nExCount<=20){
+                          nExCount++;
+                          negAdEx.push({adjective: x.tokens.token.word});
+                        }
+                        adjN++;
+                      }
+                      if (x.tokens.token.sentiment== "Positive"){
+                        if (pExCount<=20){
+                          pExCount++;
+                          posAdEx.push({adjective: x.tokens.token.word});
+                        }
+                        adjP++;
+                      }
+                      if (x.tokens.token.sentiment== "Very positive"){
+                        if (vpExCount<=20){
+                          vpExCount++;
+                          veryPosAdEx.push({adjective: x.tokens.token.word});
+                          }
+                        adjVP++;
+                      }
+
+                  }
                   if (x.tokens.token.sentiment == "Very negative") {
                       if (negativeCommentCount < 3) {
                               negativeComments.push({content: currentComment, trigger: x.tokens.token.word});
@@ -243,6 +338,37 @@ function positivity (comments, callback) {
 
               if (Array.isArray(result.document.sentences.sentence.tokens.token)) {
                   result.document.sentences.sentence.tokens.token.forEach(function(z) {
+                      if (z.POS == 'JJ' || z.POS == 'JJR' || z.POS == 'JJS'){
+                          if (z.sentiment== "Very negative"){
+                            if (vnExCount<=20){
+                              vnExCount++;
+                              veryNegAdEx.push({adjective: z.word});
+                            }
+                            adjVN++;
+                          }
+                          if (z.sentiment== "Negative"){
+                            if (nExCount<=20){
+                              nExCount++;
+                              negAdEx.push({adjective: z.word});
+                            }
+                            adjN++;
+                          }
+                          if (z.sentiment== "Positive"){
+                            if (pExCount<=20){
+                              pExCount++;
+                              posAdEx.push({adjective: z.word});
+                            }
+                            adjP++;
+                          }
+                          if (z.sentiment== "Very positive"){
+                            if (vpExCount<=20){
+                              vpExCount++;
+                              veryPosAdEx.push({adjective: z.word});
+                            }
+                            adjVP++;
+                          }
+
+                      }
                       if (z.sentiment == "Very negative") {
                         if (negativeCommentCount < 3) {
                               negativeComments.push({content: currentComment, trigger: z.word});
@@ -254,6 +380,37 @@ function positivity (comments, callback) {
                   });
               }
               else {
+                  if (result.document.sentences.sentence.tokens.token.POS == 'JJ' || result.document.sentences.sentence.tokens.token.POS == 'JJR' || result.document.sentences.sentence.tokens.token.POS == 'JJS'){
+                          if (result.document.sentences.sentence.tokens.token.sentiment== "Very negative"){
+                            if (vnExCount<=20){
+                              vnExCount++;
+                              veryNegAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
+                            }
+                            adjVN++;
+                          }
+                          if (result.document.sentences.sentence.tokens.token.sentiment== "Negative"){
+                            if (nExCount<=20){
+                              nExCount++;
+                              negAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
+                            }
+                            adjN++;
+                          }
+                          if (result.document.sentences.sentence.tokens.token.sentiment== "Positive"){
+                            if (pExCount<=20){
+                              pExCount++;
+                              posAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
+                            }
+                            adjP++;
+                          }
+                          if (result.document.sentences.sentence.tokens.token.sentiment== "Very positive"){
+                            if (vpExCount<=20){
+                              vpExCount++;
+                              veryPosAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
+                            }
+                            adjVP++;
+                          }
+
+                      }
                   if (result.document.sentences.sentence.tokens.token.sentiment == "Very negative") {
                       if (negativeCommentCount < 3) {
                             nnegativeComments.push({content: currentComment, trigger: result.document.sentences.sentence.tokens.token.word});
@@ -265,7 +422,12 @@ function positivity (comments, callback) {
           }
           if (i === comments.length-1) {
           console.log("\n\ncallback time\n\n" + i);
-          callback(sentenceCounter, negativeSentenceCount, negativeComments);
+
+          adjPerVN = 100*((adjVN)/(adjVN+adjN+adjP+adjVP)); 
+          adjPerN = 100*((adjN)/(adjVN+adjN+adjP+adjVP));
+          adjPerP = 100*((adjP)/(adjVN+adjN+adjP+adjVP));
+          adjPerVP = 100*((adjVP)/(adjVN+adjN+adjP+adjVP));
+          callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP);
           return;
           }
       }); 
