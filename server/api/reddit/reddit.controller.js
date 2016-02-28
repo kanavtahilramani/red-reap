@@ -69,7 +69,7 @@ function createUser(req, res, callback) {
                       "July", "August", "September", "October", "November", "December"];
     var earliestComment = Number.MAX_VALUE;
     var date, currentMonth, currentYear, currentHour, currentDay;
-    var commentLink, isSelfPostHelper, isSelfPost;
+    var commentLink, isSelfPostHelper, isSelfPost, isFlaired;
     var currentCommentScore = 0,
         currentPostCount    = 0,
         totalCommentCount   = 0,
@@ -78,7 +78,9 @@ function createUser(req, res, callback) {
         totalnsfw = 0,
         totalControversial = 0,
         totalCommentsGilded = 0,
-        totalGilds = 0;
+        totalGilds = 0,
+        totalWords = 0,
+        totalFlaired = 0;
 
     var editedTimes = []; //stores all times of edits
     var commentLengths = []; //store lengths of comments
@@ -161,7 +163,17 @@ function createUser(req, res, callback) {
                 totalGilds += currentComment.data.gilded; //add number of gilds for this comment
                 totalCommentsGilded++; //increase count of comments gilded at least once
               }
+              if (currentComment.data.author_flair_css_class != null)
+              {
+                totalFlaired++;
+                isFlaired = 1;
+              }
+              else
+              {
+                isFlaired = 0;
+              }
 
+              totalWords += Math.round(currentComment.data.body.toString().length / 5); //approx. word count tracking
               commentLengths.push(currentComment.data.body.toString().length); //store length of current comment
               commentSubreddits.push(currentComment.data.subreddit.toString()); //store subreddit comment is in
 
@@ -184,6 +196,7 @@ function createUser(req, res, callback) {
                 linkType: isSelfPost,
                 length: currentComment.data.body.toString().length,
                 gilded: currentComment.data.gilded,
+                flaired: isFlaired,
                 hour: currentHour,
                 day: currentDay,
                 month: currentMonth,
@@ -201,6 +214,8 @@ function createUser(req, res, callback) {
         userData.controversialComments = totalControversial;
         userData.gildedComments = totalCommentsGilded;
         userData.totalGilds = totalGilds;
+        userData.totalWords = totalWords;
+        userData.totalFlaired = totalFlaired;
 
         var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
         userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
@@ -222,6 +237,52 @@ function createUser(req, res, callback) {
             commentKarmaForDay: dayScorer[i]
           });
         }
+
+        ///////////////////////////////////////////////
+        //Estimating Region Section
+        //Highest activity hours: 7-9PM, lowest: 4-6AM
+        var maxActivity, minActivity, maxActivityHours, minActivityHours, maxActivityAvg, minActivityAvg;
+        var region;
+
+        function getAllIndexes(arr, val) {
+            var indexes = [], i;
+            for(i = 0; i < arr.length; i++)
+                if (arr[i] === val)
+                    indexes.push(i);
+            return indexes;
+        }
+
+        maxActivityHours = getAllIndexes(hourTracker, Math.max.apply(Math, hourTracker));
+        minActivityHours = getAllIndexes(hourTracker, Math.min.apply(Math, hourTracker));
+
+        //console.log(maxActivityHours + " " + minActivityHours);
+
+        var maxSum = maxActivityHours.reduce(function(a, b) { return a + b; });
+        maxActivity = maxSum / maxActivityHours.length; //get max avg value hour from array
+        var minSum = minActivityHours.reduce(function(a, b) { return a + b; });
+        minActivity = minSum / minActivityHours.length; //get min
+
+        //console.log(maxActivity + " " + minActivity);
+
+        if (maxActivity <= 23 && maxActivity >= 16 && minActivity >= 3 && minActivity <= 9)
+        {
+          region = "Europe/Africa";
+        }
+        else if (maxActivity <= 18 && maxActivity >= 11 && minActivity >=0 && (minActivity <= 4 || minActivity == 23 || minActivity == 22))
+        {
+          region = "Americas";
+        }
+        else if (maxActivity <= 7 && maxActivity >= 0 && minActivity >= 7 && minActivity <= 16)
+        {
+          region = "Asia/Australia";
+        }
+        else
+        {
+          region = "Uncertain";
+        }
+
+        userData.region = region;
+        ////////////////////////////////////////////////
 
         positivity(userComments, function(sentenceCount, negativeSentenceCounts, negativeSample) {
             userData.data = dateData;
