@@ -69,11 +69,16 @@ function createUser(req, res, callback) {
                       "July", "August", "September", "October", "November", "December"];
     var earliestComment = Number.MAX_VALUE;
     var date, currentMonth, currentYear, currentHour, currentDay;
+    var commentLink, isSelfPostHelper, isSelfPost;
     var currentCommentScore = 0,
         currentPostCount    = 0,
         totalCommentCount   = 0,
         totalEditedCommentCount = 0,
-        totalEditedTimeRange = 0;
+        totalEditedTimeRange = 0,
+        totalnsfw = 0,
+        totalControversial = 0,
+        totalCommentsGilded = 0,
+        totalGilds = 0;
 
     var editedTimes = []; //stores all times of edits
     var commentLengths = []; //store lengths of comments
@@ -142,14 +147,43 @@ function createUser(req, res, callback) {
                 }
               }
 
+              //Track some comment metadata
+              if (currentComment.data.over_18 == true)
+              {
+                totalnsfw++; //add to count of nsfw comments
+              }
+              if (currentComment.data.controversiality > 0)
+              {
+                totalControversial++; //add to count of controversial comments
+              }
+              if (currentComment.data.gilded > 0)
+              {
+                totalGilds += currentComment.data.gilded; //add number of gilds for this comment
+                totalCommentsGilded++; //increase count of comments gilded at least once
+              }
+
               commentLengths.push(currentComment.data.body.toString().length); //store length of current comment
               commentSubreddits.push(currentComment.data.subreddit.toString()); //store subreddit comment is in
+
+              commentLink = currentComment.data.link_url.toString();
+              isSelfPostHelper = commentLink.search("/comments/"); //if the URL has '/comments/' in it, then it's almost certainly a selfpost
+              //value will be -1 if a normal link, some integer otherwise
+              if (isSelfPostHelper > 0) //simplify to yes/no value
+              {
+                isSelfPost = 1;
+              }
+              else
+              {
+                isSelfPost = 0;
+              }
 
               //store metadata on each comment
               userData.comMeta.push({
                 subreddit: currentComment.data.subreddit.toString(),
-                link: currentComment.data.link_url.toString(),
+                link: commentLink,
+                linkType: isSelfPost,
                 length: currentComment.data.body.toString().length,
+                gilded: currentComment.data.gilded,
                 hour: currentHour,
                 day: currentDay,
                 month: currentMonth,
@@ -160,9 +194,13 @@ function createUser(req, res, callback) {
 
         userData.totalComments = totalCommentCount;
         userData.totalEditedComments = totalEditedCommentCount;
-        userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount;
+        userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
         editedTimes.sort(); //sort lowest to highest
         userData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
+        userData.nsfwComments = totalnsfw;
+        userData.controversialComments = totalControversial;
+        userData.gildedComments = totalCommentsGilded;
+        userData.totalGilds = totalGilds;
 
         var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
         userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
