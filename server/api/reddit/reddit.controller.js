@@ -235,7 +235,12 @@ function positivity (comments, callback) {
         vnExCount = 0,
         nExCount = 0,
         pExCount = 0,
-        vpExCount = 0;
+        vpExCount = 0,
+        descriptor = "",
+        totalDescriptions = [],
+        adverbExists = false,
+        adverbExistsTwo = false,
+        UCPadverbExists = false;
 
     comments.forEach(function(currentComment, i) {
         coreNLP.process(currentComment, function(err, result) {
@@ -243,10 +248,81 @@ function positivity (comments, callback) {
           if (Array.isArray(result.document.sentences.sentence)) {
             result.document.sentences.sentence.forEach(function(x) {
                 sentenceCounter = sentenceCounter + 1;
-                // console.log(sentenceCounter + "\n");
                 if (Array.isArray(x.tokens.token)) {
-                    x.tokens.token.forEach(function(y) {
+                    x.tokens.token.forEach(function(y, index) {
                         //checking and counting sentiment if its an adjective
+                        if (y.word == 'I' || y.word == 'i') {
+                            if (index < x.tokens.token.length-2) {
+                                if (x.tokens.token[index+1].lemma == "be") {
+                                    x.parsedTree.children[0].children.forEach(function(p) {
+                                        if (p.type == "VP") {
+                                            if (p.children[0].children[0].id == x.tokens.token[index+1].$.id) {
+                                                p.children.forEach(function(phrase) {
+                                                    if (phrase.type != "NP" && phrase.type != "VB" && phrase.type != "VBD" && phrase.type != "VBG" && phrase.type != "VBN" && phrase.type != "VBP" && phrase.type != "VBZ") {
+                                                        adverbExists = true;
+                                                    }
+                                                    if (phrase.children[0].type == "NP") {
+                                                        if (phrase.children[0].type != "NP" && phrase.children[0].type != "VB" && phrase.children[0].type != "VBD" && phrase.children[0].type != "VBG" && phrase.children[0].type != "VBN" && phrase.children[0].type != "VBP" && phrase.children[0].type != "VBZ") {
+                                                          adverbExistsTwo = true; //reset
+                                                        }
+                                                        if (!adverbExistsTwo) {
+                                                            phrase.children[0].children.forEach(function(description, index) {
+                                                                descriptor += description.children[0].word;
+                                                                descriptor += " ";
+                                                                if (index == phrase.children[0].children.length-1){
+                                                                          console.log("\nTop test (NON UCP).\n");
+                                                                          console.log(currentComment + "\n");
+                                                                          console.log(descriptor);
+                                                                          console.log("\n================================");
+                                                                          descriptor = "";
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                    else if (phrase.type == "NP" && !adverbExists) { /* NON UCP */
+                                                        phrase.children.forEach(function(description, index) {
+                                                            descriptor += description.children[0].word;
+                                                            descriptor += " ";
+                                                            if (index == phrase.children.length-1){
+                                                                      console.log("\nTop test (NON UCP).\n");
+                                                                      console.log(currentComment + "\n");
+                                                                      console.log(descriptor);
+                                                                      console.log("\n================================");
+                                                                      descriptor = "";
+                                                            }
+                                                        });
+                                                    }
+                                                    else if (phrase.type == "UCP") { /* UCP */
+                                                        phrase.children.forEach(function(outer) {
+                                                            if (outer.type != "NP" && outer.type != "VB" && outer.type != "VBD" && outer.type != "VBG" && outer.type != "VBN" && outer.type != "VBP" && outer.type != "VBZ") {
+                                                              UCPadverbExists = true;
+                                                            }
+                                                            if (outer.type == "NP" && !adverbExists) {
+                                                                outer.children.forEach(function(description, index) {
+                                                                  descriptor += description.children[0].word;
+                                                                  descriptor += " ";
+                                                                  if (index == outer.children.length-1) {
+                                                                      console.log("\nBottom test (UCP).\n");
+                                                                      console.log(currentComment + "\n");
+                                                                      console.log(descriptor);
+                                                                      console.log("\n================================");
+                                                                      descriptor = "";
+                                                                  }
+                                                                });
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                                adverbExists = false;
+                                                adverbExistsTwo = false;
+                                                UCPadverbExists = false;
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
                         if (y.POS == 'JJ'|| y.POS == 'JJR' || y.POS == 'JJS'){
                             if (y.sentiment== "Very negative"){
                               if (vnExCount<=20){
