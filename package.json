@@ -27,7 +27,8 @@
     "open": "0.0.5",
     "passport": "^0.3.2",
     "serve-favicon": "^2.3.0",
-    "snoocore": "^3.2.1"
+    "snoocore": "^3.2.1",
+    "stanford-corenlp": "git://github.com/vanak/node-stanford-corenlp.git"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.0",

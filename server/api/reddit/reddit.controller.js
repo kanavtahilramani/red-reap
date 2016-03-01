@@ -215,6 +215,10 @@ function createUser(req, res, callback) {
   });
 }
 
+function getIdentifier () {
+  
+}
+
 function positivity (comments, callback) {
     var sentenceCounter = 0,
         negativeSentenceCount = 0,
