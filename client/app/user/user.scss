@@ -10,83 +10,6 @@
 	width: 80%;
 }
 
-h1.intro {
-    color: white;
-}
-
-h1.intro em{
-	color: white;
-	font-size: 40px;
-	font-style: normal;
-}
-
-h1.chart {
-  	font-size: 14px; 
-  	text-align: center;
-}
-
-p.whitetoptext {
-	color: white;
-	font-size: 20px;
-}
-
-p.toptext {
-	color: #949DA2;
-	font-size: 15px;
-}
-
-p.bottomtext {
-    color: #949DA2;
-    font-size: 15px;
-    margin-top: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-p.bottomPrimary {
-    color: white;
-    font-size: 17px;
-    font-style: normal;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-p.primary {
-	color: white;
-	font-size: 17px;
-	font-style: normal;
-}
-
-em.secondary {
-	color: white;
-	font-size: 10px;
-	font-style: normal;
-}
-
-p.contentheader {
-    color: black;
-    font-size: 25px;
-}
-
-p.contentsubheader {
-    color: black;
-    font-size: 15px;
-}
-
-p.contenttext {
-    color: black;
-    font-size: 13px;
-}
-
-graph {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
 .dl-horizontal dt {
 	width: auto;
 	margin-left: auto;
@@ -97,144 +20,210 @@ graph {
 	text-align: right;
 }
 
-.nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
-}
-
-dl.top {
-	margin-top: 10px;
-	text-align: left;
-}
-
-.jumbotron-special {
-	background-color:#282828;
-    width: 100%;
-}
-
-.navbar {
- 	background: #D22E2E;
- 	margin-bottom:0px !important;
-}
-
-.row.fixed {
-    width:100%;
-    background: #EAEAEA;
-}
-
-.navbar-inner {
-	border: 0px;
-}
-
-.navbar {
-	border: 0px;
-}
-
-.btn-navbar {
-	border: 0px;
-}
-
-.navbar-fixed-top {
-    border-width: 0;
-    top: 0;
-}
-
-.nav.navbar-nav.navbar-right li a {
-    color: white;
-}
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #A62121;
-}
-
-.contentdivider {
-	margin: 0 auto;
-	height: 1px;
-	width: 75%;
-	background-color: lightgray;
-    padding-bottom: 10px;
-}
-
-.contentdisp {
-	background-color:white;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.jumbotron-content {
-	margin-top: 50px;
-    width: 100%;
-}
-
 #fineprint {
 	font-size: 10px;
 }
 
-.sideleft {
-	margin-left: 20px;
-	width: 100%;
+.axis path, .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
 }
 
-.arc text {
-  font: 10px sans-serif;
-  text-anchor: middle;
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }
 
-.arc path {
-  stroke: #fff;
+.intro-nlp {
+	width: 120%;
 }
 
-#chart {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bar {
+	fill: orange;
 }
 
-/* For d3 pie/donut chart */
-.legend {
-    font-size: 12px;
+.bar:hover {
+	fill: orangered;
 }
 
-rect {
-  cursor: pointer;
-  stroke-width: 2;
-}
-rect.disabled { 
-  fill: transparent !important;
+.x.axis path {
+	display: none;
 }
 
-.tooltip {
-    display    : none;
-    position   : absolute;
-    width      : 80px;
-    top        : 10%;
-    right      : 25%;
-    text-align : center;
-    color      : #333;
-    font-size  : 12px;
-    padding    : 10px;
-    z-index    : 10;
-    background-color : #eee;
-    box-shadow       : 0 0 5px #999999;
+.example-comment {
+	padding-left: 20pt;
 }
 
-.tooltip--bars .value {
-    font-weight: bold;
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
 }
 
-.tooltip--bars {
-    z-index: 100;
-    position: relative;
-    display: block;
-    top: 0;
-    left: 30%;
-    text-align: center;
-    padding: .7em;
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+	margin: -1px 0 0 0 ;
+	top: 100%;
+	left: 0;
+}
+
+.vertical-align {
+	display: flex;
+	align-items: center;
+}
+
+.jumbotron-special {
+	background-color: #282828;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+#need-space {
+	margin-top: 15px;
+}
+
+.no-new-line {
+	display: inline;
+}
+
+.nopadding {
+  padding: 0;
+  background: white;
+}
+
+hr {
     background-color: white;
-    box-shadow       : 0 0 5px hsla(0, 0%, 20%, 0.9);
-    color: hsl(0, 0%, 20%);
-    min-width: 45%;
-    max-width: 95%;
-    box-sizing: border-box;
+}
+
+h1.intro {
+    color: white;
+    margin-bottom: 25px;
+}
+
+h1.intro em{
+	color: white;
+	font-size: 40px;
+	font-style: normal;
+}
+
+p.toptext {
+	color: #949DA2;
+	font-size: 15px;
+}
+
+p:empty:before { 
+  content: "-"; 
+}
+
+em:empty:before { 
+  content: "-"; 
+}
+
+p.primary {
+	color: white;
+	font-size: 17px;
+	font-style: normal;
+}
+
+p.bottomtext {
+  color: #949DA2;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+p.bottomPrimary {
+  color: white;
+  font-size: 17px;
+  font-style: normal;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.contentdisp {
+  background-color:white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+p.content-header {
+  color: black;
+  font-size: 25px;
+  margin-left: 20px;
+}
+
+p.content-subheader {
+  text-align: center;
+  color: black;
+  font-size: 18px;
+  width: 100%;
+  margin-bottom:60px;
+  margin-left: -10px;
+}
+
+p.content-text {
+  color: black;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+em.content-text {
+  color: black;
+  font-size: 18px;
+  font-style: normal;
+}
+
+p.content-bold-text {
+  margin-left: 10px;
+}
+
+body {
+  background-color: #EAEAEA;
+}
+
+h1.chart-header {
+    font-size: 14px; 
+    text-align: left;
+}
+
+.jumbotron-content {
+  margin-top: 40px;
+  width: 95%;
+}
+
+.navbar {
+  background: white;
+  margin-bottom: 0px;
+  -webkit-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.64);
+  -moz-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.64);
+  box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.64);
+}
+
+.nav.navbar-nav.navbar-right li a {
+  color: black;
+}
+
+.navbar .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  background-color: #EAEAEA;
+}
+
+.navbar .navbar-toggle .icon-bar {
+  background: #000; /* Change color for horizontal lines */
 }

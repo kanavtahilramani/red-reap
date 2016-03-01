@@ -12,6 +12,21 @@ angular.module('mainService', [])
 				callback();
 			});
 		},
+		getExamples: function(callback) {
+			var first, second, key;
+			var single = [];
+			var arr = [[]];
+
+			userData.data.negativeExample.forEach(function(d) {
+				single.push(d.content.substring(0, d.content.search(d.trigger)));
+				single.push(d.trigger);
+				single.push(d.content.substring(d.content.search(d.trigger) + d.trigger.length + 1, d.content.length));
+				arr.push(single);
+				single = [];
+			});
+
+			callback(arr);
+		},
 		getAge: function(callback) {
 			const oneYearInSeconds = 31556736; /* 1 year (365.24 days) */ 
 			const oneMonthInSeconds = 2627942; /* 1 month (30.416 days) */
@@ -120,6 +135,8 @@ angular.module('mainService', [])
 			}
 
 			accountCreation.age = readable;
+			var availableDate = new Date(userData.data.availableFrom);
+			accountCreation.available = availableDate.getMonth() + "." + availableDate.getDate() + "." + availableDate.getFullYear().toString().substring(2,4);
 			callback(accountCreation);
 		}
 	}
