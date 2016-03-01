@@ -8,8 +8,8 @@ angular.module('redreapApp')
 			// add processing
 				vm.loading = true;
 				User.getUser(username, function() {
-					vm.loading = false;
 					$location.path('/user/' + username);
+					vm.loading = false;
 				});
 		};
   });
