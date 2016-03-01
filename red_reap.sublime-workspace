@@ -283,30 +283,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "server/api/reddit/reddit.controller.js",
-			"settings":
-			{
-				"buffer_size": 22591,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "server/api/user/user.model.js",
-			"settings":
-			{
-				"buffer_size": 1916,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/user/user.html",
-			"settings":
-			{
-				"buffer_size": 9236,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -336,10 +312,11 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/.tmp/app/user/user.js",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/user/user.model.js",
-		"/C/Users/Julian Esteban/Desktop/testnlp/node-stanford-corenlp-master/examples/sentiments.js",
 		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/user/user.html",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/user/user.model.js",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/.tmp/app/user/user.js",
+		"/C/Users/Julian Esteban/Desktop/testnlp/node-stanford-corenlp-master/examples/sentiments.js",
 		"/C/Users/Kanav/Desktop/backup/red-reap/.gitignore",
 		"/C/Users/Kanav/Documents/red/red-reap/.gitignore",
 		"/C/Users/Kanav/Documents/red/red-reap/.git/COMMIT_EDITMSG",
@@ -462,8 +439,7 @@
 		"/C/Users/Kanav/Documents/Projects/hearthbase/.bowerrc",
 		"/C/Users/Kanav/Documents/Projects/hearthbase/.gitignore",
 		"/C/Users/Kanav/Downloads/The.Witness-HI2U/hi2u.nfo",
-		"/C/Users/Kanav/Documents/Projects/workflow/package.json",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userCtrl.js"
+		"/C/Users/Kanav/Documents/Projects/workflow/package.json"
 	],
 	"find":
 	{
@@ -551,91 +527,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "server/api/reddit/reddit.controller.js",
-					"settings":
-					{
-						"buffer_size": 22591,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15908,
-								15908
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5275.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "server/api/user/user.model.js",
-					"settings":
-					{
-						"buffer_size": 1916,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								543,
-								543
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 413.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "client/app/user/user.html",
-					"settings":
-					{
-						"buffer_size": 9236,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8218,
-								8218
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2528.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -699,6 +592,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 194.0,
+	"side_bar_width": 126.0,
 	"status_bar_visible": true
 }

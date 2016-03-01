@@ -240,6 +240,9 @@ function positivity (comments, callback) {
         totalDescriptions = [],
         adverbExists = false,
         adverbExistsTwo = false,
+        nonNounFound = false,
+        descriptorNounFound = false,
+        descriptorNonNounFound = false,
         UCPadverbExists = false;
 
     comments.forEach(function(currentComment, i) {
@@ -253,62 +256,123 @@ function positivity (comments, callback) {
                         //checking and counting sentiment if its an adjective
                         if (y.word == 'I' || y.word == 'i') {
                             if (index < x.tokens.token.length-2) {
-                                if (x.tokens.token[index+1].lemma == "be") {
+                                if ((x.tokens.token[index+1].lemma == "be") && (x.tokens.token[index+2].lemma != "not")) {
                                     x.parsedTree.children[0].children.forEach(function(p) {
                                         if (p.type == "VP") {
                                             if (p.children[0].children[0].id == x.tokens.token[index+1].$.id) {
                                                 p.children.forEach(function(phrase) {
-                                                    if (phrase.type != "NP" && phrase.type != "VB" && phrase.type != "VBD" && phrase.type != "VBG" && phrase.type != "VBN" && phrase.type != "VBP" && phrase.type != "VBZ") {
-                                                        adverbExists = true;
-                                                    }
+                                                    //if (phrase.type != "NP" && phrase.type != "VB" && phrase.type != "VBD" && phrase.type != "VBG" && phrase.type != "VBN" && phrase.type != "VBP" && phrase.type != "VBZ") {
+                                                     //   adverbExists = true;
+                                                    //}
                                                     if (phrase.children[0].type == "NP") {
-                                                        if (phrase.children[0].type != "NP" && phrase.children[0].type != "VB" && phrase.children[0].type != "VBD" && phrase.children[0].type != "VBG" && phrase.children[0].type != "VBN" && phrase.children[0].type != "VBP" && phrase.children[0].type != "VBZ") {
-                                                          adverbExistsTwo = true; //reset
-                                                        }
-                                                        if (!adverbExistsTwo) {
-                                                            phrase.children[0].children.forEach(function(description, index) {
-                                                                descriptor += description.children[0].word;
-                                                                descriptor += " ";
-                                                                if (index == phrase.children[0].children.length-1){
-                                                                          console.log("\nTop test (NON UCP).\n");
-                                                                          console.log(currentComment + "\n");
-                                                                          console.log(descriptor);
-                                                                          console.log("\n================================");
-                                                                          descriptor = "";
+                                                      phrase.children.forEach(function(secNP){
+
+                                                        //if (phrase.children[0].type != "NP" && phrase.children[0].type != "VB" && phrase.children[0].type != "VBD" && phrase.children[0].type != "VBG" && phrase.children[0].type != "VBN" && phrase.children[0].type != "VBP" && phrase.children[0].type != "VBZ") {
+                                                          //adverbExistsTwo = true; //reset
+                                                        //}
+                                                        if (secNP.type == "NP") {
+                                                                   descriptorNounFound = false;
+                                                            descriptorNonNounFound = false;
+                                                            secNP.children.forEach(function(description, index) {
+
+                                                      
+                                                                
+                                                                if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
+                                                                    descriptorNounFound = true;  
+                                                                  
+                                                                  }
+                                                                  else if(descriptorNounFound){
+                                                                  
+                                                                    descriptorNonNounFound = true;
+                                                                }
+
+                                                                  if (!descriptorNonNounFound){
+                                                                  descriptor += description.children[0].word;
+                                                                  descriptor += " ";
+
                                                                 }
                                                             });
+                                                        console.log("\nTop test (NON UCP).\n");
+                                                        console.log(currentComment + "\n");
+                                                        console.log(descriptor);
+                                                        console.log("\n================================");
+                                                                      
+                                                        descriptor = "";
+                                                        descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
                                                         }
+                                                      });
                                                     }
-                                                    else if (phrase.type == "NP" && !adverbExists) { /* NON UCP */
+                                                    //else if (phrase.type == "NP" && !adverbExists) { /* NON UCP */
+                                                       else if (phrase.type == "NP") {
+                                                                 descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
                                                         phrase.children.forEach(function(description, index) {
-                                                            descriptor += description.children[0].word;
-                                                            descriptor += " ";
-                                                            if (index == phrase.children.length-1){
-                                                                      console.log("\nTop test (NON UCP).\n");
-                                                                      console.log(currentComment + "\n");
-                                                                      console.log(descriptor);
-                                                                      console.log("\n================================");
-                                                                      descriptor = "";
-                                                            }
-                                                        });
+
+                                                        
+                                                                  
+                                                                 if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
+                                                                    descriptorNounFound = true;  
+                                                                
+                                                                  }
+                                                                 else if(descriptorNounFound){
+                                                                  
+                                                                    descriptorNonNounFound = true;
+                                                                }
+
+                                                                        if (!descriptorNonNounFound){
+                                                                  descriptor += description.children[0].word;
+                                                                  descriptor += " ";
+
+                                                                }
+                                                            });
+                                                        console.log("\nTop test (NON UCP).\n");
+                                                        console.log(currentComment + "\n");
+                                                        console.log(descriptor);
+                                                        console.log("\n================================");
+                                                        descriptorNounFound = false;
+                                                        descriptorNonNounFound = false; 
+                                                        descriptor = "";
+                                            
                                                     }
                                                     else if (phrase.type == "UCP") { /* UCP */
                                                         phrase.children.forEach(function(outer) {
-                                                            if (outer.type != "NP" && outer.type != "VB" && outer.type != "VBD" && outer.type != "VBG" && outer.type != "VBN" && outer.type != "VBP" && outer.type != "VBZ") {
-                                                              UCPadverbExists = true;
-                                                            }
-                                                            if (outer.type == "NP" && !adverbExists) {
+                                                            //if (outer.type != "NP" && outer.type != "VB" && outer.type != "VBD" && outer.type != "VBG" && outer.type != "VBN" && outer.type != "VBP" && outer.type != "VBZ") {
+                                                             // UCPadverbExists = true;
+                                                           // }
+                                                            //if (outer.type == "NP" && !adverbExists) {
+
+                                                              if (outer.type == "NP") {
+                                                                         descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
                                                                 outer.children.forEach(function(description, index) {
+
+                                                                
+                                                                  
+                                                                if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
+                                                             
+                                                                      descriptorNounFound = true;  
+                                                                      descriptor = "";
+                                                                     
+                                                                  }
+                                                                    else if(descriptorNounFound){
+                                                                  
+                                                                    descriptorNonNounFound = true;
+                                                                }
+
+                                                                if (!descriptorNonNounFound){
                                                                   descriptor += description.children[0].word;
                                                                   descriptor += " ";
-                                                                  if (index == outer.children.length-1) {
-                                                                      console.log("\nBottom test (UCP).\n");
-                                                                      console.log(currentComment + "\n");
-                                                                      console.log(descriptor);
-                                                                      console.log("\n================================");
-                                                                      descriptor = "";
-                                                                  }
-                                                                });
+
+                                                                }
+                                                            });
+                                                                        console.log("\nTop test (NON UCP).\n");
+                                                                         console.log(currentComment + "\n");
+                                                                         console.log(descriptor);
+                                                                        console.log("\n================================");
+                                                        descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
+                                                         descriptor = "";
                                                             }
                                                         });
                                                     }
@@ -319,6 +383,155 @@ function positivity (comments, callback) {
                                             }
                                         }
                                     });
+
+
+                     x.parsedTree.children[0].children.forEach(function(q){
+                                         q.children.forEach(function(p) {
+                                       
+                                         if (p.type == "VP") {
+                                            if (p.children[0].children[0].id == x.tokens.token[index+1].$.id) {
+
+                                                p.children.forEach(function(phrase) {
+                                                    //if (phrase.type != "NP" && phrase.type != "VB" && phrase.type != "VBD" && phrase.type != "VBG" && phrase.type != "VBN" && phrase.type != "VBP" && phrase.type != "VBZ") {
+                                                     //   adverbExists = true;
+                                                    //}
+                                                    if (phrase.children[0].type == "NP") {
+                                                      phrase.children.forEach(function(secNP){
+
+                                                        //if (phrase.children[0].type != "NP" && phrase.children[0].type != "VB" && phrase.children[0].type != "VBD" && phrase.children[0].type != "VBG" && phrase.children[0].type != "VBN" && phrase.children[0].type != "VBP" && phrase.children[0].type != "VBZ") {
+                                                          //adverbExistsTwo = true; //reset
+                                                        //}
+                                                        if (secNP.type == "NP") {
+                                                                   descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
+                                                            secNP.children.forEach(function(description, index) {
+
+                                                              
+                                                                
+                                                                if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
+                                                                 
+                                                                      descriptorNounFound = true;  
+                                                                 
+                                                                  }
+                                                                 else if(descriptorNounFound){
+                                                                  
+                                                                    descriptorNonNounFound = true;
+                                                                }
+
+
+                                                                  if (!descriptorNonNounFound){
+                                                                  descriptor += description.children[0].word;
+                                                                  descriptor += " ";
+
+                                                                }
+                                                            });
+                                                            console.log("\nTop test (NON UCP).\n");
+                                                          console.log(currentComment + "\n");
+                                                                         console.log(descriptor);
+                                                                        console.log("\n================================");
+                                                        descriptor = "";
+                                                        descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
+                                                        }
+                                                      });
+                                                    }
+                                                    //else if (phrase.type == "NP" && !adverbExists) { /* NON UCP */
+                                                       else if (phrase.type == "NP") {
+                                                          descriptorNounFound = false;
+                                                          descriptorNonNounFound = false;
+                                                          phrase.children.forEach(function(description, index) {
+
+                                                
+                                                                  
+                                                                 if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
+                                                                    descriptorNounFound = true;  
+                                                                  
+                                                                  }
+                                                                else if(descriptorNounFound){
+                                                                  
+                                                                    descriptorNonNounFound = true;
+                                                                }
+
+                                                                if (!descriptorNonNounFound){
+                                                                  descriptor += description.children[0].word;
+                                                                  descriptor += " ";
+
+                                                                }
+                                                            });
+                                                                    console.log("\nTop test (NON UCP).\n");
+                                                                         console.log(currentComment + "\n");
+                                                                         console.log(descriptor);
+                                                                        console.log("\n================================");
+                                                                    
+                                                        descriptorNounFound = false;
+                                                        descriptorNonNounFound = false; 
+                                                        descriptor = "";
+                                            
+                                                    }
+                                                    else if (phrase.type == "UCP") { /* UCP */
+                                                        phrase.children.forEach(function(outer) {
+                                                            //if (outer.type != "NP" && outer.type != "VB" && outer.type != "VBD" && outer.type != "VBG" && outer.type != "VBN" && outer.type != "VBP" && outer.type != "VBZ") {
+                                                             // UCPadverbExists = true;
+                                                           // }
+                                                            //if (outer.type == "NP" && !adverbExists) {
+                                                              if (outer.type == "NP") {
+                                                                         descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
+                                                                outer.children.forEach(function(description, index) {
+
+                                                               
+                                                                  
+                                                                if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
+                                                                 //// console.log("NP NESTED PREPROCESS index: " + index + " descriptor: "+descriptor+ "\n\n");
+                                                                  ////coreNLP.process(description.children[0].word, function(err, resultTwo){
+                                                                      //console.log("\nDESCRIPTOR: " + description.children[0].word);
+                                                                     // console.log("\nPOS: " + resultTwo.document.sentences.sentence.tokens.token.POS);
+                                                                    //  console.log("\n================================");
+                                                                   ////if (resultTwo.document.sentences.sentence.tokens.token.POS == "NN" || resultTwo.document.sentences.sentence.tokens.token.POS == "NNP"  || resultTwo.document.sentences.sentence.tokens.token.POS == "NNPS" || resultTwo.document.sentences.sentence.tokens.token.POS == "NNS" ){
+                                                                     ////console.log("NP NESTED INNER index: " + index + " descriptor: "+descriptor+ "\n\n");
+                                                                      //push save because true noun
+                                                                      
+                                                                      //
+                                                                      descriptorNounFound = true;  
+                                                                      descriptor = "";
+                                                                      ////}
+                                                                    ////else{
+                                                                      ////descriptorNounFound = true;  
+                                                                      ////descriptor = "";
+                                                                    ////}
+
+                                                                   //// }); ////match for corenlp function call
+
+                                                                  }
+                                                                    else if(descriptorNounFound){
+                                                                  
+                                                                    descriptorNonNounFound = true;
+                                                                }
+
+                                                                 if (!descriptorNonNounFound){
+                                                                  descriptor += description.children[0].word;
+                                                                  descriptor += " ";
+
+                                                                }
+                                                            });
+                                                        console.log("\nTop test (NON UCP).\n");
+                                                                         console.log(currentComment + "\n");
+                                                                         console.log(descriptor);
+                                                                        console.log("\n================================");
+                                                        descriptorNounFound = false;
+                                                        descriptorNonNounFound = false;
+                                                         descriptor = "";
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                                adverbExists = false;
+                                                adverbExistsTwo = false;
+                                                UCPadverbExists = false;
+                                            }
+                                        }
+                                    });
+                                   });
                                 }
                             }
                         }
