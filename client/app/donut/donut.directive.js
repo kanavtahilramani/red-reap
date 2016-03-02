@@ -114,10 +114,12 @@ angular.module('redreapApp')
                   }));
                   
                   if (rect.attr('class') === 'disabled') {
-                    rect.attr('class', '');
+                    rect.attr('class', '')
+                    .style('fill', color);
                   } else {
                     if (totalEnabled < 2) return;
-                    rect.attr('class', 'disabled');
+                    rect.attr('class', 'disabled')
+                    rect.style('fill', "gray");
                     enabled = false;
                   }
 

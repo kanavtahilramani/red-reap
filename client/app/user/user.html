@@ -22,7 +22,7 @@
 		    				<p class="primary">{{user.accountCreation.date}}</p>
 			    		</div>
 			    		<div class="col-md-3">
-		    				<p class="toptext">Redditor for</p>
+		    				<p class="toptext">Redditor For</p>
 		    				<p class="primary">{{user.accountCreation.age}}</p>
 			    		</div>
 		    			<div class="col-md-3">
@@ -31,15 +31,15 @@
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Gender</p>
-			    			<p class="primary" style="color: red;">Male</p>
-			    		</div>
-			    		<div class="col-md-3">
-		    				<p class="toptext">Timezone</p>
-		    				<p class="primary" style="color: red;">Eastern</p>
+			    			<p class="primary" style="color: #d9230f;">Male</p>
 			    		</div>
 			    		<div class="col-md-3">
 		    				<p class="toptext">Location</p>
-		    				<p class="primary" style="color: red;">Maine, US</p>
+		    				<p class="primary" style="color: #d9230f;">Maine, US</p>
+			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Total Submissions</p>
+			    			<p class="primary" style="color: #d9230f;">55</p> 
 			    		</div>
 		    			<div class="col-md-3">
 			    			<p class="toptext">Total Comments</p>
@@ -49,13 +49,48 @@
 			    			<p class="toptext">Avg. Comment Length</p>
 			    			<p class="primary" text-align="center">{{user.redditUser.data.avgCommentLength}}</p>
 			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Total Words</p>
+			    			<p class="primary">{{user.redditUser.data.totalWords}}</p> 
+			    		</div>
+			    		<div class="col-md-3">
+		    				<p class="toptext">Total Gilded</p>
+		    				<p class="primary">{{user.redditUser.data.gildedComments}}</p>
+			    		</div>
+			    		<div class="col-md-3">
+		    				<p class="toptext">Total Controversial</p>
+		    				<p class="primary">{{user.redditUser.data.controversialComments}}</p>
+			    		</div>
+		    			<div class="col-md-3">
+			    			<p class="toptext">Total NSFW</p>
+			    			<p class="primary">{{user.redditUser.data.nsfwComments}}</p> 
+			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Total Flaired</p>
+			    			<p class="primary">{{user.redditUser.data.totalFlaired}}</p> 
+			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Total Edited</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.totalEditedComments}}</p>
+			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Avg. Edit Time</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.avgEditTime}}</p>
+			    		</div>
+			    		<div class="col-md-3">
+			    			<p class="toptext">Median Edit Time</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.medEditTime}} s</p>
+			    		</div>
 			    	</div>
+
 			    	<p class="bottomtext">Top Submission</p>
-				    <p class="bottomPrimary">{{user.redditUser.data.topSubmission.title}}</p>
-			   
+				    <p class="bottomPrimary">{{user.redditUser.data.topSubmission.title}}<a href="{{user.redditUser.data.topSubmission.permalink}}"> #</a></p>
+			   		<p style="color: white; font-size: 15px; margin-left:50px"><em style="font-size: 15px; font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topSubmission.score}}<em style="font-size: 15px; font-style: normal; color: gray; margin-left: 30px;">Subreddit:</em> {{user.redditUser.data.topSubmission.subreddit}}</p>
+
 				    <p class="bottomtext">Top Comment</p>
-				    <p class="bottomPrimary">{{user.redditUser.data.topComment.body}}</p>
-				    
+				    <p class="bottomPrimary">{{user.redditUser.data.topComment.body}}<a href="{{user.redditUser.data.topComment.permalink}}"> #</a></p>
+				    <p style="color: white; font-size: 15px; margin-left:50px"><em style="font-size: 15px; font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topComment.score}}<em style="font-size: 15px; font-style: normal; color: gray; margin-left: 30px;">Subreddit:</em> {{user.redditUser.data.topComment.subreddit}}</p>
+
 				    <p class="bottomtext">Subreddits</p>
 <!-- 				    	<div style="margin-left:20px; margin-bottom: 30px;" class="container">
 			    		<div ng-repeat="userMeta in user.redditUser.data.comMeta">
@@ -121,7 +156,7 @@
 							</div>
 						</div>
 				    <p class="bottomtext">Likes</p>
-				    <p class="bottomPrimary" style="color: red;">Long walks on the beach</p>
+				    <p class="bottomPrimary" style="color: #d9230f;">Long walks on the beach</p>
 		   		</div>
 		  	</div>
 		

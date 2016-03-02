@@ -128,14 +128,6 @@ p.toptext {
 	font-size: 15px;
 }
 
-p:empty:before { 
-  content: "-"; 
-}
-
-em:empty:before { 
-  content: "-"; 
-}
-
 p.primary {
 	color: white;
 	font-size: 17px;
@@ -227,4 +219,8 @@ h1.chart-header {
 
 .navbar .navbar-toggle .icon-bar {
   background: #000; /* Change color for horizontal lines */
+}
+
+a:hover{
+    text-decoration: none;
 }
