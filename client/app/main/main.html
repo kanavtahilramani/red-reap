@@ -13,9 +13,8 @@
         <form class="text-center" ng-submit="main.search(main.username)">
             <input type="text" id="input" class="form-control" ng-model="main.username" placeholder="username" maxlength="20">
             <button type="submit" id="search" class="btn btn-primary">
-              <!-- <span ng-if="!main.loading"><span class="glyphicon glyphicon-search"></span></span> -->
-              <!-- <span ng-if="!main.loading"><i class="fa fa-spinner fa-spin"></i></span> -->
-              <span ng-if="!main.loading"><i class="glyphicon glyphicon-repeat spinner"></i></span>
+              <span ng-if="!main.loading"><span class="glyphicon glyphicon-search"></span></span>
+              <span ng-if="main.loading"><i class="glyphicon glyphicon-repeat spinner"></i></span>
             </button>
         </form>
       </div>
