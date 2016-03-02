@@ -872,69 +872,73 @@ function positivity (comments, callback) {
 
           var temporaryString = "",
           filteredArray = [];
-          descriptorSet.forEach(function(currentExample, ix){
-              coreNLP.process(currentExample, function(err, currentPos){ 
+          if (descriptorSet.length > 0) {
+            descriptorSet.forEach(function(currentExample, ix){
+                coreNLP.process(currentExample, function(err, currentPos){ 
 
-                if (Array.isArray(currentPos.document.sentences.sentence.tokens.token)){
-                  //     if (currentPos.document.sentences.sentence.tokens.token[0].POS == "DT"){
-                  //     temporaryString = "";
-                  //     currentPos.document.sentences.sentence.tokens.token.forEach(function(indWord, curIndex){
-                  //       if (curIndex > 0){
-                  //         temporaryString += indWord.word + " ";
-                  //       }
-                  //       if (curIndex == currentPos.document.sentences.sentence.tokens.token.length-1){
-                  //         currentExample = temporaryString;
-                  //         console.log(currentExample + "\n");
-                  //       }
-                  //     });
+                  if (Array.isArray(currentPos.document.sentences.sentence.tokens.token)){
+                    //     if (currentPos.document.sentences.sentence.tokens.token[0].POS == "DT"){
+                    //     temporaryString = "";
+                    //     currentPos.document.sentences.sentence.tokens.token.forEach(function(indWord, curIndex){
+                    //       if (curIndex > 0){
+                    //         temporaryString += indWord.word + " ";
+                    //       }
+                    //       if (curIndex == currentPos.document.sentences.sentence.tokens.token.length-1){
+                    //         currentExample = temporaryString;
+                    //         console.log(currentExample + "\n");
+                    //       }
+                    //     });
 
-                  // }
+                    // }
 
-                    if (currentPos.document.sentences.sentence.tokens.token[0].POS == "DT"){
-                      //console.log("\n\n");
-                      //console.log("Actual POS: " + currentPos.document.sentences.sentence.tokens.token[0].POS + "\n");
-                       //console.log("Offset of DT:" + currentPos.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd + "\n");
-                      //console.log("DT word:" + currentPos.document.sentences.sentence.tokens.token[0].word + "\n");
-                      //console.log("Before Whole Descriptor:" + currentExample + "\n");
-                     filteredArray.push(currentExample.substring(parseInt(currentPos.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1));
-                     //console.log("Before: " + currentExample + "\n");
-                       //console.log("After Whole Descriptor:" + currentExample + "\n\n");
+                      if (currentPos.document.sentences.sentence.tokens.token[0].POS == "DT"){
+                        //console.log("\n\n");
+                        //console.log("Actual POS: " + currentPos.document.sentences.sentence.tokens.token[0].POS + "\n");
+                         //console.log("Offset of DT:" + currentPos.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd + "\n");
+                        //console.log("DT word:" + currentPos.document.sentences.sentence.tokens.token[0].word + "\n");
+                        //console.log("Before Whole Descriptor:" + currentExample + "\n");
+                       filteredArray.push(currentExample.substring(parseInt(currentPos.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1));
+                       //console.log("Before: " + currentExample + "\n");
+                         //console.log("After Whole Descriptor:" + currentExample + "\n\n");
+                       }
+
+                  if (currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NN" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNP" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNPS" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNS"){
+
+                     // descriptorSet.splice(ix, 1);
                      }
 
-                if (currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NN" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNP" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNPS" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNS"){
-
-                   // descriptorSet.splice(ix, 1);
-                   }
-
-                }
-              
+                  }
                 
-                //console.log("Descriptor: " + currentExample + "a\n");
                   
+                  //console.log("Descriptor: " + currentExample + "a\n");
+                    
 
 
 
-                  if (ix == descriptorSet.length-1){
-                      filteredArray.forEach(function(thisWord, indexTwo){
-                        console.log("After: " + thisWord + "\n");
-                        filteredArray.forEach(function(otherWords,j){
-                            if (otherWords==thisWord && j!= indexTwo){
-                              filteredArray.splice(j, 1);
-                            }
+                    if (ix == descriptorSet.length-1){
+                        filteredArray.forEach(function(thisWord, indexTwo){
+                          console.log("After: " + thisWord + "\n");
+                          filteredArray.forEach(function(otherWords,j){
+                              if (otherWords==thisWord && j!= indexTwo){
+                                filteredArray.splice(j, 1);
+                              }
+                          });
+                          if (indexTwo==filteredArray.length-1){
+                            callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP, filteredArray, familyMems);
+                          return;
+                          }
                         });
-                        if (indexTwo==filteredArray.length-1){
-                          callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP, filteredArray, familyMems);
-                        return;
+
+
+
                         }
-                      });
-
-
-
-                      }
+                  });
                 });
-              
-              
-              });
+              }
+              else {
+                callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP, filteredArray, familyMems);
+                return;
+              }
           }
       }); 
   
