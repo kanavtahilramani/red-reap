@@ -19,6 +19,7 @@ angular.module('redreapApp')
                 vm.example1 = exampleComments[1];
                 vm.example2 = exampleComments[2];
                 vm.example3 = exampleComments[3];
+                vm.redditUser.data.negativePercentage = vm.redditUser.data.negativePercentage.toPrecision(3);
                 vm.processing = false;
               });
             });

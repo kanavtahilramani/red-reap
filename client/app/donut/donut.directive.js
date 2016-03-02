@@ -1,66 +1,72 @@
 'use strict';
 
 angular.module('redreapApp')
-  .directive('donut', function () {
+  .directive('donut', function (User) {
     return {
       template: '<div></div>',
       restrict: 'EA',
       link: function (scope, element, attrs) {
-        var dataset = [
-          { label: 'Positive', count: 67, enabled: true }, 
-          { label: 'Negative', count: 33, enabled: true },
-        ];
+        var data = User.getUserData().data;
+        var curAction = attrs.title;
+        var color = d3.scale.ordinal();
+        if (curAction == "sentence")
+        {
+          /* Positive/Negative of Sentences */
+          var dataset = [
+            { label: 'Other', count: 100 - data.negativePercentage, enabled: true }, 
+            { label: 'Negative', count: Math.round(data.negativePercentage*100)/100, enabled: true },
+          ];
 
-        var svgWidth  = 360,
-            svgHeight = 360,
+          color.range(['#5D5D5D','#EA1C1C','#BE2929','#D22E2E','#D74343','#DB5858','#E06D6D']); 
+        }
+        else if (curAction == "adjective")
+        {
+          /* Positive/Negative of Adjectives */
+          var dataset = [
+            { label: 'Very Positive', count: data.vpPer, enabled: true },
+            { label: 'Positive', count: data.pPer, enabled: true }, 
+            { label: 'Negative', count: data.nPer, enabled: true },
+            { label: 'Very Negative', count: data.vnPer, enabled: true },
+          ];
+
+          color.range(['#1B9F9F','#1CEAEA','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 
+        }
+
+        var svgWidth  = 450,
+            svgHeight = 450,
             radius = Math.min(svgWidth, svgHeight) / 2,
             donutWidth = 75;
 
-        //var color = d3.scale.category20();    
+        //var color = d3.scale.category10();    
      
-        var color = d3.scale.ordinal()
-        .range(['#D22E2E', '#FF6E6E', '#B3F2C9', '#528C18', '#C3F25C']); 
+        var tip = d3.tip()
+          .attr('class', 'd3-tip')
+          .html(function(d) {
+            return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + d.data.count + "%</span>";
+          });
 
-        var svg = d3.select('#chart')
+        var svg = d3.select(element[0])
                     .append('svg')
                       .attr('width', svgWidth)
                       .attr('height', svgHeight)
                     .append('g')
                       .attr("class", "container")
+                      .attr("margin-left", "150px")
                       .attr('transform', 'translate(' + (svgWidth / 2) +  ',' + (svgHeight / 2) + ')'); 
 
-
+        svg.call(tip);
         // Define the radius
         var arc = d3.svg.arc()
-                        .innerRadius(radius - donutWidth)  // Make PIE chart a Donut
+                        .innerRadius(radius - donutWidth)
                         .outerRadius(radius);
-
 
 
         // Define the angles
         var pie = d3.layout.pie()
                     .value(function(d) {
                       return d.count;
-                    });
-
-
-        // Define the Tooltip
-        var tooltip = d3.select('#chart')            
-                        .append('div')
-                          .attr('class', 'tooltip');
-
-
-        tooltip.append('div')
-          .attr('class', 'label');
-
-        tooltip.append('div')
-          .attr('class', 'count');
-
-        tooltip.append('div')
-          .attr('class', 'percent');
-         
-
-
+                    })
+                    .sort(null);
         // Define the PIE chart          
         var path = svg.selectAll('path')
                       .data(pie(dataset))
@@ -70,32 +76,9 @@ angular.module('redreapApp')
                       .attr('fill', function(d, i) { 
                         return color(d.data.label);
                       })
+                      .on('mouseover', tip.show)
+                      .on('mouseout', tip.hide)
                       .each(function(d) { this._current = d; });
-
-
-        path.on('mouseover', function(d) {
-
-          var total = d3.sum(dataset.map(function(d) {
-            return d.count;
-            // return (d.enabled) ? d.count : 0;
-          }));
-
-          var percent = Math.round(1000 * d.data.count / total) / 10;
-
-          tooltip.select('.label').html(d.data.label);
-
-          tooltip.select('.count').html(d.data.count); 
-
-          tooltip.select('.percent').html(percent + '%'); 
-
-          tooltip.style('display', 'block');
-        });
-
-        path.on('mouseout', function() {
-              tooltip.style('display', 'none');
-            });  
-      
-
 
         // Define the Legend
         var legendRectSize = 18,
@@ -160,7 +143,7 @@ angular.module('redreapApp')
         legend.append('text')
                 .attr('x', legendRectSize + legendSpacing)
                 .attr('y', legendRectSize - legendSpacing)
-                .text(function(d) { return d; });
+                .text(function(d) { return d; }); 
       }
     };
   });

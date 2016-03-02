@@ -39,7 +39,7 @@ angular.module('mainService', [])
 			var i = 0; /* keeps track of number of units tracked, max two */
 			var registrationTime = new Date(userData.data.creationTime);
 			var currentTime = new Date(); /* Date object representing current time */
-			accountCreation.date = (registrationTime.getMonth() + '.' + registrationTime.getDate() + '.' + registrationTime.getFullYear().toString().substring(2,4));
+			accountCreation.date = (registrationTime.getMonth() + '/' + registrationTime.getDate() + '/' + registrationTime.getFullYear().toString().substring(2,4));
 			var difference = new Date(Math.round((currentTime.getTime()-userData.data.creationTime))); /* Date object representing difference between creation and current time */
 			var timeDiff = difference.getTime() / 1000; /* Time difference in seconds */
 			var readable = ""; /* Human readable timestamp */
@@ -136,7 +136,7 @@ angular.module('mainService', [])
 
 			accountCreation.age = readable;
 			var availableDate = new Date(userData.data.availableFrom);
-			accountCreation.available = availableDate.getMonth() + "." + availableDate.getDate() + "." + availableDate.getFullYear();
+			accountCreation.available = availableDate.getMonth() + "/" + availableDate.getDate() + "/" + availableDate.getFullYear().toString().substring(2,4);
 			callback(accountCreation);
 		}
 	}

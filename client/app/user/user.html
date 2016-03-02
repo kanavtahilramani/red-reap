@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js" charset="utf-8"></script>
 </head>
-
+<body>
 <navbar></navbar>
 
 <div ng-if="user.processing" class="container">
@@ -10,9 +10,9 @@
 </div>
 
 <div ng-if="!user.processing" class="container">
-	<div class="row fixed">
+	<div class="row">
 		<div class="col-lg-12 nopadding">
-			<div class="jumbotron jumbotron-special">
+			<div class="jumbotron jumbotron-special" style="border-radius: 0px;">
 		    	<h1 class="intro" align="center"><em>/u/</em>{{user.redditUser.data.username}}</h1>
 
 		    	<div class="jumbotron-content">
@@ -27,95 +27,243 @@
 			    		</div>
 		    			<div class="col-md-3">
 			    			<p class="toptext">Earliest Data From</p>
-			    			<p class="primary">{{user.accountCreation.date}}</p> 
+			    			<p class="primary">{{user.accountCreation.available}}</p> 
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Gender</p>
-			    			<p class="primary">Male</p>
+			    			<p class="primary" style="color: red;">Male</p>
 			    		</div>
 			    		<div class="col-md-3">
 		    				<p class="toptext">Timezone</p>
-		    				<p class="primary">Eastern</p>
+		    				<p class="primary" style="color: red;">Eastern</p>
 			    		</div>
 			    		<div class="col-md-3">
 		    				<p class="toptext">Location</p>
-		    				<p class="primary">Maine, US</p>
+		    				<p class="primary" style="color: red;">Maine, US</p>
 			    		</div>
 		    			<div class="col-md-3">
-			    			<p class="toptext">Total Submissions</p>
-			    			<p class="primary">150</p> 
+			    			<p class="toptext">Total Comments</p>
+			    			<p class="primary">{{user.redditUser.data.totalComments}}</p> 
 			    		</div>
 			    		<div class="col-md-3">
-			    			<p class="toptext">Total Words</p>
-			    			<p class="primary" text-align="center">3048</p>
+			    			<p class="toptext">Avg. Comment Length</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.avgCommentLength}}</p>
 			    		</div>
 			    	</div>
-				    <p class="bottomtext">Subreddits
-				    	<p class="bottomPrimary">AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs, leagueoflegends, nfl, gaming, AskReddit, funny, politics, videos, worldnews, gifs 
-				    	</p>
-				    </p>
-				    <p class="bottomtext">Likes
-				    	<p class="bottomPrimary">Long walks on the beach</p>
-				    </p>
+			    	<p class="bottomtext">Top Submission</p>
+				    <p class="bottomPrimary">{{user.redditUser.data.topSubmission.title}}</p>
+			   
+				    <p class="bottomtext">Top Comment</p>
+				    <p class="bottomPrimary">{{user.redditUser.data.topComment.body}}</p>
+				    
+				    <p class="bottomtext">Subreddits</p>
+<!-- 				    	<div style="margin-left:20px; margin-bottom: 30px;" class="container">
+			    		<div ng-repeat="userMeta in user.redditUser.data.comMeta">
+			      			<div class="col-lg-4">
+			      				<a href="http://reddit.com/r/{{userMeta.subreddit}}">
+				      				<div style="width: 120px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
+					    				{{userMeta.subreddit}}
+					    			</div>
+				    			</a>
+			    			</div>
+			  			</div>
+			  		</div> -->
+				    	<div class="container" style="margin-left: 30px;">
+							<div class="row">
+								<div class="col-sm-2">
+								    <a href="http://www.reddit.com/r/funny" title="/r/funny">
+										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
+											<div style="width: 100%; height:100%; background:url(http://b.thumbs.redditmedia.com/xPyD7fiUdH0H6utafcrp6gjpdLwIb8dkroTPDxCQ2rI.png) no-repeat;">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a href="http://www.reddit.com/r/gif" title="/r/gif">
+										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
+											<div style="width: 100%; height:100%; background:url(http://a.thumbs.redditmedia.com/cKfBMxMAUo7oFY-utIExaF3VxC9UUvAveor6KL2Qsl0.png) no-repeat;">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a href="http://www.reddit.com/r/runescape" title="/r/runescape">
+										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
+											<div style="width: 100%; height:100%; background:url(http://a.thumbs.redditmedia.com/nDLokmD1Lg6e10snvj7LP6IcN6ihPDcDsadUrFgcTX0.png) no-repeat;">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a href="http://www.reddit.com/r/nba" title="/r/nba">
+										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
+											<div style="width: 100%; height:100%; background:url(http://f.thumbs.redditmedia.com/ddHdMrluCS3dDbCS.png) no-repeat;">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a href="http://www.reddit.com/r/aww" title="/r/aww">
+										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
+											<div style="width: 100%; height:100%; background:url(http://b.thumbs.redditmedia.com/3VFHQjXVeV-OmHieNkhfywYjCgmcmEFJaEX5OTJGMjE.png) no-repeat;">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a href="http://www.reddit.com/r/television" title="/r/television">
+										<div style="width: 120px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
+											<div style="width: 100%; height:100%; background:url(http://c.thumbs.redditmedia.com/Jbol6Rj5xaRfAvgt.png) no-repeat;">
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+				    <p class="bottomtext">Likes</p>
+				    <p class="bottomPrimary" style="color: red;">Long walks on the beach</p>
 		   		</div>
 		  	</div>
 		
-		  	<div class="contentdisp">
+<!-- 		  	<div class="contentdisp">
 				<dl class="dl-horizontal">
-					<p class="contentheader">Activity</p>
-					<p class="contentsubheader">Active approximately 2 hours per week.</p>
-					<svg></svg>
-					<p class="contentsubheader">Mostly positive submissions.</p>
-					<h1 class="chart">Positivity/Negativity of Submissions</h1>
-					<div id="chart"></div>
+					<p class="content-header">Activity</p>
+					<p style="margin-left:20px;"class="content-text"><em>{{user.redditUser.data.data.postsForMonth}}</em> posts this month.</p>
 				</dl>
-			</div>
+			</div> -->
 
-			<hr style="width: 75%;">
+			<!-- <hr style="width: 75%;"> -->
 			
 		  	<div class="contentdisp">
 				<dl class="dl-horizontal">
-					<p class="contentheader">Karma</p>
-					<p class="contentsubheader">comment karma</p>
-					<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
-					<p class="contentsubheader">link karma</p>
-					<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
-					<!-- add data avail. -->
-					<!-- tooltip -->
+<!-- 					<p style="margin-left: 20px;" class="content-header">Karma</p>
+					<p style="margin-left: 20px;" class="content-text">comment karma</p>
+					<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalCommentScore}}</p>
+					<p style="margin-left: 20px;" class="content-text">link karma</p>
+					<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalLinkScore}}</p> -->
+					<div class="panel panel-primary karma text-center">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<strong>karma</strong>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<dl class="dl-horizontal">
+								<dt>comment karma</dt>
+								<dd>{{user.redditUser.data.karma.totalCommentScore}}</dd>
+								<dt>link karma</dt>
+								<dd>{{user.redditUser.data.karma.totalLinkScore}}</dd>
+							</dl>
+						</div>
+					</div>
+
+					<div class="col-lg-8 col-lg-offset-1">
+						<div class="row">
+							<div class="karmaPlot">
+								<bar-chart></bar-chart>
+							</div>
+						</div>
+					
+						<div class="row vertical-align">
+							<div class="linePlot">
+								<line-plot></line-plot>
+							</div>
+						</div>
+					</div>
 				</dl>
 			</div>
 
 			<hr style="width: 75%;">
-			<div class="contentdisp">
-				<dl class="dl-horizontal">
-					<p class="contentheader">Verbiage</p>
-					<p class="contentsubheader">comment karma</p>
-					<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
-					<p class="contentsubheader">link karma</p>
-					<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
-					<!-- add data avail. -->
-					<!-- tooltip -->
-				</dl>
-
-			</div>
-
-			<hr style="width: 75%;">
 
 			<div class="contentdisp">
 				<dl class="dl-horizontal">
-					<p class="contentheader">Submissions</p>
-					<p class="contentsubheader">comment karma</p>
-					<p class="contenttext">{{user.redditUser.data.karma.totalCommentScore}}</p>
-					<p class="contentsubheader">link karma</p>
-					<p class="contenttext">{{user.redditUser.data.karma.totalLinkScore}}</p>
-					<!-- add data avail. -->
-					<!-- tooltip -->
+					<p class="content-header">Sentiment</p>
+
+					<div class="container" style="padding-bottom: 50px;vertical-align: middle;">
+						<p class="content-subheader">Comments</p>
+						<div class="row">
+							<div class="col-lg-7" style="padding-bottom: 30px;">
+								<div style="width: 90%;">
+									<p class="content-text"><em ng-if="user.example1" class="content-text">About</em> <strong>{{user.redditUser.data.negativePercentage}}% </strong> of comments have a <strong>negative</strong> connotation.</p>
+									<p ng-if="user.example1" class="content-bold-text"><strong>Determined from comments like:</strong></p>
+									<div ng-if="user.example1" id="need-space" style="margin-left:10px;">
+										<p class="no-new-line"><i>"{{user.example1[0]}}<strong>{{user.example1[1]}} </strong>{{user.example1[2]}}"</i></p>
+									</div>
+									<div ng-if="user.example2" id="need-space" style="margin-left:10px;">
+										<p class="no-new-line"><i>"{{user.example2[0]}}<strong>{{user.example2[1]}} </strong>{{user.example2[2]}}"</i></p>
+									</div>
+									<div ng-if="user.example3" id="need-space" style="margin-left:10px;">
+										<p class="no-new-line"><i>"{{user.example3[0]}}<strong>{{user.example3[1]}} </strong>{{user.example3[2]}}"</i></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-5">
+								<div style="margin-top: -10px;" id="sentiment-adjective">
+									<donut title="sentence"></donut>
+								</div>
+							</div>	
+						</div>
+					</div>
+
+					<div class="container">
+						<p class="content-subheader">Adjectives</p>
+						<div class="row">
+							<div class="col-lg-7" style="padding-bottom: 30px;">
+								<div style="width: 90%;">
+									<p class="content-text">About <strong>{{user.redditUser.data.vpPer}}% </strong> of adjectives used are <strong>very positive</strong>.
+									</p>
+								    <div>
+			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vpEx">
+			      							<span>
+			               				  		{{exampleAdj.adjective}}
+			    							</span>
+			  							</span>
+									</div>
+									<hr>
+									<p class="content-text">About <strong>{{user.redditUser.data.pPer}}% </strong> of adjectives used are <strong>positive</strong>.
+									</p>
+									<div>
+			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.pEx">
+			      							<span>
+			               				  		{{exampleAdj.adjective}}
+			    							</span>
+			  							</span>
+									</div>
+									<hr>
+									<p class="content-text">About <strong>{{user.redditUser.data.nPer}}% </strong> of adjectives used are <strong>negative</strong>.
+									</p>
+									<div>
+			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.nEx">
+			      							<span>
+			               				  		{{exampleAdj.adjective}}
+			    							</span>
+			  							</span>
+									</div>
+									<hr>
+									<p class="content-text">About <strong>{{user.redditUser.data.vnPer}}% </strong> of adjectives used are <strong>very negative</strong>.
+									</p>
+									<div>
+			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vnEx">
+			      							<span>
+			               				  		{{exampleAdj.adjective}}
+			    							</span>
+			  							</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-5">
+								<div style="margin-top: -10px;" id="sentiment-adjective">
+									<donut title="adjective"></donut>
+								</div>
+							</div>	
+						</div>
+					</div>
 				</dl>
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
+<!--  	<div class="row">
 		<div class="col-lg-4 col-lg-offset-4">
 			<div class="panel panel-primary user col-lg-offset-2">
 				<div class="panel-heading text-center">
@@ -129,8 +277,6 @@
 						<dd id="fineprint">since {{user.accountCreation.date}}</dd>
 						<dt id="need-space">data starts at</dt>
 						<dd id="need-space">{{user.accountCreation.available}}</dd>
-						<!-- add data avail. -->
-						<!-- tooltip -->
 					</dl>
 				</div>
 			</div>
@@ -140,23 +286,7 @@
 		<div class="col-lg-2">
 			<p class="text-center"></p>
 		</div>
-		<div class="col-lg-3">
-			<div class="panel panel-primary karma">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<strong>karma</strong>
-					</h3>
-				</div>
-				<div class="panel-body">
-					<dl class="dl-horizontal">
-						<dt>comment karma</dt>
-						<dd>{{user.redditUser.data.karma.totalCommentScore}}</dd>
-						<dt>link karma</dt>
-						<dd>{{user.redditUser.data.karma.totalLinkScore}}</dd>
-					</dl>
-				</div>
-			</div>
-		</div>
+		
 		<div class="col-lg-2"></div>
 		<div class="col-lg-4">
 			<div class="panel panel-primary intro-nlp">
@@ -238,19 +368,12 @@
 
 		</div>
 	</div>
-	<div class="row vertical-align">
-		<div class="linePlot">
-			<line-plot></line-plot>
-		</div>
-	</div>
-	<div class="row vertical-align">
-		<div class="karmaPlot">
-				<bar-chart></bar-chart>
-			</div>
-	</div>
 	<div class="row">
 		<div ng-repeat="num in user.test">
 			{{num}}
 		</div>
 	</div>
-</div>
+</div> -->
+</body>
+
+<footer></footer>

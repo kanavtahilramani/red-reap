@@ -11,8 +11,8 @@ angular.module('redreapApp')
 	    	width = 925 - margin.left - margin.right,
 	    	height = 400 - margin.top - margin.bottom;
 
-	    var firstComment = new Date(data[data.length-1].year, data[data.length-1].month, data[data.length-1].date);
-	    var lastComment = new Date(data[0].year, data.month, data[0].date);
+	    var firstComment = new Date(String(data[data.length-1].year) + ", " + String(data[data.length-1].month) + ", " + String(data[data.length-1].date));
+	    var lastComment = new Date(String(data[0].year) + ", " + String(data[0].month) + ", " + String(data[0].date));
 
 		var x = d3.scale.ordinal()
 			.domain(data.map(function(d) {
@@ -45,7 +45,7 @@ angular.module('redreapApp')
 		    return "<strong>karma:</strong> <span style='color:red'>" + d.commentKarmaForMonth + "</span>";
 		  });
 
-		var svg = d3.select("div.karmaPlot").append("svg")
+		var svg = d3.select(element[0]).append("svg")
 		    .attr("width", width + margin.left + margin.right)
 		    .attr("height", height + margin.top + margin.bottom)
 		  	.append("g")

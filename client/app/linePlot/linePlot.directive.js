@@ -36,7 +36,7 @@ angular.module('redreapApp')
 		    .x(function(d) { return x(d.fullDate); })
 		    .y(function(d) { return y(d.commentKarmaForMonth); });
 
-		var svg = d3.select("div.linePlot").append("svg")
+		var svg = d3.select(element[0]).append("svg")
 		    .attr("width", width + margin.left + margin.right)
 		    .attr("height", height + margin.top + margin.bottom)
 		  .append("g")
