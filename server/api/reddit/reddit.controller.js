@@ -284,7 +284,7 @@ function createUser(req, res, callback) {
         userData.region = region;
         ////////////////////////////////////////////////
 
-        positivity(userComments, function(sentenceCount, negativeSentenceCounts, negativeSample, vnAdjs, nAdjs, pAdjs, vpAdjs, exVN, exN, exP, exVP, vnPerin, nPerin, pPerin, vpPerin) {
+        positivity(userComments, function(sentenceCount, negativeSentenceCounts, negativeSample, vnAdjs, nAdjs, pAdjs, vpAdjs, exVN, exN, exP, exVP, vnPerin, nPerin, pPerin, vpPerin, iAm, membersOfFamily) {
             userData.data = dateData;
             userData.availableFrom = earliestComment*1000;
             userData.negativePercentage = (negativeSentenceCounts / sentenceCount).toPrecision(3) * 100;
@@ -302,6 +302,8 @@ function createUser(req, res, callback) {
             userData.nPer = nPerin.toPrecision(3);
             userData.pPer = pPerin.toPrecision(3);
             userData.vpPer = vpPerin.toPrecision(3);
+            userData.descriptions = iAm;
+            userData.familyMembers = membersOfFamily;
 
             getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
               userData.karma.totalCommentScore = scores.comments;
@@ -342,6 +344,8 @@ function positivity (comments, callback) {
         nonNounFound = false,
         descriptorNounFound = false,
         descriptorNonNounFound = false,
+        familyMems = [],
+        descriptorSet = [],
         UCPadverbExists = false;
 
     comments.forEach(function(currentComment, i) {
@@ -352,6 +356,40 @@ function positivity (comments, callback) {
                 sentenceCounter = sentenceCounter + 1;
                 if (Array.isArray(x.tokens.token)) {
                     x.tokens.token.forEach(function(y, index) {
+
+
+                      if (index < x.tokens.token.length -1){  
+                        if (y.word == "My" || y.word == "my"){
+                          if (x.tokens.token[index+1].word=="mom" ||
+                              x.tokens.token[index+1].word=="Mom" ||
+                              x.tokens.token[index+1].word=="Dad" ||
+                              x.tokens.token[index+1].word=="dad" ||
+                              x.tokens.token[index+1].word=="sister" ||
+                              x.tokens.token[index+1].word=="Sister" ||
+                              x.tokens.token[index+1].word=="brother" ||
+                              x.tokens.token[index+1].word=="Brother" ||
+                              x.tokens.token[index+1].word=="Dog" ||
+                              x.tokens.token[index+1].word=="dog" ||
+                              x.tokens.token[index+1].word=="daughter" ||
+                              x.tokens.token[index+1].word=="Daughter" ||
+                              x.tokens.token[index+1].word=="Son" ||
+                              x.tokens.token[index+1].word=="son" ||
+                              x.tokens.token[index+1].word=="Cat" ||
+                              x.tokens.token[index+1].word=="cat" 
+                              ){
+                              familyMems.push(x.tokens.token[index+1].word);
+
+                            }
+                        } 
+                      }
+
+
+
+
+
+
+
+
                         //checking and counting sentiment if its an adjective
                         if (y.word == 'I' || y.word == 'i') {
                             if (index < x.tokens.token.length-2) {
@@ -391,11 +429,13 @@ function positivity (comments, callback) {
 
                                                                 }
                                                             });
-                                                        console.log("\nTop test (NON UCP).\n");
-                                                        console.log(currentComment + "\n");
-                                                        console.log(descriptor);
-                                                        console.log("\n================================");
-                                                                      
+                                                         //console.log("\nTop test (NON UCP).\n");
+                                                         //console.log(currentComment + "\n");
+                                                         //console.log(descriptor);
+                                                         //console.log("\n================================");
+                                                         
+
+                                                        descriptorSet.push(descriptor);              
                                                         descriptor = "";
                                                         descriptorNounFound = false;
                                                         descriptorNonNounFound = false;
@@ -425,12 +465,13 @@ function positivity (comments, callback) {
 
                                                                 }
                                                             });
-                                                        console.log("\nTop test (NON UCP).\n");
-                                                        console.log(currentComment + "\n");
-                                                        console.log(descriptor);
-                                                        console.log("\n================================");
+                                                        // console.log("\nTop test (NON UCP).\n");
+                                                        // console.log(currentComment + "\n");
+                                                        // console.log(descriptor);
+                                                        // console.log("\n================================");
                                                         descriptorNounFound = false;
                                                         descriptorNonNounFound = false; 
+                                                        descriptorSet.push(descriptor);
                                                         descriptor = "";
                                             
                                                     }
@@ -465,12 +506,13 @@ function positivity (comments, callback) {
 
                                                                 }
                                                             });
-                                                                        console.log("\nTop test (NON UCP).\n");
-                                                                         console.log(currentComment + "\n");
-                                                                         console.log(descriptor);
-                                                                        console.log("\n================================");
+                                                                        // console.log("\nTop test (NON UCP).\n");
+                                                                        //  console.log(currentComment + "\n");
+                                                                        //  console.log(descriptor);
+                                                                        // console.log("\n================================");
                                                         descriptorNounFound = false;
                                                         descriptorNonNounFound = false;
+                                                        descriptorSet.push(descriptor);
                                                          descriptor = "";
                                                             }
                                                         });
@@ -524,10 +566,11 @@ function positivity (comments, callback) {
 
                                                                 }
                                                             });
-                                                            console.log("\nTop test (NON UCP).\n");
-                                                          console.log(currentComment + "\n");
-                                                                         console.log(descriptor);
-                                                                        console.log("\n================================");
+                                                        //     console.log("\nTop test (NON UCP).\n");
+                                                        //   console.log(currentComment + "\n");
+                                                        //                  console.log(descriptor);
+                                                        //                 console.log("\n================================");
+                                                        descriptorSet.push(descriptor);
                                                         descriptor = "";
                                                         descriptorNounFound = false;
                                                         descriptorNonNounFound = false;
@@ -557,11 +600,11 @@ function positivity (comments, callback) {
 
                                                                 }
                                                             });
-                                                                    console.log("\nTop test (NON UCP).\n");
-                                                                         console.log(currentComment + "\n");
-                                                                         console.log(descriptor);
-                                                                        console.log("\n================================");
-                                                                    
+                                                                    // console.log("\nTop test (NON UCP).\n");
+                                                                    //      console.log(currentComment + "\n");
+                                                                    //      console.log(descriptor);
+                                                                    //     console.log("\n================================");
+                                                        descriptorSet.push(descriptor);            
                                                         descriptorNounFound = false;
                                                         descriptorNonNounFound = false; 
                                                         descriptor = "";
@@ -613,13 +656,14 @@ function positivity (comments, callback) {
 
                                                                 }
                                                             });
-                                                        console.log("\nTop test (NON UCP).\n");
-                                                                         console.log(currentComment + "\n");
-                                                                         console.log(descriptor);
-                                                                        console.log("\n================================");
+                                                        // console.log("\nTop test (NON UCP).\n");
+                                                        //                  console.log(currentComment + "\n");
+                                                        //                  console.log(descriptor);
+                                                        //                 console.log("\n================================");
                                                         descriptorNounFound = false;
                                                         descriptorNonNounFound = false;
-                                                         descriptor = "";
+                                                        descriptorSet.push(descriptor);
+                                                        descriptor = "";
                                                             }
                                                         });
                                                     }
@@ -815,12 +859,79 @@ function positivity (comments, callback) {
           adjPerN = 100*((adjN)/(adjVN+adjN+adjP+adjVP));
           adjPerP = 100*((adjP)/(adjVN+adjN+adjP+adjVP));
           adjPerVP = 100*((adjVP)/(adjVN+adjN+adjP+adjVP));
-          callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP);
-          return;
+          //callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP);
+          //return;
+
+          var temporaryString = "",
+          filteredArray = [];
+          descriptorSet.forEach(function(currentExample, ix){
+              coreNLP.process(currentExample, function(err, currentPos){ 
+
+                if (Array.isArray(currentPos.document.sentences.sentence.tokens.token)){
+                  //     if (currentPos.document.sentences.sentence.tokens.token[0].POS == "DT"){
+                  //     temporaryString = "";
+                  //     currentPos.document.sentences.sentence.tokens.token.forEach(function(indWord, curIndex){
+                  //       if (curIndex > 0){
+                  //         temporaryString += indWord.word + " ";
+                  //       }
+                  //       if (curIndex == currentPos.document.sentences.sentence.tokens.token.length-1){
+                  //         currentExample = temporaryString;
+                  //         console.log(currentExample + "\n");
+                  //       }
+                  //     });
+
+                  // }
+
+                    if (currentPos.document.sentences.sentence.tokens.token[0].POS == "DT"){
+                      //console.log("\n\n");
+                      //console.log("Actual POS: " + currentPos.document.sentences.sentence.tokens.token[0].POS + "\n");
+                       //console.log("Offset of DT:" + currentPos.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd + "\n");
+                      //console.log("DT word:" + currentPos.document.sentences.sentence.tokens.token[0].word + "\n");
+                      //console.log("Before Whole Descriptor:" + currentExample + "\n");
+                     filteredArray.push(currentExample.substring(parseInt(currentPos.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1));
+                     //console.log("Before: " + currentExample + "\n");
+                       //console.log("After Whole Descriptor:" + currentExample + "\n\n");
+                     }
+
+                if (currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NN" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNP" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNPS" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNS"){
+
+                   // descriptorSet.splice(ix, 1);
+                   }
+
+                }
+              
+                
+                //console.log("Descriptor: " + currentExample + "a\n");
+                  
+
+
+
+                  if (ix == descriptorSet.length-1){
+                      filteredArray.forEach(function(thisWord, indexTwo){
+                        console.log("After: " + thisWord + "\n");
+                        filteredArray.forEach(function(otherWords,j){
+                            if (otherWords==thisWord && j!= indexTwo){
+                              filteredArray.splice(j, 1);
+                            }
+                        });
+                        if (indexTwo==filteredArray.length-1){
+                          callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP, filteredArray, familyMems);
+                        return;
+                        }
+                      });
+
+
+
+                      }
+                });
+              
+              
+              });
           }
       }); 
-      
+  
     });
+
     return;
 }
 

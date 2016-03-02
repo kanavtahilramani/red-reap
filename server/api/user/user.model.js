@@ -91,6 +91,8 @@ var UserSchema = new Schema({
 	totalWords: Number,
 	totalFlaired: Number,
 	lastUpdated: Number,
+	descriptions: [String],
+	familyMembers: [String],
 	region: String,
 	data: [MonthSchema],
 	day: [DaySchema],
