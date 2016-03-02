@@ -83,12 +83,12 @@
 			    		</div>
 			    	</div>
 
-			    	<p class="bottomtext">Top Submission</p>
-				    <p class="bottomPrimary">{{user.redditUser.data.topSubmission.title}}<a href="{{user.redditUser.data.topSubmission.permalink}}"> #</a></p>
+			    	<p class="bottomtext">Top Submission<a href="{{user.redditUser.data.topSubmission.permalink}}"> #</a></p>
+				    <p class="bottomPrimary">{{user.redditUser.data.topSubmission.title}}</p>
 			   		<p style="color: white; font-size: 15px; margin-left:50px"><em style="font-size: 15px; font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topSubmission.score}}<em style="font-size: 15px; font-style: normal; color: gray; margin-left: 30px;">Subreddit:</em> {{user.redditUser.data.topSubmission.subreddit}}</p>
 
-				    <p class="bottomtext">Top Comment</p>
-				    <p class="bottomPrimary">{{user.redditUser.data.topComment.body}}<a href="{{user.redditUser.data.topComment.permalink}}"> #</a></p>
+				    <p class="bottomtext">Top Comment<a href="{{user.redditUser.data.topComment.permalink}}"> #</a></p>
+				    <p class="bottomPrimary">{{user.redditUser.data.topComment.body}}</p>
 				    <p style="color: white; font-size: 15px; margin-left:50px"><em style="font-size: 15px; font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topComment.score}}<em style="font-size: 15px; font-style: normal; color: gray; margin-left: 30px;">Subreddit:</em> {{user.redditUser.data.topComment.subreddit}}</p>
 
 				    <p class="bottomtext">Subreddits</p>
@@ -298,7 +298,7 @@
 			<div class="contentdisp">
 				<div class="row">
 					<div class="col-md-3 col-md-offset-3 vertical-center">
-						<div class="panel panel-primary">
+						<div ng-if="user.redditUser.data.descriptions.length > 0" class="panel panel-primary">
 							<div class="panel-heading">
 								<h3 class="panel-title">
 									<strong>identifier</strong>
@@ -315,7 +315,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3 vertical-center">
+					<div ng-if="user.redditUser.data.familyMembers.length > 0" class="col-md-3 vertical-center">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<h3 class="panel-title">
