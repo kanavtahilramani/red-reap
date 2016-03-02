@@ -175,7 +175,7 @@
 			"file": "server/api/reddit/reddit.controller.js",
 			"settings":
 			{
-				"buffer_size": 50145,
+				"buffer_size": 55975,
 				"line_ending": "Windows"
 			}
 		},
@@ -183,7 +183,7 @@
 			"file": "client/app/user/user.html",
 			"settings":
 			{
-				"buffer_size": 16590,
+				"buffer_size": 17773,
 				"line_ending": "Windows"
 			}
 		},
@@ -191,7 +191,7 @@
 			"file": "client/app/user/user.scss",
 			"settings":
 			{
-				"buffer_size": 2972,
+				"buffer_size": 3223,
 				"line_ending": "Windows"
 			}
 		},
@@ -199,7 +199,7 @@
 			"file": "client/app/user/user.controller.js",
 			"settings":
 			{
-				"buffer_size": 2299,
+				"buffer_size": 2298,
 				"line_ending": "Windows"
 			}
 		},
@@ -223,7 +223,7 @@
 			"file": "server/api/user/user.model.js",
 			"settings":
 			{
-				"buffer_size": 2109,
+				"buffer_size": 2160,
 				"line_ending": "Windows"
 			}
 		},
@@ -403,7 +403,7 @@
 	],
 	"find":
 	{
-		"height": 96.0
+		"height": 94.0
 	},
 	"find_in_files":
 	{
@@ -575,7 +575,7 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -583,15 +583,15 @@
 					"file": "server/api/reddit/reddit.controller.js",
 					"settings":
 					{
-						"buffer_size": 50145,
+						"buffer_size": 55975,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								48829,
-								48829
+								5656,
+								5656
 							]
 						],
 						"settings":
@@ -601,7 +601,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 12359.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -611,15 +611,15 @@
 					"file": "client/app/user/user.html",
 					"settings":
 					{
-						"buffer_size": 16590,
+						"buffer_size": 17773,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7733,
-								7733
+								3508,
+								3509
 							]
 						],
 						"settings":
@@ -628,7 +628,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1572.0,
+						"translation.y": 882.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -638,15 +638,15 @@
 					"file": "client/app/user/user.scss",
 					"settings":
 					{
-						"buffer_size": 2972,
+						"buffer_size": 3223,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2972,
-								2972
+								0,
+								0
 							]
 						],
 						"settings":
@@ -666,15 +666,15 @@
 					"file": "client/app/user/user.controller.js",
 					"settings":
 					{
-						"buffer_size": 2299,
+						"buffer_size": 2298,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1586,
-								1586
+								893,
+								893
 							]
 						],
 						"settings":
@@ -749,15 +749,15 @@
 					"file": "server/api/user/user.model.js",
 					"settings":
 					{
-						"buffer_size": 2109,
+						"buffer_size": 2160,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1792,
-								1792
+								0,
+								0
 							]
 						],
 						"settings":
@@ -766,7 +766,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 588.0,
+						"translation.y": 392.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

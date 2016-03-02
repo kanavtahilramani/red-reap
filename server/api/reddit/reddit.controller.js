@@ -310,10 +310,18 @@ function createUser(req, res, callback) {
               userData.karma.totalLinkScore = scores.submissions;
               userData.creationTime = (scores.created)*1000;
 
-              callback(userData);
-            });
-        });      
-  });
+              getTopComment(req, res, function(topComment)
+              {
+                userData.topComment = topComment;
+                getTopSubmission(req, res, function(topSubmission)
+                {
+                  userData.topSubmission = topSubmission;
+                  callback(userData);
+                });
+              });
+            });      
+          });
+      });
 }
 
 function positivity (comments, callback) {
@@ -993,11 +1001,6 @@ export function getUserComments (req, res, callback) {
   });  
 }
 
-/* ======================================================================== */
-/* ======================================================================== */
-/* ===============================NOT USED================================= */
-/* ======================================================================== */
-
 export function getTopComment (req, res, callback) {
       reddit('/user/' + req.params.username + '/comments/').get({
         limit: 1,
@@ -1007,6 +1010,7 @@ export function getTopComment (req, res, callback) {
         comment.score = parseInt(response.data.children[0].data.score);
         comment.body = response.data.children[0].data.body.toString();
         comment.subreddit = response.data.children[0].data.subreddit.toString();
+        comment.permalink = 'https://www.reddit.com/r/' + response.data.children[0].data.subreddit.toString() + "/comments/" + response.data.children[0].data.link_id.toString().replace('t3_','') + "/_/" + response.data.children[0].data.id.toString();
         callback(comment);
         // return res.send(response);
       });
@@ -1026,6 +1030,11 @@ export function getTopSubmission (req, res, callback) {
         // return res.send(response);
       });
 }
+
+/* ======================================================================== */
+/* ======================================================================== */
+/* ===============================NOT USED================================= */
+/* ======================================================================== */
 
 export function aboutUser (req, res) {
   var username = req.params.username;

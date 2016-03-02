@@ -23,7 +23,7 @@ angular.module('redreapApp')
                 vm.redditUser.data.avgCommentLength = Math.floor(vm.redditUser.data.avgCommentLength);
                 if (vm.redditUser.data.avgEditTime < 3600)
                 {
-                  vm.redditUser.data.avgEditTime = "< 1 hour";
+                  vm.redditUser.data.avgEditTime = "<1 hour";
                 }
                 else
                 {
