@@ -11,6 +11,14 @@
   margin: 0 auto;
 }
 
+.ident {
+  width: 20%;
+}
+
+.identAlt {
+  width: 20%;
+}
+
 .dl-horizontal dt {
 	width: auto;
 	margin-left: auto;
@@ -154,6 +162,19 @@ p.bottomPrimary {
   background-color:white;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.vertical-center {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.content-inline {
+  background-color:white;
+  display: inline;
+  padding-top: 20px;
+  padding-bot: 20px;
 }
 
 p.content-header {

@@ -295,8 +295,49 @@
 					</div>
 				</dl>
 			</div>
+			<div class="contentdisp">
+				<div class="row">
+					<div class="col-md-3 col-md-offset-3 vertical-center">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									<strong>identifier</strong>
+								</h3>
+							</div>
+							<div class="panel-body">
+								<dl class="dl-horizontal">
+									<dt>you are</dt>
+									<dd></dd>
+									<li class="list-unstyled" style="text-align: center" ng-repeat="identifier in user.redditUser.data.descriptions">
+										{{identifier}}
+									</li>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 vertical-center">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									<strong>family members</strong>
+								</h3>
+							</div>
+							<div class="panel-body">
+								<dl class="dl-horizontal">
+									<dt>you have</dt>
+									<dd></dd>
+									<li class="list-unstyled" style="text-align: center" ng-repeat="member in user.redditUser.data.familyMembers">
+										{{member}}
+									</li>
+								</dl>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+</div>
 
 <!--  	<div class="row">
 		<div class="col-lg-4 col-lg-offset-4">
