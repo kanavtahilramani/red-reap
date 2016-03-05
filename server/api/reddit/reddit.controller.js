@@ -64,13 +64,17 @@ function checkIfDateExists(dates, currentMonth, currentYear) {
 function createUser(req, res, callback) {
     var userData = new User({username: req.params.username});
     var userComments = [];
+    var userSubmitted = [];
     var dateData = [];
+    var dateDataSubmitted = [];
     var monthNames = ["January", "February", "March", "April", "May", "June",
                       "July", "August", "September", "October", "November", "December"];
     var earliestComment = Number.MAX_VALUE;
+    var earliestSubmitted = Number.MAX_VALUE;
     var date, currentMonth, currentYear, currentHour, currentDay;
     var commentLink, isSelfPostHelper, isSelfPost, isFlaired;
     var currentCommentScore = 0,
+        currentSubmittedScore = 0,
         currentPostCount    = 0,
         totalCommentCount   = 0,
         totalEditedCommentCount = 0,
@@ -90,14 +94,16 @@ function createUser(req, res, callback) {
     var dayTracker = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
     var dayScorer = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
 
-     getUserComments(req, res, function(allComments) { /* get all user comments */
+    getUserComments(req, res, function(allComments) { /* get all user comments */
         date = new Date(allComments[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
         currentMonth = date.getMonth();
         currentYear = date.getFullYear();
 
         allComments.forEach(function(commentSlice) {
           commentSlice.data.children.forEach(function(currentComment) {
-            userComments.push(currentComment.data.body);
+            
+              userComments.push(currentComment.data.body);
+              
               if (currentComment.data.created_utc < earliestComment) {
                 earliestComment = currentComment.data.created_utc;
               }
@@ -225,7 +231,7 @@ function createUser(req, res, callback) {
           userData.hour.push({
             hour: i,
             postsForHour: hourTracker[i],
-            commentKarmaForHour: hourScorer[i]
+            karmaForHour: hourScorer[i]
           });
         }
 
@@ -234,7 +240,7 @@ function createUser(req, res, callback) {
           userData.day.push({
             day: i,
             postsForDay: dayTracker[i],
-            commentKarmaForDay: dayScorer[i]
+            karmaForDay: dayScorer[i]
           });
         }
 
@@ -290,15 +296,194 @@ function createUser(req, res, callback) {
             userData.negativePercentage = (negativeSentenceCounts / sentenceCount).toPrecision(2) * 100;
             userData.negativeExample = negativeSample;
 
-            getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
-              userData.karma.totalCommentScore = scores.comments;
-              userData.karma.totalLinkScore = scores.submissions;
-              userData.creationTime = (scores.created)*1000;
+            //console.log("proof1");
+            ///////////////////////////////////////////////////
+            //////////////SUBMISSIONS SECTION//////////////////
+            ///////////////////////////////////////////////////
 
-              callback(userData);
+            currentPostCount = 0; //reset from comments section
+            var date2;
+            var submittedLink;
+            var currentPostLength = 0;
+            var totalSubmittedCount = 0,
+                totalSubmittednsfw = 0,
+                totalSubmittedControversial = 0,
+                totalSubmittedGilded = 0,
+                totalSubmittedGilds = 0,
+                totalSubmittedWords = 0,
+                totalSubmittedFlaired = 0;
+
+            var submittedSubreddits = []; //store subreddits submissions are in
+            var submittedLengths = []; //store lengths of self posts
+            var hourTracker2 = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
+            var hourScorer2 = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
+            var dayTracker2 = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
+            var dayScorer2 = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
+
+            getUserSubmitted(req, res, function(allSubmitted) { /* get all user submissions */
+              
+              //console.log(allSubmitted[0].data.children[0]);
+              date2 = new Date(allSubmitted[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
+              currentMonth = date2.getMonth();
+              currentYear = date2.getFullYear();
+              
+              allSubmitted.forEach(function(submittedSlice) {
+                submittedSlice.data.children.forEach(function(currentSubmitted) {
+                  
+                  userSubmitted.push(currentSubmitted.data.body);
+
+                  if (currentSubmitted.data.created_utc < earliestSubmitted) {
+                    earliestSubmitted = currentSubmitted.data.created_utc;
+                  }
+
+                  date2 = new Date(currentSubmitted.data.created_utc * 1000);
+                  if (date2.getMonth() == currentMonth && date2.getFullYear() == currentYear) {
+                      currentSubmittedScore += currentSubmitted.data.score;
+                      currentPostCount++;
+                  }
+                  else if (checkIfDateExists(dateDataSubmitted, monthNames[currentMonth], currentYear) > -1) {
+                      var i = checkIfDateExists(dateDataSubmitted, monthNames[currentMonth], currentYear);
+                      dateDataSubmitted[i].SubmittedKarmaForMonth += currentSubmitted.data.score;
+                      dateDataSubmitted[i].postsForMonth++;
+                      currentMonth = date2.getMonth();
+                      currentYear = date2.getFullYear();
+                      currentSubmittedScore = 0;
+                      currentPostCount = 0;
+                  }
+                  else {
+                    dateDataSubmitted.push({
+                                        month: monthNames[currentMonth],
+                                        date: ("0" + date2.getDate()).slice(-2),
+                                        year: currentYear,
+                                        linkKarmaForMonth: currentSubmittedScore,
+                                        postsForMonth: currentPostCount
+                                      });
+                    currentMonth = date2.getMonth();
+                    currentYear = date2.getFullYear();
+                    currentSubmittedScore = 0;
+                    currentPostCount = 0;
+                  }
+
+                  currentHour = date2.getHours(); //get UTC hour Submitted was posted
+                  hourTracker2[currentHour]++; //increment count for that hour
+                  hourScorer2[currentHour] += currentSubmitted.data.score; //add Submitted's score to running total for hour
+
+                  currentDay = date2.getDay(); //get day 0-6
+                  dayTracker2[currentDay]++; //increment count for that day
+                  dayScorer2[currentDay] += currentSubmitted.data.score; //add Submitted's score to running total for day
+
+                  totalSubmittedCount++; //track total number of Submitted
+
+                  //Track some Submitted metadata
+                  if (currentSubmitted.data.over_18 == true)
+                  {
+                    totalSubmittednsfw++; //add to count of nsfw Submitted
+                  }
+                  if (currentSubmitted.data.controversiality > 0)
+                  {
+                    totalSubmittedControversial++; //add to count of controversial Submitted
+                  }
+                  if (currentSubmitted.data.gilded > 0)
+                  {
+                    totalSubmittedGilds += currentSubmitted.data.gilded; //add number of gilds for this Submitted
+                    totalSubmittedGilded++; //increase count of Submitted gilded at least once
+                  }
+                  if (currentSubmitted.data.link_flair_css_class != null)
+                  {
+                    totalSubmittedFlaired++;
+                    isFlaired = 1;
+                  }
+                  else
+                  {
+                    isFlaired = 0;
+                  }
+
+                  if (currentSubmitted.data.selftext_html != null)
+                  {
+                    currentPostLength = currentSubmitted.data.selftext_html.toString().length;
+                    totalSubmittedWords += Math.round(currentPostLength / 5)
+                    submittedLengths.push(currentPostLength);
+                  }
+                  else
+                  {
+                    currentPostLength = 0;
+                  }
+
+                  submittedSubreddits.push(currentSubmitted.data.subreddit.toString()); //store subreddit Submitted is in
+
+                  submittedLink = currentSubmitted.data.url.toString();
+                  
+                  isSelfPost = currentSubmitted.data.is_self;
+
+                  //store metadata on each Submitted
+                  userData.subMeta.push({
+                    subreddit: currentSubmitted.data.subreddit.toString(),
+                    link: submittedLink,
+                    linkType: isSelfPost,
+                    length: currentPostLength,
+                    gilded: currentSubmitted.data.gilded,
+                    flaired: isFlaired,
+                    hour: currentHour,
+                    day: currentDay,
+                    month: currentMonth,
+                    year: currentYear
+                  });
+
+
+                });
+              });
+
+              userData.totalSubmitted = totalSubmittedCount;
+              userData.nsfwSubmitted = totalSubmittednsfw;
+              userData.controversialSubmitted = totalSubmittedControversial;
+              userData.gildedSubmitted = totalSubmittedGilded;
+              userData.totalSubmittedGilds = totalSubmittedGilds;
+              userData.totalSubmittedWords = totalSubmittedWords;
+              userData.totalSubmittedFlaired = totalSubmittedFlaired;
+
+              var subLengthSum = submittedLengths.reduce(function(a, b) { return a + b; });
+              userData.avgSelfPostLength = subLengthSum / submittedLengths.length; //store average length
+
+              for (var i = 0; i < hourTracker2.length; i++) //store submitted hourly data
+              {
+                userData.hourSub.push({
+                  hour: i,
+                  postsForHour: hourTracker2[i],
+                  karmaForHour: hourScorer2[i]
+                });
+              }
+
+              for (var i = 0; i < dayTracker2.length; i++) //store submitted hourly data
+              {
+                userData.daySub.push({
+                  day: i,
+                  postsForDay: dayTracker2[i],
+                  karmaForDay: dayScorer2[i]
+                });
+              }
+
+              userData.dataSub = dateDataSubmitted; //store monthly data for submissions
+
+              getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
+                userData.karma.totalCommentScore = scores.comments;
+                userData.karma.totalLinkScore = scores.submissions;
+                userData.creationTime = (scores.created)*1000;
+
+                callback(userData);
+              });
+
             });
-        });      
-  });
+
+            //console.log("proof3");
+
+            //////////////////////////////END SUBMISSION SECTION//////////////////////////////////
+            
+        });
+
+        
+
+    });
+
 }
 
 function positivity (comments, callback) {
@@ -423,6 +608,37 @@ export function getUserComments (req, res, callback) {
   var i = 1;
 
   reddit('/user/' + username + '/comments/').get({ limit: 100 }).then(function(firstSlice) {
+    if (firstSlice.data.children.length == 0) {
+      return;
+    }
+    slices.push(firstSlice);
+    loop(firstSlice, firstSlice.data.children[firstSlice.data.children.length-1].data.name);
+  });  
+}
+
+export function getUserSubmitted (req, res, callback) {
+  function loop(slice, prevSubmitted) {
+    if (slice.data.children.length < 100 || i >= 10) {
+      callback(slices);
+      return;
+    }
+
+    i++;
+
+    reddit('/user/' + username + '/submitted/').get({ limit: 100, after: prevSubmitted }).then(function(currentSlice) {
+      if (currentSlice.data.children.length == 0) {
+        return;
+      }
+      slices.push(slice);
+      loop(currentSlice, currentSlice.data.children[currentSlice.data.children.length-1].data.name);
+    });
+  }
+
+  var slices = [];
+  var username = req.params.username;
+  var i = 1;
+
+  reddit('/user/' + username + '/submitted/').get({ limit: 100 }).then(function(firstSlice) {
     if (firstSlice.data.children.length == 0) {
       return;
     }

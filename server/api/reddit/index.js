@@ -22,5 +22,6 @@ router.get('/:username/topComment', controller.getTopComment);
 router.get('/:username/topSubmission', controller.getTopSubmission);
 router.get('/:username/karma', controller.getKarmaAndDate);
 router.get('/:username/allComments', controller.getUserComments);
+router.get('/:username/allSubmissions', controller.getUserSubmitted);
 
 module.exports = router;
