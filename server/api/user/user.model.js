@@ -33,29 +33,36 @@ var HourSchema = new Schema({
 });
 
 var ComMetaSchema = new Schema({
+	score: Number,
 	subreddit: String,
 	link: String,
 	linkType: Number,
 	length: Number,
 	gilded: Number,
 	flaired: Number,
+	distinguished: Number,
 	hour: Number,
 	day: Number,
 	month: Number,
 	year: Number,
+	level: Number
 });
 
 var SubMetaSchema = new Schema({
+	score: Number,
 	subreddit: String,
 	link: String,
 	linkType: Number,
 	length: Number,
 	gilded: Number,
 	flaired: Number,
+	distinguished: Number,
 	hour: Number,
 	day: Number,
 	month: Number,
 	year: Number,
+	comments: Number,
+	title: String,
 });
 
 var UserSchema = new Schema({
@@ -81,11 +88,16 @@ var UserSchema = new Schema({
 	creationTime: Number,
 	totalComments: Number,
 	totalSubmitted: Number,
+	totalSelfPosts: Number,
+	totalLinkPosts: Number,
+	totalCommentsOnSubmitted: Number,
 	totalEditedComments: Number,
 	avgEditTime: Number,
 	medEditTime: Number,
+	totalReplyComments: Number,
 	avgCommentLength: Number,
 	avgSelfPostLength: Number,
+	avgCommentsOnSubmitted: Number,
 	nsfwComments: Number,
 	nsfwSubmitted: Number,
 	controversialComments: Number,
@@ -98,6 +110,8 @@ var UserSchema = new Schema({
 	totalSubmittedWords: Number,
 	totalFlaired: Number,
 	totalSubmittedFlaired: Number,
+	totalDistinguished: Number,
+	totalSubmittedDistinguished: Number,
 	lastUpdated: Number,
 	region: String,
 	data: [MonthSchema],

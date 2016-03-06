@@ -72,7 +72,7 @@ function createUser(req, res, callback) {
     var earliestComment = Number.MAX_VALUE;
     var earliestSubmitted = Number.MAX_VALUE;
     var date, currentMonth, currentYear, currentHour, currentDay;
-    var commentLink, isSelfPostHelper, isSelfPost, isFlaired;
+    var commentLink, isSelfPostHelper, isSelfPost, isFlaired, isDistinguished, comLevel;
     var currentCommentScore = 0,
         currentSubmittedScore = 0,
         currentPostCount    = 0,
@@ -84,7 +84,9 @@ function createUser(req, res, callback) {
         totalCommentsGilded = 0,
         totalGilds = 0,
         totalWords = 0,
-        totalFlaired = 0;
+        totalFlaired = 0,
+        totalDistinguished = 0,
+        totalReplyComments = 0;
 
     var editedTimes = []; //stores all times of edits
     var commentLengths = []; //store lengths of comments
@@ -178,6 +180,15 @@ function createUser(req, res, callback) {
               {
                 isFlaired = 0;
               }
+              if(currentComment.data.distinguished != null)
+              {
+                totalDistinguished++;
+                isDistinguished = 1;
+              }
+              else
+              {
+                isDistinguished = 0;
+              }
 
               totalWords += Math.round(currentComment.data.body.toString().length / 5); //approx. word count tracking
               commentLengths.push(currentComment.data.body.toString().length); //store length of current comment
@@ -195,18 +206,31 @@ function createUser(req, res, callback) {
                 isSelfPost = 0;
               }
 
+              if (currentComment.data.link_id != currentComment.data.parent_id) //if this is case, comment is reply to another comment
+              {
+                comLevel = 1; //indicates comment is reply to another comment
+                totalReplyComments++;
+              }
+              else
+              {
+                comLevel = 0; //indicates comment is directly on submission
+              }
+
               //store metadata on each comment
               userData.comMeta.push({
+                score: currentComment.data.score,
                 subreddit: currentComment.data.subreddit.toString(),
                 link: commentLink,
                 linkType: isSelfPost,
                 length: currentComment.data.body.toString().length,
                 gilded: currentComment.data.gilded,
                 flaired: isFlaired,
+                distinguished: isDistinguished,
                 hour: currentHour,
                 day: currentDay,
                 month: currentMonth,
-                year: currentYear
+                year: currentYear,
+                level: comLevel
               });
           });
         });
@@ -222,6 +246,7 @@ function createUser(req, res, callback) {
         userData.totalGilds = totalGilds;
         userData.totalWords = totalWords;
         userData.totalFlaired = totalFlaired;
+        userData.totalReplyComments = totalReplyComments;
 
         var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
         userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
@@ -311,7 +336,10 @@ function createUser(req, res, callback) {
                 totalSubmittedGilded = 0,
                 totalSubmittedGilds = 0,
                 totalSubmittedWords = 0,
-                totalSubmittedFlaired = 0;
+                totalSubmittedFlaired = 0,
+                totalSubmittedDistinguished = 0,
+                totalCommentsOnSubmitted = 0,
+                totalSelfPosts = 0;
 
             var submittedSubreddits = []; //store subreddits submissions are in
             var submittedLengths = []; //store lengths of self posts
@@ -397,6 +425,15 @@ function createUser(req, res, callback) {
                   {
                     isFlaired = 0;
                   }
+                  if(currentSubmitted.data.distinguished != null)
+                  {
+                    totalSubmittedDistinguished++;
+                    isDistinguished = 1;
+                  }
+                  else
+                  {
+                    isDistinguished = 0;
+                  }
 
                   if (currentSubmitted.data.selftext_html != null)
                   {
@@ -414,19 +451,29 @@ function createUser(req, res, callback) {
                   submittedLink = currentSubmitted.data.url.toString();
                   
                   isSelfPost = currentSubmitted.data.is_self;
+                  if (isSelfPost)
+                  {
+                    totalSelfPosts++;
+                  }
+
+                  totalCommentsOnSubmitted += currentSubmitted.data.num_comments;
 
                   //store metadata on each Submitted
                   userData.subMeta.push({
+                    score: currentSubmitted.data.score,
                     subreddit: currentSubmitted.data.subreddit.toString(),
                     link: submittedLink,
                     linkType: isSelfPost,
                     length: currentPostLength,
                     gilded: currentSubmitted.data.gilded,
                     flaired: isFlaired,
+                    distinguished: isDistinguished,
                     hour: currentHour,
                     day: currentDay,
                     month: currentMonth,
-                    year: currentYear
+                    year: currentYear,
+                    comments: currentSubmitted.data.num_comments,
+                    title: currentSubmitted.data.title.toString()
                   });
 
 
@@ -440,6 +487,11 @@ function createUser(req, res, callback) {
               userData.totalSubmittedGilds = totalSubmittedGilds;
               userData.totalSubmittedWords = totalSubmittedWords;
               userData.totalSubmittedFlaired = totalSubmittedFlaired;
+              userData.totalSubmittedDistinguished = totalSubmittedDistinguished;
+              userData.totalCommentsOnSubmitted = totalCommentsOnSubmitted;
+              userData.avgCommentsOnSubmitted = totalCommentsOnSubmitted / totalSubmittedCount;
+              userData.totalSelfPosts = totalSelfPosts;
+              userData.totalLinkPosts = totalSubmittedCount - totalSelfPosts;
 
               var subLengthSum = submittedLengths.reduce(function(a, b) { return a + b; });
               userData.avgSelfPostLength = subLengthSum / submittedLengths.length; //store average length
