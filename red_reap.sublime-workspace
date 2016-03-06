@@ -4,16 +4,180 @@
 		"selected_items":
 		[
 			[
-				"avg",
-				"avgEditTime"
+				"current",
+				"currentComment"
 			],
 			[
-				"element",
-				"elementToPlaceIn"
+				"numC",
+				"numComments"
 			],
 			[
-				"end",
-				"endScrollCheck"
+				"num",
+				"numCalls"
+			],
+			[
+				"is",
+				"isFinished"
+			],
+			[
+				"dad",
+				"Dad"
+			],
+			[
+				"this",
+				"thisWord"
+			],
+			[
+				"descrio",
+				"descriptorSet"
+			],
+			[
+				"desc",
+				"descriptor"
+			],
+			[
+				"descrip",
+				"descriptorNounFound"
+			],
+			[
+				"adjPerP",
+				"adjPerP"
+			],
+			[
+				"adjPer",
+				"adjPerVN"
+			],
+			[
+				"veryP",
+				"veryPosAdEx"
+			],
+			[
+				"ver",
+				"veryNegAdEx"
+			],
+			[
+				"nAdjs",
+				"negativeAdjs"
+			],
+			[
+				"nega",
+				"negativeSample"
+			],
+			[
+				"sen",
+				"sentenceCount"
+			],
+			[
+				"sente",
+				"sentenceCount"
+			],
+			[
+				"sent",
+				"sentiment"
+			],
+			[
+				"exam",
+				"exampleComments"
+			],
+			[
+				"negati",
+				"negativeComments"
+			],
+			[
+				"se",
+				"sentenceCount"
+			],
+			[
+				"user",
+				"userData"
+			],
+			[
+				"negativ",
+				"negativeSentenceCount"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"creat",
+				"createUser"
+			],
+			[
+				"topS",
+				"topSubmission"
+			],
+			[
+				"topC",
+				"topComment"
+			],
+			[
+				"top",
+				"topS"
+			],
+			[
+				"sub",
+				"submission"
+			],
+			[
+				"comm",
+				"commentKarma"
+			],
+			[
+				"com",
+				"commentSlice"
+			],
+			[
+				"Comm",
+				"CommentSchema"
+			],
+			[
+				"comment",
+				"commentSlice"
+			],
+			[
+				"par",
+				"parseInt"
+			],
+			[
+				"perm",
+				"permalink"
+			],
+			[
+				"get",
+				"getTopSubmission"
+			],
+			[
+				"comments",
+				"comments"
+			],
+			[
+				"hand",
+				"handleTopComment"
+			],
+			[
+				"save",
+				"saveUser"
+			],
+			[
+				"ref",
+				"refreshToken"
+			],
+			[
+				"User",
+				"UserSchema"
+			],
+			[
+				"Token",
+				"TokenSchema"
+			],
+			[
+				"refr",
+				"refreshToken"
+			],
+			[
+				"url",
+				"urlParams"
 			],
 			[
 				"control",
@@ -22,10 +186,6 @@
 			[
 				"contr",
 				"controllerAs"
-			],
-			[
-				"user",
-				"userData"
 			],
 			[
 				"contro",
@@ -38,14 +198,6 @@
 			[
 				"set",
 				"setToken"
-			],
-			[
-				"is",
-				"isLoggedIn"
-			],
-			[
-				"get",
-				"getToken"
 			],
 			[
 				"Auth",
@@ -76,10 +228,6 @@
 				"padding-top"
 			],
 			[
-				"com",
-				"computerData"
-			],
-			[
 				"find",
 				"findById"
 			],
@@ -102,14 +250,6 @@
 			[
 				"pla",
 				"planeID"
-			],
-			[
-				"par",
-				"parties"
-			],
-			[
-				"num",
-				"numParties"
 			],
 			[
 				"or",
@@ -171,78 +311,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "server/api/reddit/reddit.controller.js",
-			"settings":
-			{
-				"buffer_size": 55975,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/user/user.html",
-			"settings":
-			{
-				"buffer_size": 17773,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/user/user.scss",
-			"settings":
-			{
-				"buffer_size": 3223,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/user/user.controller.js",
-			"settings":
-			{
-				"buffer_size": 2298,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/main/main.service.js",
-			"settings":
-			{
-				"buffer_size": 4309,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/components/navbar/navbar.html",
-			"settings":
-			{
-				"buffer_size": 1004,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "server/api/user/user.model.js",
-			"settings":
-			{
-				"buffer_size": 2160,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/donut/donut.directive.js",
-			"settings":
-			{
-				"buffer_size": 5560,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/barChart/barChart.directive.js",
-			"settings":
-			{
-				"buffer_size": 2688,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -272,66 +340,124 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.scss",
-		"/C/Users/Sujay/Documents/capstone/red-reap/.tmp/app/main/main.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.scss",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.controller.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/admin/admin.controller.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/app.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/.tmp/app/app.css",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/index.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/admin/admin.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.controller.spec.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/user.model.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.controller.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.events.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.integration.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/views/404.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/navbar/navbar.scss",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.spec.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.scss",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.constant.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/bower_components/bootstrap/dist/css/bootstrap.css",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/linePlot/linePlot.directive.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.spec.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/d3Service/d3Service.service.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/comment.model.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/index.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.spec.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.model.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.service.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/index.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/build/config.gypi",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/navbar/navbar.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.scss",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/subredditLogos/subredditLogo.directive.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/subredditLogo/subredditLogo.directive.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/subredditLogo/subredditLogo.directive.spec.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/bower_components/jquery/dist/jquery.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/bower_components/d3/d3.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/data.csv",
-		"/C/Users/Sujay/Desktop/data.csv",
-		"/C/Users/Sujay/Documents/capstone/red-reap/node_modules/autoprefixer/node_modules/caniuse-db/fulldata-json/data-2.0.json",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/robots.txt",
-		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/main/main.spec.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/main/main.po.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/components/navbar/navbar.po.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/account/signup/signup.po.js",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Julian Esteban/Desktop/hw4DLedFromSakaiSubmission.cpp",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/user/user.model.js",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/main/main.service.js",
+		"/C/Users/Julian Esteban/Desktop/redreapbackup/reddit.controller.js",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/main/main.scss",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/main/main.html",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/user/user.html",
+		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/.tmp/app/user/user.js",
+		"/C/Users/Julian Esteban/Desktop/testnlp/node-stanford-corenlp-master/examples/sentiments.js",
+		"/C/Users/Kanav/Desktop/backup/red-reap/.gitignore",
+		"/C/Users/Kanav/Documents/red/red-reap/.gitignore",
+		"/C/Users/Kanav/Documents/red/red-reap/.git/COMMIT_EDITMSG",
+		"/C/Users/Kanav/Documents/red/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/api/user/user.model.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.service.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.html",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.scss",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.html",
+		"/C/Users/Kanav/Documents/Projects/mean-machine-code-master/17-user-crm/public/assets/css/style.css",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/donut/donut.directive.js",
+		"/C/Users/Kanav/Documents/red/red-reap/.tmp/app/app.css",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.html",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.scss",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.controller.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.directive.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.js",
+		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/app.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/index.js",
+		"/C/Users/Kanav/Documents/red/red-reap/server/routes.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/comment.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.constant.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/validate/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.model.js",
+		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/kanav.cfg",
+		"/C/Users/Kanav/Documents/red-reap/server/app.js",
+		"/C/Users/Kanav/Documents/red-reap/server/config/environment/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/config/environment/production.js",
+		"/C/Users/Kanav/Documents/red-reap/server/config/environment/development.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.html",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/mainService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/routes.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/userRouter.js",
+		"/C/Users/Kanav/Documents/red-reap/server/index.js",
+		"/C/Users/Kanav/Downloads/black.swan.(2010).eng.1cd.(4206141)/black.swan.(4206141).nfo",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/userCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/userService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.scss",
+		"/C/Users/Kanav/Desktop/app/app.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/home/homeCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.routes.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/home/homeService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/homeCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/homeService.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/mainCtrl.js",
+		"/C/Users/Kanav/Documents/red-reap/client/index.html",
+		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.html",
+		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.scss",
+		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.service.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/auth/auth.service.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.html",
+		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/user/user.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/server/user/user.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/user/index.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/util/util.module.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/util/util.service.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.directive.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.controller.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.html",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.module.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.router.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.scss",
+		"/C/Users/Kanav/Documents/red-reap/server/config/local.env.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.controller.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/auth/auth.module.js",
+		"/C/Users/Kanav/Documents/red-reap/client/components/mongoose-error/mongoose-error.directive.js",
+		"/C/Users/Kanav/Documents/red-reap/client/robots.txt",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/user.html",
+		"/C/Users/Kanav/Documents/red-reap/client/app/account/account.js",
+		"/C/Users/Kanav/Documents/red-reap/server/auth/auth.service.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.events.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/u/top.html",
+		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.spec.js",
+		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.po.js",
+		"/C/Users/Kanav/Downloads/ferristic",
+		"/C/Users/Kanav/Desktop/backupcon.js",
+		"/C/Users/Kanav/Documents/red-reap/.gitignore",
+		"/C/Users/Kanav/Documents/snootest/snoocore-examples/oauth/oauth-explicit-permanent-1.js",
+		"/C/Users/Kanav/Downloads/red-reap/server/app.js",
+		"/C/Users/Kanav/Documents/snootest/snoocore-examples/express-web/app.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/index.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/redditauth.controller.js",
+		"/C/Users/Kanav/Documents/Projects/mean-machine-code-master/17-user-crm/server.js",
+		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/redditauth.model.js",
+		"/C/Users/Kanav/Documents/red-reap/server/auth/index.js",
+		"/C/Users/Kanav/Documents/red-reap/.tmp/app/main/main.js",
+		"/C/Users/Kanav/Documents/red-reap/client/app/app.scss",
 		"/C/Users/Kanav/Documents/redreap/client/app/main/main.html",
 		"/C/Users/Kanav/Documents/redreap/client/index.html",
 		"/C/Users/Kanav/Downloads/mean-machine-code-master/11-angular-start/js/app.js",
 		"/C/Users/Kanav/Documents/Projects/hearthbase/server/config/local.env.js",
 		"/C/Users/Kanav/Documents/Projects/hearthbase/server/config/local.env.sample.js",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/kanav.cfg",
 		"/C/Users/Kanav/Documents/Projects/workflow/server.js",
 		"/C/Users/Kanav/Documents/Projects/workflow/public/app/controllers/mainCtrl.js",
 		"/C/Users/Kanav/Documents/Projects/workflow/public/app/views/index.html",
@@ -341,78 +467,18 @@
 		"/C/Users/Kanav/Documents/Projects/workflow/public/app/app.routes.js",
 		"/C/Users/Kanav/Documents/Projects/workflow/public/assets/css/style.less",
 		"/C/Users/Kanav/Documents/Projects/hearthbase/package.json",
-		"/C/Users/Kanav/Documents/Projects/hearthbase/.gitattributes",
-		"/C/Users/Kanav/Documents/Projects/hearthbase/.buildignore",
-		"/C/Users/Kanav/Documents/Projects/hearthbase/.bowerrc",
-		"/C/Users/Kanav/Documents/Projects/hearthbase/.gitignore",
-		"/C/Users/Kanav/Downloads/The.Witness-HI2U/hi2u.nfo",
-		"/C/Users/Kanav/Documents/Projects/workflow/package.json",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userCtrl.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/login.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/users/all.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.routes.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/users/single.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/pages/users/single.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/assets/css/style.css",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/mainCtrl.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/app/routes/api.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/index.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/home.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/services/authService.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/home.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/pages/home.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/index.html",
-		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/controllers/mainCtrl.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/index.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/package.json",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/login.html",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userController.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/config.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/server.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/services/userService.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/authService.js",
-		"/C/Users/Kanav/Documents/Projects/sample-org/app/models/user.js",
-		"/C/Users/Kanav/AppData/Local/Microsoft/Windows/INetCache/IE/SLTVGW8Y/.config[1].config",
-		"/C/Users/Kanav/Documents/Projects/sample-orga/app/models/user.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/package.json",
-		"/C/Users/Kanav/Documents/Projects/api-intro/app.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/js/app.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/server.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/css/style.css",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/server.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/js/app.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/index.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/js/app.routes.js",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/home.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/about.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/contact.html",
-		"/C/Users/Kanav/Documents/Projects/routing-intro/public/index.html",
-		"/C/Users/Kanav/Documents/Projects/angular-intro/index.html",
-		"/C/Users/Kanav/Documents/Projects/angular-intro/js/app.js",
-		"/C/Users/Kanav/Documents/Projects/api-intro/app/models/user.js",
-		"/C/Users/Kanav/Documents/Projects/intro-api/server.js",
-		"/C/Users/Kanav/Documents/Projects/intro-api/package.json",
-		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/body-parser/package.json",
-		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/bson/ext/index.js",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/config.cfg",
-		"/C/Users/Kanav/Documents/Projects/httpserv/server.js",
-		"/C/Users/Kanav/Documents/Projects/mongotest/server.js",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/client/app/main/main.controller.js",
-		"/C/Users/Kanav/Documents/Projects/hearthdb/client/app/main/main.html"
+		"/C/Users/Kanav/Documents/Projects/hearthbase/.gitattributes"
 	],
 	"find":
 	{
-		"height": 94.0
+		"height": 48.0
 	},
 	"find_in_files":
 	{
 		"height": 0.0,
 		"where_history":
 		[
-			"<Project>",
-			"<Project>,C:\\Users\\Sujay\\Documents\\capstone\\red-reap\\client",
-			"<Project>"
+			""
 		]
 	},
 	"find_state":
@@ -420,115 +486,34 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"hover",
-			"red",
-			"text-center",
-			"topSubmis",
-			"createuser",
-			"negativePer",
-			"mouse",
-			"none",
-			"content-text",
-			"subreddit",
-			"adj",
-			"graph",
-			"border",
-			"karma",
-			"\"><",
-			"contentheader",
-			"contentsubheader",
-			"contenttext",
-			"vnEx",
-			"vnEX",
+			"time",
+			"callback time",
+			"time",
+			"callback",
+			"callback time",
+			"parseint",
+			"}\n",
+			"children",
+			" {",
+			"\"\";\n",
+			"console.err",
+			"console",
+			"vnExCount",
+			":",
+			"console.log",
+			"navbar",
+			"fixed",
+			"webkit",
+			".spinner",
 			"topComment",
-			"redditUser",
-			"accountCreation",
-			"age",
-			"accountAge",
-			"age",
-			"bar",
-			"navbar",
-			"negativePercentage",
-			"color",
-			"navbar",
-			"navbar navbar-inverse navbar-static-top",
-			"navbar",
-			"very positi",
-			"margin-left",
-			"adj",
-			"year",
-			"first",
-			"forea",
-			"tip",
-			"100px",
-			"nopadding",
-			"col-lg",
-			"nopadding",
-			"elementto",
-			"Submissio",
-			"#",
-			"jumbo",
-			"fulldate",
-			"month",
-			"karma",
-			"karmaChart",
-			"bar-chart",
-			"jumbotron",
-			"content",
-			"jumb",
-			"margin-lef",
-			";\n",
-			"paddi",
-			"ju",
-			"center",
-			"margin-left",
-			"jumbotron",
-			"jumbo",
-			"boundary",
-			"jumbo",
-			"h2",
-			"border",
-			"color",
-			"jumbo",
-			"jumb",
-			"jum",
-			"jumbotron",
-			"sideleft",
-			"jumbotr",
-			"jumbot",
-			"jumbo",
-			"jumbotro",
-			"width",
-			"jumbotron",
-			"row",
-			"donut",
-			"maindiv",
-			"Toronto",
-			"toronto",
-			"// NEW",
-			"<",
-			">\n",
-			"img",
-			"navbar",
-			"nav",
-			">\n",
-			"error",
-			"<a href=\"/\" class=\"navbar-brand\">logo</a>",
-			"navbar-brand",
-			"navbar",
-			"class=\"navbar-brand\"",
-			"localhost:9000",
-			"logo",
-			"createUser",
-			"refresh",
-			"created",
-			"snoocore",
-			"api/validate",
-			"validate",
-			"me",
-			"snoocore",
-			"creds",
-			"listen",
+			"comments",
+			"zoom_sensitivity",
+			"ng-scope",
+			"main.html",
+			"ng-controller",
+			"userFactory",
+			"config",
+			"redditauth",
 			"forcepreload",
 			"app",
 			"messagemode2",
@@ -547,7 +532,17 @@
 			"playercmds",
 			"sm_admin",
 			"friendlyfire",
-			"cl_rightnhad"
+			"cl_rightnhad",
+			"cl_righthand",
+			"bind p",
+			"rate",
+			"sm_cvar",
+			"sv_damage_",
+			"GREENS CHECKS",
+			"RICHIE SAVES",
+			"JOHN & ASHTON",
+			"passengersBravo",
+			"passengersAlfa"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -555,11 +550,8 @@
 		"regex": false,
 		"replace_history":
 		[
-			"content-header",
-			"content-subheader",
-			"content-text",
-			" ",
-			"",
+			"mainFactory",
+			"validate",
 			"ASHTON CHECKS",
 			"XERI SAVES",
 			"AJ & PRAB",
@@ -569,263 +561,14 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "server/api/reddit/reddit.controller.js",
-					"settings":
-					{
-						"buffer_size": 55975,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5656,
-								5656
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "client/app/user/user.html",
-					"settings":
-					{
-						"buffer_size": 17773,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3508,
-								3509
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 882.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "client/app/user/user.scss",
-					"settings":
-					{
-						"buffer_size": 3223,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2702.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "client/app/user/user.controller.js",
-					"settings":
-					{
-						"buffer_size": 2298,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								893,
-								893
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "client/app/main/main.service.js",
-					"settings":
-					{
-						"buffer_size": 4309,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1463,
-								1463
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 686.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "client/components/navbar/navbar.html",
-					"settings":
-					{
-						"buffer_size": 1004,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								650,
-								650
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "server/api/user/user.model.js",
-					"settings":
-					{
-						"buffer_size": 2160,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 392.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "client/app/donut/donut.directive.js",
-					"settings":
-					{
-						"buffer_size": 5560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4872,
-								4872
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1274.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "client/app/barChart/barChart.directive.js",
-					"settings":
-					{
-						"buffer_size": 2688,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2228,
-								2228
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 882.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -835,7 +578,7 @@
 	},
 	"input":
 	{
-		"height": 31.0
+		"height": 29.0
 	},
 	"layout":
 	{
@@ -866,7 +609,7 @@
 	},
 	"replace":
 	{
-		"height": 77.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -889,6 +632,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 283.0,
+	"side_bar_width": 193.0,
 	"status_bar_visible": true
 }
