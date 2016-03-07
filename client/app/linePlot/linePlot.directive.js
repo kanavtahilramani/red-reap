@@ -6,8 +6,7 @@ angular.module('redreapApp')
       template: '<div></div>',
       restrict: 'EA',
       link: function (scope, element, attrs) {
-      	var data = User.getUserData().data.data;
-
+      	var data = User.getUserData().data.dateData;
       	var margin = {top: 20, right: 20, bottom: 30, left: 50},
 		    width = 1060 - margin.left - margin.right,
 		    height = 500 - margin.top - margin.bottom;

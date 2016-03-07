@@ -67,11 +67,7 @@ function createUser(callback) {
         totalCommentsGilded = 0,
         totalGilds = 0,
         totalWords = 0,
-        totalFlaired = 0,
-        totalSlices = 0,
-        commentsInSlice = 0,
-        counter = 0,
-        timeCounter = 0;
+        totalFlaired = 0;
 
     var sentenceCounter = 0,
         negativeSentenceCount = 0,
@@ -291,7 +287,7 @@ function createUser(callback) {
         // add to other cases (multiple sentences, etc)
 
         comments.forEach(function(currentComment, commentIndex) {
-            coreNLP.process(currentComment, function(err, result) {
+            coreNLP.process(currentComment.data.body, function(err, result) {
             if (Array.isArray(result.document.sentences.sentence)) {
               result.document.sentences.sentence.forEach(function(x) {
                   sentenceCounter = sentenceCounter + 1;
@@ -305,7 +301,7 @@ function createUser(callback) {
                           if (y.word == 'I' || y.word == 'i') {
                               if (index < x.tokens.token.length-2) {
                                   if ((x.tokens.token[index+1].lemma == "be") && (x.tokens.token[index+2].lemma != "not")) {
-                                      // console.log("\n\n"+currentComment + "\n\n")
+                                      // console.log("\n\n"+currentComment.data.body + "\n\n")
                                       FindYouAre(x.parsedTree, parseInt(x.tokens.token[index+1].$.id), false);
                                       //console.log("finished finding you are's");
                                   }
@@ -314,11 +310,11 @@ function createUser(callback) {
                           else {
                             isFinished = true;
                           }
-                          getSentimentData(y, currentComment);
+                          getSentimentData(y, currentComment.data.body);
                       });
                   }
                   else {
-                    getSentimentData(x.tokens.token, currentComment);
+                    getSentimentData(x.tokens.token, currentComment.data.body);
                   }
               });
             }
@@ -327,12 +323,12 @@ function createUser(callback) {
 
                 if (Array.isArray(result.document.sentences.sentence.tokens.token)) {
                     result.document.sentences.sentence.tokens.token.forEach(function(z) {
-                        getSentimentData(z, currentComment);
+                        getSentimentData(z, currentComment.data.body);
                     });
                 }
 
                 else {
-                    getSentimentData(result.document.sentences.sentence.tokens.token, currentComment);
+                    getSentimentData(result.document.sentences.sentence.tokens.token, currentComment.data.body);
                 }
 
                 isFinished = true;
@@ -375,11 +371,9 @@ function createUser(callback) {
       });
     }
 
-    function timeBasedData(currentComment) {
+    function timeBasedData(comments, callback) {
         var currentCommentScore = 0,
             currentPostCount    = 0;
-
-        timeCounter++;
 
         function checkIfDateExists(dates, currentMonth, currentYear) {
             var index = -1;
@@ -393,56 +387,63 @@ function createUser(callback) {
 
         var monthNames = ["January", "February", "March", "April", "May", "June",
                           "July", "August", "September", "October", "November", "December"];
-            
-        if (currentComment.data.created_utc < earliestComment) {
-          earliestComment = currentComment.data.created_utc;
-        }
 
-        date = new Date(currentComment.data.created_utc * 1000);
+        date = new Date(comments[0].data.created_utc * 1000);
+        currentMonth = date.getMonth();
+        currentYear = date.getFullYear();
         
-        if (timeCounter == 1) {
-            currentMonth = date.getMonth();
-            currentYear = date.getFullYear();
-        }
+        comments.forEach(function(currentComment, item) {
+            if (currentComment.data.created_utc < earliestComment) {
+              earliestComment = currentComment.data.created_utc;
+            }
 
-        if (date.getMonth() == currentMonth && date.getFullYear() == currentYear) {
-            currentCommentScore += currentComment.data.score;
-            currentPostCount++;
-        }
-        else if (checkIfDateExists(monthData, monthNames[currentMonth], currentYear) > -1) {
-            var i = checkIfDateExists(monthData, monthNames[currentMonth], currentYear);
-            monthData[i].commentKarmaForMonth += currentComment.data.score;
-            monthData[i].postsForMonth++;
-            currentMonth = date.getMonth();
-            currentYear = date.getFullYear();
-            currentCommentScore = 0;
-            currentPostCount = 0;
-        }
-        else {
-          monthData.push({
-                              month: monthNames[currentMonth],
-                              date: ("0" + date.getDate()).slice(-2),
-                              year: currentYear,
-                              commentKarmaForMonth: currentCommentScore,
-                              postsForMonth: currentPostCount
-                            });
-          currentMonth = date.getMonth();
-          currentYear = date.getFullYear();
-          // console.log("\nCurrent Month: " + currentMonth + "\nCurrent Year: " + currentYear + "\nCurrent Comment Score: " + currentCommentScore + "\nCurrent Post Count: " + currentPostCount + "\n");
-          currentCommentScore = 0;
-          currentPostCount = 0;
-        }
+            date = new Date(currentComment.data.created_utc * 1000);
+
+            if (date.getMonth() == currentMonth && date.getFullYear() == currentYear) {
+                currentCommentScore += currentComment.data.score;
+                currentPostCount++;
+            }
+            else if (checkIfDateExists(monthData, monthNames[currentMonth], currentYear) > -1) {
+                var i = checkIfDateExists(monthData, monthNames[currentMonth], currentYear);
+                monthData[i].commentKarmaForMonth += currentComment.data.score;
+                monthData[i].postsForMonth++;
+                currentMonth = date.getMonth();
+                currentYear = date.getFullYear();
+                currentCommentScore = 0;
+                currentPostCount = 0;
+            }
+            else {
+              console.log("\n\nCURRENT DATE: " + monthNames[currentMonth] + currentYear + " with " + currentCommentScore + " and " + currentPostCount);
+              console.log("\nDOESN'T MATCH! NEW DATE: " + monthNames[date.getMonth()] + date.getFullYear());
+              monthData.push({
+                                  month: monthNames[currentMonth],
+                                  date: ("0" + date.getDate()).slice(-2),
+                                  year: currentYear,
+                                  commentKarmaForMonth: currentCommentScore,
+                                  postsForMonth: currentPostCount
+                                });
+              currentMonth = date.getMonth();
+              currentYear = date.getFullYear();
+              // console.log("\nCurrent Month: " + currentMonth + "\nCurrent Year: " + currentYear + "\nCurrent Comment Score: " + currentCommentScore + "\nCurrent Post Count: " + currentPostCount + "\n");
+              currentCommentScore = 0;
+              currentPostCount = 0;
+            }
 
 
-        currentHour = date.getHours(); //get UTC hour comment was posted
-        hourTracker[currentHour]++; //increment count for that hour
-        hourScorer[currentHour] += currentComment.data.score; //add comment's score to running total for hour
+            currentHour = date.getHours(); //get UTC hour comment was posted
+            hourTracker[currentHour]++; //increment count for that hour
+            hourScorer[currentHour] += currentComment.data.score; //add comment's score to running total for hour
 
-        currentDay = date.getDay(); //get day 0-6
-        dayTracker[currentDay]++; //increment count for that day
-        dayScorer[currentDay] += currentComment.data.score; //add comment's score to running total for day
+            currentDay = date.getDay(); //get day 0-6
+            dayTracker[currentDay]++; //increment count for that day
+            dayScorer[currentDay] += currentComment.data.score; //add comment's score to running total for day
 
-        totalCommentCount++; //track total number of comments
+            totalCommentCount++; //track total number of comments
+
+            if (item == (comments.length-1)) {
+                callback();
+            }
+        });
     }
 
     function getMetadata (currentComment) {
@@ -540,12 +541,9 @@ function createUser(callback) {
     }
 
      getUserComments(function(allComments) { /* get all user comments */
-        totalSlices = allComments.length;
         allComments.forEach(function(commentSlice) {
-          commentsInSlice = commentSlice.data.children.length;
           commentSlice.data.children.forEach(function(currentComment) {
-              userComments.push(currentComment.data.body);
-              timeBasedData(currentComment);
+              userComments.push(currentComment);
               getMetadata(currentComment);
 
               //store metadata on each comment
@@ -565,7 +563,6 @@ function createUser(callback) {
         });
 
         getNLPData(userComments, function(youAre) {
-            console.log("\n\nLength of filtered array: " + youAre.length + "\n\n");
             userData.totalComments = totalCommentCount;
             userData.totalEditedComments = totalEditedCommentCount;
             userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
@@ -577,7 +574,6 @@ function createUser(callback) {
             userData.totalGilds = totalGilds;
             userData.totalWords = totalWords;
             userData.totalFlaired = totalFlaired;
-            userData.dateData = monthData; // fix
             userData.availableFrom = earliestComment*1000;
 
             adjPerVN = 100*((adjVN)/(adjVN+adjN+adjP+adjVP));
@@ -614,8 +610,7 @@ function createUser(callback) {
             var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
             userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
 
-            for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
-            {
+            for (var i = 0; i < hourTracker.length; i++) { //store comment hourly data
               userData.hour.push({
                 hour: i,
                 postsForHour: hourTracker[i],
@@ -623,16 +618,15 @@ function createUser(callback) {
               });
             }
 
-            for (var i = 0; i < dayTracker.length; i++) //store comment hourly data
-            {
+            for (var i = 0; i < dayTracker.length; i++) { //store comment hourly data
               userData.day.push({
                 day: i,
                 postsForDay: dayTracker[i],
                 commentKarmaForDay: dayScorer[i]
               });
             }
-
-            // userData.region = region;
+            timeBasedData(userComments, function() {
+                userData.dateData = monthData; // fix
 
                 getKarmaAndDate(function(scores) { /* get total karma scores and creation timestamp */
                   userData.karma.totalCommentScore = scores.comments;
@@ -648,6 +642,8 @@ function createUser(callback) {
                     });
                   });
                 });
+            });
+            // userData.region = region;  
         });
       });
 }

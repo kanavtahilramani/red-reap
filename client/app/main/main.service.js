@@ -4,10 +4,31 @@ angular.module('mainService', [])
 	var userData = {};
 	return {
 		getUserData: function() {
+			// console.log(userData);
 			return userData;
 		},
 		getUser: function(user, callback) {
 			$http.get('/api/reddit/' + user).then(function(data) {
+				data.data.negativePercentage = data.data.negativePercentage.toPrecision(3);
+                data.data.avgCommentLength = Math.floor(data.data.avgCommentLength);
+
+                if (data.data.avgEditTime < 3600) {
+                  data.data.avgEditTime = "<1 hour";
+                } else {
+                    var curAvgEditTime = Math.floor((data.data.avgEditTime)/3600);
+
+                    if (curAvgEditTime == 1) {
+                      data.data.avgEditTime = (curAvgEditTime).toString() + " hour";
+                    }
+                    else {
+                      data.data.avgEditTime = (curAvgEditTime).toString() + " hours";
+                    }
+                }
+
+                if (data.data.totalComments >= 1000) {
+                  data.data.totalComments = ">" + (data.data.totalComments).toString();
+                }
+
 				userData = data;
 				callback(data);
 			});
@@ -31,7 +52,7 @@ angular.module('mainService', [])
 			callback(arr);
 		},
 		getMetadata: function() {
-			
+
 		},
 		getAge: function(callback) {
 			const oneYearInSeconds = 31556736; /* 1 year (365.24 days) */ 
