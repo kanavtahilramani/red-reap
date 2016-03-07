@@ -24,13 +24,15 @@ var reddit = new Snoocore({
 var config = {
   'nlpPath': ('./corenlp'), //the path of corenlp
   'version':'3.5.2', //what version of corenlp are you using
-  'annotators': ['tokenize','ssplit','pos', 'lemma', 'ner','parse','sentiment','depparse','quote'], //optional!
+  'annotators': ['tokenize','ssplit','pos', 'lemma', 'ner','parse','sentiment','depparse','quote','cleanxml'], //optional!
   'extra' : {
       'depparse.extradependencie': 'MAXIMAL'
     }
 };
 
 var coreNLP = new NLP.StanfordNLP(config);
+
+var username;
 
 getRefresh().then(function(data) {
   reddit.setRefreshToken(data.refresh.toString());
@@ -51,28 +53,13 @@ function saveUser(user) {
   });
 }
 
-function checkIfDateExists(dates, currentMonth, currentYear) {
-  var index = -1;
-  dates.forEach(function(date, i) {
-    if (date.month == currentMonth && date.year == currentYear) {
-      index = i;
-    }
-  });
-  return index;
-}
-
-function createUser(req, res, callback) {
-    var userData = new User({username: req.params.username});
-    var userComments = [];
-    var dateData = [];
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-                      "July", "August", "September", "October", "November", "December"];
+function createUser(callback) {
+    var userData = new User({username: username});
+    var commentLink, isSelfPostHelper, isSelfPost, isFlaired, region;
+    var monthData = [];
     var earliestComment = Number.MAX_VALUE;
     var date, currentMonth, currentYear, currentHour, currentDay;
-    var commentLink, isSelfPostHelper, isSelfPost, isFlaired;
-    var currentCommentScore = 0,
-        currentPostCount    = 0,
-        totalCommentCount   = 0,
+    var totalCommentCount   = 0, 
         totalEditedCommentCount = 0,
         totalEditedTimeRange = 0,
         totalnsfw = 0,
@@ -80,189 +67,459 @@ function createUser(req, res, callback) {
         totalCommentsGilded = 0,
         totalGilds = 0,
         totalWords = 0,
-        totalFlaired = 0;
+        totalFlaired = 0,
+        totalSlices = 0,
+        commentsInSlice = 0,
+        counter = 0,
+        timeCounter = 0;
+
+    var sentenceCounter = 0,
+        negativeSentenceCount = 0,
+        negativeComments = [],
+        adjVN = 0,
+        adjN = 0,
+        adjP = 0,
+        adjVP = 0,
+        adjPerVN = 0,
+        adjPerN = 0,
+        adjPerP = 0,
+        adjPerVP = 0,
+        veryNegAdEx = [],
+        negAdEx = [],
+        posAdEx = [],
+        veryPosAdEx = [],
+        familyMems = [],
+        filteredArray = [],
+        userComments = [];
+
+    var done = false;
+
+    var hourTracker = new Array(24+1).join('0').split('').map(parseFloat), //24-wide array of 0s
+        hourScorer = new Array(24+1).join('0').split('').map(parseFloat), //24-wide array of 0s
+        dayTracker = new Array(7+1).join('0').split('').map(parseFloat), //7-wide array of 0s
+        dayScorer = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
 
     var editedTimes = []; //stores all times of edits
     var commentLengths = []; //store lengths of comments
     var commentSubreddits = []; //store subreddits comments are in
-    var hourTracker = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
-    var hourScorer = new Array(24+1).join('0').split('').map(parseFloat); //24-wide array of 0s
-    var dayTracker = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
-    var dayScorer = new Array(7+1).join('0').split('').map(parseFloat); //7-wide array of 0s
 
-     getUserComments(req, res, function(allComments) { /* get all user comments */
-        date = new Date(allComments[0].data.children[0].data.created_utc * 1000); /* add bounds checking */
-        currentMonth = date.getMonth();
-        currentYear = date.getFullYear();
+    function getNLPData (comments, callback) {
+      var negativeCommentCount = 0,
+          vnExCount = 0,
+          nExCount = 0,
+          pExCount = 0,
+          vpExCount = 0,
+          numCalls = 0,
+          numComments = 0,
+          currentCommentIndex = 0,
+          totalDescriptions = [],
+          descriptorSet = [],
+          copySet = [],
+          adverbExists = false,
+          adverbExistsTwo = false,
+          nonNounFound = false,
+          descriptorNounFound = false,
+          descriptorNonNounFound = false,
+          UCPadverbExists = false,
+          isFinished = false,
+          isFiltered = false,
+          counter = 0,
+          descriptor = "";
 
-        allComments.forEach(function(commentSlice) {
-          commentSlice.data.children.forEach(function(currentComment) {
-            userComments.push(currentComment.data.body);
-              if (currentComment.data.created_utc < earliestComment) {
-                earliestComment = currentComment.data.created_utc;
-              }
-
-              date = new Date(currentComment.data.created_utc * 1000);
-              if (date.getMonth() == currentMonth && date.getFullYear() == currentYear) {
-                  currentCommentScore += currentComment.data.score;
-                  currentPostCount++;
-              }
-              else if (checkIfDateExists(dateData, monthNames[currentMonth], currentYear) > -1) {
-                  var i = checkIfDateExists(dateData, monthNames[currentMonth], currentYear);
-                  dateData[i].commentKarmaForMonth += currentComment.data.score;
-                  dateData[i].postsForMonth++;
-                  currentMonth = date.getMonth();
-                  currentYear = date.getFullYear();
-                  currentCommentScore = 0;
-                  currentPostCount = 0;
-              }
-              else {
-                dateData.push({
-                                    month: monthNames[currentMonth],
-                                    date: ("0" + date.getDate()).slice(-2),
-                                    year: currentYear,
-                                    commentKarmaForMonth: currentCommentScore,
-                                    postsForMonth: currentPostCount
-                                  });
-                currentMonth = date.getMonth();
-                currentYear = date.getFullYear();
-                currentCommentScore = 0;
-                currentPostCount = 0;
-              }
-
-              currentHour = date.getHours(); //get UTC hour comment was posted
-              hourTracker[currentHour]++; //increment count for that hour
-              hourScorer[currentHour] += currentComment.data.score; //add comment's score to running total for hour
-
-              currentDay = date.getDay(); //get day 0-6
-              dayTracker[currentDay]++; //increment count for that day
-              dayScorer[currentDay] += currentComment.data.score; //add comment's score to running total for day
-
-              totalCommentCount++; //track total number of comments
-              if (currentComment.data.edited != false)
-              {
-                if (currentComment.data.edited != true) //certain old comments only have 'true' stored
-                {
-                  totalEditedCommentCount++; //add to count of edited comments
-                  totalEditedTimeRange += currentComment.data.edited - currentComment.data.created_utc; //add time difference of last edit
-                  editedTimes.push(currentComment.data.edited - currentComment.data.created_utc); //store it for later
+      function getSentimentData (currentWord, currentComment) {
+          if (currentWord.POS == 'JJ'|| currentWord.POS == 'JJR' || currentWord.POS == 'JJS') {
+              if (currentWord.sentiment== "Very negative"){
+                if (vnExCount<=20){
+                  vnExCount++;
+                  veryNegAdEx.push({adjective: currentWord.word});
                 }
+                adjVN++;
               }
+              if (currentWord.sentiment== "Negative"){
+                if (nExCount<=20){
+                  nExCount++;
+                  negAdEx.push({adjective: currentWord.word});
+                }
+                adjN++;
+              }
+              if (currentWord.sentiment== "Positive"){
+                if (pExCount<=20){
+                  pExCount++;
+                  posAdEx.push({adjective: currentWord.word});
+                }
+                adjP++;
+              }
+              if (currentWord.sentiment== "Very positive"){
+                if (vpExCount<=20){
+                  vpExCount++;
+                  veryPosAdEx.push({adjective: currentWord.word});
+                }
+                adjVP++;
+              }
+          }
 
-              //Track some comment metadata
-              if (currentComment.data.over_18 == true)
-              {
-                totalnsfw++; //add to count of nsfw comments
+          if (currentWord.sentiment == "Very negative") {
+              if (negativeCommentCount < 3) {
+                negativeComments.push({content: currentComment, trigger: currentWord.word});
+                negativeCommentCount++;
               }
-              if (currentComment.data.controversiality > 0)
-              {
-                totalControversial++; //add to count of controversial comments
-              }
-              if (currentComment.data.gilded > 0)
-              {
-                totalGilds += currentComment.data.gilded; //add number of gilds for this comment
-                totalCommentsGilded++; //increase count of comments gilded at least once
-              }
-              if (currentComment.data.author_flair_css_class != null)
-              {
-                totalFlaired++;
-                isFlaired = 1;
-              }
-              else
-              {
-                isFlaired = 0;
-              }
+              negativeSentenceCount++;
+              return;
+          }
+      }
 
-              totalWords += Math.round(currentComment.data.body.toString().length / 5); //approx. word count tracking
-              commentLengths.push(currentComment.data.body.toString().length); //store length of current comment
-              commentSubreddits.push(currentComment.data.subreddit.toString()); //store subreddit comment is in
+      // change all tokenizedcomment
+      //start by using parsedTree as tier for top call to FindYouAre
+      function FindYouAre(tier, toBeId, onTheHunt) {
+        numCalls++;
+        if (tier.type == "NP " && onTheHunt) {
+          //console.log("found NP and onTheHunt");
+          //if i have grandchildren, call on my children
+        
+         //console.log("Non terminal NP, calling on children");
+            tier.children.forEach(function(childTwo) {
+                FindYouAre(childTwo, toBeId, true);
+            });
+            numCalls--;
+            if (numCalls === 0) {
+              isFinished = true;
+              return;
+            }
+            else
+              return;
+        }
 
-              commentLink = currentComment.data.link_url.toString();
-              isSelfPostHelper = commentLink.search("/comments/"); //if the URL has '/comments/' in it, then it's almost certainly a selfpost
-              //value will be -1 if a normal link, some integer otherwise
-              if (isSelfPostHelper > 0) //simplify to yes/no value
-              {
-                isSelfPost = 1;
-              }
-              else
-              {
-                isSelfPost = 0;
-              }
+         if (tier.type == "NP" && onTheHunt) {
+           //console.log("This is the terminal NP saving");
+            descriptorNounFound = false;
+            descriptorNonNounFound = false;
+            
+            tier.children.forEach(function(description, index) {
+                if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
+                    descriptorNounFound = true;
+                    }
+                
+                else if(descriptorNounFound){
+                    descriptorNonNounFound = true;
+                }
 
-              //store metadata on each comment
-              userData.comMeta.push({
-                subreddit: currentComment.data.subreddit.toString(),
-                link: commentLink,
-                linkType: isSelfPost,
-                length: currentComment.data.body.toString().length,
-                gilded: currentComment.data.gilded,
-                flaired: isFlaired,
-                hour: currentHour,
-                day: currentDay,
-                month: currentMonth,
-                year: currentYear
+                if (!descriptorNonNounFound){
+                    descriptor += description.children[0].word;
+                    descriptor += " ";
+                }
+            });
+            // console.log("\n\n" + descriptor + "\n\n");
+            descriptorSet.push(descriptor);              
+            descriptor = "";
+            descriptorNounFound = false;
+            descriptorNonNounFound = false;
+            numCalls--;
+
+            if (numCalls === 0) {
+              isFinished = true;
+              return;
+            }
+            else
+              return;
+          }
+
+          if ((tier.type == "VP") && (tier.children[0].children[0].id == toBeId)){
+             // console.log("found VP with matching id");
+              tier.children.forEach(function(child){
+                FindYouAre(child, toBeId, true);
               });
-          });
+              numCalls--;
+
+              if (numCalls === 0) {
+                isFinished = true;
+                return;
+              }
+              else
+                return;
+          }
+          
+          else if (tier.children[0].hasOwnProperty('children')) {
+              tier.children.forEach(function(childThree){
+                FindYouAre(childThree, toBeId, false);
+              });
+              numCalls--;
+
+              if (numCalls === 0) {
+                isFinished = true;
+                return;
+              }
+              else
+                return;
+          }
+
+          else {
+            numCalls--;
+
+            if (numCalls === 0) {
+              isFinished = true;
+              return;
+            }
+            else
+              return;
+          }
+        }
+
+        function getFamilyMembers (currentWord, nextWord) {
+            if (currentWord.word == "My" || currentWord.word == "my") {
+                if (nextWord.word=="mom" ||
+                    nextWord.word=="Mom" ||
+                    nextWord.word=="Dad" ||
+                    nextWord.word=="dad" ||
+                    nextWord.word=="sister" ||
+                    nextWord.word=="Sister" ||
+                    nextWord.word=="brother" ||
+                    nextWord.word=="Brother" ||
+                    nextWord.word=="Dog" ||
+                    nextWord.word=="dog" ||
+                    nextWord.word=="daughter" ||
+                    nextWord.word=="Daughter" ||
+                    nextWord.word=="Son" ||
+                    nextWord.word=="son" ||
+                    nextWord.word=="Cat" ||
+                    nextWord.word=="cat" 
+                    ) {
+                      familyMems.push(nextWord.word);
+                }
+            }
+        }
+
+        // add to other cases (multiple sentences, etc)
+
+        comments.forEach(function(currentComment, commentIndex) {
+            coreNLP.process(currentComment, function(err, result) {
+            if (Array.isArray(result.document.sentences.sentence)) {
+              result.document.sentences.sentence.forEach(function(x) {
+                  sentenceCounter = sentenceCounter + 1;
+                  if (Array.isArray(x.tokens.token)) {
+                      x.tokens.token.forEach(function(y, index) {
+                          if (index < x.tokens.token.length -1) {
+                            getFamilyMembers(y, x.tokens.token[index+1]);
+                          }
+                        
+                          //checking and counting sentiment if its an adjective
+                          if (y.word == 'I' || y.word == 'i') {
+                              if (index < x.tokens.token.length-2) {
+                                  if ((x.tokens.token[index+1].lemma == "be") && (x.tokens.token[index+2].lemma != "not")) {
+                                      // console.log("\n\n"+currentComment + "\n\n")
+                                      FindYouAre(x.parsedTree, parseInt(x.tokens.token[index+1].$.id), false);
+                                      //console.log("finished finding you are's");
+                                  }
+                              }
+                          }
+                          else {
+                            isFinished = true;
+                          }
+                          getSentimentData(y, currentComment);
+                      });
+                  }
+                  else {
+                    getSentimentData(x.tokens.token, currentComment);
+                  }
+              });
+            }
+            else {
+                sentenceCounter = sentenceCounter + 1;
+
+                if (Array.isArray(result.document.sentences.sentence.tokens.token)) {
+                    result.document.sentences.sentence.tokens.token.forEach(function(z) {
+                        getSentimentData(z, currentComment);
+                    });
+                }
+
+                else {
+                    getSentimentData(result.document.sentences.sentence.tokens.token, currentComment);
+                }
+
+                isFinished = true;
+            }
+            
+            if (isFinished) {
+                counter++;
+                isFinished = false;
+
+                if (counter == comments.length) {
+                    if (descriptorSet.length > 0) {
+                        descriptorSet.forEach(function(identifier, identifierIndex) {
+                            console.log("before filter: " + identifier + "\n");
+                            coreNLP.process(identifier, function(err, tokenziedIdentifier) {
+                                if (Array.isArray(tokenziedIdentifier.document.sentences.sentence.tokens.token)) {
+                                    if (tokenziedIdentifier.document.sentences.sentence.tokens.token[0].POS == "DT") {
+                                        console.log("after filter: " + identifier.substring(parseInt(tokenziedIdentifier.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1) + "\n");
+                                        filteredArray.push(identifier.substring(parseInt(tokenziedIdentifier.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1));
+                                    }
+                                    else {
+                                        filteredArray.push(identifier);
+                                    }
+                                }
+                                if (identifierIndex == (descriptorSet.length-1)) {
+                                    console.log("\n\n" + "DONE!" + "\n\n");
+                                    callback(filteredArray);
+                                    return;
+                                }
+                            });
+                        });
+                    }
+                    else {
+                        console.log("\n\n" + "EMPTY!" + "\n\n");
+                        callback(filteredArray);
+                        return;
+                    }
+                }
+            }
         });
+      });
+    }
 
-        userData.totalComments = totalCommentCount;
-        userData.totalEditedComments = totalEditedCommentCount;
-        userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
-        editedTimes.sort(); //sort lowest to highest
-        userData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
-        userData.nsfwComments = totalnsfw;
-        userData.controversialComments = totalControversial;
-        userData.gildedComments = totalCommentsGilded;
-        userData.totalGilds = totalGilds;
-        userData.totalWords = totalWords;
-        userData.totalFlaired = totalFlaired;
+    function timeBasedData(currentComment) {
+        var currentCommentScore = 0,
+            currentPostCount    = 0;
 
-        var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
-        userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
+        timeCounter++;
 
-        for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
-        {
-          userData.hour.push({
-            hour: i,
-            postsForHour: hourTracker[i],
-            commentKarmaForHour: hourScorer[i]
-          });
+        function checkIfDateExists(dates, currentMonth, currentYear) {
+            var index = -1;
+            dates.forEach(function(date, i) {
+              if (date.month == currentMonth && date.year == currentYear) {
+                index = i;
+              }
+            });
+            return index;
         }
 
-        for (var i = 0; i < dayTracker.length; i++) //store comment hourly data
-        {
-          userData.day.push({
-            day: i,
-            postsForDay: dayTracker[i],
-            commentKarmaForDay: dayScorer[i]
-          });
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+                          "July", "August", "September", "October", "November", "December"];
+            
+        if (currentComment.data.created_utc < earliestComment) {
+          earliestComment = currentComment.data.created_utc;
         }
 
-        ///////////////////////////////////////////////
-        //Estimating Region Section
+        date = new Date(currentComment.data.created_utc * 1000);
+        
+        if (timeCounter == 1) {
+            currentMonth = date.getMonth();
+            currentYear = date.getFullYear();
+        }
+
+        if (date.getMonth() == currentMonth && date.getFullYear() == currentYear) {
+            currentCommentScore += currentComment.data.score;
+            currentPostCount++;
+        }
+        else if (checkIfDateExists(monthData, monthNames[currentMonth], currentYear) > -1) {
+            var i = checkIfDateExists(monthData, monthNames[currentMonth], currentYear);
+            monthData[i].commentKarmaForMonth += currentComment.data.score;
+            monthData[i].postsForMonth++;
+            currentMonth = date.getMonth();
+            currentYear = date.getFullYear();
+            currentCommentScore = 0;
+            currentPostCount = 0;
+        }
+        else {
+          monthData.push({
+                              month: monthNames[currentMonth],
+                              date: ("0" + date.getDate()).slice(-2),
+                              year: currentYear,
+                              commentKarmaForMonth: currentCommentScore,
+                              postsForMonth: currentPostCount
+                            });
+          currentMonth = date.getMonth();
+          currentYear = date.getFullYear();
+          // console.log("\nCurrent Month: " + currentMonth + "\nCurrent Year: " + currentYear + "\nCurrent Comment Score: " + currentCommentScore + "\nCurrent Post Count: " + currentPostCount + "\n");
+          currentCommentScore = 0;
+          currentPostCount = 0;
+        }
+
+
+        currentHour = date.getHours(); //get UTC hour comment was posted
+        hourTracker[currentHour]++; //increment count for that hour
+        hourScorer[currentHour] += currentComment.data.score; //add comment's score to running total for hour
+
+        currentDay = date.getDay(); //get day 0-6
+        dayTracker[currentDay]++; //increment count for that day
+        dayScorer[currentDay] += currentComment.data.score; //add comment's score to running total for day
+
+        totalCommentCount++; //track total number of comments
+    }
+
+    function getMetadata (currentComment) {
+        if (currentComment.data.edited != false)
+        {
+          if (currentComment.data.edited != true) //certain old comments only have 'true' stored
+          {
+            totalEditedCommentCount++; //add to count of edited comments
+            totalEditedTimeRange += currentComment.data.edited - currentComment.data.created_utc; //add time difference of last edit
+            editedTimes.push(currentComment.data.edited - currentComment.data.created_utc); //store it for later
+          }
+        }
+
+        //Track some comment metadata
+        if (currentComment.data.over_18 == true)
+        {
+          totalnsfw++; //add to count of nsfw comments
+        }
+        if (currentComment.data.controversiality > 0)
+        {
+          totalControversial++; //add to count of controversial comments
+        }
+        if (currentComment.data.gilded > 0)
+        {
+          totalGilds += currentComment.data.gilded; //add number of gilds for this comment
+          totalCommentsGilded++; //increase count of comments gilded at least once
+        }
+        if (currentComment.data.author_flair_css_class != null)
+        {
+          totalFlaired++;
+          isFlaired = 1;
+        }
+        else
+        {
+          isFlaired = 0;
+        }
+
+        totalWords += Math.round(currentComment.data.body.toString().length / 5); //approx. word count tracking
+        commentLengths.push(currentComment.data.body.toString().length); //store length of current comment
+        commentSubreddits.push(currentComment.data.subreddit.toString()); //store subreddit comment is in
+
+        commentLink = currentComment.data.link_url.toString();
+        isSelfPostHelper = commentLink.search("/comments/"); //if the URL has '/comments/' in it, then it's almost certainly a selfpost
+        //value will be -1 if a normal link, some integer otherwise
+        if (isSelfPostHelper > 0) //simplify to yes/no value
+        {
+          isSelfPost = 1;
+        }
+        else
+        {
+          isSelfPost = 0;
+        }
+    }
+    
+    function getEstimatedRegion() {
         //Highest activity hours: 7-9PM, lowest: 4-6AM
         var maxActivity, minActivity, maxActivityHours, minActivityHours, maxActivityAvg, minActivityAvg;
-        var region;
 
         function getAllIndexes(arr, val) {
             var indexes = [], i;
-            for(i = 0; i < arr.length; i++)
+
+            for(i = 0; i < arr.length; i++) {
                 if (arr[i] === val)
-                    indexes.push(i);
+                  indexes.push(i);
+            }
+
             return indexes;
         }
 
         maxActivityHours = getAllIndexes(hourTracker, Math.max.apply(Math, hourTracker));
         minActivityHours = getAllIndexes(hourTracker, Math.min.apply(Math, hourTracker));
 
-        //console.log(maxActivityHours + " " + minActivityHours);
-
         var maxSum = maxActivityHours.reduce(function(a, b) { return a + b; });
         maxActivity = maxSum / maxActivityHours.length; //get max avg value hour from array
         var minSum = minActivityHours.reduce(function(a, b) { return a + b; });
         minActivity = minSum / minActivityHours.length; //get min
 
-        //console.log(maxActivity + " " + minActivity);
 
         if (maxActivity <= 23 && maxActivity >= 16 && minActivity >= 3 && minActivity <= 9)
         {
@@ -280,484 +537,119 @@ function createUser(req, res, callback) {
         {
           region = "Uncertain";
         }
+    }
 
-        userData.region = region;
-        ////////////////////////////////////////////////
+     getUserComments(function(allComments) { /* get all user comments */
+        totalSlices = allComments.length;
+        allComments.forEach(function(commentSlice) {
+          commentsInSlice = commentSlice.data.children.length;
+          commentSlice.data.children.forEach(function(currentComment) {
+              userComments.push(currentComment.data.body);
+              timeBasedData(currentComment);
+              getMetadata(currentComment);
 
-        positivity(userComments, function(sentenceCount, negativeSentenceCounts, negativeSample, vnAdjs, nAdjs, pAdjs, vpAdjs, exVN, exN, exP, exVP, vnPerin, nPerin, pPerin, vpPerin, iAm, membersOfFamily) {
-            userData.data = dateData;
-            userData.availableFrom = earliestComment*1000;
-            userData.negativePercentage = (negativeSentenceCounts / sentenceCount).toPrecision(3) * 100;
-            userData.negativeExample = negativeSample;
-            
-            userData.veryNegativeAdjs = vnAdjs;
-            userData.negativeAdjs = nAdjs;
-            userData.positiveAdjs = pAdjs;
-            userData.veryPositiveAdjs = vpAdjs;
-            userData.vnEx = exVN;
-            userData.nEx = exN;
-            userData.pEx = exP;
-            userData.vpEx = exVP;
-            userData.vnPer = vnPerin.toPrecision(3);
-            userData.nPer = nPerin.toPrecision(3);
-            userData.pPer = pPerin.toPrecision(3);
-            userData.vpPer = vpPerin.toPrecision(3);
-            userData.descriptions = iAm;
-            userData.familyMembers = membersOfFamily;
-
-            getKarmaAndDate(req, res, function(scores) { /* get total karma scores and creation timestamp */
-              userData.karma.totalCommentScore = scores.comments;
-              userData.karma.totalLinkScore = scores.submissions;
-              userData.creationTime = (scores.created)*1000;
-
-              getTopComment(req, res, function(topComment)
-              {
-                userData.topComment = topComment;
-                getTopSubmission(req, res, function(topSubmission)
-                {
-                  userData.topSubmission = topSubmission;
-                  callback(userData);
-                });
-              });
-            });      
-          });
-      });
-}
-
-
-
-
-function positivity (comments, callback) {
-    var sentenceCounter = 0,
-        negativeSentenceCount = 0,
-        negativeCommentCount = 0,
-        negativeComments = [],
-        veryNegAdEx = [],
-        negAdEx = [],
-        posAdEx = [],
-        veryPosAdEx = [],
-        adjVN = 0,
-        adjN = 0,
-        adjP = 0,
-        adjVP = 0,
-        adjPerVN = 0,
-        adjPerN = 0,
-        adjPerP = 0,
-        adjPerVP = 0,
-        vnExCount = 0,
-        nExCount = 0,
-        pExCount = 0,
-        vpExCount = 0,
-        descriptor = "",
-        totalDescriptions = [],
-        adverbExists = false,
-        adverbExistsTwo = false,
-        nonNounFound = false,
-        descriptorNounFound = false,
-        descriptorNonNounFound = false,
-        familyMems = [],
-        descriptorSet = [],
-        UCPadverbExists = false,
-        isFinished = false,
-        numCalls = 0,
-        numComments = 0,
-        currentCommentIndex = 0;
-
-        //start by using parsedTree as tier for top call to FindYouAre
-        function FindYouAre(tier, toBeId, onTheHunt){
-          numCalls++;
-          //console.log("FindYouAre is called");
-          if (tier.type == "NP " && onTheHunt){
-            //console.log("found NP and onTheHunt");
-            //if i have grandchildren, call on my children
-            
-             //console.log("Non terminal NP, calling on children");
-                tier.children.forEach(function(childTwo){
-                    FindYouAre(childTwo, toBeId, true);
-                });
-                numCalls--;
-                if (numCalls === 0 && currentCommentIndex == numComments-1) {
-                  isFinished = true;
-                  return;
-                }
-                return;
-            }
-
-             if (tier.type == "NP" && onTheHunt){
-             //console.log("This is the terminal NP saving");
-              descriptorNounFound = false;
-              descriptorNonNounFound = false;
-              
-              tier.children.forEach(function(description, index) {
-                  if (description.type == "NN" || description.type == "NNP" || description.type == "NNPS" || description.type == "NNS"){
-                      descriptorNounFound = true;          
-                      }
-                  
-                  else if(descriptorNounFound){
-                      descriptorNonNounFound = true;
-                  }
-
-                  if (!descriptorNonNounFound){
-                      descriptor += description.children[0].word;
-                      descriptor += " ";
-                  }
-              });
-              console.log("\n\n" + descriptor + "\n\n");
-              descriptorSet.push(descriptor);              
-              descriptor = "";
-              descriptorNounFound = false;
-              descriptorNonNounFound = false;
-              isFinished = true;
-              numCalls--;
-              if (numCalls === 0 && currentCommentIndex == numComments-1) {
-                isFinished = true;
-                return;
-              }
-              return;
-              }
-
-          
-
-          
-          if ((tier.type == "VP") && (tier.children[0].children[0].id == toBeId)){
-             console.log("found VP with matching id");
-              tier.children.forEach(function(child){
-                FindYouAre(child, toBeId, true);
-              });
-              numCalls--;
-              if (numCalls === 0 && currentCommentIndex == numComments-1) {
-                isFinished = true;
-                return;
-              }
-              return;
-          }
-
-
-
-          
-          else if (tier.children[0].hasOwnProperty('children')){
-              tier.children.forEach(function(childThree){
-                FindYouAre(childThree, toBeId, false);
-              });
-              numCalls--;
-              if (numCalls === 0 && currentCommentIndex == numComments-1) {
-                isFinished = true;
-                return;
-              }
-              return;
-          }
-
-          else{
-            numCalls--;
-            if (numCalls === 0 && currentCommentIndex == numComments-1) {
-              isFinished = true;
-              return;
-            }
-            return;  
-          }
-        }
-
-        numComments = comments.length;
-
-    comments.forEach(function(currentComment, i) {
-        currentCommentIndex = i;
-        coreNLP.process(currentComment, function(err, result) {
-          
-          if (Array.isArray(result.document.sentences.sentence)) {
-            result.document.sentences.sentence.forEach(function(x) {
-                sentenceCounter = sentenceCounter + 1;
-                if (Array.isArray(x.tokens.token)) {
-                    x.tokens.token.forEach(function(y, index) {
-
-                      //family member detection
-                      if (index < x.tokens.token.length -1){  
-                        if (y.word == "My" || y.word == "my"){
-                          if (x.tokens.token[index+1].word=="mom" ||
-                              x.tokens.token[index+1].word=="Mom" ||
-                              x.tokens.token[index+1].word=="Dad" ||
-                              x.tokens.token[index+1].word=="dad" ||
-                              x.tokens.token[index+1].word=="sister" ||
-                              x.tokens.token[index+1].word=="Sister" ||
-                              x.tokens.token[index+1].word=="brother" ||
-                              x.tokens.token[index+1].word=="Brother" ||
-                              x.tokens.token[index+1].word=="Dog" ||
-                              x.tokens.token[index+1].word=="dog" ||
-                              x.tokens.token[index+1].word=="daughter" ||
-                              x.tokens.token[index+1].word=="Daughter" ||
-                              x.tokens.token[index+1].word=="Son" ||
-                              x.tokens.token[index+1].word=="son" ||
-                              x.tokens.token[index+1].word=="Cat" ||
-                              x.tokens.token[index+1].word=="cat" 
-                              ){
-                              familyMems.push(x.tokens.token[index+1].word);
-
-                            }
-                        } 
-                      }
-
-
-
-
-
-                        //checking and counting sentiment if its an adjective
-                        if (y.word == 'I' || y.word == 'i') {
-                            if (index < x.tokens.token.length-2) {
-                                if ((x.tokens.token[index+1].lemma == "be") && (x.tokens.token[index+2].lemma != "not")) {
-                     
-
-                                    console.log("\n\n"+currentComment + "\n\n")
-
-                                    FindYouAre(x.parsedTree, parseInt(x.tokens.token[index+1].$.id), false);
-
-                                    //console.log("finished finding you are's");
-
-                                }
-                            }
-                        }
-
-                        if (y.POS == 'JJ'|| y.POS == 'JJR' || y.POS == 'JJS'){
-                            if (y.sentiment== "Very negative"){
-                              if (vnExCount<=20){
-                                vnExCount++;
-                                veryNegAdEx.push({adjective: y.word});
-                              }
-                              adjVN++;
-                            }
-                            if (y.sentiment== "Negative"){
-                              if (nExCount<=20){
-                                nExCount++;
-                                negAdEx.push({adjective: y.word});
-                              }
-                              adjN++;
-                            }
-                            if (y.sentiment== "Positive"){
-                              if (pExCount<=20){
-                                pExCount++;
-                                posAdEx.push({adjective: y.word});
-                              }
-                              adjP++;
-                            }
-                            if (y.sentiment== "Very positive"){
-                              if (vpExCount<=20){
-                                vpExCount++;
-                                veryPosAdEx.push({adjective: y.word});
-                              }
-                              adjVP++;
-                            }
-
-                        }
-
-                        if (y.sentiment == "Very negative") {
-                            if (negativeCommentCount < 3) {
-                              negativeComments.push({content: currentComment, trigger: y.word});
-                              negativeCommentCount++;
-                            }
-                            negativeSentenceCount++;
-                            return;
-                        }
-                        // console.log(y.sentiment + 1);
-                    });
-                }
-                else {
-                  //checking and counting sentiment if its an adjective
-                  if (x.tokens.token.POS == 'JJ' || x.tokens.token.POS == 'JJR' || x.tokens.token.POS == 'JJS'){
-                      if (x.tokens.token.sentiment== "Very negative"){
-                        if (vnExCount<=20){
-                          vnExCount++;
-                          veryNegAdEx.push({adjective: x.tokens.token.word});
-                          }
-                        adjVN++;
-                      }
-                      if (x.tokens.token.sentiment== "Negative"){
-                        if (nExCount<=20){
-                          nExCount++;
-                          negAdEx.push({adjective: x.tokens.token.word});
-                        }
-                        adjN++;
-                      }
-                      if (x.tokens.token.sentiment== "Positive"){
-                        if (pExCount<=20){
-                          pExCount++;
-                          posAdEx.push({adjective: x.tokens.token.word});
-                        }
-                        adjP++;
-                      }
-                      if (x.tokens.token.sentiment== "Very positive"){
-                        if (vpExCount<=20){
-                          vpExCount++;
-                          veryPosAdEx.push({adjective: x.tokens.token.word});
-                          }
-                        adjVP++;
-                      }
-
-                  }
-                  if (x.tokens.token.sentiment == "Very negative") {
-                      if (negativeCommentCount < 3) {
-                              negativeComments.push({content: currentComment, trigger: x.tokens.token.word});
-                              negativeCommentCount++;
-                      }
-                      negativeSentenceCount++;
-                  }
-                }
+              //store metadata on each comment
+              userData.comMeta.push({
+                subreddit: currentComment.data.subreddit.toString(),
+                link: commentLink,
+                linkType: isSelfPost,
+                length: currentComment.data.body.toString().length,
+                gilded: currentComment.data.gilded,
+                flaired: isFlaired,
+                hour: currentHour,
+                day: currentDay,
+                month: currentMonth,
+                year: currentYear
             });
-          }
-          else {
-              sentenceCounter = sentenceCounter + 1;
+          });
+        });
 
-              if (Array.isArray(result.document.sentences.sentence.tokens.token)) {
-                  result.document.sentences.sentence.tokens.token.forEach(function(z) {
-                      if (z.POS == 'JJ' || z.POS == 'JJR' || z.POS == 'JJS'){
-                          if (z.sentiment== "Very negative"){
-                            if (vnExCount<=20){
-                              vnExCount++;
-                              veryNegAdEx.push({adjective: z.word});
-                            }
-                            adjVN++;
-                          }
-                          if (z.sentiment== "Negative"){
-                            if (nExCount<=20){
-                              nExCount++;
-                              negAdEx.push({adjective: z.word});
-                            }
-                            adjN++;
-                          }
-                          if (z.sentiment== "Positive"){
-                            if (pExCount<=20){
-                              pExCount++;
-                              posAdEx.push({adjective: z.word});
-                            }
-                            adjP++;
-                          }
-                          if (z.sentiment== "Very positive"){
-                            if (vpExCount<=20){
-                              vpExCount++;
-                              veryPosAdEx.push({adjective: z.word});
-                            }
-                            adjVP++;
-                          }
+        getNLPData(userComments, function(youAre) {
+            console.log("\n\nLength of filtered array: " + youAre.length + "\n\n");
+            userData.totalComments = totalCommentCount;
+            userData.totalEditedComments = totalEditedCommentCount;
+            userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
+            editedTimes.sort(); //sort lowest to highest
+            userData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
+            userData.nsfwComments = totalnsfw;
+            userData.controversialComments = totalControversial;
+            userData.gildedComments = totalCommentsGilded;
+            userData.totalGilds = totalGilds;
+            userData.totalWords = totalWords;
+            userData.totalFlaired = totalFlaired;
+            userData.dateData = monthData; // fix
+            userData.availableFrom = earliestComment*1000;
 
-                      }
-                      if (z.sentiment == "Very negative") {
-                        if (negativeCommentCount < 3) {
-                              negativeComments.push({content: currentComment, trigger: z.word});
-                              negativeCommentCount++;
-                        }
-                        negativeSentenceCount++;
-                        return;
-                      }
-                  });
-              }
-              else {
-                  if (result.document.sentences.sentence.tokens.token.POS == 'JJ' || result.document.sentences.sentence.tokens.token.POS == 'JJR' || result.document.sentences.sentence.tokens.token.POS == 'JJS'){
-                          if (result.document.sentences.sentence.tokens.token.sentiment== "Very negative"){
-                            if (vnExCount<=20){
-                              vnExCount++;
-                              veryNegAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
-                            }
-                            adjVN++;
-                          }
-                          if (result.document.sentences.sentence.tokens.token.sentiment== "Negative"){
-                            if (nExCount<=20){
-                              nExCount++;
-                              negAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
-                            }
-                            adjN++;
-                          }
-                          if (result.document.sentences.sentence.tokens.token.sentiment== "Positive"){
-                            if (pExCount<=20){
-                              pExCount++;
-                              posAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
-                            }
-                            adjP++;
-                          }
-                          if (result.document.sentences.sentence.tokens.token.sentiment== "Very positive"){
-                            if (vpExCount<=20){
-                              vpExCount++;
-                              veryPosAdEx.push({adjective: result.document.sentences.sentence.tokens.token.word});
-                            }
-                            adjVP++;
-                          }
+            adjPerVN = 100*((adjVN)/(adjVN+adjN+adjP+adjVP));
+            adjPerN = 100*((adjN)/(adjVN+adjN+adjP+adjVP));
+            adjPerP = 100*((adjP)/(adjVN+adjN+adjP+adjVP));
+            adjPerVP = 100*((adjVP)/(adjVN+adjN+adjP+adjVP));
 
-                      }
-                  if (result.document.sentences.sentence.tokens.token.sentiment == "Very negative") {
-                      if (negativeCommentCount < 3) {
-                            nnegativeComments.push({content: currentComment, trigger: result.document.sentences.sentence.tokens.token.word});
-                            negativeCommentCount++;
-                      }
-                      negativeSentenceCount++;
-                  }
-              }
-          }
-          if (i === comments.length-1) {
-          console.log("\n\ncallback time\n\n" + i);
+            if (negativeSentenceCount > 0 && sentenceCounter > 0) {
+                userData.negativePercentage = (negativeSentenceCount / sentenceCounter).toPrecision(3) * 100;
+            }
 
-          adjPerVN = 100*((adjVN)/(adjVN+adjN+adjP+adjVP)); 
-          adjPerN = 100*((adjN)/(adjVN+adjN+adjP+adjVP));
-          adjPerP = 100*((adjP)/(adjVN+adjN+adjP+adjVP));
-          adjPerVP = 100*((adjVP)/(adjVN+adjN+adjP+adjVP));
-          //callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP);
-          //return;
+            userData.negativeExample = negativeComments;
+            userData.veryNegativeAdjs = adjVN;
+            userData.negativeAdjs = adjN;
+            userData.positiveAdjs = adjP;
+            userData.veryPositiveAdjs = adjVP;
+            userData.vnEx = veryNegAdEx;
+            userData.nEx = negAdEx;
+            userData.pEx = posAdEx;
+            userData.vpEx = veryPosAdEx;
 
-          var temporaryString = "",
-          filteredArray = [];
-          if (descriptorSet.length > 0 && isFinished) {
-            descriptorSet.forEach(function(currentExample, ix){
-                console.log("descriptor:" + currentExample); 
-                coreNLP.process(currentExample, function(err, currentPos){
+            if (adjPerVN)
+              userData.vnPer = adjPerVN.toPrecision(3);
+            if (adjPerN)
+              userData.nPer = adjPerN.toPrecision(3);
+            if (adjPerP)
+              userData.pPer = adjPerP.toPrecision(3);
+            if (adjPerVP)
+              userData.vpPer = adjPerVP.toPrecision(3);
 
+            userData.descriptions = youAre;
+            userData.familyMembers = familyMems;
 
-                  if (Array.isArray(currentPos.document.sentences.sentence.tokens.token)){
+            var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
+            userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
 
-                      if (currentPos.document.sentences.sentence.tokens.token[0].POS == "DT"){
-                  
-                       filteredArray.push(currentExample.substring(parseInt(currentPos.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1));
-                 
-                       }
+            for (var i = 0; i < hourTracker.length; i++) //store comment hourly data
+            {
+              userData.hour.push({
+                hour: i,
+                postsForHour: hourTracker[i],
+                commentKarmaForHour: hourScorer[i]
+              });
+            }
 
-                  if (currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NN" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNP" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNPS" && currentPos.document.sentences.sentence.tokens.token[currentPos.document.sentences.sentence.tokens.token.length-1].POS != "NNS"){
+            for (var i = 0; i < dayTracker.length; i++) //store comment hourly data
+            {
+              userData.day.push({
+                day: i,
+                postsForDay: dayTracker[i],
+                commentKarmaForDay: dayScorer[i]
+              });
+            }
 
-                     // descriptorSet.splice(ix, 1);
-                     }
+            // userData.region = region;
 
-                  }
-                
-                  
-                  //console.log("Descriptor: " + currentExample + "a\n");
-                    
+                getKarmaAndDate(function(scores) { /* get total karma scores and creation timestamp */
+                  userData.karma.totalCommentScore = scores.comments;
+                  userData.karma.totalLinkScore = scores.submissions;
+                  userData.creationTime = (scores.created)*1000;
 
-
-
-                    if (ix == descriptorSet.length-1){
-                        filteredArray.forEach(function(thisWord, indexTwo){
-                          console.log("After: " + thisWord + "\n");
-                          filteredArray.forEach(function(otherWords,j){
-                              if (otherWords==thisWord && j!= indexTwo){
-                                filteredArray.splice(j, 1);
-                              }
-                          });
-                          if (indexTwo==filteredArray.length-1){
-                            callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP, filteredArray, familyMems);
-                          return;
-                          }
-                        });
-
-
-
-                        }
+                  getTopComment(function(topComment) {
+                    userData.topComment = topComment;
+                    getTopSubmission(function(topSubmission) {
+                      userData.topSubmission = topSubmission;
+                      callback(userData);
+                      return;
+                    });
                   });
                 });
-              }
-              else if (descriptorSet.length <= 0 && isFinished) {
-                console.log("returning from positivity");
-                callback(sentenceCounter, negativeSentenceCount, negativeComments, adjVN, adjN, adjP, adjVP, veryNegAdEx, negAdEx, posAdEx, veryPosAdEx, adjPerVN, adjPerN, adjPerP, adjPerVP, filteredArray, familyMems);
-                return;
-              }
-          }
-      }); 
-  
-    });
-
-    return;
+        });
+      });
 }
 
 // '/api/reddit/:username/'
@@ -768,7 +660,8 @@ export function checkUser (req, res) {
       }
 
       else {
-        createUser(req, res, function(user) {
+        username = req.params.username;
+        createUser(function(user) {
           console.log("\n\nSaving.\n\n");
           saveUser(user);
           return res.send(user);
@@ -777,17 +670,19 @@ export function checkUser (req, res) {
   });
 }
 
-export function getKarmaAndDate (req, res, callback) {
-  reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
+export function getKarmaAndDate (callback) {
+  reddit('/user/' + username + '/about/').get().then(function(response) {
     var details = {};
     details.comments = parseInt(response.data.comment_karma);
     details.submissions = parseInt(response.data.link_karma);
     details.created = parseInt(response.data.created_utc);
     callback(details);
+    return;
   });
+  // how does outer return work
 }
 
-export function getUserComments (req, res, callback) {
+export function getUserComments (callback) {
   function loop(slice, prevComment) {
     if (slice.data.children.length < 100 || i >= 10) {
       callback(slices);
@@ -806,7 +701,6 @@ export function getUserComments (req, res, callback) {
   }
 
   var slices = [];
-  var username = req.params.username;
   var i = 1;
 
   reddit('/user/' + username + '/comments/').get({ limit: 100 }).then(function(firstSlice) {
@@ -818,8 +712,8 @@ export function getUserComments (req, res, callback) {
   });  
 }
 
-export function getTopComment (req, res, callback) {
-      reddit('/user/' + req.params.username + '/comments/').get({
+export function getTopComment (callback) {
+      reddit('/user/' + username + '/comments/').get({
         limit: 1,
         sort: 'top'
       }).then(function(response) {
@@ -829,12 +723,12 @@ export function getTopComment (req, res, callback) {
         comment.subreddit = response.data.children[0].data.subreddit.toString();
         comment.permalink = 'https://www.reddit.com/r/' + response.data.children[0].data.subreddit.toString() + "/comments/" + response.data.children[0].data.link_id.toString().replace('t3_','') + "/_/" + response.data.children[0].data.id.toString();
         callback(comment);
-        // return res.send(response);
+        return;
       });
 }
 
-export function getTopSubmission (req, res, callback) {
-    reddit('/user/' + req.params.username + '/submitted/').get({ /* need to add raw json later */
+export function getTopSubmission (callback) {
+    reddit('/user/' + username + '/submitted/').get({ /* need to add raw json later */
         limit: 1,
         sort: 'top'
     }).then(function(response) {
@@ -845,6 +739,7 @@ export function getTopSubmission (req, res, callback) {
         submission.permalink = 'https://www.reddit.com' + response.data.children[0].data.permalink;
         callback(submission);
         // return res.send(response);
+        return;
       });
 }
 
@@ -853,10 +748,12 @@ export function getTopSubmission (req, res, callback) {
 /* ===============================NOT USED================================= */
 /* ======================================================================== */
 
-export function aboutUser (req, res) {
-  var username = req.params.username;
-  // reddit('/user/' + username + '/about/').get().then(res.send);
-  reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
+export function getAbout (req, res) {
+    reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
+    var details = {};
+    details.comments = parseInt(response.data.comment_karma);
+    details.submissions = parseInt(response.data.link_karma);
+    details.created = parseInt(response.data.created_utc);
     return res.send(response);
   });
 }

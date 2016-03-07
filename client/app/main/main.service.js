@@ -9,8 +9,11 @@ angular.module('mainService', [])
 		getUser: function(user, callback) {
 			$http.get('/api/reddit/' + user).then(function(data) {
 				userData = data;
-				callback();
+				callback(data);
 			});
+		},
+		getUsername: function() {
+			return userData.data.username;
 		},
 		getExamples: function(callback) {
 			var first, second, key;
@@ -26,6 +29,9 @@ angular.module('mainService', [])
 			});
 
 			callback(arr);
+		},
+		getMetadata: function() {
+			
 		},
 		getAge: function(callback) {
 			const oneYearInSeconds = 31556736; /* 1 year (365.24 days) */ 

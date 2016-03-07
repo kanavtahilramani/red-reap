@@ -94,7 +94,7 @@ var UserSchema = new Schema({
 	descriptions: [String],
 	familyMembers: [String],
 	region: String,
-	data: [MonthSchema],
+	dateData: [MonthSchema],
 	day: [DaySchema],
 	hour: [HourSchema],
 	comMeta: [ComMetaSchema],
