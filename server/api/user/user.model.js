@@ -23,26 +23,46 @@ var MonthSchema = new Schema({
 var DaySchema = new Schema({
 	day: Number,
 	postsForDay: Number,
-	commentKarmaForDay: Number
+	karmaForDay: Number
 });
 
 var HourSchema = new Schema({
 	hour: Number,
 	postsForHour: Number,
-	commentKarmaForHour: Number
+	karmaForHour: Number
 });
 
 var ComMetaSchema = new Schema({
+	score: Number,
 	subreddit: String,
 	link: String,
 	linkType: Number,
 	length: Number,
 	gilded: Number,
 	flaired: Number,
+	distinguished: Number,
 	hour: Number,
 	day: Number,
 	month: Number,
 	year: Number,
+	level: Number
+});
+
+var SubMetaSchema = new Schema({
+	score: Number,
+	subreddit: String,
+	link: String,
+	linkType: Number,
+	length: Number,
+	gilded: Number,
+	flaired: Number,
+	distinguished: Number,
+	hour: Number,
+	day: Number,
+	month: Number,
+	year: Number,
+	comments: Number,
+	title: String,
 });
 
 var UserSchema = new Schema({
@@ -67,12 +87,31 @@ var UserSchema = new Schema({
 	},
 	creationTime: Number,
 	totalComments: Number,
+	totalSubmitted: Number,
+	totalSelfPosts: Number,
+	totalLinkPosts: Number,
+	totalCommentsOnSubmitted: Number,
 	totalEditedComments: Number,
 	avgEditTime: Number,
 	medEditTime: Number,
+	totalReplyComments: Number,
 	avgCommentLength: Number,
+	avgSelfPostLength: Number,
+	avgCommentsOnSubmitted: Number,
 	nsfwComments: Number,
-	nsfwSubmissions: Number,
+	nsfwSubmitted: Number,
+	controversialComments: Number,
+	controversialSubmitted: Number,
+	gildedComments: Number,
+	gildedSubmitted: Number,
+	totalGilds: Number,
+	totalSubmittedGilds: Number,
+	totalWords: Number,
+	totalSubmittedWords: Number,
+	totalFlaired: Number,
+	totalSubmittedFlaired: Number,
+	totalDistinguished: Number,
+	totalSubmittedDistinguished: Number,
 	veryNegativeAdjs: Number,
 	negativeAdjs: Number,
 	positiveAdjs: Number,
@@ -85,19 +124,18 @@ var UserSchema = new Schema({
 	nEx: [{adjective: String}],
 	pEx: [{adjective: String}],
 	vpEx: [{adjective: String}],
-	controversialComments: Number,
-	gildedComments: Number,
-	totalGilds: Number,
-	totalWords: Number,
-	totalFlaired: Number,
 	lastUpdated: Number,
 	descriptions: [String],
 	familyMembers: [String],
 	region: String,
 	dateData: [MonthSchema],
+	dateDataSub: [MonthSchema],
 	day: [DaySchema],
+	daySub: [DaySchema],
 	hour: [HourSchema],
+	hourSub: [HourSchema],
 	comMeta: [ComMetaSchema],
+	subMeta: [SubMetaSchema],
 	availableFrom: Number,
 	negativePercentage: Number,
 	negativeExample: [{content: String, trigger: String}]
