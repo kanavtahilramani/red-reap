@@ -10,18 +10,18 @@ angular.module('mainService', [])
 		getUser: function(user, callback) {
 			$http.get('/api/reddit/' + user).then(function(data) {
 				data.data.negativePercentage = data.data.negativePercentage.toPrecision(3);
-                data.data.avgCommentLength = Math.floor(data.data.avgCommentLength);
+                data.data.avgCommentLength = Math.floor(data.data.genCommentData.avgCommentLength);
 
-                if (data.data.avgEditTime < 3600) {
-                  data.data.avgEditTime = "<1 hour";
+                if (data.data.genCommentData.editingData.avgEditTime < 3600) {
+                  data.data.genCommentData.editingData.avgEditTime = "<1 hour";
                 } else {
-                    var curAvgEditTime = Math.floor((data.data.avgEditTime)/3600);
+                    var curAvgEditTime = Math.floor((data.data.genCommentData.editingData.avgEditTime)/3600);
 
                     if (curAvgEditTime == 1) {
-                      data.data.avgEditTime = (curAvgEditTime).toString() + " hour";
+                      data.data.genCommentData.editingData.avgEditTime = (curAvgEditTime).toString() + " hour";
                     }
                     else {
-                      data.data.avgEditTime = (curAvgEditTime).toString() + " hours";
+                      data.data.genCommentData.editingData.avgEditTime = (curAvgEditTime).toString() + " hours";
                     }
                 }
 

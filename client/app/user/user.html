@@ -39,7 +39,7 @@
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Total Submissions</p>
-			    			<p class="primary" style="color: #d9230f;">55</p> 
+			    			<p class="primary">{{user.redditUser.data.totalSubmitted}}</p> 
 			    		</div>
 		    			<div class="col-md-3">
 			    			<p class="toptext">Total Comments</p>
@@ -47,39 +47,39 @@
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Avg. Comment Length</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.avgCommentLength}}</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.avgCommentLength}}</p>
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Total Words</p>
-			    			<p class="primary">{{user.redditUser.data.totalWords}}</p> 
+			    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalWords}}</p> 
 			    		</div>
 			    		<div class="col-md-3">
 		    				<p class="toptext">Total Gilded</p>
-		    				<p class="primary">{{user.redditUser.data.gildedComments}}</p>
+		    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.gildedComments}}</p>
 			    		</div>
 			    		<div class="col-md-3">
 		    				<p class="toptext">Total Controversial</p>
-		    				<p class="primary">{{user.redditUser.data.controversialComments}}</p>
+		    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.controversialComments}}</p>
 			    		</div>
 		    			<div class="col-md-3">
 			    			<p class="toptext">Total NSFW</p>
-			    			<p class="primary">{{user.redditUser.data.nsfwComments}}</p> 
+			    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.nsfwComments}}</p> 
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Total Flaired</p>
-			    			<p class="primary">{{user.redditUser.data.totalFlaired}}</p> 
+			    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalFlaired}}</p> 
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Total Edited</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.totalEditedComments}}</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.totalEditedComments}}</p>
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Avg. Edit Time</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.avgEditTime}}</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.avgEditTime}}</p>
 			    		</div>
 			    		<div class="col-md-3">
 			    			<p class="toptext">Median Edit Time</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.medEditTime}} s</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.medEditTime}} s</p>
 			    		</div>
 			    	</div>
 
