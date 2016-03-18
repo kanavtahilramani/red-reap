@@ -752,18 +752,18 @@ function createUser(callback) {
 
         getNLPData(userComments, function(youAre) {
             userData.totalComments = totalCommentCount;
-            userData.totalEditedComments = totalEditedCommentCount;
-            userData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
+            userData.genCommentData.editingData.totalEditedComments = totalEditedCommentCount;
+            userData.genCommentData.editingData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
             editedTimes.sort(); //sort lowest to highest
-            userData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
-            userData.nsfwComments = totalnsfw;
-            userData.controversialComments = totalControversial;
-            userData.gildedComments = totalCommentsGilded;
-            userData.totalGilds = totalGilds;
-            userData.totalWords = totalWords;
-            userData.totalFlaired = totalFlaired;
-            userData.totalDistinguished = totalDistinguished;
-            userData.totalReplyComments = totalReplyComments;
+            userData.genCommentData.editingData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
+            userData.genCommentData.commentTotals.nsfwComments = totalnsfw;
+            userData.genCommentData.commentTotals.controversialComments = totalControversial;
+            userData.genCommentData.commentTotals.gildedComments = totalCommentsGilded;
+            userData.genCommentData.commentTotals.totalGilds = totalGilds;
+            userData.genCommentData.commentTotals.totalWords = totalWords;
+            userData.genCommentData.commentTotals.totalFlaired = totalFlaired;
+            userData.genCommentData.commentTotals.totalDistinguished = totalDistinguished;
+            userData.genCommentData.commentTotals.totalReplyComments = totalReplyComments;
             userData.availableFrom = earliestComment*1000;
 
             adjPerVN = 100*((adjVN)/(adjVN+adjN+adjP+adjVP));
@@ -798,7 +798,7 @@ function createUser(callback) {
             userData.familyMembers = familyMems;
 
             var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
-            userData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
+            userData.genCommentData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
 
             timeBasedData(userComments, function() {
                 userData.dateData = monthData; // fix
@@ -849,20 +849,20 @@ function createUser(callback) {
                   });
 
                   userData.totalSubmitted = totalSubmittedCount;
-                  userData.nsfwSubmitted = totalSubmittednsfw;
-                  userData.controversialSubmitted = totalSubmittedControversial;
-                  userData.gildedSubmitted = totalSubmittedGilded;
-                  userData.totalSubmittedGilds = totalSubmittedGilds;
-                  userData.totalSubmittedWords = totalSubmittedWords;
-                  userData.totalSubmittedFlaired = totalSubmittedFlaired;
-                  userData.totalSubmittedDistinguished = totalSubmittedDistinguished;
-                  userData.totalCommentsOnSubmitted = totalCommentsOnSubmitted;
-                  userData.avgCommentsOnSubmitted = totalCommentsOnSubmitted / totalSubmittedCount;
-                  userData.totalSelfPosts = totalSelfPosts;
-                  userData.totalLinkPosts = totalSubmittedCount - totalSelfPosts;
+                  userData.genSubmittedData.submittedTotals.nsfwSubmitted = totalSubmittednsfw;
+                  userData.genSubmittedData.submittedTotals.controversialSubmitted = totalSubmittedControversial;
+                  userData.genSubmittedData.submittedTotals.gildedSubmitted = totalSubmittedGilded;
+                  userData.genSubmittedData.submittedTotals.totalSubmittedGilds = totalSubmittedGilds;
+                  userData.genSubmittedData.submittedTotals.totalSubmittedWords = totalSubmittedWords;
+                  userData.genSubmittedData.submittedTotals.totalSubmittedFlaired = totalSubmittedFlaired;
+                  userData.genSubmittedData.submittedTotals.totalSubmittedDistinguished = totalSubmittedDistinguished;
+                  userData.genSubmittedData.totalCommentsOnSubmitted = totalCommentsOnSubmitted;
+                  userData.genSubmittedData.avgCommentsOnSubmitted = totalCommentsOnSubmitted / totalSubmittedCount;
+                  userData.genSubmittedData.submittedTotals.totalSelfPosts = totalSelfPosts;
+                  userData.genSubmittedData.submittedTotals.totalLinkPosts = totalSubmittedCount - totalSelfPosts;
 
                   var subLengthSum = submittedLengths.reduce(function(a, b) { return a + b; });
-                  userData.avgSelfPostLength = subLengthSum / submittedLengths.length; //store average length
+                  userData.genSubmittedData.avgSelfPostLength = subLengthSum / submittedLengths.length; //store average length
 
 
                   timeBasedDataSub(userSubmitted, function() {
