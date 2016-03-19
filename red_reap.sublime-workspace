@@ -179,7 +179,7 @@
 			"file": "client/app/user/user.html",
 			"settings":
 			{
-				"buffer_size": 19675,
+				"buffer_size": 26200,
 				"line_ending": "Windows"
 			}
 		},
@@ -187,7 +187,7 @@
 			"file": "client/app/user/user.scss",
 			"settings":
 			{
-				"buffer_size": 3377,
+				"buffer_size": 3413,
 				"line_ending": "Windows"
 			}
 		},
@@ -203,7 +203,7 @@
 			"file": "client/components/navbar/navbar.html",
 			"settings":
 			{
-				"buffer_size": 1003,
+				"buffer_size": 1004,
 				"line_ending": "Windows"
 			}
 		},
@@ -220,6 +220,62 @@
 			"settings":
 			{
 				"buffer_size": 115,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/user/user.controller.js",
+			"settings":
+			{
+				"buffer_size": 828,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/api/user/user.model.js",
+			"settings":
+			{
+				"buffer_size": 3163,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/api/reddit/reddit.controller.js",
+			"settings":
+			{
+				"buffer_size": 41733,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/donut/donut.directive.js",
+			"settings":
+			{
+				"buffer_size": 5529,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/favicon.ico",
+			"settings":
+			{
+				"buffer_size": 16935,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "client/app/barChart/barChart.directive.js",
+			"settings":
+			{
+				"buffer_size": 2692,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/linePlot/linePlot.directive.js",
+			"settings":
+			{
+				"buffer_size": 1888,
 				"line_ending": "Windows"
 			}
 		}
@@ -383,7 +439,7 @@
 	],
 	"find":
 	{
-		"height": 83.0
+		"height": 85.0
 	},
 	"find_in_files":
 	{
@@ -400,6 +456,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"md-13",
+			"col-lg-2 col-sm-1",
+			"col-md-3",
+			"jumb",
+			"col-lg-3 col-md-3 col-sm-4",
+			"col-md-3",
+			"comments",
+			"col-sm-2",
+			"col-lg-2 col-sm-1",
+			"col-sm-2",
+			"class=\"col-sm-2\"",
+			"md",
+			"nEx",
+			"pEx",
+			"vpEx",
+			"md-3",
+			"track",
+			"md",
+			"subheader",
+			"svg",
+			"z-ind",
+			"descrip",
+			"topcomment",
+			"getuser",
 			"jumbo",
 			"body",
 			"html",
@@ -503,31 +583,7 @@
 			"h2",
 			"border",
 			"color",
-			"jumbo",
-			"jumb",
-			"jum",
-			"jumbotron",
-			"sideleft",
-			"jumbotr",
-			"jumbot",
-			"jumbo",
-			"jumbotro",
-			"width",
-			"jumbotron",
-			"row",
-			"donut",
-			"maindiv",
-			"Toronto",
-			"toronto",
-			"// NEW",
-			"<",
-			">\n",
-			"img",
-			"navbar",
-			"nav",
-			">\n",
-			"error",
-			"<a href=\"/\" class=\"navbar-brand\">logo</a>"
+			"jumbo"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -535,6 +591,21 @@
 		"regex": false,
 		"replace_history":
 		[
+			"col-lg-2 col-md-3 col-sm-4 col-xs-6",
+			"col-lg-3 col-md-3 col-sm-4 col-xs-6",
+			"col-lg-3 col-md-3 col-sm-4",
+			"col-sm-12",
+			"col-lg-2 col-sm-2",
+			"col-lg-2 col-sm-1",
+			"class=\"col-lg-2 col-sm-1\" ",
+			"",
+			"sm",
+			"vnEx",
+			"nEx",
+			"pEx",
+			"md-1",
+			"lg",
+			"sm",
 			"container",
 			"container-fluid",
 			"container",
@@ -568,15 +639,15 @@
 					"file": "client/app/user/user.html",
 					"settings":
 					{
-						"buffer_size": 19675,
+						"buffer_size": 26200,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								724,
-								724
+								14476,
+								14476
 							]
 						],
 						"settings":
@@ -585,7 +656,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3583.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -595,15 +666,15 @@
 					"file": "client/app/user/user.scss",
 					"settings":
 					{
-						"buffer_size": 3377,
+						"buffer_size": 3413,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1263,
-								1263
+								74,
+								74
 							]
 						],
 						"settings":
@@ -613,7 +684,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 953.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -651,15 +722,15 @@
 					"file": "client/components/navbar/navbar.html",
 					"settings":
 					{
-						"buffer_size": 1003,
+						"buffer_size": 1004,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								40,
-								40
+								41,
+								41
 							]
 						],
 						"settings":
@@ -719,6 +790,196 @@
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "client/app/user/user.controller.js",
+					"settings":
+					{
+						"buffer_size": 828,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								352,
+								352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "server/api/user/user.model.js",
+					"settings":
+					{
+						"buffer_size": 3163,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2740,
+								2740
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1371.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "server/api/reddit/reddit.controller.js",
+					"settings":
+					{
+						"buffer_size": 41733,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7228,
+								7235
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2458.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "client/app/donut/donut.directive.js",
+					"settings":
+					{
+						"buffer_size": 5529,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1885,
+								1885
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 273.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "client/favicon.ico",
+					"settings":
+					{
+						"buffer_size": 16935,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "client/app/barChart/barChart.directive.js",
+					"settings":
+					{
+						"buffer_size": 2692,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								841,
+								841
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "client/app/linePlot/linePlot.directive.js",
+					"settings":
+					{
+						"buffer_size": 1888,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								836,
+								836
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
