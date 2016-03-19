@@ -8,8 +8,8 @@ angular.module('redreapApp')
       link: function (scope, element, attrs) {
       	var data = User.getUserData().data.dateData;
       	var margin = {top: 20, right: 20, bottom: 30, left: 50},
-		    width = 1060 - margin.left - margin.right,
-		    height = 500 - margin.top - margin.bottom;
+		    width = 900 - margin.left - margin.right,
+		    height = 300 - margin.top - margin.bottom;
 
 		var formatDate = d3.time.format("%B/%e/%Y");
 

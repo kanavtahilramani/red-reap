@@ -8,8 +8,8 @@ angular.module('redreapApp')
       link: function (scope, element, attrs) {
         var data = User.getUserData().data.dateData;
         var margin = {top: 40, right: 20, bottom: 30, left: 40},
-	    	width = 925 - margin.left - margin.right,
-	    	height = 400 - margin.top - margin.bottom;
+	    	width = 900 - margin.left - margin.right,
+	    	height = 300 - margin.top - margin.bottom;
 
 	    var firstComment = new Date(String(data[data.length-1].year) + ", " + String(data[data.length-1].month) + ", " + String(data[data.length-1].date));
 	    var lastComment = new Date(String(data[0].year) + ", " + String(data[0].month) + ", " + String(data[0].date));

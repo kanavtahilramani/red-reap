@@ -32,10 +32,10 @@ angular.module('redreapApp')
           color.range(['#1B9F9F','#1CEAEA','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 
         }
 
-        var svgWidth  = 450,
-            svgHeight = 450,
+        var svgWidth  = 385,
+            svgHeight = 385,
             radius = Math.min(svgWidth, svgHeight) / 2,
-            donutWidth = 75;
+            donutWidth = 70;
 
         //var color = d3.scale.category10();    
      
@@ -51,7 +51,6 @@ angular.module('redreapApp')
                       .attr('height', svgHeight)
                     .append('g')
                       .attr("class", "container")
-                      .attr("margin-left", "150px")
                       .attr('transform', 'translate(' + (svgWidth / 2) +  ',' + (svgHeight / 2) + ')'); 
 
         //svg.call(tip);

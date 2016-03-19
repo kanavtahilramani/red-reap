@@ -7,7 +7,7 @@
 }
 
 .karma {
-	width: 20%;
+	width: 25%;
   margin: 0 auto;
 }
 
@@ -100,11 +100,6 @@
 .jumbotron-special {
 	background-color: #282828;
   margin-bottom: 0px;
-  position: fixed;
-  max-width:1170px;
-  max-height:100%;
-  overflow-y: auto;
-  z-index: 1;
 }
 
 .jumbotron-special::-webkit-scrollbar { 
@@ -166,7 +161,7 @@ p.bottomPrimary {
 }
 
 .contentdisp {
-  background-color:white;
+  background-color: white;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -191,12 +186,11 @@ p.content-header {
 }
 
 p.content-subheader {
+  color: white;
+  font-size: 22px;
+  margin-bottom:30px;
+  background-color: #d9230f;
   text-align: center;
-  color: black;
-  font-size: 18px;
-  width: 100%;
-  margin-bottom:60px;
-  margin-left: -10px;
 }
 
 p.content-text {
@@ -255,4 +249,14 @@ h1.chart-header {
 
 a:hover{
     text-decoration: none;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.content-top-padding {
+    padding-top: 30px;
 }
