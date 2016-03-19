@@ -6,13 +6,19 @@
 <navbar></navbar>
 
 <div ng-if="user.processing" class="container">
-	<p>processing!</p>
+	<!-- <p>processing!</p> -->	 
+	<div class="row">
+		<div class="col-lg-12">
+    			<img style="width:500px; height:500px; display: block; margin: 0 auto;" src="../../images/RedReaperAnimation.gif"/>
+		</div>
+	</div>
 </div>
 
 <div ng-if="!user.processing" class="container">
 	<div class="row">
 		<div class="col-lg-12 nopadding">
-			<div class="jumbotron jumbotron-special" style="border-radius: 0px;">
+			<div class="row">
+			<div id="jumbo" class="jumbotron jumbotron-special" style="border-radius: 0px;">
 		    	<h1 class="intro" align="center"><em>/u/</em>{{user.redditUser.data.username}}</h1>
 
 		    	<div class="jumbotron-content">
@@ -85,9 +91,20 @@
 
 			    	<div ng-if="user.redditUser.data.descriptions.length > 0">
 					    <p class="bottomtext">You are</p>
-					    <p class="bottomPrimary" ng-repeat="identifier in user.redditUser.data.descriptions">{{identifier}}</p>
+				    	<span style="margin-left: 50px; color: white; margin-bottom:100px;" ng-repeat="identifier in user.redditUser.data.descriptions">
+  							<span style="font-size: 17px;">
+           				  		{{identifier}}
+							</span>
+		  				</span>
 				    </div>
-
+			    	<div ng-if="user.redditUser.data.familyMembers.length > 0">
+					    <p class="bottomtext">Your family members</p>
+				    	<span style="margin-left: 50px; color: white; margin-bottom:100px;" ng-repeat="identifier in user.redditUser.data.familyMembers">
+  							<span style="font-size: 17px;">
+           				  		{{identifier}}
+							</span>
+		  				</span>
+				    </div>
 					<p class="bottomtext">Top Submission</p>
 				    <p class="bottomPrimary">{{user.redditUser.data.topSubmission.title}}</p>
 			   		<p style="color: white; font-size: 13px; margin-left:50px"><em style="font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topSubmission.score}}<em style="font-style: normal; color: gray; margin-left: 30px;">Subreddit: <a class="white-anchor" href="http://reddit.com/r/{{user.redditUser.data.topSubmission.subreddit}}">{{user.redditUser.data.topSubmission.subreddit}}</a></em><em style="font-style: normal; color: gray; margin-left: 30px;"><a class="gray-anchor" href="{{user.redditUser.data.topSubmission.permalink}}">[Permalink]</a></em></p>
@@ -162,143 +179,145 @@
 						</div>
 		   		</div>
 		  	</div>
-		
+		</div>
 <!-- 		  	<div class="contentdisp">
 				<dl class="dl-horizontal">
 					<p class="content-header">Activity</p>
 					<p style="margin-left:20px;"class="content-text"><em>{{user.redditUser.data.data.postsForMonth}}</em> posts this month.</p>
 				</dl>
 			</div> -->
-
+<div class="row">
 			<!-- <hr style="width: 75%;"> -->
-			
-		  	<div class="contentdisp">
-				<dl class="dl-horizontal">
-<!-- 					<p style="margin-left: 20px;" class="content-header">Karma</p>
-					<p style="margin-left: 20px;" class="content-text">comment karma</p>
-					<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalCommentScore}}</p>
-					<p style="margin-left: 20px;" class="content-text">link karma</p>
-					<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalLinkScore}}</p> -->
-					<div class="panel panel-primary karma text-center">
-						<div class="panel-heading">
-							<h3 class="panel-title">
-								<strong>karma</strong>
-							</h3>
+			<div class="container" style="background-color: white; z-index: 2; margin-top:100%; position: absolute;">
+			  	<div class="contentdisp" style="z-index: 3; pointer-events:visible;">
+					<dl class="dl-horizontal">
+	<!-- 					<p style="margin-left: 20px;" class="content-header">Karma</p>
+						<p style="margin-left: 20px;" class="content-text">comment karma</p>
+						<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalCommentScore}}</p>
+						<p style="margin-left: 20px;" class="content-text">link karma</p>
+						<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalLinkScore}}</p> -->
+						<div class="panel panel-primary karma text-center">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									<strong>karma</strong>
+								</h3>
+							</div>
+							<div class="panel-body">
+								<dl class="dl-horizontal">
+									<dt>comment karma</dt>
+									<dd>{{user.redditUser.data.karma.totalCommentScore}}</dd>
+									<dt>link karma</dt>
+									<dd>{{user.redditUser.data.karma.totalLinkScore}}</dd>
+								</dl>
+							</div>
 						</div>
-						<div class="panel-body">
-							<dl class="dl-horizontal">
-								<dt>comment karma</dt>
-								<dd>{{user.redditUser.data.karma.totalCommentScore}}</dd>
-								<dt>link karma</dt>
-								<dd>{{user.redditUser.data.karma.totalLinkScore}}</dd>
-							</dl>
-						</div>
-					</div>
 
-					<div class="col-lg-8 col-lg-offset-1">
-						<div class="row">
-							<div class="karmaPlot">
-								<bar-chart></bar-chart>
+						<div class="col-lg-8 col-lg-offset-1">
+							<div class="row">
+								<div class="karmaPlot">
+									<bar-chart></bar-chart>
+								</div>
+							</div>
+						
+							<div class="row vertical-align">
+								<div class="linePlot">
+									<line-plot></line-plot>
+								</div>
 							</div>
 						</div>
-					
-						<div class="row vertical-align">
-							<div class="linePlot">
-								<line-plot></line-plot>
+					</dl>
+				</div>
+
+				<hr style="width: 75%;">
+
+				<div class="contentdisp">
+					<dl class="dl-horizontal">
+						<p class="content-header">Sentiment</p>
+
+						<div class="container" style="padding-bottom: 50px;vertical-align: middle;">
+							<p class="content-subheader">Comments</p>
+							<div class="row">
+								<div class="col-lg-7" style="padding-bottom: 30px;">
+									<div style="width: 90%;">
+										<p class="content-text"><em ng-if="user.example1" class="content-text">About</em> <strong>{{user.redditUser.data.negativePercentage}}% </strong> of comments have a <strong>negative</strong> connotation.</p>
+										<p ng-if="user.example1" class="content-bold-text"><strong>Determined from comments like:</strong></p>
+										<div ng-if="user.example1" id="need-space" style="margin-left:10px;">
+											<p class="no-new-line"><i>"{{user.example1[0]}}<strong>{{user.example1[1]}} </strong>{{user.example1[2]}}"</i></p>
+										</div>
+										<div ng-if="user.example2" id="need-space" style="margin-left:10px;">
+											<p class="no-new-line"><i>"{{user.example2[0]}}<strong>{{user.example2[1]}} </strong>{{user.example2[2]}}"</i></p>
+										</div>
+										<div ng-if="user.example3" id="need-space" style="margin-left:10px;">
+											<p class="no-new-line"><i>"{{user.example3[0]}}<strong>{{user.example3[1]}} </strong>{{user.example3[2]}}"</i></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-5">
+									<div style="margin-top: -10px;" id="sentiment-adjective">
+										<donut title="sentence"></donut>
+									</div>
+								</div>	
 							</div>
 						</div>
-					</div>
-				</dl>
+
+						<div class="container">
+							<p class="content-subheader">Adjectives</p>
+							<div class="row">
+								<div class="col-lg-7" style="padding-bottom: 30px;">
+									<div style="width: 90%;">
+										<p class="content-text">About <strong>{{user.redditUser.data.vpPer}}% </strong> of adjectives used are <strong>very positive</strong>.
+										</p>
+									    <div>
+				 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vpEx">
+				      							<span>
+				               				  		{{exampleAdj.adjective}}
+				    							</span>
+				  							</span>
+										</div>
+										<hr>
+										<p class="content-text">About <strong>{{user.redditUser.data.pPer}}% </strong> of adjectives used are <strong>positive</strong>.
+										</p>
+										<div>
+				 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.pEx">
+				      							<span>
+				               				  		{{exampleAdj.adjective}}
+				    							</span>
+				  							</span>
+										</div>
+										<hr>
+										<p class="content-text">About <strong>{{user.redditUser.data.nPer}}% </strong> of adjectives used are <strong>negative</strong>.
+										</p>
+										<div>
+				 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.nEx">
+				      							<span>
+				               				  		{{exampleAdj.adjective}}
+				    							</span>
+				  							</span>
+										</div>
+										<hr>
+										<p class="content-text">About <strong>{{user.redditUser.data.vnPer}}% </strong> of adjectives used are <strong>very negative</strong>.
+										</p>
+										<div>
+				 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vnEx">
+				      							<span>
+				               				  		{{exampleAdj.adjective}}
+				    							</span>
+				  							</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-5">
+									<div style="margin-top: -10px;" id="sentiment-adjective">
+										<donut title="adjective"></donut>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</dl>
+				</div>
 			</div>
-
-			<hr style="width: 75%;">
-
-			<div class="contentdisp">
-				<dl class="dl-horizontal">
-					<p class="content-header">Sentiment</p>
-
-					<div class="container" style="padding-bottom: 50px;vertical-align: middle;">
-						<p class="content-subheader">Comments</p>
-						<div class="row">
-							<div class="col-lg-7" style="padding-bottom: 30px;">
-								<div style="width: 90%;">
-									<p class="content-text"><em ng-if="user.example1" class="content-text">About</em> <strong>{{user.redditUser.data.negativePercentage}}% </strong> of comments have a <strong>negative</strong> connotation.</p>
-									<p ng-if="user.example1" class="content-bold-text"><strong>Determined from comments like:</strong></p>
-									<div ng-if="user.example1" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.example1[0]}}<strong>{{user.example1[1]}} </strong>{{user.example1[2]}}"</i></p>
-									</div>
-									<div ng-if="user.example2" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.example2[0]}}<strong>{{user.example2[1]}} </strong>{{user.example2[2]}}"</i></p>
-									</div>
-									<div ng-if="user.example3" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.example3[0]}}<strong>{{user.example3[1]}} </strong>{{user.example3[2]}}"</i></p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-5">
-								<div style="margin-top: -10px;" id="sentiment-adjective">
-									<donut title="sentence"></donut>
-								</div>
-							</div>	
-						</div>
-					</div>
-
-					<div class="container">
-						<p class="content-subheader">Adjectives</p>
-						<div class="row">
-							<div class="col-lg-7" style="padding-bottom: 30px;">
-								<div style="width: 90%;">
-									<p class="content-text">About <strong>{{user.redditUser.data.vpPer}}% </strong> of adjectives used are <strong>very positive</strong>.
-									</p>
-								    <div>
-			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vpEx">
-			      							<span>
-			               				  		{{exampleAdj.adjective}}
-			    							</span>
-			  							</span>
-									</div>
-									<hr>
-									<p class="content-text">About <strong>{{user.redditUser.data.pPer}}% </strong> of adjectives used are <strong>positive</strong>.
-									</p>
-									<div>
-			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.pEx">
-			      							<span>
-			               				  		{{exampleAdj.adjective}}
-			    							</span>
-			  							</span>
-									</div>
-									<hr>
-									<p class="content-text">About <strong>{{user.redditUser.data.nPer}}% </strong> of adjectives used are <strong>negative</strong>.
-									</p>
-									<div>
-			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.nEx">
-			      							<span>
-			               				  		{{exampleAdj.adjective}}
-			    							</span>
-			  							</span>
-									</div>
-									<hr>
-									<p class="content-text">About <strong>{{user.redditUser.data.vnPer}}% </strong> of adjectives used are <strong>very negative</strong>.
-									</p>
-									<div>
-			 						 	<span style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vnEx">
-			      							<span>
-			               				  		{{exampleAdj.adjective}}
-			    							</span>
-			  							</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-5">
-								<div style="margin-top: -10px;" id="sentiment-adjective">
-									<donut title="adjective"></donut>
-								</div>
-							</div>	
-						</div>
-					</div>
-				</dl>
-			</div>
-			<div class="contentdisp">
+		</div>
+<!-- 			<div class="contentdisp">
 				<div class="row">
 					<div class="col-md-3 col-md-offset-3 vertical-center">
 						<div ng-if="user.redditUser.data.descriptions.length > 0" class="panel panel-primary">
@@ -337,7 +356,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
@@ -455,4 +474,4 @@
 </div> -->
 </body>
 
-<footer></footer>
+<footer style="background-color: #EAEAEA;"></footer>

@@ -39,11 +39,11 @@ angular.module('redreapApp')
 
         //var color = d3.scale.category10();    
      
-        var tip = d3.tip()
-          .attr('class', 'd3-tip')
-          .html(function(d) {
-            return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + d.data.count + "%</span>";
-          });
+        // var tip = d3.tip()
+        //   .attr('class', 'd3-tip')
+        //   .html(function(d) {
+        //     return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + d.data.count + "%</span>";
+        //   });
 
         var svg = d3.select(element[0])
                     .append('svg')
@@ -54,7 +54,7 @@ angular.module('redreapApp')
                       .attr("margin-left", "150px")
                       .attr('transform', 'translate(' + (svgWidth / 2) +  ',' + (svgHeight / 2) + ')'); 
 
-        svg.call(tip);
+        //svg.call(tip);
         // Define the radius
         var arc = d3.svg.arc()
                         .innerRadius(radius - donutWidth)
@@ -76,8 +76,8 @@ angular.module('redreapApp')
                       .attr('fill', function(d, i) { 
                         return color(d.data.label);
                       })
-                      .on('mouseover', tip.show)
-                      .on('mouseout', tip.hide)
+                      //.on('mouseover', tip.show)
+                      //.on('mouseout', tip.hide)
                       .each(function(d) { this._current = d; });
 
         // Define the Legend

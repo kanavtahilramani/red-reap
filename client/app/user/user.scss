@@ -99,8 +99,16 @@
 
 .jumbotron-special {
 	background-color: #282828;
-  width: 100%;
   margin-bottom: 0px;
+  position: fixed;
+  max-width:1170px;
+  max-height:100%;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.jumbotron-special::-webkit-scrollbar { 
+    display: none; 
 }
 
 #need-space {
@@ -113,7 +121,6 @@
 
 .nopadding {
   padding: 0;
-  background: white;
 }
 
 hr {
@@ -206,6 +213,10 @@ em.content-text {
 
 p.content-bold-text {
   margin-left: 10px;
+}
+
+html {
+    position: relative;
 }
 
 body {
