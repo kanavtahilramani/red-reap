@@ -9,9 +9,9 @@ angular.module('redreapApp')
         var data = User.getUserData().data;
         var curAction = attrs.title;
         var color = d3.scale.ordinal();
-        if (curAction == "sentence")
+        if (curAction == "comment")
         {
-          /* Positive/Negative of Sentences */
+          /* Positive/Negative of comments */
           var dataset = [
             { label: 'Other', count: 100 - data.negativePercentage, enabled: true }, 
             { label: 'Negative', count: Math.round(data.negativePercentage*100)/100, enabled: true },

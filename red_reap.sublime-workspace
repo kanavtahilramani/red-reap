@@ -179,7 +179,7 @@
 			"file": "client/app/user/user.html",
 			"settings":
 			{
-				"buffer_size": 26200,
+				"buffer_size": 26890,
 				"line_ending": "Windows"
 			}
 		},
@@ -187,63 +187,7 @@
 			"file": "client/app/user/user.scss",
 			"settings":
 			{
-				"buffer_size": 3413,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/user/user.js",
-			"settings":
-			{
-				"buffer_size": 401,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/components/navbar/navbar.html",
-			"settings":
-			{
-				"buffer_size": 1004,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/components/footer/footer.scss",
-			"settings":
-			{
-				"buffer_size": 151,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/components/footer/footer.html",
-			"settings":
-			{
-				"buffer_size": 115,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/user/user.controller.js",
-			"settings":
-			{
-				"buffer_size": 828,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "server/api/user/user.model.js",
-			"settings":
-			{
-				"buffer_size": 3163,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "server/api/reddit/reddit.controller.js",
-			"settings":
-			{
-				"buffer_size": 41733,
+				"buffer_size": 4149,
 				"line_ending": "Windows"
 			}
 		},
@@ -251,31 +195,7 @@
 			"file": "client/app/donut/donut.directive.js",
 			"settings":
 			{
-				"buffer_size": 5529,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/favicon.ico",
-			"settings":
-			{
-				"buffer_size": 16935,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "client/app/barChart/barChart.directive.js",
-			"settings":
-			{
-				"buffer_size": 2692,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app/linePlot/linePlot.directive.js",
-			"settings":
-			{
-				"buffer_size": 1888,
+				"buffer_size": 5527,
 				"line_ending": "Windows"
 			}
 		}
@@ -308,18 +228,22 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.controller.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.scss",
-		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/In-Class Assignments/5/IntegerSet_SujayBandarpalle.h",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.service.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.scss",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/navbar/navbar.html",
-		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/user.model.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.html",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.scss",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/user.model.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/favicon.ico",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/linePlot/linePlot.directive.js",
+		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/In-Class Assignments/5/IntegerSet_SujayBandarpalle.h",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.service.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.html",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.scss",
 		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/In-Class Assignments/5/InClass5/InClass5/IntegerSet_SujayBandarpalle.h",
 		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/Homeworks/Homework 6/Booklist_Bandarpalle.h",
@@ -336,18 +260,15 @@
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.integration.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/views/404.html",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/navbar/navbar.scss",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.spec.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.constant.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/bower_components/bootstrap/dist/css/bootstrap.css",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/linePlot/linePlot.directive.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.spec.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/d3Service/d3Service.service.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/comment.model.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/index.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.html",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.spec.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.model.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/index.js",
@@ -434,8 +355,7 @@
 		"/C/Users/Kanav/Documents/Projects/intro-api/package.json",
 		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/body-parser/package.json",
 		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/bson/ext/index.js",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/config.cfg",
-		"/C/Users/Kanav/Documents/Projects/httpserv/server.js"
+		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/config.cfg"
 	],
 	"find":
 	{
@@ -456,6 +376,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sentence",
+			"title",
+			"border",
+			"h1",
+			"jumbo",
+			"62",
 			"md-13",
 			"col-lg-2 col-sm-1",
 			"col-md-3",
@@ -577,12 +503,6 @@
 			"center",
 			"margin-left",
 			"jumbotron",
-			"jumbo",
-			"boundary",
-			"jumbo",
-			"h2",
-			"border",
-			"color",
 			"jumbo"
 		],
 		"highlight": true,
@@ -591,6 +511,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"comment",
+			"6",
 			"col-lg-2 col-md-3 col-sm-4 col-xs-6",
 			"col-lg-3 col-md-3 col-sm-4 col-xs-6",
 			"col-lg-3 col-md-3 col-sm-4",
@@ -631,7 +553,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -639,15 +561,15 @@
 					"file": "client/app/user/user.html",
 					"settings":
 					{
-						"buffer_size": 26200,
+						"buffer_size": 26890,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14476,
-								14476
+								5760,
+								5759
 							]
 						],
 						"settings":
@@ -656,7 +578,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3583.0,
+						"translation.y": 1037.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -666,15 +588,15 @@
 					"file": "client/app/user/user.scss",
 					"settings":
 					{
-						"buffer_size": 3413,
+						"buffer_size": 4149,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								74,
-								74
+								3872,
+								3872
 							]
 						],
 						"settings":
@@ -684,216 +606,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3328.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "client/app/user/user.js",
-					"settings":
-					{
-						"buffer_size": 401,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								401,
-								401
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "client/components/navbar/navbar.html",
-					"settings":
-					{
-						"buffer_size": 1004,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								41,
-								41
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "client/components/footer/footer.scss",
-					"settings":
-					{
-						"buffer_size": 151,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								148,
-								148
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "client/components/footer/footer.html",
-					"settings":
-					{
-						"buffer_size": 115,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								22,
-								5
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "client/app/user/user.controller.js",
-					"settings":
-					{
-						"buffer_size": 828,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								352,
-								352
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "server/api/user/user.model.js",
-					"settings":
-					{
-						"buffer_size": 3163,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2740,
-								2740
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1371.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "server/api/reddit/reddit.controller.js",
-					"settings":
-					{
-						"buffer_size": 41733,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7228,
-								7235
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2458.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
 					"file": "client/app/donut/donut.directive.js",
 					"settings":
 					{
-						"buffer_size": 5529,
+						"buffer_size": 5527,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1885,
-								1885
+								351,
+								351
 							]
 						],
 						"settings":
@@ -901,85 +632,6 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 273.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "client/favicon.ico",
-					"settings":
-					{
-						"buffer_size": 16935,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "client/app/barChart/barChart.directive.js",
-					"settings":
-					{
-						"buffer_size": 2692,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								841,
-								841
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "client/app/linePlot/linePlot.directive.js",
-					"settings":
-					{
-						"buffer_size": 1888,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								836,
-								836
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
