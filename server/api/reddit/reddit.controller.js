@@ -110,7 +110,8 @@ function createUser(callback) {
         posAdEx = [],
         veryPosAdEx = [],
         familyMems = [],
-        filteredArray = [];
+        filteredArray = [],
+        subredditSentiment = [];
 
     var done = false;
 
@@ -130,6 +131,9 @@ function createUser(callback) {
     var editedTimes = []; //stores all times of edits
     var commentLengths = []; //store lengths of comments
     var commentSubreddits = []; //store subreddits comments are in
+
+
+    
 
     function getNLPData (comments, callback) {
       var negativeCommentCount = 0,
@@ -153,6 +157,7 @@ function createUser(callback) {
           isFiltered = false,
           counter = 0,
           descriptor = "";
+
 
       function getSentimentData (currentWord, currentComment) {
           if (currentWord.POS == 'JJ'|| currentWord.POS == 'JJR' || currentWord.POS == 'JJS') {
@@ -198,27 +203,14 @@ function createUser(callback) {
 
       // change all tokenizedcomment
       //start by using parsedTree as tier for top call to FindYouAre
-      function FindYouAre(tier, toBeId, onTheHunt) {
+      function FindYouAre(tier, toBeId, onTheHunt, thisComment) {
         numCalls++;
-        if (tier.type == "NP " && onTheHunt) {
-          //console.log("found NP and onTheHunt");
-          //if i have grandchildren, call on my children
-        
-         //console.log("Non terminal NP, calling on children");
-            tier.children.forEach(function(childTwo) {
-                FindYouAre(childTwo, toBeId, true);
-            });
-            numCalls--;
-            if (numCalls === 0) {
-              isFinished = true;
-              return;
-            }
-            else
-              return;
-        }
+        //console.log("\n\nType is: __" + tier.type + "__");
+       
 
          if (tier.type == "NP" && onTheHunt) {
-           //console.log("This is the terminal NP saving");
+         //console.log("\n\n"+thisComment.data.body + "\n\n")
+
             descriptorNounFound = false;
             descriptorNonNounFound = false;
             
@@ -251,10 +243,10 @@ function createUser(callback) {
               return;
           }
 
-          if ((tier.type == "VP") && (tier.children[0].children[0].id == toBeId)){
-             // console.log("found VP with matching id");
+          else if ((tier.type == "VP") && (tier.children[0].children[0].id == toBeId)){
+              //console.log("\n\nfound VP with matching id\n\n");
               tier.children.forEach(function(child){
-                FindYouAre(child, toBeId, true);
+                FindYouAre(child, toBeId, true, thisComment);
               });
               numCalls--;
 
@@ -265,10 +257,22 @@ function createUser(callback) {
               else
                 return;
           }
-          
+          else if (tier.children[0].type == "NP" && onTheHunt) {
+              tier.children.forEach(function(childTwo) {
+                  FindYouAre(childTwo, toBeId, true, thisComment);
+              });
+              numCalls--;
+              if (numCalls === 0) {
+                isFinished = true;
+                return;
+              }
+              else
+                return;
+          }
+
           else if (tier.children[0].hasOwnProperty('children')) {
               tier.children.forEach(function(childThree){
-                FindYouAre(childThree, toBeId, false);
+                FindYouAre(childThree, toBeId, false, thisComment);
               });
               numCalls--;
 
@@ -316,12 +320,79 @@ function createUser(callback) {
             }
         }
 
-        // add to other cases (multiple sentences, etc)
+
+
+
+
+
+      //var subredditSentiment = []; //store sentiment objects, one per subreddit
+      var tempSubSentiment;    
+      var subIdFound = false;
+      function storeSentimentForSub (currentSentence, currentSubId, currentSub){
+        //console.log("\n\n");
+        //console.log("curSub: " + currentSub + " == curSubId: " + currentSubId + " == curSentSent: " + currentSentence.$.sentimentValue);
+        subIdFound = false;
+
+        subredditSentiment.forEach(function(eachObj){
+          if (eachObj.subid == currentSubId){
+            subIdFound = true;
+          }
+        });
+        
+
+        //if an object with this sub_id exists within subredditSentiment, update its values with this sentence's sentiment
+        if (subIdFound){
+          subredditSentiment.forEach(function(sentimentObj){
+            //found the match so update the sentiment
+            if (sentimentObj.subid == currentSubId){
+                if (currentSentence.$.sentimentValue == "1"){
+                  sentimentObj.negativeCount = sentimentObj.negativeCount + 1;
+                }
+                if (currentSentence.$.sentimentValue == "2"){
+                  sentimentObj.neutralCount = sentimentObj.neutralCount + 1; 
+                }
+                if (currentSentence.$.sentimentValue == "3"){
+                  sentimentObj.positiveCount = sentimentObj.positiveCount + 1;
+                }
+            }
+          });
+
+        }
+
+        //if the object does not exist, create it within subredditSentiment
+        else{
+            tempSubSentiment = {sub: currentSub, subid: currentSubId, negativeCount: 0, neutralCount: 0, positiveCount: 0};
+      
+            if (currentSentence.$.sentimentValue == "1"){
+              tempSubSentiment.negativeCount = tempSubSentiment.negativeCount + 1;
+            }
+            if (currentSentence.$.sentimentValue == "2"){
+              tempSubSentiment.neutralCount = tempSubSentiment.neutralCount + 1; 
+            }
+            if (currentSentence.$.sentimentValue == "3"){
+              tempSubSentiment.positiveCount = tempSubSentiment.positiveCount + 1;
+            }
+
+            subredditSentiment.push(tempSubSentiment);   
+        }
+      }
+
+
+
 
         comments.forEach(function(currentComment, commentIndex) {
             coreNLP.process(currentComment.data.body, function(err, result) {
             if (Array.isArray(result.document.sentences.sentence)) {
               result.document.sentences.sentence.forEach(function(x) {
+
+                  //call sentenceSentiment storage
+                  //console.log(currentComment.data.body+"\n\n");
+                  //if (currentComment.data.subreddit_id == "t5_2zume"){
+                      //console.log("\n\n");
+                      //console.log(currentComment.data.subreddit);
+                      //console.log(currentComment.data.body);
+                  //}
+                  storeSentimentForSub(x, currentComment.data.subreddit_id, currentComment.data.subreddit);
                   sentenceCounter = sentenceCounter + 1;
                   if (Array.isArray(x.tokens.token)) {
                       x.tokens.token.forEach(function(y, index) {
@@ -333,8 +404,8 @@ function createUser(callback) {
                           if (y.word == 'I' || y.word == 'i') {
                               if (index < x.tokens.token.length-2) {
                                   if ((x.tokens.token[index+1].lemma == "be") && (x.tokens.token[index+2].lemma != "not")) {
-                                      // console.log("\n\n"+currentComment.data.body + "\n\n")
-                                      FindYouAre(x.parsedTree, parseInt(x.tokens.token[index+1].$.id), false);
+                                      //console.log("\n\n"+currentComment.data.body + "\n\n")
+                                      FindYouAre(x.parsedTree, parseInt(x.tokens.token[index+1].$.id), false, currentComment);
                                       //console.log("finished finding you are's");
                                   }
                               }
@@ -372,12 +443,65 @@ function createUser(callback) {
 
                 if (counter == comments.length) {
                     if (descriptorSet.length > 0) {
-                        descriptorSet.forEach(function(identifier, identifierIndex) {
-                            console.log("before filter: " + identifier + "\n");
+                        // console.log("\n\nDESCRIPTOR SET LENGTH = " + descriptorSet.length);
+                        // descriptorSet.forEach(function(identifier, identifierIndex) {
+                        //    var noVerbs = true, 
+                        //    tempWord = "";
+                        //    coreNLP.process(identifier, function(err, tokenziedIdentifier) {
+                        //         if (Array.isArray(tokenziedIdentifier.document.sentences.sentence.tokens.token)) {
+                        //           //forEach loop to check if the ddescriptor contains any verbs, if it does we do not want it
+                        //           tokenziedIdentifier.document.sentences.sentence.tokens.token.forEach(function(indivWord, indyindy){
+                        //              // console.log("CURRENTLY ON DESCRIPTOR " + identifierIndex+ " WORD IN DESCRIPTOR: " + indyindy);
+                        //              // console.log("before filter: " + identifier + "\n");
+                                   
+                        //               coreNLP.process(indivWord.word, function(err,processedIndivWord){
+                        //                 console.log("CURRENTLY ON DESCRIPTOR " + identifierIndex+ " WORD IN DESCRIPTOR: " + indyindy);
+                        //                 console.log("before filter: " + identifier);
+                        //                 console.log("current word: " + processedIndivWord.document.sentences.sentence.tokens.token.word);
+                        //                 console.log("current POS: " + processedIndivWord.document.sentences.sentence.tokens.token.POS)
+                        //                   //console.log("processedIndivWord.word: "+ processedIndivWord.document.sentences.sentence.tokens.token.word);
+                        //                   if (processedIndivWord.document.sentences.sentence.tokens.token.POS == "VB" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBD" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBG" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBN" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBP" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBZ"){
+                        //                     noVerbs = false;
+                        //                   }
+                        //                   else if (processedIndivWord.document.sentences.sentence.tokens.token.POS != "DT"){
+                        //                    // console.log("\nadding: " + processedIndivWord.document.sentences.sentence.tokens.token.word + " to " + tempWord+"\n");
+                        //                     tempWord = tempWord + " " + processedIndivWord.document.sentences.sentence.tokens.token.word;
+                        //                   }
+                        //                   console.log("current tempWord: " + tempWord);
+                        //                   console.log("noVerbs is: " + noVerbs+ "\n");
+                        //                   if (indyindy == (tokenziedIdentifier.document.sentences.sentence.tokens.token.length-1)) {
+                        //                     if (noVerbs){
+                        //                       console.log("=================after filter: "+ tempWord);
+                        //                       filteredArray.push(tempWord);
+                        //                     }
+                        //                     tempWord = "";
+                        //                     noVerbs = true;
+
+                        //                     if (identifierIndex == (descriptorSet.length-1)) {
+                        //                       console.log("\n\n" + "DONE!" + "\n\n");
+                        //                       callback(filteredArray);
+                        //                       return;
+                        //                     }
+                        //                   }
+
+                        //               });
+     
+                        //           });
+                        //         }
+                        //         else if (identifierIndex == (descriptorSet.length-1)) {
+                        //             console.log("CURRENTLY ON DESCRIPTOR: " + identifierIndex + " BUT NOT ARRAY! DONE DONE DONE");
+                        //             //console.log("\n\n" + "DONE!" + "\n\n");
+                        //             callback(filteredArray);
+                        //             return;
+                        //         }
+                        //     });
+                        // });
+                          descriptorSet.forEach(function(identifier, identifierIndex) {
+                            //console.log("before filter: " + identifier + "\n");
                             coreNLP.process(identifier, function(err, tokenziedIdentifier) {
                                 if (Array.isArray(tokenziedIdentifier.document.sentences.sentence.tokens.token)) {
                                     if (tokenziedIdentifier.document.sentences.sentence.tokens.token[0].POS == "DT") {
-                                        console.log("after filter: " + identifier.substring(parseInt(tokenziedIdentifier.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1) + "\n");
+                                        //console.log("after filter: " + identifier.substring(parseInt(tokenziedIdentifier.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1) + "\n");
                                         filteredArray.push(identifier.substring(parseInt(tokenziedIdentifier.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1));
                                     }
                                     else {
@@ -385,7 +509,7 @@ function createUser(callback) {
                                     }
                                 }
                                 if (identifierIndex == (descriptorSet.length-1)) {
-                                    console.log("\n\n" + "DONE!" + "\n\n");
+                                    //console.log("\n\n" + "DONE!" + "\n\n");
                                     callback(filteredArray);
                                     return;
                                 }
@@ -394,7 +518,7 @@ function createUser(callback) {
                     }
                     else {
                         console.log("\n\n" + "EMPTY!" + "\n\n");
-                        callback(filteredArray);
+                        callback(descriptorSet);
                         return;
                     }
                 }
@@ -439,8 +563,8 @@ function createUser(callback) {
                 currentPostCount = 0;
             }
             else {
-              console.log("\n\nCURRENT DATE: " + monthNames[currentMonth] + currentYear + " with " + currentCommentScore + " and " + currentPostCount);
-              console.log("\nDOESN'T MATCH! NEW DATE: " + monthNames[date.getMonth()] + date.getFullYear());
+              //console.log("\n\nCURRENT DATE: " + monthNames[currentMonth] + currentYear + " with " + currentCommentScore + " and " + currentPostCount);
+              //console.log("\nDOESN'T MATCH! NEW DATE: " + monthNames[date.getMonth()] + date.getFullYear());
               monthData.push({
                                   month: monthNames[currentMonth],
                                   date: ("0" + date.getDate()).slice(-2),
@@ -508,8 +632,8 @@ function createUser(callback) {
                 currentSubPostCount = 0;
             }
             else {
-              console.log("\n\nCURRENT DATE: " + monthNames[currentMonth] + currentYear + " with " + currentSubmittedScore + " and " + currentSubPostCount);
-              console.log("\nDOESN'T MATCH! NEW DATE: " + monthNames[date2.getMonth()] + date2.getFullYear());
+              //console.log("\n\nCURRENT DATE: " + monthNames[currentMonth] + currentYear + " with " + currentSubmittedScore + " and " + currentSubPostCount);
+              //console.log("\nDOESN'T MATCH! NEW DATE: " + monthNames[date2.getMonth()] + date2.getFullYear());
               monthDataSubmitted.push({
                                   month: monthNames[currentMonth],
                                   date: ("0" + date2.getDate()).slice(-2),
@@ -796,6 +920,72 @@ function createUser(callback) {
 
             userData.descriptions = youAre;
             userData.familyMembers = familyMems;
+
+            //filter subredditSentiment to only contain the top 5 most frequently contributed to subreddits
+            //sort array then take the top 5, if less than equal to 5 elements take the whole thing
+            //selection sort
+            subredditSentiment.forEach(function(item, outIndex){ 
+                //set minimum to this position
+                var min = outIndex;
+
+                //check the rest of the array to see if anything is smaller
+                subredditSentiment.forEach(function(innerItem, inIndex){ 
+                    if (inIndex >= outIndex+1){
+                        if ((subredditSentiment[min].positiveCount + subredditSentiment[min].neutralCount + subredditSentiment[min].negativeCount) > (innerItem.positiveCount + innerItem.neutralCount + innerItem.negativeCount)){
+                            min = inIndex;
+                        }
+                    }
+                    if (inIndex == subredditSentiment.length-1){
+                        if (outIndex != min){
+                            var tempSub = "",
+                            tempSubid = "",
+                            tempNegativeCount = 0,
+                            tempNeutralCount = 0,
+                            tempPositiveCount = 0;
+
+                            //set temp = min
+                            tempSub = subredditSentiment[min].sub;
+                            tempSubid = subredditSentiment[min].subid;
+                            tempNegativeCount = subredditSentiment[min].negativeCount;
+                            tempNeutralCount = subredditSentiment[min].neutralCount;
+                            tempPositiveCount = subredditSentiment[min].positiveCount;
+
+                            //set min = i
+                            subredditSentiment[min].sub = item.sub;
+                            subredditSentiment[min].subid = item.subid;
+                            subredditSentiment[min].negativeCount = item.negativeCount;
+                            subredditSentiment[min].neutralCount = item.neutralCount ;
+                            subredditSentiment[min].positiveCount = item.positiveCount; 
+
+
+                            //set i = temp
+                            item.sub = tempSub;
+                            item.subid = tempSubid;
+                            item.negativeCount = tempNegativeCount;
+                            item.neutralCount = tempNeutralCount;
+                            item.positiveCount = tempPositiveCount; 
+                        }
+
+                        if (outIndex == subredditSentiment.length-1){
+                            if (subredditSentiment.length<=5){
+                                userData.sentimentBySub = subredditSentiment;
+                            }
+                            else{
+                                var tempArray = [];
+                                subredditSentiment.forEach(function(indivItem, indivIndex){
+                                    if ((subredditSentiment.length-indivIndex)<=5){
+                                        tempArray.push(indivItem);
+                                    }
+                                    if (indivIndex == subredditSentiment.length-1){
+                                        userData.sentimentBySub = tempArray;
+                                    }
+
+                                });
+                            }
+                        }
+                    }
+                });
+            });
 
             var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
             userData.genCommentData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
