@@ -148,7 +148,9 @@ var UserSchema = new Schema({
 	subMeta: [SubMetaSchema],
 	availableFrom: Number,
 	negativePercentage: Number,
-	negativeExample: [{content: String, trigger: String}]
+	negativeExample: [{content: String, trigger: String}],
+	sentimentBySub: [{sub: String, subid: String, negativeCount: Number, neutralCount: Number, positiveCount: Number}],
+
 }, { collection: 'user'});
 
 module.exports = mongoose.model('User', UserSchema);
