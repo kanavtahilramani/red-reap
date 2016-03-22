@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"subreddit",
+				"subreddit"
+			],
+			[
 				"current",
 				"currentComment"
 			],
@@ -332,7 +336,7 @@
 			"file": "server/api/reddit/reddit.controller.js",
 			"settings":
 			{
-				"buffer_size": 48897,
+				"buffer_size": 52600,
 				"line_ending": "Windows"
 			}
 		}
@@ -679,15 +683,15 @@
 					"file": "server/api/reddit/reddit.controller.js",
 					"settings":
 					{
-						"buffer_size": 48897,
+						"buffer_size": 52600,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10608,
-								10608
+								38841,
+								38841
 							]
 						],
 						"settings":
@@ -697,7 +701,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4430.0,
+						"translation.y": 12432.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -765,6 +769,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 193.0,
+	"side_bar_width": 50.0,
 	"status_bar_visible": true
 }
