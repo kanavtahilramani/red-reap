@@ -361,7 +361,7 @@ function createUser(callback) {
 
         //if the object does not exist, create it within subredditSentiment
         else{
-            tempSubSentiment = {sub: currentSub, subid: currentSubId, negativeCount: 0, neutralCount: 0, positiveCount: 0};
+            tempSubSentiment = {sub: currentSub, subid: currentSubId, negativeCount: 0, neutralCount: 0, positiveCount: 0, total: 0, negPer: 0, neuPer:0, posPer: 0};
       
             if (currentSentence.$.sentimentValue == "1"){
               tempSubSentiment.negativeCount = tempSubSentiment.negativeCount + 1;
@@ -927,6 +927,10 @@ function createUser(callback) {
             subredditSentiment.forEach(function(item, outIndex){ 
                 //set minimum to this position
                 var min = outIndex;
+                item.total = item.positiveCount + item.negativeCount + item.neutralCount;
+                item.negPer = ((item.negativeCount/item.total)*100).toPrecision(3);
+                item.neuPer = ((item.neutralCount/item.total)*100).toPrecision(3);
+                item.posPer = ((item.positiveCount/item.total)*100).toPrecision(3);
 
                 //check the rest of the array to see if anything is smaller
                 subredditSentiment.forEach(function(innerItem, inIndex){ 
@@ -941,7 +945,11 @@ function createUser(callback) {
                             tempSubid = "",
                             tempNegativeCount = 0,
                             tempNeutralCount = 0,
-                            tempPositiveCount = 0;
+                            tempPositiveCount = 0,
+                            tempNegPer = 0,
+                            tempNeuPer = 0,
+                            tempPosPer = 0,
+                            tempTotal = 0;
 
                             //set temp = min
                             tempSub = subredditSentiment[min].sub;
@@ -949,6 +957,10 @@ function createUser(callback) {
                             tempNegativeCount = subredditSentiment[min].negativeCount;
                             tempNeutralCount = subredditSentiment[min].neutralCount;
                             tempPositiveCount = subredditSentiment[min].positiveCount;
+                            tempNegPer = subredditSentiment[min].negPer;
+                            tempNeuPer = subredditSentiment[min].neuPer;
+                            tempPosPer = subredditSentiment[min].posPer;
+                            tempTotal = subredditSentiment[min].total;
 
                             //set min = i
                             subredditSentiment[min].sub = item.sub;
@@ -956,14 +968,21 @@ function createUser(callback) {
                             subredditSentiment[min].negativeCount = item.negativeCount;
                             subredditSentiment[min].neutralCount = item.neutralCount ;
                             subredditSentiment[min].positiveCount = item.positiveCount; 
-
-
+                            subredditSentiment[min].negPer = item.negPer; 
+                            subredditSentiment[min].neuPer = item.neuPer;
+                            subredditSentiment[min].posPer = item.posPer;
+                            subredditSentiment[min].total = item.total;
+  
                             //set i = temp
                             item.sub = tempSub;
                             item.subid = tempSubid;
                             item.negativeCount = tempNegativeCount;
                             item.neutralCount = tempNeutralCount;
                             item.positiveCount = tempPositiveCount; 
+                            item.negPer = tempNegPer;
+                            item.neuPer = tempNeuPer;
+                            item.posPer = tempPosPer;
+                            item.total = tempTotal;
                         }
 
                         if (outIndex == subredditSentiment.length-1){

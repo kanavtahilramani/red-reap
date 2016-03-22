@@ -149,7 +149,7 @@ var UserSchema = new Schema({
 	availableFrom: Number,
 	negativePercentage: Number,
 	negativeExample: [{content: String, trigger: String}],
-	sentimentBySub: [{sub: String, subid: String, negativeCount: Number, neutralCount: Number, positiveCount: Number}],
+	sentimentBySub: [{sub: String, subid: String, negativeCount: Number, neutralCount: Number, positiveCount: Number, total: Number, negPer: Number, neuPer: Number, posPer: Number}],
 
 }, { collection: 'user'});
 
