@@ -9,7 +9,14 @@ angular.module('redreapApp')
         var data = User.getUserData().data;
         var curAction = attrs.title;
         var color = d3.scale.ordinal();
-        if (curAction == "comment")
+        console.log(attrs);
+
+        var svgWidth  = 375,
+            svgHeight = 375,
+            radius = Math.min(svgWidth, svgHeight) / 2,
+            donutWidth = 60;
+
+        if (curAction == "Comment")
         {
           /* Positive/Negative of Comments */
           var dataset = [
@@ -19,7 +26,7 @@ angular.module('redreapApp')
 
           color.range(['#5D5D5D','#EA1C1C','#BE2929','#D22E2E','#D74343','#DB5858','#E06D6D']); 
         }
-        else if (curAction == "adjective")
+        else if (curAction == "Adjective")
         {
           /* Positive/Negative of Adjectives */
           var dataset = [
@@ -31,19 +38,42 @@ angular.module('redreapApp')
 
           color.range(['#1B9F9F','#1CEAEA','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 
         }
+        else if (curAction == "Subreddit")
+        {
+          var curIndex = attrs.curIndex;
 
-        var svgWidth  = 375,
-            svgHeight = 375,
-            radius = Math.min(svgWidth, svgHeight) / 2,
-            donutWidth = 60;
+            if (curIndex != 0)
+            {
+              svgWidth  = 250,
+              svgHeight = 250,
+              radius = Math.min(svgWidth, svgHeight) / 2,
+              donutWidth = 35;
+            }
+
+          var totalSentences = (data.sentimentBySub[curIndex].positiveCount + data.sentimentBySub[curIndex].neutralCount + data.sentimentBySub[curIndex].negativeCount);
+
+          var positivePercent = Math.round(data.sentimentBySub[curIndex].positiveCount*100 / totalSentences);
+          var neutralPercent = Math.round(data.sentimentBySub[curIndex].neutralCount*100 / totalSentences);
+          var negativePercent = Math.round(data.sentimentBySub[curIndex].negativeCount*100 / totalSentences);
+
+
+          /* Positive/Negative of Adjectives */
+          var dataset = [
+            { label: 'Positive', count: positivePercent, enabled: true },
+            { label: 'Neutral', count: neutralPercent, enabled: true }, 
+            { label: 'Negative', count: negativePercent, enabled: true },
+          ];
+
+          color.range(['#1CEAEA','#5D5D5D','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 
+        }
 
         //var color = d3.scale.category10();    
      
-        // var tip = d3.tip()
-        //   .attr('class', 'd3-tip')
-        //   .html(function(d) {
-        //     return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + d.data.count + "%</span>";
-        //   });
+        var tip = d3.tip()
+          .attr('class', 'd3-tip')
+          .html(function(d) {
+            return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + d.data.count + "%</span>";
+          });
 
         var svg = d3.select(element[0])
                     .append('svg')
@@ -53,7 +83,7 @@ angular.module('redreapApp')
                       .attr("class", "container")
                       .attr('transform', 'translate(' + (svgWidth / 2) +  ',' + (svgHeight / 2) + ')'); 
 
-        //svg.call(tip);
+        svg.call(tip);
         // Define the radius
         var arc = d3.svg.arc()
                         .innerRadius(radius - donutWidth)
@@ -75,8 +105,8 @@ angular.module('redreapApp')
                       .attr('fill', function(d, i) { 
                         return color(d.data.label);
                       })
-                      //.on('mouseover', tip.show)
-                      //.on('mouseout', tip.hide)
+                      .on('mouseover', tip.show)
+                      .on('mouseout', tip.hide)
                       .each(function(d) { this._current = d; });
 
         // Define the Legend

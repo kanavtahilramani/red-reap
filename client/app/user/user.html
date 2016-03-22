@@ -109,18 +109,18 @@
 				    </div>
 			    	<div ng-if="user.redditUser.data.familyMembers.length > 0">
 					    <p class="bottomtext">Your family members</p>
-				    		<div style="margin-left: 50px; color: white;" ng-repeat="identifier in user.redditUser.data.familyMembers track by $index" ng-if="$index%4==0">
+				    		<div style="margin-left: 50px; color: white;" ng-repeat="identifier in user.redditUser.data.familyMembers track by $index">
 	  							<div class="row">
-		  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+		  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
 		           				  		{{user.redditUser.data.familyMembers[$index]}}
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
 		           				  		{{user.redditUser.data.familyMembers[$index+1]}}
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
 		           				  		{{user.redditUser.data.familyMembers[$index+2]}}
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
 		           				  		{{user.redditUser.data.familyMembers[$index+3]}}
 									</div>
 								</div>
@@ -248,9 +248,9 @@
 					<p class="content-text" style="text=align:left;">Your account has <strong style="text-align:right;">{{user.redditUser.data.karma.totalCommentScore}} comment karma </strong> and <strong style="text-align:right;">{{user.redditUser.data.karma.totalLinkScore}} link karma</strong>.</p>
 				</div>
 
-		    	<div class="container" style="margin-left: 30px;">
+		    	<div class="container">
 					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 ">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
 							<bar-chart></bar-chart>
 							<line-plot></line-plot>
 						</div>
@@ -266,6 +266,37 @@
 					<h1 class="content-header" align="center">Sentiment</h1>
 					
 					<div class="container">
+						<div class="row content-top-padding">
+						   	<h3 class="content-subheader" align="center">Subreddits<h5 class="content-subheader" align="center">*Subreddits sorted by sentence count</h5></h3>
+						   	
+						   	<div style="margin: 0 auto; text-align:center;">
+						   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
+								<donut title="Subreddit" cur-index=0></donut>
+								<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].positiveCount + user.redditUser.data.sentimentBySub[0].neutralCount + user.redditUser.data.sentimentBySub[0].negativeCount}}</strong></h4>
+						   	</div>
+						   	<div style="margin: 0 auto; text-align:center;"><!--
+							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
+									<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
+									<donut title="Subreddit" cur-index=1></donut>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].positiveCount + user.redditUser.data.sentimentBySub[1].neutralCount + user.redditUser.data.sentimentBySub[1].negativeCount}}</strong></h5>
+								</div><!--
+							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
+									<h4 align="center">{{user.redditUser.data.sentimentBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">#</a></h4>
+									<donut title="Subreddit" cur-index=2></donut>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].positiveCount + user.redditUser.data.sentimentBySub[2].neutralCount + user.redditUser.data.sentimentBySub[2].negativeCount}}</strong></h5>
+								</div><!--
+							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
+									<h4 align="center">{{user.redditUser.data.sentimentBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">#</a></h4>
+									<donut title="Subreddit" cur-index=3></donut>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].positiveCount + user.redditUser.data.sentimentBySub[3].neutralCount + user.redditUser.data.sentimentBySub[3].negativeCount}}</strong></h5>
+								</div><!--
+							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
+									<h4 align="center">{{user.redditUser.data.sentimentBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">#</a></h4>
+									<donut title="Subreddit" cur-index=4></donut>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].positiveCount + user.redditUser.data.sentimentBySub[4].neutralCount + user.redditUser.data.sentimentBySub[4].negativeCount}}</strong></h5>
+								</div>
+							</div>
+						</div>
 						<div class="row content-top-padding">
 						   	<h3 class="content-subheader" align="center">Comments</h3><!--
    						--><div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
@@ -283,8 +314,8 @@
 									</div>
 								</div>
 							</div><!--
-							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;">
-									<donut title="comment"></donut>
+							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px; text-align:center;">
+									<donut title="Comment"></donut>
 								</div>	
 						</div>
 
@@ -401,8 +432,8 @@
 									</div>
 								</div>
 							</div><!--
-							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;">
-									<donut title="adjective"></donut>
+							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-top:30px; text-align:center;">
+									<donut title="Adjective"></donut>
 								</div>	
 						</div>
 					</div>
