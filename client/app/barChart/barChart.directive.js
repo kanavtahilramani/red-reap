@@ -42,7 +42,7 @@ angular.module('redreapApp')
 		  .attr('class', 'd3-tip')
 		  .offset([-10, 0])
 		  .html(function(d) {
-		    return "<strong>karma:</strong> <span style='color:red'>" + d.commentKarmaForMonth + "</span>";
+		    return "<strong>karma:</strong> <span style='color:#D9230F'>" + d.commentKarmaForMonth + "</span>";
 		  });
 
 		var svg = d3.select(element[0]).append("svg")
@@ -75,6 +75,7 @@ angular.module('redreapApp')
 		  .data(data)
 		.enter().append("rect")
 		  .attr("class", "bar")
+		  .attr("fill", "#D9230F")
 		  .attr("x", function(d) { return x(d.month); })
 		  .attr("width", x.rangeBand())
 		  .attr("y", function(d) { return y(d.commentKarmaForMonth); })

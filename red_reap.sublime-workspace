@@ -198,6 +198,22 @@
 				"buffer_size": 5527,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "client/app/user/user.js",
+			"settings":
+			{
+				"buffer_size": 401,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/barChart/barChart.directive.js",
+			"settings":
+			{
+				"buffer_size": 2725,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
@@ -228,16 +244,17 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.html",
+		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/Homeworks/Homework 7/Polynomial_SujayBandarpalle.h",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.scss",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/navbar/navbar.html",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.scss",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.html",
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/user.model.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.controller.js",
-		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/favicon.ico",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.js",
 		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/linePlot/linePlot.directive.js",
@@ -354,8 +371,7 @@
 		"/C/Users/Kanav/Documents/Projects/intro-api/server.js",
 		"/C/Users/Kanav/Documents/Projects/intro-api/package.json",
 		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/body-parser/package.json",
-		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/bson/ext/index.js",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/config.cfg"
+		"/C/Users/Kanav/Documents/Projects/intro-api/node_modules/bson/ext/index.js"
 	],
 	"find":
 	{
@@ -376,6 +392,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"orange",
+			"red",
+			"$",
 			"sentence",
 			"title",
 			"border",
@@ -500,10 +519,7 @@
 			";\n",
 			"paddi",
 			"ju",
-			"center",
-			"margin-left",
-			"jumbotron",
-			"jumbo"
+			"center"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -553,7 +569,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -568,8 +584,8 @@
 						"selection":
 						[
 							[
-								5760,
-								5759
+								13686,
+								13686
 							]
 						],
 						"settings":
@@ -578,7 +594,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1037.0,
+						"translation.y": 3612.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -595,8 +611,8 @@
 						"selection":
 						[
 							[
-								3872,
-								3872
+								4149,
+								4149
 							]
 						],
 						"settings":
@@ -606,7 +622,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3328.0,
+						"translation.y": 3906.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -623,8 +639,8 @@
 						"selection":
 						[
 							[
-								351,
-								351
+								1335,
+								1335
 							]
 						],
 						"settings":
@@ -635,6 +651,61 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "client/app/user/user.js",
+					"settings":
+					{
+						"buffer_size": 401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								401,
+								401
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 97.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "client/app/barChart/barChart.directive.js",
+					"settings":
+					{
+						"buffer_size": 2725,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2315,
+								2315
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 714.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

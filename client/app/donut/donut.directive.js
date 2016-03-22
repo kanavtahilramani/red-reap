@@ -11,7 +11,7 @@ angular.module('redreapApp')
         var color = d3.scale.ordinal();
         if (curAction == "comment")
         {
-          /* Positive/Negative of comments */
+          /* Positive/Negative of Comments */
           var dataset = [
             { label: 'Other', count: 100 - data.negativePercentage, enabled: true }, 
             { label: 'Negative', count: Math.round(data.negativePercentage*100)/100, enabled: true },
@@ -32,10 +32,10 @@ angular.module('redreapApp')
           color.range(['#1B9F9F','#1CEAEA','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 
         }
 
-        var svgWidth  = 385,
-            svgHeight = 385,
+        var svgWidth  = 375,
+            svgHeight = 375,
             radius = Math.min(svgWidth, svgHeight) / 2,
-            donutWidth = 70;
+            donutWidth = 60;
 
         //var color = d3.scale.category10();    
      
