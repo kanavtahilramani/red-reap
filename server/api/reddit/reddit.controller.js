@@ -443,6 +443,7 @@ function createUser(callback) {
 
                 if (counter == comments.length) {
                     if (descriptorSet.length > 0) {
+                      //JULIAN's BROKEN FILTERING: REMOVED VERBS, PROBLEMATIC DUE TO LENGTH OF NLP EXECUTION
                         // console.log("\n\nDESCRIPTOR SET LENGTH = " + descriptorSet.length);
                         // descriptorSet.forEach(function(identifier, identifierIndex) {
                         //    var noVerbs = true, 
@@ -496,6 +497,7 @@ function createUser(callback) {
                         //         }
                         //     });
                         // });
+                          //KANAVS FILTERING: REMOVES DT'S AND SINGLE WORD IDENTIFIERS
                           descriptorSet.forEach(function(identifier, identifierIndex) {
                             //console.log("before filter: " + identifier + "\n");
                             coreNLP.process(identifier, function(err, tokenziedIdentifier) {
@@ -918,7 +920,104 @@ function createUser(callback) {
             if (adjPerVP)
               userData.vpPer = adjPerVP.toPrecision(3);
 
-            userData.descriptions = youAre;
+            //filtering youAre to remove verbs
+            //JULIAN's BROKEN FILTERING: REMOVED VERBS, PROBLEMATIC DUE TO LENGTH OF NLP EXECUTION
+                        // console.log("\n\nDESCRIPTOR SET LENGTH = " + descriptorSet.length);
+                         //youAre.forEach(function(identifier, identifierIndex) {
+                        //    var noVerbs = true, 
+                        //    tempWord = "";
+                        //    coreNLP.process(identifier, function(err, tokenziedIdentifier) {
+                        //         if (Array.isArray(tokenziedIdentifier.document.sentences.sentence.tokens.token)) {
+                        //           //forEach loop to check if the ddescriptor contains any verbs, if it does we do not want it
+                        //           tokenziedIdentifier.document.sentences.sentence.tokens.token.forEach(function(indivWord, indyindy){
+                        //              // console.log("CURRENTLY ON DESCRIPTOR " + identifierIndex+ " WORD IN DESCRIPTOR: " + indyindy);
+                        //              // console.log("before filter: " + identifier + "\n");
+                                   
+                        //               coreNLP.process(indivWord.word, function(err,processedIndivWord){
+                        //                 console.log("CURRENTLY ON DESCRIPTOR " + identifierIndex+ " WORD IN DESCRIPTOR: " + indyindy);
+                        //                 console.log("before filter: " + identifier);
+                        //                 console.log("current word: " + processedIndivWord.document.sentences.sentence.tokens.token.word);
+                        //                 console.log("current POS: " + processedIndivWord.document.sentences.sentence.tokens.token.POS)
+                        //                   //console.log("processedIndivWord.word: "+ processedIndivWord.document.sentences.sentence.tokens.token.word);
+                        //                   if (processedIndivWord.document.sentences.sentence.tokens.token.POS == "VB" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBD" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBG" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBN" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBP" || processedIndivWord.document.sentences.sentence.tokens.token.POS == "VBZ"){
+                        //                     noVerbs = false;
+                        //                   }
+                        //                   else if (processedIndivWord.document.sentences.sentence.tokens.token.POS != "DT"){
+                        //                    // console.log("\nadding: " + processedIndivWord.document.sentences.sentence.tokens.token.word + " to " + tempWord+"\n");
+                        //                     tempWord = tempWord + " " + processedIndivWord.document.sentences.sentence.tokens.token.word;
+                        //                   }
+                        //                   console.log("current tempWord: " + tempWord);
+                        //                   console.log("noVerbs is: " + noVerbs+ "\n");
+                        //                   if (indyindy == (tokenziedIdentifier.document.sentences.sentence.tokens.token.length-1)) {
+                        //                     if (noVerbs){
+                        //                       console.log("=================after filter: "+ tempWord);
+                        //                       filteredArray.push(tempWord);
+                        //                     }
+                        //                     tempWord = "";
+                        //                     noVerbs = true;
+
+                        //                     if (identifierIndex == (descriptorSet.length-1)) {
+                        //                       console.log("\n\n" + "DONE!" + "\n\n");
+                        //                       callback(filteredArray);
+                        //                       return;
+                        //                     }
+                        //                   }
+
+                        //               });
+     
+                        //           });
+                        //         }
+                        //         else if (identifierIndex == (descriptorSet.length-1)) {
+                        //             console.log("CURRENTLY ON DESCRIPTOR: " + identifierIndex + " BUT NOT ARRAY! DONE DONE DONE");
+                        //             //console.log("\n\n" + "DONE!" + "\n\n");
+                        //             callback(filteredArray);
+                        //             return;
+                        //         }
+                        //     });
+                        // });
+            var youAreFiltered = [];
+            var foundInFiltered = false;
+            //iterate through each description in the youAre array
+            youAre.forEach(function(eachYouAre, youAreIndex){
+              console.log("Starting description filtering");
+                foundInFiltered = false;
+                if (youAreFiltered.length == 0){
+
+                    youAreFiltered.push(eachYouAre);
+
+                }
+                else{
+                youAreFiltered.forEach(function(eachYouAreFiltered, youAreFilteredIndex){
+                    console.log("Inner loop iterations");
+                    //if the current unfiltered element is already present in the filtered array
+                    if (eachYouAre == eachYouAreFiltered){
+                        //set the boolean to be true, so we can flag that we do not want to push it into filtered since it is already present
+                        foundInFiltered = true;
+                        console.log("-----THIS ONE WAS FOUND IN FILTERED ALREADY");
+                    }
+
+                    //check if we are on the last element in the filtered array so that we can decide to push or not since we have seen all elements present
+                    if (youAreFilteredIndex == youAreFiltered.length-1){
+
+                        if (!foundInFiltered){
+                          console.log("Pushing a descriptor from you are to filtered")
+                          youAreFiltered.push(eachYouAre);
+                        }
+
+                        //if on the last iteration of the youAre array, then we write back when we reach the end of the inner array
+                        if (youAreIndex == youAre.length-1){
+                            console.log("saving youAreFiltered to userData.descriptions! ");
+                            userData.descriptions = youAreFiltered;
+
+                        }
+                    }
+
+
+                });
+              }
+            });
+
+            
             userData.familyMembers = familyMems;
 
             //filter subredditSentiment to only contain the top 5 most frequently contributed to subreddits
