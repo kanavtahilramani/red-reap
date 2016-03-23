@@ -927,15 +927,12 @@ function createUser(callback) {
             subredditSentiment.forEach(function(item, outIndex){ 
                 //set minimum to this position
                 var min = outIndex;
-                item.total = item.positiveCount + item.negativeCount + item.neutralCount;
-                item.negPer = ((item.negativeCount/item.total)*100).toPrecision(3);
-                item.neuPer = ((item.neutralCount/item.total)*100).toPrecision(3);
-                item.posPer = ((item.positiveCount/item.total)*100).toPrecision(3);
+                
 
                 //check the rest of the array to see if anything is smaller
                 subredditSentiment.forEach(function(innerItem, inIndex){ 
                     if (inIndex >= outIndex+1){
-                        if ((subredditSentiment[min].positiveCount + subredditSentiment[min].neutralCount + subredditSentiment[min].negativeCount) > (innerItem.positiveCount + innerItem.neutralCount + innerItem.negativeCount)){
+                        if ((subredditSentiment[min].positiveCount + subredditSentiment[min].neutralCount + subredditSentiment[min].negativeCount) < (innerItem.positiveCount + innerItem.neutralCount + innerItem.negativeCount)){
                             min = inIndex;
                         }
                     }
@@ -957,21 +954,21 @@ function createUser(callback) {
                             tempNegativeCount = subredditSentiment[min].negativeCount;
                             tempNeutralCount = subredditSentiment[min].neutralCount;
                             tempPositiveCount = subredditSentiment[min].positiveCount;
-                            tempNegPer = subredditSentiment[min].negPer;
-                            tempNeuPer = subredditSentiment[min].neuPer;
-                            tempPosPer = subredditSentiment[min].posPer;
-                            tempTotal = subredditSentiment[min].total;
-
+                            // tempNegPer = subredditSentiment[min].negPer;
+                            // tempNeuPer = subredditSentiment[min].neuPer;
+                            // tempPosPer = subredditSentiment[min].posPer;
+                            // tempTotal = subredditSentiment[min].total;
+                            //console.log(tempNegPer + " " + tempNeuPer + " " + tempPosPer + " " + tempTotal);
                             //set min = i
                             subredditSentiment[min].sub = item.sub;
                             subredditSentiment[min].subid = item.subid;
                             subredditSentiment[min].negativeCount = item.negativeCount;
                             subredditSentiment[min].neutralCount = item.neutralCount ;
                             subredditSentiment[min].positiveCount = item.positiveCount; 
-                            subredditSentiment[min].negPer = item.negPer; 
-                            subredditSentiment[min].neuPer = item.neuPer;
-                            subredditSentiment[min].posPer = item.posPer;
-                            subredditSentiment[min].total = item.total;
+                            // subredditSentiment[min].negPer = item.negPer; 
+                            // subredditSentiment[min].neuPer = item.neuPer;
+                            // subredditSentiment[min].posPer = item.posPer;
+                            // subredditSentiment[min].total = item.total;
   
                             //set i = temp
                             item.sub = tempSub;
@@ -979,11 +976,16 @@ function createUser(callback) {
                             item.negativeCount = tempNegativeCount;
                             item.neutralCount = tempNeutralCount;
                             item.positiveCount = tempPositiveCount; 
-                            item.negPer = tempNegPer;
-                            item.neuPer = tempNeuPer;
-                            item.posPer = tempPosPer;
-                            item.total = tempTotal;
+                            // item.negPer = tempNegPer;
+                            // item.neuPer = tempNeuPer;
+                            // item.posPer = tempPosPer;
+                            // item.total = tempTotal;
                         }
+
+                        item.total = item.positiveCount + item.negativeCount + item.neutralCount;
+                        item.negPer = ((item.negativeCount/item.total)*100).toPrecision(3);
+                        item.neuPer = ((item.neutralCount/item.total)*100).toPrecision(3);
+                        item.posPer = ((item.positiveCount/item.total)*100).toPrecision(3);
 
                         if (outIndex == subredditSentiment.length-1){
                             if (subredditSentiment.length<=5){
@@ -992,11 +994,13 @@ function createUser(callback) {
                             else{
                                 var tempArray = [];
                                 subredditSentiment.forEach(function(indivItem, indivIndex){
-                                    if ((subredditSentiment.length-indivIndex)<=5){
+                                    if (indivIndex<=4){
                                         tempArray.push(indivItem);
                                     }
                                     if (indivIndex == subredditSentiment.length-1){
+                                        //userData.sentimentBySub = tempArray;
                                         userData.sentimentBySub = tempArray;
+
                                     }
 
                                 });
