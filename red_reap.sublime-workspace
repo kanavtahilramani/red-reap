@@ -4,184 +4,20 @@
 		"selected_items":
 		[
 			[
-				"subreddit",
-				"subreddit"
+				"scroll",
+				"scrollPos"
 			],
 			[
-				"current",
-				"currentComment"
+				"avg",
+				"avgEditTime"
 			],
 			[
-				"numC",
-				"numComments"
+				"element",
+				"elementToPlaceIn"
 			],
 			[
-				"num",
-				"numCalls"
-			],
-			[
-				"is",
-				"isFinished"
-			],
-			[
-				"dad",
-				"Dad"
-			],
-			[
-				"this",
-				"thisWord"
-			],
-			[
-				"descrio",
-				"descriptorSet"
-			],
-			[
-				"desc",
-				"descriptor"
-			],
-			[
-				"descrip",
-				"descriptorNounFound"
-			],
-			[
-				"adjPerP",
-				"adjPerP"
-			],
-			[
-				"adjPer",
-				"adjPerVN"
-			],
-			[
-				"veryP",
-				"veryPosAdEx"
-			],
-			[
-				"ver",
-				"veryNegAdEx"
-			],
-			[
-				"nAdjs",
-				"negativeAdjs"
-			],
-			[
-				"nega",
-				"negativeSample"
-			],
-			[
-				"sen",
-				"sentenceCount"
-			],
-			[
-				"sente",
-				"sentenceCount"
-			],
-			[
-				"sent",
-				"sentiment"
-			],
-			[
-				"exam",
-				"exampleComments"
-			],
-			[
-				"negati",
-				"negativeComments"
-			],
-			[
-				"se",
-				"sentenceCount"
-			],
-			[
-				"user",
-				"userData"
-			],
-			[
-				"negativ",
-				"negativeSentenceCount"
-			],
-			[
-				"res",
-				"result"
-			],
-			[
-				"creat",
-				"createUser"
-			],
-			[
-				"topS",
-				"topSubmission"
-			],
-			[
-				"topC",
-				"topComment"
-			],
-			[
-				"top",
-				"topS"
-			],
-			[
-				"sub",
-				"submission"
-			],
-			[
-				"comm",
-				"commentKarma"
-			],
-			[
-				"com",
-				"commentSlice"
-			],
-			[
-				"Comm",
-				"CommentSchema"
-			],
-			[
-				"comment",
-				"commentSlice"
-			],
-			[
-				"par",
-				"parseInt"
-			],
-			[
-				"perm",
-				"permalink"
-			],
-			[
-				"get",
-				"getTopSubmission"
-			],
-			[
-				"comments",
-				"comments"
-			],
-			[
-				"hand",
-				"handleTopComment"
-			],
-			[
-				"save",
-				"saveUser"
-			],
-			[
-				"ref",
-				"refreshToken"
-			],
-			[
-				"User",
-				"UserSchema"
-			],
-			[
-				"Token",
-				"TokenSchema"
-			],
-			[
-				"refr",
-				"refreshToken"
-			],
-			[
-				"url",
-				"urlParams"
+				"end",
+				"endScrollCheck"
 			],
 			[
 				"control",
@@ -190,6 +26,10 @@
 			[
 				"contr",
 				"controllerAs"
+			],
+			[
+				"user",
+				"userData"
 			],
 			[
 				"contro",
@@ -202,6 +42,14 @@
 			[
 				"set",
 				"setToken"
+			],
+			[
+				"is",
+				"isLoggedIn"
+			],
+			[
+				"get",
+				"getToken"
 			],
 			[
 				"Auth",
@@ -232,6 +80,10 @@
 				"padding-top"
 			],
 			[
+				"com",
+				"computerData"
+			],
+			[
 				"find",
 				"findById"
 			],
@@ -254,6 +106,14 @@
 			[
 				"pla",
 				"planeID"
+			],
+			[
+				"par",
+				"parties"
+			],
+			[
+				"num",
+				"numParties"
 			],
 			[
 				"or",
@@ -316,27 +176,90 @@
 	"buffers":
 	[
 		{
-			"contents": "\nSaving.\n\n\nWARNING: unmatched quote of type \" found at index 161 in text segment: You're forgetting though that burden of having a child exist is less than the burden of death.\n\nIf you believe a life begins as conception (I don't) t...\nWARNING: unmatched quote of type \" found at index 549 in text segment: YES! The second part I can't agree with more, but this is not by design and this was not the design of the framers! I took a course recently called \"L...\nWARNING: unmatched quote of type \" found at index 340 in text segment: The difference is that Hitler hated Jews and made up non-existent reasons to slaughter them.\n\nIn Israel's case, Hamas is actively firing FUCKING ROCKE...\nWARNING: unmatched quote of type \" found at index 238 in text segment: You're missing my point. And I don't know how much more basic. Context is important. That's all there is things happens because of reasons \"x y z\" x y...\n\n\nhttp://i.imgur.com/lCCh9cl.png\n\nThat's why C9 was 6:2 against CLG in the last several months. and before you say that CLG has won the two most recent meetings you said \"CLG were &gt; C9\", which we can clearly see isn't the case because they repeatedly lost to them.\n\nJust swallow your pride and accept you're wrong. I'm done with this argument.\n\n\n\n\nfound VP with matching id\n\n\n\n\nCould it be then, in your opinion that all day dehydration is what's causing it? Maybe I'm still not getting enough water.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYour first paragraph is right. I should edit my post to mean I'm talking about by today's standards or the standards of the time.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAlso. I'm not sure how using someone's rank makes me lack intelligence. I'm using our only objective standard of evidence to compare my game knowledge versus his. Rank isn't there for no reason and suggests that I've spent more time learning about the game than he has and so my opinion holds more weight than his does.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhy did we just hear about your entire biology curriculum. You really need to jerk yourself off that bad? I guess I need to go around flaunting that I'm about to finish my BA in Government and tell everyone about politics now?\n\n\n\n\nfound VP with matching id\n\n\n\n\nAs a pro-choicer I'm pretty sure the \"women's right to choice\" argument that the guy makes above really doesn't hold water.\n\nIt turns out that nearly all abortion arguments MUST boil down to a line between what is moral to abort and what isn't, where you position yourself in this argument determines where you'll draw that line. A women's right to choose ends when there IS another life. Whether there is one is the question. I think it's a morally and logically unsupportable position to maintain that a woman has the right to choose if her choice would take a life.\n\nThere is one more step though where even if people agreed when life began, and the fetus was past that point, but birthing the fetus would harm the mother, or a fetus conceived of rape existed then I think abortion is fine in all cases at that point. However, I think science needs to find the line, because it certainly is earlier than when it actually is birthed, and certainly is later than the current Supreme Court's line.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSupreme Court Litigation\n\nHelp me. I'm drowning.\n\n\n\n\nfound VP with matching id\n\n\n\n\nDude I was at ACL a couple weekends ago and I could feel the pressure of those around me. Felt scary AF\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk cool! Thanks! I'm gonna get started when I get home from class.\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk I'm gonna look into both Yun and Yang.. So that brings me to my next step. What is the curriculum? Do the trials? Play arcade? How do I learn base bread and butter 3 hit combos? How do I learn what blocks what, the super BASICS?\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk sorry. I'm a dude so I don't get this. If the tampon is up in there absorbing and/or blocking all the oogly boogly then how can a blood clot slip out?\n\n\n\n\nfound VP with matching id\n\n\n\n\nBut that's the problem. It's not 50/50 near the nerf it was seaming up that way but from pros I'm seeing something like a 70/30 A4/A1 comparison\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nfound VP with matching id\n\n\n\n\nhttp://i.imgur.com/lCCh9cl.png\n\nThat's why C9 was 6:2 against CLG in the last several months. and before you say that CLG has won the two most recent meetings you said \"CLG were &gt; C9\", which we can clearly see isn't the case because they repeatedly lost to them.\n\nJust swallow your pride and accept you're wrong. I'm done with this argument.\n\n\n\n\nfound VP with matching id\n\n\n\n\nFrom this point of view, you and I are very much so on the same page. Conservative right loves to applaud war efforts and the slaughter of innocent civilians who they label our enemies, and then take the bundle of cells that is a zygote and call that murder, it's a double standard if I ever saw one.\n\nI think the only big differentiation to make is that most developed countries find war wrong and go into it anyways, I personally think it's right very rarely (Like WWII was probably necessary), but from the point of view (and just to play devil's advocate) of one who believes all that they see it is different:\n\nThose who are pro-life see humans as different than animals, and to some extent at least to the point that we're more sentient. Moreover, if your interest was to mitigate human death, as I believe a morally forthright human's interests should be then you only have to take one more step to believe abortion is wrong, which is whether you believe it is death if there was never a life, or for me believe there isn't a life at all until a certain point.\n\nLet me put it another way: For those that are okay with pointless war and death there's no getting around it, they are creating a hypocritical and inconsistent double standard, for those that believe in mitigating death at all costs it still boils down to when life begins.\n\n\n\n\nfound VP with matching id\n\n\n\n\nCould it be then, in your opinion that all day dehydration is what's causing it? Maybe I'm still not getting enough water.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYour first paragraph is right. I should edit my post to mean I'm talking about by today's standards or the standards of the time.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAlso. I'm not sure how using someone's rank makes me lack intelligence. I'm using our only objective standard of evidence to compare my game knowledge versus his. Rank isn't there for no reason and suggests that I've spent more time learning about the game than he has and so my opinion holds more weight than his does.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhy did we just hear about your entire biology curriculum. You really need to jerk yourself off that bad? I guess I need to go around flaunting that I'm about to finish my BA in Government and tell everyone about politics now?\n\n\n\n\nfound VP with matching id\n\n\n\n\nAs a pro-choicer I'm pretty sure the \"women's right to choice\" argument that the guy makes above really doesn't hold water.\n\nIt turns out that nearly all abortion arguments MUST boil down to a line between what is moral to abort and what isn't, where you position yourself in this argument determines where you'll draw that line. A women's right to choose ends when there IS another life. Whether there is one is the question. I think it's a morally and logically unsupportable position to maintain that a woman has the right to choose if her choice would take a life.\n\nThere is one more step though where even if people agreed when life began, and the fetus was past that point, but birthing the fetus would harm the mother, or a fetus conceived of rape existed then I think abortion is fine in all cases at that point. However, I think science needs to find the line, because it certainly is earlier than when it actually is birthed, and certainly is later than the current Supreme Court's line.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSupreme Court Litigation\n\nHelp me. I'm drowning.\n\n\n\n\nfound VP with matching id\n\n\n\n\nDude I was at ACL a couple weekends ago and I could feel the pressure of those around me. Felt scary AF\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk cool! Thanks! I'm gonna get started when I get home from class.\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk I'm gonna look into both Yun and Yang.. So that brings me to my next step. What is the curriculum? Do the trials? Play arcade? How do I learn base bread and butter 3 hit combos? How do I learn what blocks what, the super BASICS?\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk sorry. I'm a dude so I don't get this. If the tampon is up in there absorbing and/or blocking all the oogly boogly then how can a blood clot slip out?\n\n\n\n\nfound VP with matching id\n\n\n\n\nBut that's the problem. It's not 50/50 near the nerf it was seaming up that way but from pros I'm seeing something like a 70/30 A4/A1 comparison\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nfound VP with matching id\n\n\n\n\nFrom this point of view, you and I are very much so on the same page. Conservative right loves to applaud war efforts and the slaughter of innocent civilians who they label our enemies, and then take the bundle of cells that is a zygote and call that murder, it's a double standard if I ever saw one.\n\nI think the only big differentiation to make is that most developed countries find war wrong and go into it anyways, I personally think it's right very rarely (Like WWII was probably necessary), but from the point of view (and just to play devil's advocate) of one who believes all that they see it is different:\n\nThose who are pro-life see humans as different than animals, and to some extent at least to the point that we're more sentient. Moreover, if your interest was to mitigate human death, as I believe a morally forthright human's interests should be then you only have to take one more step to believe abortion is wrong, which is whether you believe it is death if there was never a life, or for me believe there isn't a life at all until a certain point.\n\nLet me put it another way: For those that are okay with pointless war and death there's no getting around it, they are creating a hypocritical and inconsistent double standard, for those that believe in mitigating death at all costs it still boils down to when life begins.\n\n\n\n\nfound VP with matching id\n\n\n\n\nHi! I'm taking an pre-law undergrad con-law course focused on civil liberties, how do you feel about incorporation of the BoR using the 14th amendment?\n\nI think it's pretty cool how over time the court moved the line away from the states and towards federal control.\n\n\n\n\nfound VP with matching id\n\n\n\n\nIt was during an interview at some tourney. Swedes weren't doing it much, and I'm fairly certain it's a thing NA players started with.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYa. Well I'm sure to the chagrin of a lot of the medical field, most of the doctors I go to will quickly diagnose a sinus infection, write me a script, and send me on my way.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAnd I disagree with you and so does Dazed, Hiko and I'm sure many more. You haven't watched enough of steels competitive games to understand clearly.\n\nAnd a pro can hit their prime at any time. So idk what you're talking about. Olof played 1.6 but he didn't hit his prime until early this year or last\n\n\n\n\nfound VP with matching id\n\n\n\n\nYo. But great job tying obesity and stupidity. I'm sure tying more conditions and addictions is agreeable to you? Ah, you gotta be pretty stupid if you're a meth addict, because you know, it's bad for you and stuff.\n\nStfu dude, there are tons of extremely intelligent people that happen to be obese, it turns out loving food, hating running, and having a slower BMR makes you fat, and it also turns out that being constantly vigilant at every meal is exhausting.\n\nAnd before you give me the \"I SAID THAT FAT\" response, it doesn't matter, you're hinting at some sort of positive correlation between the two and its fucking absurd.\n\n\n\n\nfound VP with matching id\n\n\n\n\nIf I might ask. I'm really afraid of cancer, I'm young, so my friend and I always joke that we by the time we're older and at an age where cancer is more likely it'll be super treatable.\n\nYou say the most common types will be more manageable in 20 years. Do you think there's going to be a point (call it 40 years or 60 years from now) where nearly all cancer types even if they make ti to later stages, will be workable?\n\n\n\n\nfound VP with matching id\n\n\n\n\nIf I might ask. I'm really afraid of cancer, I'm young, so my friend and I always joke that we by the time we're older and at an age where cancer is more likely it'll be super treatable.\n\nYou say the most common types will be more manageable in 20 years. Do you think there's going to be a point (call it 40 years or 60 years from now) where nearly all cancer types even if they make ti to later stages, will be workable?\n\n\n\n\nfound VP with matching id\n\n\n\n\nAs a government major this is so true and I am so sad as a result.\n\nWhen you consider that politics is science as much as any objective or natural science (it's predictable, and you can perform proper experiments that follow the scientific method). People question those kinds of scientists so much less than any political science major or governmentally minded individual, and the conversations are so base that it's pretty frustrating.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAre you sure? I was pretty sure most Christians believed wholeheartedly that he was born on that day.\n\n\n\n\nfound VP with matching id\n\n\n\n\nThis sounds dope! I actually didn't have a reliable way of making veggies but I'm gonna legit do this\n\n\n\n\nfound VP with matching id\n\n\n\n\nI don't agree with that. Even as a 2k player in 5k games when I was worse I never had that much trouble. Just stand in XP range, no reason you can't do that. I think this guy didn't make a conscious decision and was just shit.\n\n\n\n\nfound VP with matching id\n\n\n\n\nNo. I'm a college student and my internal recipe book is shit and so consists of easy unhealthy garbage (see: spaghetti, chicken katsu, fried rice). Making healthier things though, I'm afraid would end in me eating some eggs or marinated chicken every night which would get extremely annoying and this suicide-encouraging.\n\nYou feel me?\n\n\n\n\nfound VP with matching id\n\n\n\n\nNo. I'm a college student and my internal recipe book is shit and so consists of easy unhealthy garbage (see: spaghetti, chicken katsu, fried rice). Making healthier things though, I'm afraid would end in me eating some eggs or marinated chicken every night which would get extremely annoying and this suicide-encouraging.\n\nYou feel me?\n\n\n\n\nfound VP with matching id\n\n\n\n\nThank you for saying this. It feels like I'm the only one in the DoTA community that realizes that Bone7 is actually a SHIT dota player.\n\nLike I've never seen someone go so unseen for how bad he is, he is literally a 5k elo player, that's it, nothing more. He feeds nearly every game, his hero pool is shit, his decision making is shit, his impact is shit.\n\nBONE7 is GARBO. How does no one see that and how can someone as smart as EE no kick him from the team??\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'M WATCHING FMAB RIGHT NOW!!! :D\n\n\n\n\nfound VP with matching id\n\n\n\n\nThis is the only type of pro-lifer I'll accept. Being pro-life and anti-contraceptive with the aims of promoting abstinence is disgusting and antiquated.\n\nWhile I'm extremely pro choice I feel like your position is less shit than that of other pro-lifers.\n\n\n\n\n\n\nfound VP with matching id\n\n\n\n\nYou're forgetting though that burden of having a child exist is less than the burden of death.\n\nIf you believe a life begins as conception (I don't) then saying \"oh I'm sure pushing a child out of your vagina is a much greater issue than literally dying. Even if you weigh the mother above the child. You would have to weigh a child's right to LIVE over the mothers right to not have to undergo pregnancy.\n\nJust a sidenote: I'm pro-choice to the extreme and believe life doesn't begin for a good whole into pregnancy.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYou're forgetting though that burden of having a child exist is less than the burden of death.\n\nIf you believe a life begins as conception (I don't) then saying \"oh I'm sure pushing a child out of your vagina is a much greater issue than literally dying. Even if you weigh the mother above the child. You would have to weigh a child's right to LIVE over the mothers right to not have to undergo pregnancy.\n\nJust a sidenote: I'm pro-choice to the extreme and believe life doesn't begin for a good whole into pregnancy.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI've seen pictures and they look absurdly attractive, but I'm assuming he's also a good looking dude. So he could, theoretically, get in there.\n\n\n\n\nfound VP with matching id\n\n\n\n\nThis is exactly what people in RL have been telling me...and people online say the opposite but I'm more apt to trust the people I know IRL. Thank you for this opinion.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm gonna make this tomorrow! Thanks for this post! What would you serve with this?\n\n\n\n\nfound VP with matching id\n\n\n\n\nAwesome thanks!\n\nWhat other schools in the realm (above/below) did you apply to?\n\nAs far as the general school environment, how was UH 1L? Did you enjoy your time there (as much as someone can enjoy 1L lol)?\n\nDo you know if people that aren't top 10 (say top quarter) still have decent job prospects, I know in Houston there's tons of non-biglaw opportunities so do you know if it's mostly biglaw or bust or not?\n\nAny other comments on UH law school? What's the culture like there?\n\nWhile I don't plan to transfer, how DOES the process work, if I were, for example trying to get into Texas Law School from UH?\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell then let me ask you this. I'm miles ahead of the medians for regionals like South Texas or St. Mary's, and I would get in to those with tons of money. What are my job prospects from those assuming I perform well, from your experience.\n\nAlternatively, if money isn't an issue (dad has me mostly covered for law school) would you look at this a bit differently?\n\nFinally as far as the LSAT medians, I'm like 1 or 2 points, literally 4 or 5 questions below, which makes me think the room for error is such that I can, for intellectual purposes (my ability to mentally compete) count my self at their median. Couple that with that fact that my undergrad (UT) is probably more difficult than many other applicants whose GPA is lower than mine median wise and didn't go to a school that was so difficult and demanding, it makes me feel like from an intellectual point of view I'm right in the middle of the pack. So say I do get in, is it so hard to believe that I could be competitive? Of course that assumes I can get in!!\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell then let me ask you this. I'm miles ahead of the medians for regionals like South Texas or St. Mary's, and I would get in to those with tons of money. What are my job prospects from those assuming I perform well, from your experience.\n\nAlternatively, if money isn't an issue (dad has me mostly covered for law school) would you look at this a bit differently?\n\nFinally as far as the LSAT medians, I'm like 1 or 2 points, literally 4 or 5 questions below, which makes me think the room for error is such that I can, for intellectual purposes (my ability to mentally compete) count my self at their median. Couple that with that fact that my undergrad (UT) is probably more difficult than many other applicants whose GPA is lower than mine median wise and didn't go to a school that was so difficult and demanding, it makes me feel like from an intellectual point of view I'm right in the middle of the pack. So say I do get in, is it so hard to believe that I could be competitive? Of course that assumes I can get in!!\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell then let me ask you this. I'm miles ahead of the medians for regionals like South Texas or St. Mary's, and I would get in to those with tons of money. What are my job prospects from those assuming I perform well, from your experience.\n\nAlternatively, if money isn't an issue (dad has me mostly covered for law school) would you look at this a bit differently?\n\nFinally as far as the LSAT medians, I'm like 1 or 2 points, literally 4 or 5 questions below, which makes me think the room for error is such that I can, for intellectual purposes (my ability to mentally compete) count my self at their median. Couple that with that fact that my undergrad (UT) is probably more difficult than many other applicants whose GPA is lower than mine median wise and didn't go to a school that was so difficult and demanding, it makes me feel like from an intellectual point of view I'm right in the middle of the pack. So say I do get in, is it so hard to believe that I could be competitive? Of course that assumes I can get in!!\n\n\n\n\nfound VP with matching id\n\n\n\n\nI never had a bike, but a lot of my friends have. If you're living on campus I think it's really pointless to have a bike. I am in West campus pretty freaking far and I still walk and it's fine, nothing wrong with a 20 min or so walk.\n\nBoth of those snack options are fine, you just need something to tide you over because several 1 hour 15 minute classes in a row can be tiring.\n\n\n\n\nfound VP with matching id\n\n\n\n\nBTDubs, I might take ur trap playlist and ur hip hop playlist and mash them together for a party I'm having if you don't mind dawg. Your soundcloud is gold.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell the truth is I'm not particularly interested in biglaw. It just seems like everyone else acts like that's the only way to make money out of law school. I feel like in all the conversations I have (at least online) with people they are like BIGLAW or don't go to law school, but isn't there tons of latitude for other job opportunities?\n\nThe thing that's worrying about about this conversation is that you're coming at it (and I'm not saying you're wrong) with the idea that \"You have no idea how well you'll do in law school so you might as well reduce the financial burden in the event you do badly, so retake the LSAT for more money.\" But that's not a mindset I want to adopt, man.\n\nHere's the thing. If I was going into this with the assumption that I was going to do badly, I wouldn't go to law school at all. I'm not going to law school to do badly in law school, so I'm going to attack this issue with the worldview that wherever I go I'm going to kick some real ass, and maybe that's unrealistic, but I'd rather look at it that way, or else, why go.\n\nSo let's just entertain my world for a second. The one where I don't retake (everyone online says retake, everyone IRL says don't, it's a toss-up), I can probably get into UH, in your opinion at least?\n\nAs far as getting into UT, or another T15 school, I think that from that point of view there is also a draw back. The t14 schools don't guarantee biglaw either, only top 25 or top 30 at UT get into great big law jobs also, the only difference is my chances of being top 30 at UT law are monumentally lower than my chances at UH or even better South Texas.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell the truth is I'm not particularly interested in biglaw. It just seems like everyone else acts like that's the only way to make money out of law school. I feel like in all the conversations I have (at least online) with people they are like BIGLAW or don't go to law school, but isn't there tons of latitude for other job opportunities?\n\nThe thing that's worrying about about this conversation is that you're coming at it (and I'm not saying you're wrong) with the idea that \"You have no idea how well you'll do in law school so you might as well reduce the financial burden in the event you do badly, so retake the LSAT for more money.\" But that's not a mindset I want to adopt, man.\n\nHere's the thing. If I was going into this with the assumption that I was going to do badly, I wouldn't go to law school at all. I'm not going to law school to do badly in law school, so I'm going to attack this issue with the worldview that wherever I go I'm going to kick some real ass, and maybe that's unrealistic, but I'd rather look at it that way, or else, why go.\n\nSo let's just entertain my world for a second. The one where I don't retake (everyone online says retake, everyone IRL says don't, it's a toss-up), I can probably get into UH, in your opinion at least?\n\nAs far as getting into UT, or another T15 school, I think that from that point of view there is also a draw back. The t14 schools don't guarantee biglaw either, only top 25 or top 30 at UT get into great big law jobs also, the only difference is my chances of being top 30 at UT law are monumentally lower than my chances at UH or even better South Texas.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell the truth is I'm not particularly interested in biglaw. It just seems like everyone else acts like that's the only way to make money out of law school. I feel like in all the conversations I have (at least online) with people they are like BIGLAW or don't go to law school, but isn't there tons of latitude for other job opportunities?\n\nThe thing that's worrying about about this conversation is that you're coming at it (and I'm not saying you're wrong) with the idea that \"You have no idea how well you'll do in law school so you might as well reduce the financial burden in the event you do badly, so retake the LSAT for more money.\" But that's not a mindset I want to adopt, man.\n\nHere's the thing. If I was going into this with the assumption that I was going to do badly, I wouldn't go to law school at all. I'm not going to law school to do badly in law school, so I'm going to attack this issue with the worldview that wherever I go I'm going to kick some real ass, and maybe that's unrealistic, but I'd rather look at it that way, or else, why go.\n\nSo let's just entertain my world for a second. The one where I don't retake (everyone online says retake, everyone IRL says don't, it's a toss-up), I can probably get into UH, in your opinion at least?\n\nAs far as getting into UT, or another T15 school, I think that from that point of view there is also a draw back. The t14 schools don't guarantee biglaw either, only top 25 or top 30 at UT get into great big law jobs also, the only difference is my chances of being top 30 at UT law are monumentally lower than my chances at UH or even better South Texas.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell the truth is I'm not particularly interested in biglaw. It just seems like everyone else acts like that's the only way to make money out of law school. I feel like in all the conversations I have (at least online) with people they are like BIGLAW or don't go to law school, but isn't there tons of latitude for other job opportunities?\n\nThe thing that's worrying about about this conversation is that you're coming at it (and I'm not saying you're wrong) with the idea that \"You have no idea how well you'll do in law school so you might as well reduce the financial burden in the event you do badly, so retake the LSAT for more money.\" But that's not a mindset I want to adopt, man.\n\nHere's the thing. If I was going into this with the assumption that I was going to do badly, I wouldn't go to law school at all. I'm not going to law school to do badly in law school, so I'm going to attack this issue with the worldview that wherever I go I'm going to kick some real ass, and maybe that's unrealistic, but I'd rather look at it that way, or else, why go.\n\nSo let's just entertain my world for a second. The one where I don't retake (everyone online says retake, everyone IRL says don't, it's a toss-up), I can probably get into UH, in your opinion at least?\n\nAs far as getting into UT, or another T15 school, I think that from that point of view there is also a draw back. The t14 schools don't guarantee biglaw either, only top 25 or top 30 at UT get into great big law jobs also, the only difference is my chances of being top 30 at UT law are monumentally lower than my chances at UH or even better South Texas.\n\n\n\n\nfound VP with matching id\n\n\n\n\nHere's the thing. As a cyclist your job is to stay the fuck out of the way of the 2 ton killing machines. Cyclists want to be treated by cars but it's impossible to treat you all that way for 2 reasons:\n\n1. You fuckers are slow, sorry Lance, but my giant engine is faster than your bike and I'm going to pass you because you're ruining the flow of traffic.\n\n2. You don't follow the rules, you run lights and stop signs and pass in the middle of lanes and all kinds of dumb shit.\n\nSo fuck that man, we are the cars we should have the right of way to dangerous cyclists.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI like five guys more than whataburger, but I was so unimpressed by how expensive and mediocre shake shack was. 5 dollars for a hella mediocre shake, 3 dollars for boring ass fries\n\n\n\n\nfound VP with matching id\n\n\n\n\nEXACTLY. I'm worried that after this, there's nothing they can do to top it. But I didn't think they could do anything to amaze me after Red Wedding, so here's to more unbelievable GOT!\n\n\n\n\nfound VP with matching id\n\n\n\n\nHi! I hope you see this.\n\nWhat do you tell people that have a high stress event the next day and know they will have trouble sleeping? I am taking the LSAT on the 8th and am absolutely certain I will be so anxious that I will have serious trouble sleeping (this can't happen because the LSAT requires me to be very rested), how should I try to ensure I fall asleep quickly?\n\n\n\n\nfound VP with matching id\n\n\n\n\nSo. You base your logic about the camera on a false analogy. News crews and security cameras are expected to record people.\n\nThis would be a much more reasonable argument is you stop acting as if it's not fucking weird as hell and total social taboo to record people in public.  It just is. You know that it is but you're stubbornly pretending it's not for the sake of argument. Because you know that it is I'm gonna continue my line of argumentation under the pretense that you do, because while I'm not about to make a poll I know that you and mostly every other person in the world would fall on my side.\n\nGreat. Now that we've come together it's on the \"it's weird to film arguments between my SO and I\" I think it's not a far leap to say it would make you and most others angry. The result of that anger isn't the question here. Just that he was actively aggravating simply by recording and refusing not to.\n\nAll that said. If you continue to pretend that the basic thought of video taping a couples argument isn't absurd and provocative  I'm done with this argument because we will never come together. But if you want further proof of his intentions please read his FAQ which I posted below.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSo. You base your logic about the camera on a false analogy. News crews and security cameras are expected to record people.\n\nThis would be a much more reasonable argument is you stop acting as if it's not fucking weird as hell and total social taboo to record people in public.  It just is. You know that it is but you're stubbornly pretending it's not for the sake of argument. Because you know that it is I'm gonna continue my line of argumentation under the pretense that you do, because while I'm not about to make a poll I know that you and mostly every other person in the world would fall on my side.\n\nGreat. Now that we've come together it's on the \"it's weird to film arguments between my SO and I\" I think it's not a far leap to say it would make you and most others angry. The result of that anger isn't the question here. Just that he was actively aggravating simply by recording and refusing not to.\n\nAll that said. If you continue to pretend that the basic thought of video taping a couples argument isn't absurd and provocative  I'm done with this argument because we will never come together. But if you want further proof of his intentions please read his FAQ which I posted below.\n\n\n\n\nfound VP with matching id\n\n\n\n\nRight so by responding he is involving himself. By following them he is involving himself. It's like calling George Zimmerman ok because of what he did. When you actively follow a situation and refuse to extract yourself from it you are INVOLVING yourself.\n\nLike, look at it from a realistic point of view. If a couple is arguing and I'm watching from a park bench across the street that's one thing. That is chilling in a public place, and being told to move would be wrong for that person. But if I'm actively video taping something someone else does I'm an element in the situation, and moreover, an INFLAMMATORY element because in our culture at least, and I think rightfully so, filming things without permission is intrinsically inflammatory. In this instance it was DOUBLY inflammatory because the couple were already in a heated argument, and he doesn't yield himself the benefit of the doubt by carrying a gun at his fucking hip like he's looking for trouble.\n\n\n\n\nfound VP with matching id\n\n\n\n\nRight so by responding he is involving himself. By following them he is involving himself. It's like calling George Zimmerman ok because of what he did. When you actively follow a situation and refuse to extract yourself from it you are INVOLVING yourself.\n\nLike, look at it from a realistic point of view. If a couple is arguing and I'm watching from a park bench across the street that's one thing. That is chilling in a public place, and being told to move would be wrong for that person. But if I'm actively video taping something someone else does I'm an element in the situation, and moreover, an INFLAMMATORY element because in our culture at least, and I think rightfully so, filming things without permission is intrinsically inflammatory. In this instance it was DOUBLY inflammatory because the couple were already in a heated argument, and he doesn't yield himself the benefit of the doubt by carrying a gun at his fucking hip like he's looking for trouble.\n\n\n\n\nfound VP with matching id\n\n\n\n\nRight so by responding he is involving himself. By following them he is involving himself. It's like calling George Zimmerman ok because of what he did. When you actively follow a situation and refuse to extract yourself from it you are INVOLVING yourself.\n\nLike, look at it from a realistic point of view. If a couple is arguing and I'm watching from a park bench across the street that's one thing. That is chilling in a public place, and being told to move would be wrong for that person. But if I'm actively video taping something someone else does I'm an element in the situation, and moreover, an INFLAMMATORY element because in our culture at least, and I think rightfully so, filming things without permission is intrinsically inflammatory. In this instance it was DOUBLY inflammatory because the couple were already in a heated argument, and he doesn't yield himself the benefit of the doubt by carrying a gun at his fucking hip like he's looking for trouble.\n\n\n\n\nfound VP with matching id\n\n\n\n\n&gt; Well unfortunately the 'false analogy' is a premise you put forward. If you're in public, you can reasonably be expected to be filmed at any time. Someone with a cell phone is simply observing the public space just as news/security cameras are. The fact that you think a cell phone camera is some other offensive thing actively harassing people is ridiculous.\n\nThen you and I have wildly different experiences in real life. People react wildly differently to being actively filmed by another random bystander holding a camera in a heated situation, than they do bye a security camera or whatever.\n\n&gt; I'm not sure what society you think you live in, but here in the 21st century any public displays can reasonably be expected to be filmed by a passerby. Maybe you've simply been ignoring the billions of examples of this over the past 10 years. To deny that is simply denying reality. Welcome to the world we live in.\n\nAgain, I suppose our experiences are wildly different. I, nor any of my friends, nor you, or any of your friends, I'm sure, have been randomly filmed by a stranger in public. If they have, I'm sure they were upset by it. If this isn't the world you live in, then I don't know what to say.\n\n&gt;You seem very adamant to ignore the whole point here and either dismiss, or pretend like attacking someone who's filming a public disturbance is a rational thing. It's not.\n\nIt's not about what she DID. Of course she was crazy, but I'm saying that her action was predicated upon what he did, she wouldn't have randomly attacked him.\n\n&gt; Also I should point out saying that 'If you don't agree with me I'm done with this conversation' is probably the silliest way to try and win or defend and argument.\n\nThis isn't a way to win or defend. You and I clearly have such a difference of reality that the way we, and those we know would react to being filmed is apparently totally different. Given such a difference in world view I don't see either of us going to the other side.\n\n\n\n\nfound VP with matching id\n\n\n\n\n&gt; Well unfortunately the 'false analogy' is a premise you put forward. If you're in public, you can reasonably be expected to be filmed at any time. Someone with a cell phone is simply observing the public space just as news/security cameras are. The fact that you think a cell phone camera is some other offensive thing actively harassing people is ridiculous.\n\nThen you and I have wildly different experiences in real life. People react wildly differently to being actively filmed by another random bystander holding a camera in a heated situation, than they do bye a security camera or whatever.\n\n&gt; I'm not sure what society you think you live in, but here in the 21st century any public displays can reasonably be expected to be filmed by a passerby. Maybe you've simply been ignoring the billions of examples of this over the past 10 years. To deny that is simply denying reality. Welcome to the world we live in.\n\nAgain, I suppose our experiences are wildly different. I, nor any of my friends, nor you, or any of your friends, I'm sure, have been randomly filmed by a stranger in public. If they have, I'm sure they were upset by it. If this isn't the world you live in, then I don't know what to say.\n\n&gt;You seem very adamant to ignore the whole point here and either dismiss, or pretend like attacking someone who's filming a public disturbance is a rational thing. It's not.\n\nIt's not about what she DID. Of course she was crazy, but I'm saying that her action was predicated upon what he did, she wouldn't have randomly attacked him.\n\n&gt; Also I should point out saying that 'If you don't agree with me I'm done with this conversation' is probably the silliest way to try and win or defend and argument.\n\nThis isn't a way to win or defend. You and I clearly have such a difference of reality that the way we, and those we know would react to being filmed is apparently totally different. Given such a difference in world view I don't see either of us going to the other side.\n\n\n\n\nfound VP with matching id\n\n\n\n\n&gt; Well unfortunately the 'false analogy' is a premise you put forward. If you're in public, you can reasonably be expected to be filmed at any time. Someone with a cell phone is simply observing the public space just as news/security cameras are. The fact that you think a cell phone camera is some other offensive thing actively harassing people is ridiculous.\n\nThen you and I have wildly different experiences in real life. People react wildly differently to being actively filmed by another random bystander holding a camera in a heated situation, than they do bye a security camera or whatever.\n\n&gt; I'm not sure what society you think you live in, but here in the 21st century any public displays can reasonably be expected to be filmed by a passerby. Maybe you've simply been ignoring the billions of examples of this over the past 10 years. To deny that is simply denying reality. Welcome to the world we live in.\n\nAgain, I suppose our experiences are wildly different. I, nor any of my friends, nor you, or any of your friends, I'm sure, have been randomly filmed by a stranger in public. If they have, I'm sure they were upset by it. If this isn't the world you live in, then I don't know what to say.\n\n&gt;You seem very adamant to ignore the whole point here and either dismiss, or pretend like attacking someone who's filming a public disturbance is a rational thing. It's not.\n\nIt's not about what she DID. Of course she was crazy, but I'm saying that her action was predicated upon what he did, she wouldn't have randomly attacked him.\n\n&gt; Also I should point out saying that 'If you don't agree with me I'm done with this conversation' is probably the silliest way to try and win or defend and argument.\n\nThis isn't a way to win or defend. You and I clearly have such a difference of reality that the way we, and those we know would react to being filmed is apparently totally different. Given such a difference in world view I don't see either of us going to the other side.\n\n\n\n\nfound VP with matching id\n\n\n\n\n&gt; Well unfortunately the 'false analogy' is a premise you put forward. If you're in public, you can reasonably be expected to be filmed at any time. Someone with a cell phone is simply observing the public space just as news/security cameras are. The fact that you think a cell phone camera is some other offensive thing actively harassing people is ridiculous.\n\nThen you and I have wildly different experiences in real life. People react wildly differently to being actively filmed by another random bystander holding a camera in a heated situation, than they do bye a security camera or whatever.\n\n&gt; I'm not sure what society you think you live in, but here in the 21st century any public displays can reasonably be expected to be filmed by a passerby. Maybe you've simply been ignoring the billions of examples of this over the past 10 years. To deny that is simply denying reality. Welcome to the world we live in.\n\nAgain, I suppose our experiences are wildly different. I, nor any of my friends, nor you, or any of your friends, I'm sure, have been randomly filmed by a stranger in public. If they have, I'm sure they were upset by it. If this isn't the world you live in, then I don't know what to say.\n\n&gt;You seem very adamant to ignore the whole point here and either dismiss, or pretend like attacking someone who's filming a public disturbance is a rational thing. It's not.\n\nIt's not about what she DID. Of course she was crazy, but I'm saying that her action was predicated upon what he did, she wouldn't have randomly attacked him.\n\n&gt; Also I should point out saying that 'If you don't agree with me I'm done with this conversation' is probably the silliest way to try and win or defend and argument.\n\nThis isn't a way to win or defend. You and I clearly have such a difference of reality that the way we, and those we know would react to being filmed is apparently totally different. Given such a difference in world view I don't see either of us going to the other side.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAnd if I didn't need more support for the type of person he is, and how his actions here were a vigilante idiot with a gun and a video camera, rather than a conscientious and kind citizen, here's his FAQ from his site:\n\nQ. Is this site real?\n\nA. Mostly, yes. I try to make things entertaining, some are articles are categorized as comedy, but you should feel free to take almost all of it literally. I really do think it’s morally justifiable to kill police and other government agents, as they are the violent oppressors of free humanity. I really do think feminism is a hate movement and full of shit that this world would just be better off without. I really do think race baiting is a bigger problem than racism. I really do think the world would be better off if some people just killed themselves. I really do believe that government is a completely fictitious excuse to do harm, and nothing else, and that violent overthrow is the only solution.\n\nQ. Is this your real name?\n\nA. Yes, my real name is Christopher Cantwell. It says this name on my drivers license, and if I paid taxes I would pay taxes in this name. I ran for Congress under this name. If I were to apply for a full time job, the employer would find this website. That’s why this website is my primary source of income, and you should consider donating or advertising here if you support my work, like so many other generous people and savvy advertisers already have.\n\nQ. Where do you live? I want to make threats of violence against you!\n\nA. I’m not hard to find, pussy. Your threats don’t scare me, I’m a 225lbs trained fighter with a concealed carry license and firearms training. I’ve also been locked up with scarier guys than you. See me when you see me, and stop talking shit on the internet, you fucking bitch. If you were really ’bout it we wouldn’t be having this conversation, would we?\n\n\n\n\nfound VP with matching id\n\n\n\n\nAnd if I didn't need more support for the type of person he is, and how his actions here were a vigilante idiot with a gun and a video camera, rather than a conscientious and kind citizen, here's his FAQ from his site:\n\nQ. Is this site real?\n\nA. Mostly, yes. I try to make things entertaining, some are articles are categorized as comedy, but you should feel free to take almost all of it literally. I really do think it’s morally justifiable to kill police and other government agents, as they are the violent oppressors of free humanity. I really do think feminism is a hate movement and full of shit that this world would just be better off without. I really do think race baiting is a bigger problem than racism. I really do think the world would be better off if some people just killed themselves. I really do believe that government is a completely fictitious excuse to do harm, and nothing else, and that violent overthrow is the only solution.\n\nQ. Is this your real name?\n\nA. Yes, my real name is Christopher Cantwell. It says this name on my drivers license, and if I paid taxes I would pay taxes in this name. I ran for Congress under this name. If I were to apply for a full time job, the employer would find this website. That’s why this website is my primary source of income, and you should consider donating or advertising here if you support my work, like so many other generous people and savvy advertisers already have.\n\nQ. Where do you live? I want to make threats of violence against you!\n\nA. I’m not hard to find, pussy. Your threats don’t scare me, I’m a 225lbs trained fighter with a concealed carry license and firearms training. I’ve also been locked up with scarier guys than you. See me when you see me, and stop talking shit on the internet, you fucking bitch. If you were really ’bout it we wouldn’t be having this conversation, would we?\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm sure no one will see this, but this recorder is a fucking asshole. Of course it's LEGAL to record people, but not only are you being provocative, and I don't know why no one has said this, he's being FUCKING NOSY. Like it's none of his business what's going on between a couple, like it really isn't. Sure, if the guy is beating the shit out of his girlfriend, that's one thing, but couples fight all the time.\n\nThen it only exacerbates the fact that he's already being an inflammatory idiot by having a gun on him like \"I'm a fucking retard vigilante, so when I provoke you, I can kill you for being upset by it\".\n\nFuck people like this guy.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm sure no one will see this, but this recorder is a fucking asshole. Of course it's LEGAL to record people, but not only are you being provocative, and I don't know why no one has said this, he's being FUCKING NOSY. Like it's none of his business what's going on between a couple, like it really isn't. Sure, if the guy is beating the shit out of his girlfriend, that's one thing, but couples fight all the time.\n\nThen it only exacerbates the fact that he's already being an inflammatory idiot by having a gun on him like \"I'm a fucking retard vigilante, so when I provoke you, I can kill you for being upset by it\".\n\nFuck people like this guy.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI was talking to my friend, I'm a huge Spurs fan and my friend is a Rockets fan, after our loss to yall he was so pumped because he said he'd rather play the Spurs than LA. Last night he was like \"FREE GAME 1!! NO CP3 AND THEYRE AWAY!!\" and I said, just watch, the Clippers ain't nothing to fuck with. And then they got slaughtered. Idk man.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI was talking to my friend, I'm a huge Spurs fan and my friend is a Rockets fan, after our loss to yall he was so pumped because he said he'd rather play the Spurs than LA. Last night he was like \"FREE GAME 1!! NO CP3 AND THEYRE AWAY!!\" and I said, just watch, the Clippers ain't nothing to fuck with. And then they got slaughtered. Idk man.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm working towards a sociology minor with a focus on criminology and so people don't base their thoughts on just this the generally accepted thought is that shrubbery in front of homes often encourages burglars because it gives them a place to hide if need be. Burglary is a crime of stealth so making it easier to be stealthy is ill-advised.\n\n\n\n\nfound VP with matching id\n\n\n\n\n&gt; We're getting tired of Israel using our tax dollars to harm Palestinians.\n\nLol. I'm sure the Israeli people are tired of having missiles launched into their homes.\n\n&gt;You need to figure out how to get along or at least get a two-state solution (and then respect Palestine's sovereignty)\n\nLike Israel tried to do in 2005, or maybe every time they accepted a peace treaty in the most recent bout of rocket attacks only to have it broken by Palestinians.\n\n&gt;  The United States can't afford to support you anymore.\n\nTell that to our defense spending...\n\n&gt;Our infrastructure is crumbling\n\nCan you give me an example?\n\n\n\n\nfound VP with matching id\n\n\n\n\nCan you still improve and become good in CSGO MM? I'm only SEM so I'm not sure...joining one of the other leagues is useful for me?\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk, so the flaw in your reasoning rests in acting as if he was doing an isolated act that just happened to coincide with theirs. He WAS actively involving himself in the situation. So to prove I'm wrong here you have to show me that he was being completely silent for most of the video and not being obvious, if you can't do that you are WRONG on this count.\n\nYour second flaw in reasoning rests on this \"irrationality\" and \"don't know what's best for them. On the irrational argument, do you think the average person wouldn't be upset by some random person filming an argument between them and their girlfriend? Regardless of how she reacted, that would piss ANYONE off, so to support your irrationality argument, you must believe that people wouldn't normally be upset by this, which you probably can't. And on the \"know what's best for them\" it's not his JOB to know what's best for them any more than it's my job to know what's best for you, you know this as a fact, and so know that that is also an UNSUPPORTABLE argument\n\nYour final argument about public versus private. Where they had their argument doesn't affect this guy's ability to leave it alone, he chose to involve himself (see Paragraph 1).\n\nMost of your points are unsupportable, or not reflective of generally accepted reality, but I'd like to see how you attempt to defend them...\n\n\n\n\nfound VP with matching id\n\n\n\n\nI have a lot of asian ingredients....I was thinking a marinade incorporating some kind of chipotle sauce, or maybe some kind of lemon juice/soy sauce based marinade. I often have trouble getting flavor out of marinades.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhile the polar opposite of feudalism sucks it's extremely irritating to hear people talk about their ideas on politics when they are so unbelievably uninformed it hurts.\n\nI'm a government major at a solid school and while I think that people are entitled to their opinion, and we should embrace those opinions that are opposite ours (IE Jon Stuart Mill's ideas) if you actually DON'T UNDERSTAND politics, but make blanket statements that make you feel politically adequate like: \"Both parties are the same and I hate them\" -- when the partisan nature of Congress is more extreme than it's been in years or \"I don't like Obama because look at the debt\" when the President doesn't have the power of the purse as prescribed in the FUCKING constitution. It's a bit infuriating. Have an opinion, but KNOW HOW THINGS WORK FOR GOD SAKES IF YOU'RE GOING TO.\n\n\n\n\nfound VP with matching id\n\n\n\n\n360!! I'm literally starting tomorrow with my friend around evening, so I'm down!\n\n\n\n\nfound VP with matching id\n\n\n\n\n360!! I'm literally starting tomorrow with my friend around evening, so I'm down!\n\n\n\n\nfound VP with matching id\n\n\n\n\n(To the stir fry)Ya! This sounds so good, and I've tried before but mine always sucks. I dont have a Wok, but I'm gonna try again.\n\n\n\n\nfound VP with matching id\n\n\n\n\nThe blame game was just rhetoric more or less. The core of my argument rests in the fact that Americans simply fail themselves, and that it is up to the voting public to fix the problem by voting for politicians that care to fix the problems.\n\nAnd, no, I'm sorry, but I haven't read yet in any textbook or had any professor tell me that the government is corrupt by design could you fill me in?\n\n\n\n\nfound VP with matching id\n\n\n\n\nOf course. On this we agree. When I see a 300 LB man with 2 ft. long hot dogs and a bucket of fries at the baseball game I am as judgmental as the next guy. But when I see a fat person that consistently is trying to run and lose weight and eat better. Or even do all that and failing, I can see understand how frustrating it is, because really, its FRUSTRATING. And it makes it all the more frustrating to read the comments of people on Reddit that have never been in that position...\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell I'm glad we agree there. I think being changing from being fat is something that we need to make clear. IT's not really about \"I'm going to diet and lose weight.\" It's more like conforming to the regular bodily functions like eating lean proteins and normal portions. There's millions of years of evolution that promotes the consumption of starches and high energy foods that obese people fight, and producing a lifestyle that is counter to that takes time. For those that don't try I can't account for them with any legitimate argument.\n\n\n\n\nfound VP with matching id\n\n\n\n\nWell I'm glad we agree there. I think being changing from being fat is something that we need to make clear. IT's not really about \"I'm going to diet and lose weight.\" It's more like conforming to the regular bodily functions like eating lean proteins and normal portions. There's millions of years of evolution that promotes the consumption of starches and high energy foods that obese people fight, and producing a lifestyle that is counter to that takes time. For those that don't try I can't account for them with any legitimate argument.\n\n\n\n\nfound VP with matching id\n\n\n\n\nShit. Idk man. I think that honestly it serves them well in some areas and not in others. I was a nerd that hung out with popular kids (I had some social skills but was still quirky)  and a lot of them honestly while they did join good frats and many have cute girlfriends, they go to shitty schools and are getting shitty degrees. Where the nerds are going to top schools (Harvard, Stanford, etc) and building a strong future....\n\n\n\n\nfound VP with matching id\n\n\n\n\nI street viewed and the first thing I saw was an internet cafe with a sign that said \"DOTA\". I was like...noooo plz.\n\n\n\n\n\nfound VP with matching id\n\n\n\n\nRight, but what I'm saying is I'm never blocking anyone because I would be going faster than their passing speed anyways....\n\nI also think this passing idea is limited to cities of limited traffic. I live in Houston, TX. One of the most crowded cities in the world. It could be many miles before I find a reasonable place to go back into the non-pass or whatever lane....\n\n\n\n\nfound VP with matching id\n\n\n\n\nRight, but what I'm saying is I'm never blocking anyone because I would be going faster than their passing speed anyways....\n\nI also think this passing idea is limited to cities of limited traffic. I live in Houston, TX. One of the most crowded cities in the world. It could be many miles before I find a reasonable place to go back into the non-pass or whatever lane....\n\n\n\n\nfound VP with matching id\n\n\n\n\nHere's what I don't understand about the passing lane idea.\n\nI am going faster than 95 percent or more of the people on the road such that if I were to stay out of the left lane unless I was passing I would weaving every 10 or 15 seconds, why can't I just remain in the left lane? It doesn't make sense to have lane that is empty nearly all the time except for the short spurts of passing?\n\n\n\n\nfound VP with matching id\n\n\n\n\nHere's what I don't understand about the passing lane idea.\n\nI am going faster than 95 percent or more of the people on the road such that if I were to stay out of the left lane unless I was passing I would weaving every 10 or 15 seconds, why can't I just remain in the left lane? It doesn't make sense to have lane that is empty nearly all the time except for the short spurts of passing?\n\n\n\n\nfound VP with matching id\n\n\n\n\nHere's what I don't understand about the passing lane idea.\n\nI am going faster than 95 percent or more of the people on the road such that if I were to stay out of the left lane unless I was passing I would weaving every 10 or 15 seconds, why can't I just remain in the left lane? It doesn't make sense to have lane that is empty nearly all the time except for the short spurts of passing?\n\n\n\n\nfound VP with matching id\n\n\n\n\nIf I were to brine some chicken thigh would thay be enough in itself to just cook? How much flavor does it add\n\n\n\n\nfound VP with matching id\n\n\n\n\nHoly shit. Thank you! couple more questions:\n\nCan you elaborate on kino? I'm always really scared to escalate with kino so any help on that front would be awesome\n\nOn the spin thing, would it just be random?\n\n\n\n\nfound VP with matching id\n\n\n\n\nI love bench dude. I know it's the generic bro work out, but I'm new and just got to plates and I feel like such a badass when I put up bench weight\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm a fatass. I started at 244 pounds and am down 10 pounds now. Let me tell you something. I was TERRIFIED of the gym. Like absolutely completely horrified. Then I went the first time I realized that literally NOBODY CARES. Like people are so focused on their workout that you could be in the rack doing the wrongest shittiest workout ever and people wouldn't care. Not that you should, it's just to illustrate the point that people aren't happy, or sad, or annoyed that you're there. They literally don't even REALIZE you're there.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm a fatass. I started at 244 pounds and am down 10 pounds now. Let me tell you something. I was TERRIFIED of the gym. Like absolutely completely horrified. Then I went the first time I realized that literally NOBODY CARES. Like people are so focused on their workout that you could be in the rack doing the wrongest shittiest workout ever and people wouldn't care. Not that you should, it's just to illustrate the point that people aren't happy, or sad, or annoyed that you're there. They literally don't even REALIZE you're there.\n\n\n\n\nfound VP with matching id\n\n\n\n\nOh god. Ya I was just kidding. But you get the point. Your boy just wants to do his Romanian deadlifts in peace.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAh. The lowest rungs of hell are reserved for \"hits on girls at the gym guy\". I thought people knew by now that this is widely considered gym taboo? I'm a dude and I keep to my fucking sets I try I avoid talking to anyone but my partner.\n\nI also dislike \"gives advice guy\" cuz fuck off, I'll ask for your advice if I need it. We all have access to r/fitness\n\n\n\n\nfound VP with matching id\n\n\n\n\nI was reading what you wrote above and was actually completely blown away with what you wrote. Holy shit. Teach me to write friend. I'm pre-law and feel like if I could write with such coherency and flow then holy shit would I be a good attorney.\n\nYou're the fucking coolest.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI was reading what you wrote above and was actually completely blown away with what you wrote. Holy shit. Teach me to write friend. I'm pre-law and feel like if I could write with such coherency and flow then holy shit would I be a good attorney.\n\nYou're the fucking coolest.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI was reading what you wrote above and was actually completely blown away with what you wrote. Holy shit. Teach me to write friend. I'm pre-law and feel like if I could write with such coherency and flow then holy shit would I be a good attorney.\n\nYou're the fucking coolest.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI don't get it. They're not being investigated because Israel is not a militant regime run by religious Zealots. They are a bunch of modern, westernized people that are allies of the US.\n\nThese are very different countries, and should not be treated equally. I would not investigate my best friend the same way I'd investigate someone that threatens to murder me on a monthly basis.\n\nNot JIDF shit, I'm just dude in the US that doesn't like people flying planes into my buildings.\n\n\n\n\nfound VP with matching id\n\n\n\n\nThis is always the response, and it's fucking ADORABLE:\n\nWhen I ask you what Israel should do I am asking how to stop the rockets. We both know that letting up on the Palestinians only increases the rocket fire. so actually PRESENT a solution to the rocket fire or shut the fuck up dude.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm saying that I think in any other case if one country began launching rockets at another country everyone would be fine with a response. I don't see why it's less fine in the case of Israel.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm saying, your argument that it's too much is unfounded because you don't know how much is too much and you don't have any authority to say how much is too much. Just like most no one else does except the people experiencing it.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYa dude. I live in Texas, I'm Jewish and I for sure got shit for being Jewish in HS. But it was just the same shit I'd dish back at people for being whatever (Asian, Mexican, whatever). But now there's like straight up legit anger, and the most terrifying part of it is, is that people aren't mad at the Jewish people because of the rockets. The rockets are just an excuse to do something they were already basically ready to do....\n\n\n\n\nfound VP with matching id\n\n\n\n\nI mean, I'm just saying. What Israel is doing in Gaza is so far from a massacre, from a genocide, from ethnic cleansing that using those words is super fucking laughable. So there's something that people see differently, and the only thing I can think is that it's a problem with Jews.\n\n\n\n\nfound VP with matching id\n\n\n\n\nThose exact thoughts went though my head.  I looked for a ring But it wasn't clear. He made a wife joke so I'm assuming he's married\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm not arguing the validity of the article. I'm arguing that you should inspect every article this scrupulously whether it agrees with you or not\n\n\n\n\nfound VP with matching id\n\n\n\n\nI don't believe or disbelieve. I'm just saying if you're going to ask for sources you should be unilateral in your search. It's academically dishonest to have different burdens of evidence and being biased depending on whether an article aligns with your narrative or not.\n\n\n\n\nfound VP with matching id\n\n\n\n\nHaha. Well we can't all be perfect ;). Ya IDK. I wasn't trying to be critical (as reddit was apt to think I was), it's just that I rarely see taxis here in Texas and never actually would take one. I guess others do.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYa I saw that. A few questions:\n\n1. I read that shortening is better, have you used oil, and did it work?\n\n2. How often should I season?\n\n3. What is the procedure for the pan after I cook with it?\n\n4. Do I put oil/butter in the pan before whatever I'm going to cook like a nonstick.\n\n\n\n\nfound VP with matching id\n\n\n\n\nOk, so I'm from Houston, which as a whole is almost as large as DFW Metropolitan if you consider the Grand Parkway our border. I've been to DFW COUNTLESS times (Friends in Dallas, grandparents from FW). I've actually never taken a Taxi in Texas in my entire life (20 years). Is that weird? I thought it was commonly understood that people have cars here.\n\n\n\n\nfound VP with matching id\n\n\n\n\nHahaha, I have a habit of being an antsy chef. I am impatient so often times ill turn things too soon in my eagerness.\n\n\n\n\nfound VP with matching id\n\n\n\n\nHahaha. Well. Any other cool recipes that you make often I'd appreciate, you seem like you really know what you're doing.\n\nI've never baked and I'm way too scared, I want to get my cooking down first before starting something as exact as baking :P\n\n\n\n\nfound VP with matching id\n\n\n\n\n1. I don't have cast iron. I cook my steak at almost the highest temperature, I am using a ceramic non-stick pan with high sides.\n\n2. Cool :)\n\n3. This sounds unbelievable. If I don't have a grill can I cook this in a pan on the stove top.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm going to start a tally of pro and anti Israel posts and comments. The anti-Israel sentiment here is so intense that it's suffocating.\n\nUnless of Hamas violate another ceasefire then there's like 20 minutes of anti-Hamas sentiment\n\n\n\n\nfound VP with matching id\n\n\n\n\nYou pat the chicken before putting it in the marinade? IS that what you're saying? As far as a coating, that's what I'm interested in seeing, I was wondering if I can leave some of it on there when I put it in the pan so it sort of is like a sauce.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYou pat the chicken before putting it in the marinade? IS that what you're saying? As far as a coating, that's what I'm interested in seeing, I was wondering if I can leave some of it on there when I put it in the pan so it sort of is like a sauce.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSure. I'll field this.\n\n&gt;Are Israel's actions in Palestine justified? Note that according to B'tselem, Israel has killed at least 10,000 civilians in Palestine in the past ten years, compared to a few hundred Israeli deaths on Hamas' side. Also note that while both sides have killed civilians, Israel has killed far more.\n\nYes. I think that Israel has been the victim of repeated attacks. They have, in response, responded EXTREMELY harshly. However, that's what happens when you respond to a weaker provocateur, you attack with force. I think Israel shouldn't have ever been attacked and they wouldn't have ever attacked.\n\nThe numbers argument doesn't mean anything to me, just because Hamas is worse at winning wars doesn't mean they're less evil.\n\n&gt;Further, do you believe the illegal West Bank settlements are justified? If so, why? And why should Israel get to flout international law? And if the settlements are justified, how do you justify the racism and violence enacted by settlers against local Palestinains?\n\nI am against the settlements. As pro-Israeli as I am, I am against them. However I am NOT against he occupation of the West Bank as it has been used as foothold for attacks on Israel prior to it's occupation in 1967.\n\nNote- I'm going to bed so it will be a few hours before I can respond.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSure. I'll field this.\n\n&gt;Are Israel's actions in Palestine justified? Note that according to B'tselem, Israel has killed at least 10,000 civilians in Palestine in the past ten years, compared to a few hundred Israeli deaths on Hamas' side. Also note that while both sides have killed civilians, Israel has killed far more.\n\nYes. I think that Israel has been the victim of repeated attacks. They have, in response, responded EXTREMELY harshly. However, that's what happens when you respond to a weaker provocateur, you attack with force. I think Israel shouldn't have ever been attacked and they wouldn't have ever attacked.\n\nThe numbers argument doesn't mean anything to me, just because Hamas is worse at winning wars doesn't mean they're less evil.\n\n&gt;Further, do you believe the illegal West Bank settlements are justified? If so, why? And why should Israel get to flout international law? And if the settlements are justified, how do you justify the racism and violence enacted by settlers against local Palestinains?\n\nI am against the settlements. As pro-Israeli as I am, I am against them. However I am NOT against he occupation of the West Bank as it has been used as foothold for attacks on Israel prior to it's occupation in 1967.\n\nNote- I'm going to bed so it will be a few hours before I can respond.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSure. I'll field this.\n\n&gt;Are Israel's actions in Palestine justified? Note that according to B'tselem, Israel has killed at least 10,000 civilians in Palestine in the past ten years, compared to a few hundred Israeli deaths on Hamas' side. Also note that while both sides have killed civilians, Israel has killed far more.\n\nYes. I think that Israel has been the victim of repeated attacks. They have, in response, responded EXTREMELY harshly. However, that's what happens when you respond to a weaker provocateur, you attack with force. I think Israel shouldn't have ever been attacked and they wouldn't have ever attacked.\n\nThe numbers argument doesn't mean anything to me, just because Hamas is worse at winning wars doesn't mean they're less evil.\n\n&gt;Further, do you believe the illegal West Bank settlements are justified? If so, why? And why should Israel get to flout international law? And if the settlements are justified, how do you justify the racism and violence enacted by settlers against local Palestinains?\n\nI am against the settlements. As pro-Israeli as I am, I am against them. However I am NOT against he occupation of the West Bank as it has been used as foothold for attacks on Israel prior to it's occupation in 1967.\n\nNote- I'm going to bed so it will be a few hours before I can respond.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSure. I'll field this.\n\n&gt;Are Israel's actions in Palestine justified? Note that according to B'tselem, Israel has killed at least 10,000 civilians in Palestine in the past ten years, compared to a few hundred Israeli deaths on Hamas' side. Also note that while both sides have killed civilians, Israel has killed far more.\n\nYes. I think that Israel has been the victim of repeated attacks. They have, in response, responded EXTREMELY harshly. However, that's what happens when you respond to a weaker provocateur, you attack with force. I think Israel shouldn't have ever been attacked and they wouldn't have ever attacked.\n\nThe numbers argument doesn't mean anything to me, just because Hamas is worse at winning wars doesn't mean they're less evil.\n\n&gt;Further, do you believe the illegal West Bank settlements are justified? If so, why? And why should Israel get to flout international law? And if the settlements are justified, how do you justify the racism and violence enacted by settlers against local Palestinains?\n\nI am against the settlements. As pro-Israeli as I am, I am against them. However I am NOT against he occupation of the West Bank as it has been used as foothold for attacks on Israel prior to it's occupation in 1967.\n\nNote- I'm going to bed so it will be a few hours before I can respond.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI think you're not listening to what I'm saying. Which is more important, the deaths of thousands due to suicide bombs and rockets being allowed into Gaza, or hearing aids.\n\nThe price of attacking another country is high.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI agree. I too would love to have a constructive debate. I feel that it's impossible, and the reasons are 2-fold\n\n1. Reddit attracts a demographic that is pro-Palestinian. Pretty obvious, I'm young, left-wing, so I would be a part of that group were I not Jewish. But the truth is there, given the majority population of Reddit they have political biases that are made apparent in the upvote/downvote trends of world news.\n\n2. This topic is EXTREMELY heated, so as a Jew arguing with a Palestinian, for example, the chances of our discussion ending in anything other than pure frustration and disgust are more or less, low.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm saying that Israel extended an olive branch there, and the Palestinians, in response, intensified their attack. This is a very easy cause and effect. Why would you expect anything different by leaving more land.\n\nSecondarily, you still have to respond to:\n\nA) The stated intention of Hamas to destroy Israel in their charter\n\nB) The fact that before the settlements there were 3 full on wars on Israel.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI agree. It's unfair, however on a forum like r/Worldnews. I'm pro-Israel, and the minute I make a comment, no matter the validity of what I'm commenting on, I am accosted with 5 or 6 responses of varying degrees of validity. So I'm set up with a shitty double-edged sword, either I accept that I'm going to dumpy insane amounts of time into something dumb on the internet. Or people think they're right about something they aren't right about.\n\nThe circlejerk feels real because the legitimacy of the argumentation seems to not be there.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI agree. It's unfair, however on a forum like r/Worldnews. I'm pro-Israel, and the minute I make a comment, no matter the validity of what I'm commenting on, I am accosted with 5 or 6 responses of varying degrees of validity. So I'm set up with a shitty double-edged sword, either I accept that I'm going to dumpy insane amounts of time into something dumb on the internet. Or people think they're right about something they aren't right about.\n\nThe circlejerk feels real because the legitimacy of the argumentation seems to not be there.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI agree. It's unfair, however on a forum like r/Worldnews. I'm pro-Israel, and the minute I make a comment, no matter the validity of what I'm commenting on, I am accosted with 5 or 6 responses of varying degrees of validity. So I'm set up with a shitty double-edged sword, either I accept that I'm going to dumpy insane amounts of time into something dumb on the internet. Or people think they're right about something they aren't right about.\n\nThe circlejerk feels real because the legitimacy of the argumentation seems to not be there.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI agree. It's unfair, however on a forum like r/Worldnews. I'm pro-Israel, and the minute I make a comment, no matter the validity of what I'm commenting on, I am accosted with 5 or 6 responses of varying degrees of validity. So I'm set up with a shitty double-edged sword, either I accept that I'm going to dumpy insane amounts of time into something dumb on the internet. Or people think they're right about something they aren't right about.\n\nThe circlejerk feels real because the legitimacy of the argumentation seems to not be there.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI agree. It's unfair, however on a forum like r/Worldnews. I'm pro-Israel, and the minute I make a comment, no matter the validity of what I'm commenting on, I am accosted with 5 or 6 responses of varying degrees of validity. So I'm set up with a shitty double-edged sword, either I accept that I'm going to dumpy insane amounts of time into something dumb on the internet. Or people think they're right about something they aren't right about.\n\nThe circlejerk feels real because the legitimacy of the argumentation seems to not be there.\n\n\n\n\nfound VP with matching id\n\n\n\n\n\nAs an American Jew and a Zionist I salute you. But I'm not gonna buy you gold (it's because I'm Jewish)\n\n\n\nfound VP with matching id\n\n\n\n\nYa. Ok, so when you make this point doesn't any Pro-Israeli like STRAIGHT UP WIN the argument. People talk about Israeli war crimes, and killing Israeli children. Right? Dude, if Hamas had the means to accomplish their goal of wiping out Israel they would kill a limitless number of children.\n\nThat's why literally any anti-Israel argument SUCKS. Israel will never be as evil as Hamas and never commit the crimes that group would given the means. The argument is automatically won for a Zionist like I am.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm also barbaric, I play mostly Slark in DoTA 2. So fuck me right?\n\n\n\n\nfound VP with matching id\n\n\n\n\nOur 1000 year old book? Lol I'm an atheist good job having a grasp on geopolitics though. You sound so fucking stupid. This is politics \"Arab land\" doesn't make sense because \"Arab\" isn't a fucking country you dipshit.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm not sure if you're American or not, but I can give you the reason for why, if you look around reddit there's actually heavy bias towards Palestinians. Israel tends to be more to the left (I am included in that, except on Israel/Palestine) the left wing in America generally is anti-Israel it could be because Israel is perceived as war hawks, and the left tends to be anti-war.\n\nThat's fine, I just think they are both making mistakes so condemning Israel without letting the other shoe drop that Hamas is equally bad is unfair.\n\n\n\n\nfound VP with matching id\n\n\n\n\nFuck dude. I'm pulling for you. Don't get Ebola ok?\n\n\n\n\nfound VP with matching id\n\n\n\n\nI was a ninja runner in kindergarten when I would watch DBZ....I grew out of that shit when I realized it didn't make my fat ass any faster.\n\nEDIT: Maybe not, I ran not with my hands behind my back but I would like keep my hands in karate chop form as I ran\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm defending that people die in war. How does make me an evil person.\n\n\n\n\nfound VP with matching id\n\n\n\n\nYou said context doesn't matter. I'm giving you a situation where context clearly matters, killing 1 vs 100 kids. You have to accept that context matters and just saying \"KIDS DYING\" is not a valid argument.\n\n\n\n\nfound VP with matching id\n\n\n\n\nNo. I'm just showing that if faced with that decision you would choose one or the other, WEIGHING the circumstances. That 100 kids outweigh on kid.\n\nIf you answer the question: Is 100 kids dying worse than 1 kid dying with any answer besides \"they are equal\" then you accept that context is important\n\n\n\n\nfound VP with matching id\n\n\n\n\nWhat happened is. The motivation isn't. You can't prove that it was an intentional civilian murder. I'm not saying that it wasn't I'm just saying you sound like you have a lot of conviction with limited evidence\n\n\n\n\nfound VP with matching id\n\n\n\n\nYou can see our argument above. If you don't think ad. Hom. Is attacking your opponent and not their argument then you're wrong.\n\nHe attacked me not my argument, it's ad. Hom. Care to tell me how I'm wrong\n\n\n\n\nfound VP with matching id\n\n\n\n\nIsrael has already rolled in, not to kill obviously. I'm just saying, if Israel was REALLY trying to kill Gazans, don't you think the number would be higher than 425?\n\n\n\n\nfound VP with matching id\n\n\n\n\nLet me edit the analogy. Firstly, I am picking sides, I side with Israel. Secondly, imagine every time your friend stops kicking the drunk guy the drunk guy gets up starts screaming \"EVERYONE, EVERYONE, THIS GUY WONT STOP PUNCHING ME\" while throwing his own drunk punches which your friend is really great at dodging, but I mean he still doesn't want to get hit.\n\nIsrael just wants Hamas to stop.\n\n\n\n\nfound VP with matching id\n\n\n\n\nMistakes were made, but I the only true evidence is that the children died not that the Israelis were on the boat like \"THOSE LOOK LIKE KIDS RIPE FOR THE KILLING\". I don't even mean all btw, I'm just saying an army the size of Israel would have a death toll way more insane than 425 in an area of 1.5 million if they were really trying to do civilian damage.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAh. I'm glad we can have some argument theory in here.\n\nThe person that makes that positive statement has what's called the burden of proof. He makes the statement \"Israel has started conflict\" when he does that he is obligated to either SUPPORT that with proof or not. MY argument doesn't matter, I'm just demanding proof or him accepting the inaccuracy of his statement.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAh. I'm glad we can have some argument theory in here.\n\nThe person that makes that positive statement has what's called the burden of proof. He makes the statement \"Israel has started conflict\" when he does that he is obligated to either SUPPORT that with proof or not. MY argument doesn't matter, I'm just demanding proof or him accepting the inaccuracy of his statement.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAre you going to produce your evidence, or call me delusional? I'm a government major, we deal in evidence. The burden of proof is on you, present evidence for your argument, or edit/delete it to admit that you were wrong. But don't leave inaccuracies floating around the net if you aren't capable/willing to defend them\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm sorry. Let's talk about this.\n\nAre rockets a bad thing to do? If you agree that shooting rockets is a bad thing to do then literally points 1-5 of yours LOSE merit. You sound like a 10 year old when no understanding of how arguments are built. That's cute.\n\n\n\n\nfound VP with matching id\n\n\n\n\nAh thanks! Sorry I'm just a silly American lol.\n\n\n\n\nfound VP with matching id\n\n\n\n\n\"I understand that Hamas shooting firecrackers a few kilometres over the border isn't exactly a nice thing to do, but I'm asking you, what do you think they should do to stop the settlements?\"\n\nSick job trying to lessen the fact that fucking rockets are being ruthlessly shot into civilian areas.\n\nYou're so skewed it's disgusting.\n\n\n\n\nfound VP with matching id\n\n\n\n\n&gt;and Israel uses it as an excuse to launch a heavy handed offensive\n\nTHIS MENTALITY IS RETARDED. I'm so tired of people like you. Do you think Israel is just waiting in the wings for the first chance to fuck with Hamas because they think it's fun? Israel WAS THE ONE THAT ACCEPTED THE CEASFIRE. Israel WAS THE ONE THAT GAVE UP GAZA IN 2005 only to be met with more rocket fire.\n\nDude, you actually have no idea wht you're talking about.\n\n\n\n\nfound VP with matching id\n\n\n\n\nFirst, you sound like a cool dad. Second how is Ruth's Chris? I want to try it. Third, I'm a switcher. I hold my fork left handed and cut left handed so when I eat steak I have to stab it with my left the. Hold the fork with my right and cut with my left then put the knife down and grab the form with my left. I look like a big fucking idiot the entire time....\n\n\n\n\nfound VP with matching id\n\n\n\n\nIn Spanish \"vengar\" is \"to come\" so my hot Spanish teacher would say things like \"to come\" \"I come\" \"we all come\" \"I'm coming\". I was so close to laughing the entire time\n\n\n\n\nfound VP with matching id\n\n\n\n\nIn Spanish \"vengar\" is \"to come\" so my hot Spanish teacher would say things like \"to come\" \"I come\" \"we all come\" \"I'm coming\". I was so close to laughing the entire time\n\n\n\n\nfound VP with matching id\n\n\n\n\nDude. I'm so irritated. \"LET ME CALL HITLER ISRAEL AND THROW TERMS AROUND LIKE ETHNIC CLEANSING\" then you respond with an argument that justifies Israeli action, like historically attacking Jews, and they shit right the fun up\n\n\n\n\nfound VP with matching id\n\n\n\n\nThe friendzone doesn't exist. And your idea that we \"work our way into a platonic friend position\" is patently incorrect.\n\nThe truth is people don't want to be seen as shallow. When someone says \"we're just friends\" what they really mean is \"you're not physically attractive enough for me to be interested in sleeping with you, however hanging out with you under no sexual context is ok\". It's the way for people to justify how shallow they are without feeling like shit.\n\nThe friend zone doesn't exist for attractive people. I know because I was once fat and got friend zoned continuously it was literally like I could draw a 1:1 graph the amount of time I've been friend zoned correlated with my weight is clear and unalarming. As Iost weight I proportionally was friend zoned less, all else equal. People are shallow.\n\n\n\n\nfound VP with matching id\n\n\n\n\nIt really doesn't matter. I don't represent the common idea of Israelis. But if it were up to me Id make the attacks so severe and intense that Palestinians would have to stop. I'm tired of watching Israelis live in fear because Palestinians can't get over their religious extremism long enough to leave them the fuck alone\n\n\n\n\nfound VP with matching id\n\n\n\n\nI want to play street fighter actually. I really enjoy playing fighters competitively I was in the pro brawl scene for awhile\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm 20 haha. Regardless my point is I simply disagree. The only time in my life I've ever been successful with women is since I've slimmed down, so from an individual standpoint I believe people only care about physical attractiveness. I compound that with how rarely I see people dating that are not nearly the same in attractiveness I am comfortable concluding that everyone dates for purely physical reasons at least for the first good while\n\nFrom this basis I can derive that the friendzone only exists in that people like someone's personality but are my physically attracted to them enough to sleep with them. By extension I think any male and female friendship can change to a romantic one if one person becomes as attractive as the other through the course of it.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm 20 haha. Regardless my point is I simply disagree. The only time in my life I've ever been successful with women is since I've slimmed down, so from an individual standpoint I believe people only care about physical attractiveness. I compound that with how rarely I see people dating that are not nearly the same in attractiveness I am comfortable concluding that everyone dates for purely physical reasons at least for the first good while\n\nFrom this basis I can derive that the friendzone only exists in that people like someone's personality but are my physically attracted to them enough to sleep with them. By extension I think any male and female friendship can change to a romantic one if one person becomes as attractive as the other through the course of it.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI've been on a no-carb diet and haven't cheated for quite a long time and have lost a good amount of weight. I ate a McGangBang, a Spicy McChicken and a medium fry today and I FUCKING LOVED IT. I'm back on the wagon of course, but dear god, thank you Mcdonalds.\n\n\n\n\nfound VP with matching id\n\n\n\n\nLol I'm just an American Jew, and a Zionist. But I guess it's cute that you want to have conspiracies.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI can put it easily. If I'm holding a gun to a random person and they grab you and put you in front of them and I shoot you. It's just as much if not more the fault of the one that placed you jn the path of a bullet than the one firing that you died\n\n\n\n\nfound VP with matching id\n\n\n\n\nLol. You realize that every statement you're making I can argue back to you. You're insulting people with no backing and it's super immature.\n\nI'm a government major at one of the most prestigious Universities in the world. It's my JOB to have strong opinions on conflicts.\n\nI'm not pompous at all about it until you make arrogant statements. And you, as TOTAL layman shouldn't be either. It's not like I sit in my upper-division comparative politics classes and think what people like you are feeling about the subject.\n\nRather than being a big asshole to people and psycho-analyzing them maybe you should actually read up on the topics and not be a big piece of shit to people that are just discussing things.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm completely ok with this. However, if we do this, don't be surprised when Israel completely destroys any resemblance of a Palestinian resistance.\n\n\n\n\nfound VP with matching id\n\n\n\n\nSee this isn't how arguments work. You don't keep hammering into a point that I'm answering until I give you the answer you want. I don't AGREE with you and I'm giving you solid evidence to back my argument up.\n\nPalestinians have always attacked Israel, when Israel tries to ease up the Palestinian attacks intensify. Therefore, Palestinians are uninterested in peace and their land will be occupied until they are willing to be peaceful. It's completely justified.\n\nThe argument is over, and I think I won if you're unable to conjure anything better than \"I'M RIGHT AND YOU'RE NOT THINKING CLEARLY\"\n\n\n\n\nfound VP with matching id\n\n\n\n\nSee this isn't how arguments work. You don't keep hammering into a point that I'm answering until I give you the answer you want. I don't AGREE with you and I'm giving you solid evidence to back my argument up.\n\nPalestinians have always attacked Israel, when Israel tries to ease up the Palestinian attacks intensify. Therefore, Palestinians are uninterested in peace and their land will be occupied until they are willing to be peaceful. It's completely justified.\n\nThe argument is over, and I think I won if you're unable to conjure anything better than \"I'M RIGHT AND YOU'RE NOT THINKING CLEARLY\"\n\n\n\n\nfound VP with matching id\n\n\n\n\nSee this isn't how arguments work. You don't keep hammering into a point that I'm answering until I give you the answer you want. I don't AGREE with you and I'm giving you solid evidence to back my argument up.\n\nPalestinians have always attacked Israel, when Israel tries to ease up the Palestinian attacks intensify. Therefore, Palestinians are uninterested in peace and their land will be occupied until they are willing to be peaceful. It's completely justified.\n\nThe argument is over, and I think I won if you're unable to conjure anything better than \"I'M RIGHT AND YOU'RE NOT THINKING CLEARLY\"\n\n\n\n\nfound VP with matching id\n\n\n\n\nThank you so much. This bothers me so fucking much. You keep your science, we'll just fire rockets on it while simultaneously making sure our women don't leave the kitchen. The quality of life in Israel is just so much higher, and it's just like...dude...are you serious?\n\nWhen I was in Israel for like 10 days we ate at posh sushi restaurants, went to happening night clubs and shopped in beautiful shopping districts. And compare that to Palestinian areas...idk man.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI'm sorry. Extremist Palestinian groups.\n\n\n\n\nfound VP with matching id\n\n\n\n\nI think analogy is fine because if you had any empathy for Israel it may give you a thorough understanding of the situation. As of now you have no perspective from which to understand the position Israel is in. It's not like I'm too dumb to comprehend it, or think you are.\n\n&gt;If you can explain why Israel ought to occupy the west bank (and maybe Gaza again? I dunno, you tell me) indefinitely and force the palestinians there to live under their rule at gunpoint, I'd be happy to have a discussion.\n\nI diiscussed this. It is unfair to expect Israel to give up land they fought to take unless they can be CERTAIN it won't be used to attack them. The converse, however, is almost certain, if Israel DOES give up control of Gaza and The West Bank they are almost assured to be attacked in more central and populous locations. It's not like Israelis take pleasure in cracking down on people in this area, however certain groups have made it undeniably clear that they present a dangerous and ever-existent threat.\n\n\n",
+			"file": "client/app/user/user.html",
 			"settings":
 			{
-				"buffer_size": 98423,
+				"buffer_size": 29799,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "I totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nI totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nOk sorry. I'm a dude so I don't get this. If the tampon is up in there absorbing and/or blocking all the oogly boogly then how can a blood clot slip out?\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nI totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nI totally disagree with that. I'm a higher rank than him because I've played way more than him and my understanding of the mechanics of the game and the strategy behind the game are more developed. To say that he knows more than me would be to also support an assumption that it's only through my mechanics that I am higher rank than he is. He's making the argument that the P250 is fine without an understanding of armor penetration or the way T-Side pistol is meant to be played.\n\n\n\n\nOk sorry. I'm a dude so I don't get this. If the tampon is up in there absorbing and/or blocking all the oogly boogly then how can a blood clot slip out?\n\n\n\n\nWhat you posed is from July 8th, before the nerf. Simply by the fact that the fire rate sucks on the M4A1 now means that necessarily its damage per second is lower. the damage at distance drop off is negligible IMO, I'm an eagle player so these are just my thoughts.\n\nI don't really care about the per bullet damage because I'm rarely just going to be one shot, most high ELO players (AKA DMG or above I'd say) don't one tap much, even at long range they'll be spraying. I simply think, and many pros have commented that the A1 is kind of shit now and I tend to agree. Also I was under the impression they never reverted the armor pen nerf where is the documentation for that because the patch notes said it was reduced??\n\n\n\n\nNo. I'm a college student and my internal recipe book is shit and so consists of easy unhealthy garbage (see: spaghetti, chicken katsu, fried rice). Making healthier things though, I'm afraid would end in me eating some eggs or marinated chicken every night which would get extremely annoying and this suicide-encouraging.\n\nYou feel me?\n\n\n\n\nThank you for saying this. It feels like I'm the only one in the DoTA community that realizes that Bone7 is actually a SHIT dota player.\n\nLike I've never seen someone go so unseen for how bad he is, he is literally a 5k elo player, that's it, nothing more. He feeds nearly every game, his hero pool is shit, his decision making is shit, his impact is shit.\n\nBONE7 is GARBO. How does no one see that and how can someone as smart as EE no kick him from the team??\n\n\n\n\nThis is the only type of pro-lifer I'll accept. Being pro-life and anti-contraceptive with the aims of promoting abstinence is disgusting and antiquated.\n\nWhile I'm extremely pro choice I feel like your position is less shit than that of other pro-lifers.\n\n\n\n\n\n\nWell then let me ask you this. I'm miles ahead of the medians for regionals like South Texas or St. Mary's, and I would get in to those with tons of money. What are my job prospects from those assuming I perform well, from your experience.\n\nAlternatively, if money isn't an issue (dad has me mostly covered for law school) would you look at this a bit differently?\n\nFinally as far as the LSAT medians, I'm like 1 or 2 points, literally 4 or 5 questions below, which makes me think the room for error is such that I can, for intellectual purposes (my ability to mentally compete) count my self at their median. Couple that with that fact that my undergrad (UT) is probably more difficult than many other applicants whose GPA is lower than mine median wise and didn't go to a school that was so difficult and demanding, it makes me feel like from an intellectual point of view I'm right in the middle of the pack. So say I do get in, is it so hard to believe that I could be competitive? Of course that assumes I can get in!!\n\n\n\n\nRight so by responding he is involving himself. By following them he is involving himself. It's like calling George Zimmerman ok because of what he did. When you actively follow a situation and refuse to extract yourself from it you are INVOLVING yourself.\n\nLike, look at it from a realistic point of view. If a couple is arguing and I'm watching from a park bench across the street that's one thing. That is chilling in a public place, and being told to move would be wrong for that person. But if I'm actively video taping something someone else does I'm an element in the situation, and moreover, an INFLAMMATORY element because in our culture at least, and I think rightfully so, filming things without permission is intrinsically inflammatory. In this instance it was DOUBLY inflammatory because the couple were already in a heated argument, and he doesn't yield himself the benefit of the doubt by carrying a gun at his fucking hip like he's looking for trouble.\n\n\n\n\nRight so by responding he is involving himself. By following them he is involving himself. It's like calling George Zimmerman ok because of what he did. When you actively follow a situation and refuse to extract yourself from it you are INVOLVING yourself.\n\nLike, look at it from a realistic point of view. If a couple is arguing and I'm watching from a park bench across the street that's one thing. That is chilling in a public place, and being told to move would be wrong for that person. But if I'm actively video taping something someone else does I'm an element in the situation, and moreover, an INFLAMMATORY element because in our culture at least, and I think rightfully so, filming things without permission is intrinsically inflammatory. In this instance it was DOUBLY inflammatory because the couple were already in a heated argument, and he doesn't yield himself the benefit of the doubt by carrying a gun at his fucking hip like he's looking for trouble.\n\n\n\n\nAnd if I didn't need more support for the type of person he is, and how his actions here were a vigilante idiot with a gun and a video camera, rather than a conscientious and kind citizen, here's his FAQ from his site:\n\nQ. Is this site real?\n\nA. Mostly, yes. I try to make things entertaining, some are articles are categorized as comedy, but you should feel free to take almost all of it literally. I really do think it’s morally justifiable to kill police and other government agents, as they are the violent oppressors of free humanity. I really do think feminism is a hate movement and full of shit that this world would just be better off without. I really do think race baiting is a bigger problem than racism. I really do think the world would be better off if some people just killed themselves. I really do believe that government is a completely fictitious excuse to do harm, and nothing else, and that violent overthrow is the only solution.\n\nQ. Is this your real name?\n\nA. Yes, my real name is Christopher Cantwell. It says this name on my drivers license, and if I paid taxes I would pay taxes in this name. I ran for Congress under this name. If I were to apply for a full time job, the employer would find this website. That’s why this website is my primary source of income, and you should consider donating or advertising here if you support my work, like so many other generous people and savvy advertisers already have.\n\nQ. Where do you live? I want to make threats of violence against you!\n\nA. I’m not hard to find, pussy. Your threats don’t scare me, I’m a 225lbs trained fighter with a concealed carry license and firearms training. I’ve also been locked up with scarier guys than you. See me when you see me, and stop talking shit on the internet, you fucking bitch. If you were really ’bout it we wouldn’t be having this conversation, would we?\n\n\n\n\nI'm sure no one will see this, but this recorder is a fucking asshole. Of course it's LEGAL to record people, but not only are you being provocative, and I don't know why no one has said this, he's being FUCKING NOSY. Like it's none of his business what's going on between a couple, like it really isn't. Sure, if the guy is beating the shit out of his girlfriend, that's one thing, but couples fight all the time.\n\nThen it only exacerbates the fact that he's already being an inflammatory idiot by having a gun on him like \"I'm a fucking retard vigilante, so when I provoke you, I can kill you for being upset by it\".\n\nFuck people like this guy.\n\n\n\n\nI was talking to my friend, I'm a huge Spurs fan and my friend is a Rockets fan, after our loss to yall he was so pumped because he said he'd rather play the Spurs than LA. Last night he was like \"FREE GAME 1!! NO CP3 AND THEYRE AWAY!!\" and I said, just watch, the Clippers ain't nothing to fuck with. And then they got slaughtered. Idk man.\n\n\n\n\nCan you still improve and become good in CSGO MM? I'm only SEM so I'm not sure...joining one of the other leagues is useful for me?\n\n\n\n\nShit. Idk man. I think that honestly it serves them well in some areas and not in others. I was a nerd that hung out with popular kids (I had some social skills but was still quirky)  and a lot of them honestly while they did join good frats and many have cute girlfriends, they go to shitty schools and are getting shitty degrees. Where the nerds are going to top schools (Harvard, Stanford, etc) and building a strong future....\n\n\n\n\nOh god. Ya I was just kidding. But you get the point. Your boy just wants to do his Romanian deadlifts in peace.\n\n\n\n\nI'm a fatass. I started at 244 pounds and am down 10 pounds now. Let me tell you something. I was TERRIFIED of the gym. Like absolutely completely horrified. Then I went the first time I realized that literally NOBODY CARES. Like people are so focused on their workout that you could be in the rack doing the wrongest shittiest workout ever and people wouldn't care. Not that you should, it's just to illustrate the point that people aren't happy, or sad, or annoyed that you're there. They literally don't even REALIZE you're there.\n\n\n\n\nI was reading what you wrote above and was actually completely blown away with what you wrote. Holy shit. Teach me to write friend. I'm pre-law and feel like if I could write with such coherency and flow then holy shit would I be a good attorney.\n\nYou're the fucking coolest.\n\n\n\n\nAh. The lowest rungs of hell are reserved for \"hits on girls at the gym guy\". I thought people knew by now that this is widely considered gym taboo? I'm a dude and I keep to my fucking sets I try I avoid talking to anyone but my partner.\n\nI also dislike \"gives advice guy\" cuz fuck off, I'll ask for your advice if I need it. We all have access to r/fitness\n\n\n\n\nOur 1000 year old book? Lol I'm an atheist good job having a grasp on geopolitics though. You sound so fucking stupid. This is politics \"Arab land\" doesn't make sense because \"Arab\" isn't a fucking country you dipshit.\n\n\n\n\nI was a ninja runner in kindergarten when I would watch DBZ....I grew out of that shit when I realized it didn't make my fat ass any faster.\n\nEDIT: Maybe not, I ran not with my hands behind my back but I would like keep my hands in karate chop form as I ran\n\n\n\n\nAre you going to produce your evidence, or call me delusional? I'm a government major, we deal in evidence. The burden of proof is on you, present evidence for your argument, or edit/delete it to admit that you were wrong. But don't leave inaccuracies floating around the net if you aren't capable/willing to defend them\n\n\n\n\nAh thanks! Sorry I'm just a silly American lol.\n\n\n\n\nFirst, you sound like a cool dad. Second how is Ruth's Chris? I want to try it. Third, I'm a switcher. I hold my fork left handed and cut left handed so when I eat steak I have to stab it with my left the. Hold the fork with my right and cut with my left then put the knife down and grab the form with my left. I look like a big fucking idiot the entire time....\n\n\n\n\nI'm 20 haha. Regardless my point is I simply disagree. The only time in my life I've ever been successful with women is since I've slimmed down, so from an individual standpoint I believe people only care about physical attractiveness. I compound that with how rarely I see people dating that are not nearly the same in attractiveness I am comfortable concluding that everyone dates for purely physical reasons at least for the first good while\n\nFrom this basis I can derive that the friendzone only exists in that people like someone's personality but are my physically attracted to them enough to sleep with them. By extension I think any male and female friendship can change to a romantic one if one person becomes as attractive as the other through the course of it.\n\n\n\n\nLol I'm just an American Jew, and a Zionist. But I guess it's cute that you want to have conspiracies.\n\n\n\n\nLol I'm just an American Jew, and a Zionist. But I guess it's cute that you want to have conspiracies.\n\n\n\n\nLol. You realize that every statement you're making I can argue back to you. You're insulting people with no backing and it's super immature.\n\nI'm a government major at one of the most prestigious Universities in the world. It's my JOB to have strong opinions on conflicts.\n\nI'm not pompous at all about it until you make arrogant statements. And you, as TOTAL layman shouldn't be either. It's not like I sit in my upper-division comparative politics classes and think what people like you are feeling about the subject.\n\nRather than being a big asshole to people and psycho-analyzing them maybe you should actually read up on the topics and not be a big piece of shit to people that are just discussing things.\n\n\n\n\nSee this isn't how arguments work. You don't keep hammering into a point that I'm answering until I give you the answer you want. I don't AGREE with you and I'm giving you solid evidence to back my argument up.\n\nPalestinians have always attacked Israel, when Israel tries to ease up the Palestinian attacks intensify. Therefore, Palestinians are uninterested in peace and their land will be occupied until they are willing to be peaceful. It's completely justified.\n\nThe argument is over, and I think I won if you're unable to conjure anything better than \"I'M RIGHT AND YOU'RE NOT THINKING CLEARLY\"\n\n\n\n\nSee this isn't how arguments work. You don't keep hammering into a point that I'm answering until I give you the answer you want. I don't AGREE with you and I'm giving you solid evidence to back my argument up.\n\nPalestinians have always attacked Israel, when Israel tries to ease up the Palestinian attacks intensify. Therefore, Palestinians are uninterested in peace and their land will be occupied until they are willing to be peaceful. It's completely justified.\n\nThe argument is over, and I think I won if you're unable to conjure anything better than \"I'M RIGHT AND YOU'RE NOT THINKING CLEARLY\"\n\n",
+			"file": "client/app/user/user.scss",
 			"settings":
 			{
-				"buffer_size": 16633,
-				"line_ending": "Windows",
-				"name": "I totally disagree with that. I'm a higher rank th"
+				"buffer_size": 4148,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "server/api/reddit/reddit.controller.js",
+			"file": "client/app/donut/donut.directive.js",
 			"settings":
 			{
-				"buffer_size": 52600,
+				"buffer_size": 6322,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/user/user.js",
+			"settings":
+			{
+				"buffer_size": 401,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/barChart/barChart.directive.js",
+			"settings":
+			{
+				"buffer_size": 2725,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/api/user/user.model.js",
+			"settings":
+			{
+				"buffer_size": 3345,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/main/main.html",
+			"settings":
+			{
+				"buffer_size": 1079,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/components/navbar/navbar.html",
+			"settings":
+			{
+				"buffer_size": 998,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app/main/main.scss",
+			"settings":
+			{
+				"buffer_size": 1565,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/components/footer/footer.scss",
+			"settings":
+			{
+				"buffer_size": 129,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/components/footer/footer.html",
+			"settings":
+			{
+				"buffer_size": 115,
 				"line_ending": "Windows"
 			}
 		}
@@ -369,126 +292,73 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/user/user.model.js",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/user/comment.model.js",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/server/api/reddit/reddit.controller.js",
-		"/C/Users/Julian Esteban/Desktop/transferToXps.cpp",
-		"/C/Users/Julian Esteban/Desktop/hw4DLedFromSakaiSubmission.cpp",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/main/main.service.js",
-		"/C/Users/Julian Esteban/Desktop/redreapbackup/reddit.controller.js",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/main/main.scss",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/main/main.html",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/client/app/user/user.html",
-		"/C/Users/Julian Esteban/Desktop/redditreaperMerged/red-reap/.tmp/app/user/user.js",
-		"/C/Users/Julian Esteban/Desktop/testnlp/node-stanford-corenlp-master/examples/sentiments.js",
-		"/C/Users/Kanav/Desktop/backup/red-reap/.gitignore",
-		"/C/Users/Kanav/Documents/red/red-reap/.gitignore",
-		"/C/Users/Kanav/Documents/red/red-reap/.git/COMMIT_EDITMSG",
-		"/C/Users/Kanav/Documents/red/red-reap/server/api/reddit/reddit.controller.js",
-		"/C/Users/Kanav/Documents/red/red-reap/server/api/user/user.model.js",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.service.js",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.controller.js",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.html",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.scss",
-		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.html",
-		"/C/Users/Kanav/Documents/Projects/mean-machine-code-master/17-user-crm/public/assets/css/style.css",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.controller.js",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/donut/donut.directive.js",
-		"/C/Users/Kanav/Documents/red/red-reap/.tmp/app/app.css",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.html",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.scss",
-		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.controller.js",
-		"/C/Users/Kanav/Documents/red/red-reap/client/components/navbar/navbar.directive.js",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/main/main.js",
-		"/C/Users/Kanav/Documents/red/red-reap/client/app/user/user.js",
-		"/C/Users/Kanav/Documents/red/red-reap/server/app.js",
-		"/C/Users/Kanav/Documents/red/red-reap/server/index.js",
-		"/C/Users/Kanav/Documents/red/red-reap/server/routes.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.spec.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.controller.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user/comment.model.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.model.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/index.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/app.constant.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/validate/index.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.controller.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/validate/validate.model.js",
-		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/kanav.cfg",
-		"/C/Users/Kanav/Documents/red-reap/server/app.js",
-		"/C/Users/Kanav/Documents/red-reap/server/config/environment/index.js",
-		"/C/Users/Kanav/Documents/red-reap/server/config/environment/production.js",
-		"/C/Users/Kanav/Documents/red-reap/server/config/environment/development.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.html",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/mainService.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.controller.js",
-		"/C/Users/Kanav/Documents/red-reap/server/routes.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.controller.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/u/userRouter.js",
-		"/C/Users/Kanav/Documents/red-reap/server/index.js",
-		"/C/Users/Kanav/Downloads/black.swan.(2010).eng.1cd.(4206141)/black.swan.(4206141).nfo",
-		"/C/Users/Kanav/Documents/red-reap/client/app/app.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/u/userCtrl.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/u/userService.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.scss",
-		"/C/Users/Kanav/Desktop/app/app.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/home/homeCtrl.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/app.routes.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/home/homeService.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/homeCtrl.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/homeService.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/mainCtrl.js",
-		"/C/Users/Kanav/Documents/red-reap/client/index.html",
-		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.html",
-		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.scss",
-		"/C/Users/Kanav/Documents/red-reap/client/components/modal/modal.service.js",
-		"/C/Users/Kanav/Documents/red-reap/client/components/auth/auth.service.js",
-		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.html",
-		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.controller.js",
-		"/C/Users/Kanav/Documents/red-reap/server/user/user.controller.js",
-		"/C/Users/Kanav/Documents/red-reap/server/user/user.model.js",
-		"/C/Users/Kanav/Documents/red-reap/server/user/index.js",
-		"/C/Users/Kanav/Documents/red-reap/client/components/util/util.module.js",
-		"/C/Users/Kanav/Documents/red-reap/client/components/util/util.service.js",
-		"/C/Users/Kanav/Documents/red-reap/client/components/navbar/navbar.directive.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.controller.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.html",
-		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.module.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.router.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/admin/admin.scss",
-		"/C/Users/Kanav/Documents/red-reap/server/config/local.env.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/main/main.controller.spec.js",
-		"/C/Users/Kanav/Documents/red-reap/client/components/auth/auth.module.js",
-		"/C/Users/Kanav/Documents/red-reap/client/components/mongoose-error/mongoose-error.directive.js",
-		"/C/Users/Kanav/Documents/red-reap/client/robots.txt",
-		"/C/Users/Kanav/Documents/red-reap/client/app/u/user.html",
-		"/C/Users/Kanav/Documents/red-reap/client/app/account/account.js",
-		"/C/Users/Kanav/Documents/red-reap/server/auth/auth.service.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/reddit/reddit.model.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user/user.events.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/user/index.spec.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/u/top.html",
-		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.spec.js",
-		"/C/Users/Kanav/Documents/red-reap/e2e/main/main.po.js",
-		"/C/Users/Kanav/Downloads/ferristic",
-		"/C/Users/Kanav/Desktop/backupcon.js",
-		"/C/Users/Kanav/Documents/red-reap/.gitignore",
-		"/C/Users/Kanav/Documents/snootest/snoocore-examples/oauth/oauth-explicit-permanent-1.js",
-		"/C/Users/Kanav/Downloads/red-reap/server/app.js",
-		"/C/Users/Kanav/Documents/snootest/snoocore-examples/express-web/app.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/index.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/redditauth.controller.js",
-		"/C/Users/Kanav/Documents/Projects/mean-machine-code-master/17-user-crm/server.js",
-		"/C/Users/Kanav/Documents/red-reap/server/api/redditauth/redditauth.model.js",
-		"/C/Users/Kanav/Documents/red-reap/server/auth/index.js",
-		"/C/Users/Kanav/Documents/red-reap/.tmp/app/main/main.js",
-		"/C/Users/Kanav/Documents/red-reap/client/app/app.scss",
+		"/C/Users/Sujay/AppData/Local/Temp/Rar$DIa0.332/threedimensionalpoint.h",
+		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/In-Class Assignments/5/IntegerSet_SujayBandarpalle.h",
+		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/Homeworks/Homework 7/Polynomial_SujayBandarpalle.h",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.scss",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/red_reap.sublime-workspace",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.scss",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/navbar/navbar.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.scss",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/footer/footer.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/user.model.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.controller.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/favicon.ico",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/linePlot/linePlot.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.service.js",
+		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/In-Class Assignments/5/InClass5/InClass5/IntegerSet_SujayBandarpalle.h",
+		"/C/Users/Sujay/Documents/College Senior Spring Semester/Programming Finance/Homeworks/Homework 6/Booklist_Bandarpalle.h",
+		"/C/Users/Sujay/Documents/capstone/red-reap/.tmp/app/main/main.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.scss",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.controller.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/admin/admin.controller.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/app.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/.tmp/app/app.css",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/index.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/admin/admin.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.controller.spec.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.events.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.integration.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/views/404.html",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/components/navbar/navbar.scss",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/user.controller.spec.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.constant.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/bower_components/bootstrap/dist/css/bootstrap.css",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/main/main.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/app.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/donut/donut.directive.spec.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/d3Service/d3Service.service.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/user/comment.model.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/index.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/barChart/barChart.directive.spec.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/reddit.model.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/server/api/reddit/index.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/build/config.gypi",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/subredditLogos/subredditLogo.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/subredditLogo/subredditLogo.directive.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/subredditLogo/subredditLogo.directive.spec.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/bower_components/jquery/dist/jquery.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/bower_components/d3/d3.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/app/user/data.csv",
+		"/C/Users/Sujay/Desktop/data.csv",
+		"/C/Users/Sujay/Documents/capstone/red-reap/node_modules/autoprefixer/node_modules/caniuse-db/fulldata-json/data-2.0.json",
+		"/C/Users/Sujay/Documents/capstone/red-reap/client/robots.txt",
+		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/main/main.spec.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/main/main.po.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/components/navbar/navbar.po.js",
+		"/C/Users/Sujay/Documents/capstone/red-reap/e2e/account/signup/signup.po.js",
 		"/C/Users/Kanav/Documents/redreap/client/app/main/main.html",
 		"/C/Users/Kanav/Documents/redreap/client/index.html",
 		"/C/Users/Kanav/Downloads/mean-machine-code-master/11-angular-start/js/app.js",
 		"/C/Users/Kanav/Documents/Projects/hearthbase/server/config/local.env.js",
 		"/C/Users/Kanav/Documents/Projects/hearthbase/server/config/local.env.sample.js",
+		"/C/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg/kanav.cfg",
 		"/C/Users/Kanav/Documents/Projects/workflow/server.js",
 		"/C/Users/Kanav/Documents/Projects/workflow/public/app/controllers/mainCtrl.js",
 		"/C/Users/Kanav/Documents/Projects/workflow/public/app/views/index.html",
@@ -496,18 +366,73 @@
 		"/C/Users/Kanav/Documents/Projects/workflow/.bowerrc",
 		"/C/Users/Kanav/Documents/Projects/workflow/public/app/app.js",
 		"/C/Users/Kanav/Documents/Projects/workflow/public/app/app.routes.js",
-		"/C/Users/Kanav/Documents/Projects/workflow/public/assets/css/style.less"
+		"/C/Users/Kanav/Documents/Projects/workflow/public/assets/css/style.less",
+		"/C/Users/Kanav/Documents/Projects/hearthbase/package.json",
+		"/C/Users/Kanav/Documents/Projects/hearthbase/.gitattributes",
+		"/C/Users/Kanav/Documents/Projects/hearthbase/.buildignore",
+		"/C/Users/Kanav/Documents/Projects/hearthbase/.bowerrc",
+		"/C/Users/Kanav/Documents/Projects/hearthbase/.gitignore",
+		"/C/Users/Kanav/Downloads/The.Witness-HI2U/hi2u.nfo",
+		"/C/Users/Kanav/Documents/Projects/workflow/package.json",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userCtrl.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/login.html",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/users/all.html",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/app.routes.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/users/single.html",
+		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/pages/users/single.html",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/assets/css/style.css",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/mainCtrl.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/app/routes/api.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/index.html",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/pages/home.html",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/services/authService.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/home.html",
+		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/pages/home.html",
+		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/views/index.html",
+		"/C/Users/Kanav/Downloads/mean-machine-code-master/mean-machine-code-master/17-user-crm/public/app/controllers/mainCtrl.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/index.html",
+		"/C/Users/Kanav/Documents/Projects/sample-org/package.json",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/views/login.html",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/userController.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/config.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/server.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/services/userService.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/public/app/controllers/authService.js",
+		"/C/Users/Kanav/Documents/Projects/sample-org/app/models/user.js",
+		"/C/Users/Kanav/AppData/Local/Microsoft/Windows/INetCache/IE/SLTVGW8Y/.config[1].config",
+		"/C/Users/Kanav/Documents/Projects/sample-orga/app/models/user.js",
+		"/C/Users/Kanav/Documents/Projects/api-intro/package.json",
+		"/C/Users/Kanav/Documents/Projects/api-intro/app.js",
+		"/C/Users/Kanav/Documents/Projects/api-intro/js/app.js",
+		"/C/Users/Kanav/Documents/Projects/api-intro/server.js",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/css/style.css",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/server.js",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/js/app.js",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/index.html",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/js/app.routes.js",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/home.html",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/about.html",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/views/pages/contact.html",
+		"/C/Users/Kanav/Documents/Projects/routing-intro/public/index.html",
+		"/C/Users/Kanav/Documents/Projects/angular-intro/index.html",
+		"/C/Users/Kanav/Documents/Projects/angular-intro/js/app.js",
+		"/C/Users/Kanav/Documents/Projects/api-intro/app/models/user.js",
+		"/C/Users/Kanav/Documents/Projects/intro-api/server.js",
+		"/C/Users/Kanav/Documents/Projects/intro-api/package.json"
 	],
 	"find":
 	{
-		"height": 48.0
+		"height": 82.0
 	},
 	"find_in_files":
 	{
 		"height": 0.0,
 		"where_history":
 		[
-			""
+			"<Project>",
+			"<Project>,C:\\Users\\Sujay\\Documents\\capstone\\red-reap\\client",
+			"<Project>"
 		]
 	},
 	"find_state":
@@ -515,90 +440,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"familyMems",
-			"userData.sen",
-			"userData.sentiment",
-			"get",
-			"nlp",
-			"getnlp",
-			"console.log",
-			"console.log(",
-			"video taping something",
-			"something",
-			"the undefined",
-			"undefined",
-			"the undefine",
-			"the underfine'",
-			"I'm an element",
-			"higher rank",
-			"neigh",
-			"your neigh",
-			"console.log",
-			"\\n\\n",
-			"\\n\\nCURRENT DATE",
-			"}\n",
-			"NEW DATE",
-			"current",
-			"DOESN'T",
-			"CURRENT",
-			"current date",
-			"time",
-			"callback time",
-			"time",
-			"callback",
-			"callback time",
-			"parseint",
-			"}\n",
-			"children",
-			" {",
-			"\"\";\n",
-			"console.err",
-			"console",
-			"vnExCount",
-			":",
-			"console.log",
-			"navbar",
-			"fixed",
-			"webkit",
-			".spinner",
-			"topComment",
+			"sentence",
+			"form",
+			"btn",
+			"subreddit",
+			"margin-left",
+			"intro",
+			"h3",
+			"h4",
+			"h3",
+			"index",
+			"ng-if",
+			"subreddit",
+			"$index",
+			"sub",
+			"sentiment",
+			"orange",
+			"red",
+			"$",
+			"sentence",
+			"title",
+			"border",
+			"h1",
+			"jumbo",
+			"62",
+			"md-13",
+			"col-lg-2 col-sm-1",
+			"col-md-3",
+			"jumb",
+			"col-lg-3 col-md-3 col-sm-4",
+			"col-md-3",
 			"comments",
-			"zoom_sensitivity",
-			"ng-scope",
-			"main.html",
-			"ng-controller",
-			"userFactory",
-			"config",
-			"redditauth",
-			"forcepreload",
-			"app",
-			"messagemode2",
-			"alias",
-			"hostpath",
-			"con_filter_text",
-			"damage",
-			"con_filter_text",
-			"f1",
-			"sv_voicee",
-			"8",
-			"bind 8",
-			"sm_deadtalk",
-			"voting",
-			"Commands",
-			"playercmds",
-			"sm_admin",
-			"friendlyfire",
-			"cl_rightnhad",
-			"cl_righthand",
-			"bind p",
-			"rate",
-			"sm_cvar",
-			"sv_damage_",
-			"GREENS CHECKS",
-			"RICHIE SAVES",
-			"JOHN & ASHTON",
-			"passengersBravo",
-			"passengersAlfa"
+			"col-sm-2",
+			"col-lg-2 col-sm-1",
+			"col-sm-2",
+			"class=\"col-sm-2\"",
+			"md",
+			"nEx",
+			"pEx",
+			"vpEx",
+			"md-3",
+			"track",
+			"md",
+			"subheader",
+			"svg",
+			"z-ind",
+			"descrip",
+			"topcomment",
+			"getuser",
+			"jumbo",
+			"body",
+			"html",
+			"jumbo",
+			"html",
+			"margin-top:100",
+			"2999px",
+			"container-fluid",
+			"container",
+			"container-fluid",
+			"100%",
+			"container",
+			"-fluid",
+			"container",
+			"z-ind",
+			"disp",
+			"special",
+			"jumbotron",
+			"jumbo",
+			"row",
+			"white",
+			"title",
+			"tip",
+			"pie",
+			"pie.value",
+			"dataset",
+			"radius",
+			"jumbo",
+			"disp",
+			"topComment",
+			"ng-if",
+			"user.example1",
+			"example1",
+			"a:",
+			"hover",
+			"red",
+			"text-center",
+			"topSubmis",
+			"createuser",
+			"negativePer",
+			"mouse",
+			"none",
+			"content-text",
+			"subreddit",
+			"adj",
+			"graph",
+			"border",
+			"karma",
+			"\"><",
+			"contentheader",
+			"contentsubheader",
+			"contenttext",
+			"vnEx",
+			"vnEX",
+			"topComment",
+			"redditUser",
+			"accountCreation",
+			"age",
+			"accountAge",
+			"age",
+			"bar",
+			"navbar",
+			"negativePercentage",
+			"color",
+			"navbar",
+			"navbar navbar-inverse navbar-static-top",
+			"navbar",
+			"very positi",
+			"margin-left",
+			"adj",
+			"year",
+			"first",
+			"forea",
+			"tip",
+			"100px",
+			"nopadding",
+			"col-lg",
+			"nopadding",
+			"elementto",
+			"Submissio"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -606,8 +575,36 @@
 		"regex": false,
 		"replace_history":
 		[
-			"mainFactory",
-			"validate",
+			"h4",
+			"h5",
+			"h4",
+			"comment",
+			"6",
+			"col-lg-2 col-md-3 col-sm-4 col-xs-6",
+			"col-lg-3 col-md-3 col-sm-4 col-xs-6",
+			"col-lg-3 col-md-3 col-sm-4",
+			"col-sm-12",
+			"col-lg-2 col-sm-2",
+			"col-lg-2 col-sm-1",
+			"class=\"col-lg-2 col-sm-1\" ",
+			"",
+			"sm",
+			"vnEx",
+			"nEx",
+			"pEx",
+			"md-1",
+			"lg",
+			"sm",
+			"container",
+			"container-fluid",
+			"container",
+			"container-fluid",
+			"",
+			"content-header",
+			"content-subheader",
+			"content-text",
+			" ",
+			"",
 			"ASHTON CHECKS",
 			"XERI SAVES",
 			"AJ & PRAB",
@@ -617,81 +614,84 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 9,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "client/app/user/user.html",
 					"settings":
 					{
-						"buffer_size": 98423,
+						"buffer_size": 29799,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1750,
-								1750
+								14155,
+								14155
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 198.0,
+						"translation.y": 3445.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "client/app/user/user.scss",
 					"settings":
 					{
-						"buffer_size": 16633,
+						"buffer_size": 4148,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6777,
-								6067
+								4021,
+								4014
 							]
 						],
 						"settings":
 						{
-							"auto_name": "I totally disagree with that. I'm a higher rank th",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 898.0,
+						"translation.y": 3878.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "server/api/reddit/reddit.controller.js",
+					"file": "client/app/donut/donut.directive.js",
 					"settings":
 					{
-						"buffer_size": 52600,
+						"buffer_size": 6322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								38841,
-								38841
+								889,
+								889
 							]
 						],
 						"settings":
@@ -701,7 +701,225 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 12432.0,
+						"translation.y": 294.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "client/app/user/user.js",
+					"settings":
+					{
+						"buffer_size": 401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								401,
+								401
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 97.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "client/app/barChart/barChart.directive.js",
+					"settings":
+					{
+						"buffer_size": 2725,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2315,
+								2315
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 714.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "server/api/user/user.model.js",
+					"settings":
+					{
+						"buffer_size": 3345,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1778.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "client/app/main/main.html",
+					"settings":
+					{
+						"buffer_size": 1079,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								910,
+								910
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "client/components/navbar/navbar.html",
+					"settings":
+					{
+						"buffer_size": 998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								534,
+								534
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "client/app/main/main.scss",
+					"settings":
+					{
+						"buffer_size": 1565,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								242,
+								242
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "client/components/footer/footer.scss",
+					"settings":
+					{
+						"buffer_size": 129,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								89,
+								89
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "client/components/footer/footer.html",
+					"settings":
+					{
+						"buffer_size": 115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -715,7 +933,7 @@
 	},
 	"input":
 	{
-		"height": 29.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -746,7 +964,7 @@
 	},
 	"replace":
 	{
-		"height": 62.0
+		"height": 77.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -769,6 +987,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 50.0,
+	"side_bar_width": 283.0,
 	"status_bar_visible": true
 }
