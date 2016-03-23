@@ -50,18 +50,12 @@ angular.module('redreapApp')
               donutWidth = 35;
             }
 
-          var totalSentences = (data.sentimentBySub[curIndex].positiveCount + data.sentimentBySub[curIndex].neutralCount + data.sentimentBySub[curIndex].negativeCount);
-
-          var positivePercent = Math.round(data.sentimentBySub[curIndex].positiveCount*100 / totalSentences);
-          var neutralPercent = Math.round(data.sentimentBySub[curIndex].neutralCount*100 / totalSentences);
-          var negativePercent = Math.round(data.sentimentBySub[curIndex].negativeCount*100 / totalSentences);
-
 
           /* Positive/Negative of Adjectives */
           var dataset = [
-            { label: 'Positive', count: positivePercent, enabled: true },
-            { label: 'Neutral', count: neutralPercent, enabled: true }, 
-            { label: 'Negative', count: negativePercent, enabled: true },
+            { label: 'Positive', count: data.sentimentBySub[curIndex].posPer, enabled: true },
+            { label: 'Neutral', count: data.sentimentBySub[curIndex].neuPer, enabled: true }, 
+            { label: 'Negative', count: data.sentimentBySub[curIndex].negPer, enabled: true },
           ];
 
           color.range(['#1CEAEA','#5D5D5D','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 

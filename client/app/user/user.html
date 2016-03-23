@@ -267,33 +267,33 @@
 					
 					<div class="container">
 						<div class="row content-top-padding">
-						   	<h3 class="content-subheader" align="center">Subreddits<h5 class="content-subheader" align="center">*Subreddits sorted by sentence count</h5></h3>
+						   	<h3 class="content-subheader" align="center">Subreddits<h5 class="content-subheader" align="center">(sorted by sentence count)</h5></h3>
 						   	
 						   	<div style="margin: 0 auto; text-align:center;">
 						   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
 								<donut title="Subreddit" cur-index=0></donut>
-								<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].positiveCount + user.redditUser.data.sentimentBySub[0].neutralCount + user.redditUser.data.sentimentBySub[0].negativeCount}}</strong></h4>
+								<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].total}}</strong></h4>
 						   	</div>
 						   	<div style="margin: 0 auto; text-align:center;"><!--
 							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
 									<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
 									<donut title="Subreddit" cur-index=1></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].positiveCount + user.redditUser.data.sentimentBySub[1].neutralCount + user.redditUser.data.sentimentBySub[1].negativeCount}}</strong></h5>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].total}}</strong></h5>
 								</div><!--
 							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
 									<h4 align="center">{{user.redditUser.data.sentimentBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">#</a></h4>
 									<donut title="Subreddit" cur-index=2></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].positiveCount + user.redditUser.data.sentimentBySub[2].neutralCount + user.redditUser.data.sentimentBySub[2].negativeCount}}</strong></h5>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].total}}</strong></h5>
 								</div><!--
 							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
 									<h4 align="center">{{user.redditUser.data.sentimentBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">#</a></h4>
 									<donut title="Subreddit" cur-index=3></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].positiveCount + user.redditUser.data.sentimentBySub[3].neutralCount + user.redditUser.data.sentimentBySub[3].negativeCount}}</strong></h5>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].total}}</strong></h5>
 								</div><!--
 							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
 									<h4 align="center">{{user.redditUser.data.sentimentBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">#</a></h4>
 									<donut title="Subreddit" cur-index=4></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].positiveCount + user.redditUser.data.sentimentBySub[4].neutralCount + user.redditUser.data.sentimentBySub[4].negativeCount}}</strong></h5>
+									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].total}}</strong></h5>
 								</div>
 							</div>
 						</div>
@@ -432,7 +432,7 @@
 									</div>
 								</div>
 							</div><!--
-							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-top:30px; text-align:center;">
+							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-top:30px;margin: 0 auto; text-align:center;">
 									<donut title="Adjective"></donut>
 								</div>	
 						</div>
