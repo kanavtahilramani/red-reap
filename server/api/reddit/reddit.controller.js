@@ -361,7 +361,7 @@ function createUser(callback) {
 
         //if the object does not exist, create it within subredditSentiment
         else{
-            tempSubSentiment = {sub: currentSub, subid: currentSubId, negativeCount: 0, neutralCount: 0, positiveCount: 0, total: 0, negPer: 0, neuPer:0, posPer: 0};
+            tempSubSentiment = {sub: currentSub, subid: currentSubId, negativeCount: 0, neutralCount: 0, positiveCount: 0, total: 0, negPer: 0, neuPer:0, posPer: 0, avSentSent: 0};
       
             if (currentSentence.$.sentimentValue == "1"){
               tempSubSentiment.negativeCount = tempSubSentiment.negativeCount + 1;
@@ -986,6 +986,7 @@ function createUser(callback) {
                         item.negPer = ((item.negativeCount/item.total)*100).toPrecision(3);
                         item.neuPer = ((item.neutralCount/item.total)*100).toPrecision(3);
                         item.posPer = ((item.positiveCount/item.total)*100).toPrecision(3);
+                        item.avSentSent = (item.positiveCount/item.total)*3 + (item.neutralCount/item.total)*2 + (item.negativeCount/item.total)*1;
 
                         if (outIndex == subredditSentiment.length-1){
                             if (subredditSentiment.length<=5){
