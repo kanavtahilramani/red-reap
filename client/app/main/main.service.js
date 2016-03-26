@@ -30,13 +30,13 @@ angular.module('mainService', [])
                 }
 
 				userData = data;
-				callback(data);
+				callback();
 			});
 		},
 		getUsername: function() {
 			return userData.data.username;
 		},
-		getExamples: function(callback) {
+		setExamples: function(callback) {
 			var first, second, key;
 			var single = [];
 			var arr = [[]];
@@ -48,13 +48,15 @@ angular.module('mainService', [])
 				arr.push(single);
 				single = [];
 			});
-
-			callback(arr);
+			userData.example1 = arr[1];
+            userData.example2 = arr[2];
+            userData.example3 = arr[3];
+			callback();
 		},
 		getMetadata: function() {
 
 		},
-		getAge: function(callback) {
+		setAge: function(callback) {
 			const oneYearInSeconds = 31556736; /* 1 year (365.24 days) */ 
 			const oneMonthInSeconds = 2627942; /* 1 month (30.416 days) */
 			const oneWeekInSeconds = 604800;   /* 1 week (7 days) */
@@ -164,7 +166,8 @@ angular.module('mainService', [])
 			accountCreation.age = readable;
 			var availableDate = new Date(userData.data.availableFrom);
 			accountCreation.available = availableDate.getMonth() + "/" + availableDate.getDate() + "/" + availableDate.getFullYear().toString().substring(2,4);
-			callback(accountCreation);
+			userData.accountCreation = accountCreation;
+			callback();
 		}
 	}
 });

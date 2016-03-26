@@ -1,15 +1,25 @@
 'use strict';
 
 angular.module('redreapApp')
-  .controller('MainController', function(User, $location) {
+  .controller('MainController', function(User, Subreddit, $location) {
   		var vm = this;
-  		// vm.loading = false;
 		vm.search = function(username) {
-			// add processing
 				vm.loading = true;
 				User.getUser(username, function() {
-					$location.path('/user/' + username);
-					vm.loading = false;
+					User.setAge(function() {
+                  		User.setExamples(function() {
+                    		$location.path('/user/' + username);
+							vm.loading = false;
+                  		});
+                	});
 				});
+		};
+
+		vm.searchSub = function(subreddit) {
+			vm.processing = true;
+			Subreddit.getSubreddit(subreddit, function() {
+				$location.path('/r/' + subreddit);
+				vm.processing = false;
+			});
 		};
   });

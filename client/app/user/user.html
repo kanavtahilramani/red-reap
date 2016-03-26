@@ -24,15 +24,15 @@
 		    		<div class="row text-center">
 		    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 		    				<p class="toptext">Joined</p>
-		    				<p class="primary">{{user.accountCreation.date}}</p>
+		    				<p class="primary">{{user.redditUser.accountCreation.date}}</p>
 			    		</div>
 			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 		    				<p class="toptext">Redditor For</p>
-		    				<p class="primary">{{user.accountCreation.age}}</p>
+		    				<p class="primary">{{user.redditUser.accountCreation.age}}</p>
 			    		</div>
 		    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 			    			<p class="toptext">Earliest Data From</p>
-			    			<p class="primary">{{user.accountCreation.available}}</p> 
+			    			<p class="primary">{{user.redditUser.accountCreation.available}}</p> 
 			    		</div>
 			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 			    			<p class="toptext">Gender</p>
@@ -301,16 +301,16 @@
 						   	<h3 class="content-subheader" align="center">Comments</h3><!--
    						--><div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
 								<div style="width: 90%;">
-									<p class="content-text"><em ng-if="user.example1" class="content-text">About</em> <strong>{{user.redditUser.data.negativePercentage}}% </strong> of comments have a <strong>negative</strong> connotation.</p>
-									<p ng-if="user.example1" class="content-bold-text"><strong>Determined from comments like:</strong></p>
-									<div ng-if="user.example1" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.example1[0]}}<strong>{{user.example1[1]}} </strong>{{user.example1[2]}}"</i></p>
+									<p class="content-text"><em ng-if="user.redditUser.example1" class="content-text">About</em> <strong>{{user.redditUser.data.negativePercentage}}% </strong> of comments have a <strong>negative</strong> connotation.</p>
+									<p ng-if="user.redditUser.example1" class="content-bold-text"><strong>Determined from comments like:</strong></p>
+									<div ng-if="user.redditUser.example1" id="need-space" style="margin-left:10px;">
+										<p class="no-new-line"><i>"{{user.redditUser.example1[0]}}<strong>{{user.redditUser.example1[1]}} </strong>{{user.redditUser.example1[2]}}"</i></p>
 									</div>
-									<div ng-if="user.example2" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.example2[0]}}<strong>{{user.example2[1]}} </strong>{{user.example2[2]}}"</i></p>
+									<div ng-if="user.redditUser.example2" id="need-space" style="margin-left:10px;">
+										<p class="no-new-line"><i>"{{user.redditUser.example2[0]}}<strong>{{user.redditUser.example2[1]}} </strong>{{user.redditUser.example2[2]}}"</i></p>
 									</div>
-									<div ng-if="user.example3" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.example3[0]}}<strong>{{user.example3[1]}} </strong>{{user.example3[2]}}"</i></p>
+									<div ng-if="user.redditUser.example3" id="need-space" style="margin-left:10px;">
+										<p class="no-new-line"><i>"{{user.redditUser.example3[0]}}<strong>{{user.redditUser.example3[1]}} </strong>{{user.redditUser.example3[2]}}"</i></p>
 									</div>
 								</div>
 							</div><!--
@@ -520,20 +520,20 @@
 						<dd>{{user.redditUser.data.negativePercentage}}</dd>
 						
 						<p><strong>determined from</strong></p>
-						<div ng-if="user.example1">
-							<p class="example-comment no-new-line"><i>- {{user.example1[0]}}</i></p>
-							<p class="no-new-line"><strong><i>{{user.example1[1]}}</i></strong></p>
-							<p class="no-new-line"><i>{{user.example1[2]}}</i></p>
+						<div ng-if="user.redditUser.example1">
+							<p class="example-comment no-new-line"><i>- {{user.redditUser.example1[0]}}</i></p>
+							<p class="no-new-line"><strong><i>{{user.redditUser.example1[1]}}</i></strong></p>
+							<p class="no-new-line"><i>{{user.redditUser.example1[2]}}</i></p>
 						</div>
-						<div ng-if="user.example2" id="need-space">
-							<p class="example-comment no-new-line"><i>- {{user.example2[0]}}</i></p>
-							<p class="no-new-line"><strong><i>{{user.example2[1]}}</i></strong></p>
-							<p class="no-new-line"><i>{{user.example2[2]}}</i></p>
+						<div ng-if="user.redditUser.example2" id="need-space">
+							<p class="example-comment no-new-line"><i>- {{user.redditUser.example2[0]}}</i></p>
+							<p class="no-new-line"><strong><i>{{user.redditUser.example2[1]}}</i></strong></p>
+							<p class="no-new-line"><i>{{user.redditUser.example2[2]}}</i></p>
 						</div>
-						<div ng-if="user.example3" id="need-space">
-							<p class="example-comment no-new-line"><i>- {{user.example3[0]}}</i></p>
-							<p class="no-new-line"><strong><i>{{user.example3[1]}}</i></strong></p>
-							<p class="no-new-line"><i>{{user.example3[2]}}</i></p>
+						<div ng-if="user.redditUser.example3" id="need-space">
+							<p class="example-comment no-new-line"><i>- {{user.redditUser.example3[0]}}</i></p>
+							<p class="no-new-line"><strong><i>{{user.redditUser.example3[1]}}</i></strong></p>
+							<p class="no-new-line"><i>{{user.redditUser.example3[2]}}</i></p>
 						</div>
 						<hr>
 

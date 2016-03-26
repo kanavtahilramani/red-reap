@@ -3,7 +3,7 @@
 angular.module('redreapApp')
   .config(function ($routeProvider) {
     $routeProvider
-      // .when('/user', {
+      // .when('/user', { // add checking
       //   templateUrl: 'app/user/user.html',
       //   controller: 'UserCtrl',
       //   controllerAs: 'user'

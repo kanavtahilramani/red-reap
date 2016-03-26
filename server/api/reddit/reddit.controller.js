@@ -4,6 +4,7 @@
 import creds from '../../config/local.env';
 import Token from '../validate/validate.model';
 import User from '../user/user.model';
+import Subreddit from '../subreddit/subreddit.model';
 import Snoocore from 'snoocore';
 import NLP from 'stanford-corenlp';
 import path from 'path';
@@ -32,7 +33,7 @@ var config = {
 
 var coreNLP = new NLP.StanfordNLP(config);
 
-var username;
+var username, subreddit;
 
 getRefresh().then(function(data) {
   reddit.setRefreshToken(data.refresh.toString());
@@ -46,8 +47,20 @@ function findUser(username) {
   return User.findOne({ 'username': username});
 }
 
-function saveUser(user) {
+function findSubreddit(subreddit) {
+  return Subreddit.findOne({ 'subreddit': subreddit});
+}
+
+function saveUser(user, callback) {
   user.save(function (err) {
+    if (err)
+      console.log(err);
+    callback();
+  });
+}
+
+function saveSubreddit(sub) {
+  sub.save(function (err) {
     if (err)
       console.log(err);
   });
@@ -1225,6 +1238,15 @@ function createUser(callback) {
       });
 }
 
+function createSubreddit(callback) {
+  var subData = new Subreddit({subreddit: subreddit});
+
+  subData.test = "testing";
+  console.log("\n\ntesting\n\n");
+
+  callback(subData);
+}
+
 // '/api/reddit/:username/'
 export function checkUser (req, res) {
   findUser(req.params.username).then(function(userData) {
@@ -1236,8 +1258,27 @@ export function checkUser (req, res) {
         username = req.params.username;
         createUser(function(user) {
           console.log("\n\nSaving.\n\n");
-          saveUser(user);
-          return res.send(user);
+          saveUser(user, function() {
+            return res.send(user);
+          });
+        });
+      }
+  });
+}
+
+// '/api/reddit/subreddit/:subreddit/'
+export function checkSubreddit (req, res) {
+  findSubreddit(req.params.subreddit).then(function(subData) {
+      if (subData != null) { // add our time constraint
+          return res.send(subData);
+      }
+
+      else {
+        subreddit = req.params.subreddit;
+        createSubreddit(function(sub) {
+          console.log("\n\nSaving subreddit.\n\n");
+          saveSubreddit(sub);
+          return res.send(sub);
         });
       }
   });

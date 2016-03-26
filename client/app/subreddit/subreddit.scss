@@ -1,0 +1,299 @@
+.first {
+	margin-top: 50px;
+}
+
+.user {
+	width: 65%;
+}
+
+.karma {
+	width: 25%;
+  margin: 0 auto;
+}
+
+.ident {
+  width: 20%;
+}
+
+.identAlt {
+  width: 20%;
+}
+
+.dl-horizontal dt {
+	width: auto;
+	margin-left: auto;
+}
+
+.dl-horizontal dd {
+	margin-left: auto;
+	text-align: right;
+}
+
+#fineprint {
+	font-size: 10px;
+}
+
+.axis path, .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.intro-nlp {
+	width: 120%;
+}
+
+.bar {
+	fill: orange;
+}
+
+.bar:hover {
+	fill: orangered;
+}
+
+.x.axis path {
+	display: none;
+}
+
+.example-comment {
+	padding-left: 20pt;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+	margin: -1px 0 0 0 ;
+	top: 100%;
+	left: 0;
+}
+
+.vertical-align {
+	display: flex;
+	align-items: center;
+}
+
+.jumbotron-special {
+	background-color: #282828;
+  margin-bottom: 0px;
+}
+
+.jumbotron-special::-webkit-scrollbar { 
+    display: none; 
+}
+
+#need-space {
+	margin-top: 15px;
+}
+
+.no-new-line {
+	display: inline;
+}
+
+.nopadding {
+  padding: 0;
+}
+
+hr {
+    background-color: white;
+}
+
+h1.intro {
+    color: white;
+    margin-bottom: 25px;
+}
+
+h1.intro em{
+	color: white;
+	font-size: 65%;
+	font-style: normal;
+}
+
+p.toptext {
+	color: #949DA2;
+	font-size: 15px;
+}
+
+p.primary {
+	color: white;
+	font-size: 17px;
+	font-style: normal;
+}
+
+p.bottomtext {
+  color: #949DA2;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+p.bottomPrimary {
+  color: white;
+  font-size: 17px;
+  font-style: normal;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.contentdisp {
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.vertical-center {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.content-inline {
+  background-color:white;
+  display: inline;
+  padding-top: 20px;
+  padding-bot: 20px;
+}
+
+h1.content-header {
+  color: black;
+  margin-left: 20px;
+}
+
+h3.content-subheader {
+  color: black;
+  text-align: center;
+  font-size: 22px;
+  border-style: solid;
+  border-width: 3px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-color: black;
+  width:40%;
+  margin: 0 auto;
+  padding-bottom:10px;
+  padding-top:10px;
+}
+
+p.content-text {
+  color: black;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+em.content-text {
+  color: black;
+  font-size: 18px;
+  font-style: normal;
+}
+
+p.content-bold-text {
+  margin-left: 10px;
+}
+
+html {
+    position: relative;
+}
+
+body {
+  background-color: #EAEAEA;
+}
+
+h1.chart-header {
+    font-size: 14px; 
+    text-align: left;
+}
+
+.jumbotron-content {
+  margin-top: 40px;
+  width: 95%;
+}
+
+.navbar {
+  background: white;
+  margin-bottom: 0px;
+  -webkit-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.64);
+  -moz-box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.64);
+  box-shadow: 0px 2px 10px -2px rgba(0,0,0,0.64);
+}
+
+.nav.navbar-nav.navbar-right li a {
+  color: black;
+}
+
+.navbar .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  background-color: #EAEAEA;
+}
+
+.navbar .navbar-toggle .icon-bar {
+  background: #000; /* Change color for horizontal lines */
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.content-top-padding {
+  padding-top: 30px;
+}
+
+#jumbo-row {
+  box-shadow:
+          2px 2px #D9230F,
+          4px 4px #D9230F,
+          4px 4px #D9230F;
+  -webkit-transform: translateX(-1px);
+  transform: translateX(-1px);
+}
+
+#first-row {
+  box-shadow:
+          2px 2px #D9230F,
+          4px 4px #D9230F,
+          4px 4px #D9230F;
+  -webkit-transform: translateX(-1px);
+  transform: translateX(-1px);
+}
+
+#second-row {
+  margin-bottom:10px;
+
+  box-shadow:
+          2px 2px #D9230F,
+          4px 4px #D9230F,
+          4px 4px #D9230F;
+  -webkit-transform: translateX(-1px);
+  transform: translateX(-1px);
+}
