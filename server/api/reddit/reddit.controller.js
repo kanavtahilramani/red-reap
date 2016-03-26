@@ -59,10 +59,11 @@ function saveUser(user, callback) {
   });
 }
 
-function saveSubreddit(sub) {
+function saveSubreddit(sub, callback) {
   sub.save(function (err) {
     if (err)
       console.log(err);
+    callback();
   });
 }
 
@@ -1242,9 +1243,22 @@ function createSubreddit(callback) {
   var subData = new Subreddit({subreddit: subreddit});
 
   subData.test = "testing";
-  console.log("\n\ntesting\n\n");
+  getSubredditInfo(function(about) {
+    subData.genData.wiki_enabled = about.data.wiki_enabled;
+    subData.genData.display_name = about.data.display_name;
+    subData.genData.public_description = about.data.public_description;
+    subData.genData.header_title = about.data.header_title; //this is hovertext on the alien icon
+    subData.genData.subscribers = parseInt(about.data.subscribers);
+    subData.genData.created_utc = parseInt(about.data.created_utc);
+    subData.genData.subreddit_type = about.data.subreddit_type;
+    subData.genData.submission_type = about.data.submission_type;
+    //analyze!
+    getSubredditHot(function(submissions) {
+      callback(subData);
+      return;
+    });
+  });
 
-  callback(subData);
 }
 
 // '/api/reddit/:username/'
@@ -1257,7 +1271,7 @@ export function checkUser (req, res) {
       else {
         username = req.params.username;
         createUser(function(user) {
-          console.log("\n\nSaving.\n\n");
+          console.log("\n\nSaving user.\n\n");
           saveUser(user, function() {
             return res.send(user);
           });
@@ -1277,8 +1291,9 @@ export function checkSubreddit (req, res) {
         subreddit = req.params.subreddit;
         createSubreddit(function(sub) {
           console.log("\n\nSaving subreddit.\n\n");
-          saveSubreddit(sub);
-          return res.send(sub);
+          saveSubreddit(sub, function() {
+            return res.send(sub);
+          });
         });
       }
   });
@@ -1390,6 +1405,22 @@ export function getTopSubmission (callback) {
       });
 }
 
+export function getSubredditInfo (callback) {
+  reddit('/r/' + subreddit + '/about').get().then(function(response) {
+    console.log(response);
+    callback(response);
+    return;
+  });
+}
+
+export function getSubredditHot (callback) {
+  reddit('/r/' + subreddit + '/hot').listing().then(function(data) {
+    //console.log(data);
+    callback(data);
+    return;
+  });
+}
+
 /* ======================================================================== */
 /* ======================================================================== */
 /* ===============================NOT USED================================= */
@@ -1402,13 +1433,6 @@ export function getAbout (req, res) {
     details.submissions = parseInt(response.data.link_karma);
     details.created = parseInt(response.data.created_utc);
     return res.send(response);
-  });
-}
-
-export function getSubredditInfo (req, res) {
-  reddit('/r/' + req.params.subreddit + '/hot').listing().then(function(data) {
-    console.log(data);
-    return res.send(data);
   });
 }
 
