@@ -1251,7 +1251,7 @@ export function getKarmaAndDate (callback) {
     details.created = parseInt(response.data.created_utc);
     details.is_gold = response.data.is_gold;
     details.is_mod = response.data.is_mod;
-    details.has_verified_email = response.has_verified_email;
+    details.has_verified_email = response.data.has_verified_email;
     callback(details);
     return;
   });
