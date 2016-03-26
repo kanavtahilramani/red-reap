@@ -85,6 +85,9 @@ var UserSchema = new Schema({
 		commentScore: Number,
 		linkScore: Number
 	},
+	is_gold: String,
+	is_mod: String,
+	has_verified_email: String,
 	creationTime: Number,
 	totalComments: Number,
 	totalSubmitted: Number,

@@ -1203,6 +1203,9 @@ function createUser(callback) {
                         userData.karma.totalCommentScore = scores.comments;
                         userData.karma.totalLinkScore = scores.submissions;
                         userData.creationTime = (scores.created)*1000;
+                        userData.is_gold = scores.is_gold;
+                        userData.is_mod = scores.is_mod;
+                        userData.has_verified_email = scores.has_verified_email;
 
                         getTopComment(function(topComment) {
                           userData.topComment = topComment;
@@ -1246,6 +1249,9 @@ export function getKarmaAndDate (callback) {
     details.comments = parseInt(response.data.comment_karma);
     details.submissions = parseInt(response.data.link_karma);
     details.created = parseInt(response.data.created_utc);
+    details.is_gold = response.data.is_gold;
+    details.is_mod = response.data.is_mod;
+    details.has_verified_email = response.has_verified_email;
     callback(details);
     return;
   });
@@ -1360,6 +1366,7 @@ export function getAbout (req, res) {
 
 export function getSubredditInfo (req, res) {
   reddit('/r/' + req.params.subreddit + '/hot').listing().then(function(data) {
+    console.log(data);
     return res.send(data);
   });
 }
