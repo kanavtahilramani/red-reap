@@ -9,7 +9,6 @@ angular.module('redreapApp')
         var data = User.getUserData().data;
         var curAction = attrs.title;
         var color = d3.scale.ordinal();
-        console.log(attrs);
 
         var svgWidth  = 375,
             svgHeight = 375,
@@ -24,7 +23,7 @@ angular.module('redreapApp')
             { label: 'Negative', count: Math.round(data.negativePercentage*100)/100, enabled: true },
           ];
 
-          color.range(['#5D5D5D','#EA1C1C','#BE2929','#D22E2E','#D74343','#DB5858','#E06D6D']); 
+          color.range(['#5D5D5D','#EA1C1C']); 
         }
         else if (curAction == "Adjective")
         {
@@ -36,7 +35,7 @@ angular.module('redreapApp')
             { label: 'Very Negative', count: data.vnPer, enabled: true },
           ];
 
-          color.range(['#1B9F9F','#1CEAEA','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 
+          color.range(['#1B9F9F','#1CEAEA','#EA1C1C','#9F1B1B']); 
         }
         else if (curAction == "Subreddit")
         {
@@ -58,7 +57,7 @@ angular.module('redreapApp')
             { label: 'Negative', count: data.sentimentBySub[curIndex].negPer, enabled: true },
           ];
 
-          color.range(['#1CEAEA','#5D5D5D','#EA1C1C','#9F1B1B','#D74343','#DB5858','#E06D6D']); 
+          color.range(['#1CEAEA','#5D5D5D','#EA1C1C']); 
         }
 
         //var color = d3.scale.category10();    
@@ -79,6 +78,7 @@ angular.module('redreapApp')
 
         svg.call(tip);
         // Define the radius
+
         var arc = d3.svg.arc()
                         .innerRadius(radius - donutWidth)
                         .outerRadius(radius);
@@ -103,72 +103,83 @@ angular.module('redreapApp')
                       .on('mouseout', tip.hide)
                       .each(function(d) { this._current = d; });
 
-        // Define the Legend
-        var legendRectSize = 18,
-            legendSpacing  = 4;              
+        if (curAction == "Subreddit")
+        {
+          svg.append("text")
+                 .attr('dy', '0.35em')
+                 .attr({
+                   "text-anchor": "middle",
+                 }).style({'fill': 'black', 'font-size': '50px'}).text(data.sentimentBySub[curIndex].avSentSent);
+        }
+        else
+        {
+          // Define the Legend
+          var legendRectSize = 18,
+              legendSpacing  = 4;              
 
 
-        var legend = svg.selectAll('.legend')
-                        .data(color.domain())
-                        .enter()
-                        .append('g')
-                          .attr('class', 'legend')
-                          .attr('transform', function(d, i) {
+          var legend = svg.selectAll('.legend')
+                          .data(color.domain())
+                          .enter()
+                          .append('g')
+                            .attr('class', 'legend')
+                            .attr('transform', function(d, i) {
 
-                            var height = legendRectSize + legendSpacing,
-                                offset = height * color.domain().length / 2,
-                                horz   = -2 * legendRectSize,
-                                vert   = i * height - offset;
-                            return 'translate(' + horz + ',' + vert + ')';
+                              var height = legendRectSize + legendSpacing,
+                                  offset = height * color.domain().length / 2,
+                                  horz   = -2 * legendRectSize,
+                                  vert   = i * height - offset;
+                              return 'translate(' + horz + ',' + vert + ')';
 
-                          });
+                            });
 
-        // Legend Content
-        legend.append('rect')
-                .attr('width', legendRectSize)
-                .attr('height', legendRectSize)
-                .style('fill', color)
-                .style('stroke', color)
-                .on('click', function(label) {
-                  var rect = d3.select(this);
-                  var enabled = true;
-                  var totalEnabled = d3.sum(dataset.map(function(d) {
-                    return (d.enabled) ? 1 : 0;
-                  }));
-                  
-                  if (rect.attr('class') === 'disabled') {
-                    rect.attr('class', '')
-                    .style('fill', color);
-                  } else {
-                    if (totalEnabled < 2) return;
-                    rect.attr('class', 'disabled')
-                    rect.style('fill', "gray");
-                    enabled = false;
-                  }
+          // Legend Content
+          legend.append('rect')
+                  .attr('width', legendRectSize)
+                  .attr('height', legendRectSize)
+                  .style('fill', color)
+                  .style('stroke', color)
+                  .on('click', function(label) {
+                    var rect = d3.select(this);
+                    var enabled = true;
+                    var totalEnabled = d3.sum(dataset.map(function(d) {
+                      return (d.enabled) ? 1 : 0;
+                    }));
+                    
+                    if (rect.attr('class') === 'disabled') {
+                      rect.attr('class', '')
+                      .style('fill', color);
+                    } else {
+                      if (totalEnabled < 2) return;
+                      rect.attr('class', 'disabled')
+                      rect.style('fill', "gray");
+                      enabled = false;
+                    }
 
-                  pie.value(function(d) {
-                    if (d.label === label) d.enabled = enabled;
-                    return (d.enabled) ? d.count : 0;
-                  });
-
-                  path = path.data(pie(dataset));
-
-                  path.transition()
-                    .duration(750)
-                    .attrTween('d', function(d) {
-                      var interpolate = d3.interpolate(this._current, d);
-                      this._current = interpolate(0);
-                      return function(t) {
-                        return arc(interpolate(t));
-                      };
+                    pie.value(function(d) {
+                      if (d.label === label) d.enabled = enabled;
+                      return (d.enabled) ? d.count : 0;
                     });
 
-                });
+                    path = path.data(pie(dataset));
 
-        legend.append('text')
-                .attr('x', legendRectSize + legendSpacing)
-                .attr('y', legendRectSize - legendSpacing)
-                .text(function(d) { return d; }); 
+                    path.transition()
+                      .duration(750)
+                      .attrTween('d', function(d) {
+                        var interpolate = d3.interpolate(this._current, d);
+                        this._current = interpolate(0);
+                        return function(t) {
+                          return arc(interpolate(t));
+                        };
+                      });
+
+                  });
+
+          legend.append('text')
+                  .attr('x', legendRectSize + legendSpacing)
+                  .attr('y', legendRectSize - legendSpacing)
+                  .text(function(d) { return d; }); 
+        }
       }
     };
   });
