@@ -19,7 +19,10 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 			<div class="jumbotron jumbotron-special" style="border-radius: 0px;">
 		    	<h1 class="intro" align="center"><em>/u/</em>{{user.redditUser.data.username}}</h1>
-
+		    	<div style="width:100%; text-align:center;">
+					<img id="loading-gif" ng-if="user.redditUser.data.is_mod == 'true'" style="width: 45px; height: 25px; border-radius: 3px;" src="../../images/ModBadge.png"/>
+	        		<img id="loading-gif" ng-if="user.redditUser.data.is_gold == 'true'" style="width: 45px; height: 25px; border-radius: 3px;" src="../../images/GoldBadge.png"/>
+        		</div>
 		    	<div class="jumbotron-content">
 		    		<div class="row text-center">
 		    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
@@ -84,7 +87,7 @@
 			    		</div>
 			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 			    			<p class="toptext">Median Edit Time</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.medEditTime}} s</p>
+			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.medEditTime}}</p>
 			    		</div>
 			    	</div>
 
@@ -128,11 +131,11 @@
 				    </div>
 					<p class="bottomtext">Top Submission</p>
 				    <p class="bottomPrimary">{{user.redditUser.data.topSubmission.title}}</p>
-			   		<p style="color: white; font-size: 13px; margin-left:50px"><em style="font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topSubmission.score}}<em style="font-style: normal; color: gray; margin-left: 30px;">Subreddit: <a class="white-anchor" href="http://reddit.com/r/{{user.redditUser.data.topSubmission.subreddit}}">{{user.redditUser.data.topSubmission.subreddit}}</a></em><em style="font-style: normal; color: gray; margin-left: 30px;"><a class="gray-anchor" href="{{user.redditUser.data.topSubmission.permalink}}">[Permalink]</a></em></p>
+			   		<p style="color: white; font-size: 13px; margin-left:50px"><em style="font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topSubmission.score}}<em style="font-style: normal; color: gray; margin-left: 30px;">Subreddit: <a class="white-anchor" href="http://reddit.com/r/{{user.redditUser.data.topSubmission.subreddit}}">{{user.redditUser.data.topSubmission.subreddit}}</a></em><em style="font-style: normal; color: gray; margin-left: 30px;"><a class="white-anchor" href="{{user.redditUser.data.topSubmission.permalink}}">[Permalink]</a></em></p>
 
 				    <p class="bottomtext">Top Comment</p>
 				    <p class="bottomPrimary">{{user.redditUser.data.topComment.body}}</p>
-				    <p style="color: white; font-size: 13px; margin-left:50px"><em style="font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topComment.score}}<em style="font-style: normal; color: gray; margin-left: 30px;">Subreddit: <a class="white-anchor" href="http://reddit.com/r/{{user.redditUser.data.topComment.subreddit}}">{{user.redditUser.data.topComment.subreddit}}</a></em><em style="font-style: normal; color: gray; margin-left: 30px;"><a class="gray-anchor" href="{{user.redditUser.data.topComment.permalink}}">[Permalink]</a></em></p>
+				    <p style="color: white; font-size: 13px; margin-left:50px"><em style="font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topComment.score}}<em style="font-style: normal; color: gray; margin-left: 30px;">Subreddit: <a class="white-anchor" href="http://reddit.com/r/{{user.redditUser.data.topComment.subreddit}}">{{user.redditUser.data.topComment.subreddit}}</a></em><em style="font-style: normal; color: gray; margin-left: 30px;"><a class="white-anchor" href="{{user.redditUser.data.topComment.permalink}}">[Permalink]</a></em></p>
 
 				    <p class="bottomtext">Subreddits</p>
 <!-- 				    	<div style="margin-left:20px; margin-bottom: 30px;" class="container">
@@ -251,7 +254,7 @@
 		    	<div class="container">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
-							<bar-chart></bar-chart>
+							<bar-chart title="Karma"></bar-chart>
 							<line-plot></line-plot>
 						</div>
 					</div>
@@ -262,184 +265,214 @@
 	<hr style="width: 60%;">
 	<div id="second-row" class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
-				<div class="contentdisp">
-					<h1 class="content-header" align="center">Sentiment</h1>
-					
-					<div class="container">
-						<div class="row content-top-padding">
-						   	<h3 class="content-subheader" align="center">Subreddits<h5 class="content-subheader" align="center">(sorted by sentence count)</h5></h3>
-						   	
-						   	<div style="margin: 0 auto; text-align:center;">
-						   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
-								<donut title="Subreddit" cur-index=0></donut>
-								<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].total}}</strong></h4>
-						   	</div>
-						   	<div style="margin: 0 auto; text-align:center;"><!--
-							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
-									<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
-									<donut title="Subreddit" cur-index=1></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].total}}</strong></h5>
-								</div><!--
-							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
-									<h4 align="center">{{user.redditUser.data.sentimentBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">#</a></h4>
-									<donut title="Subreddit" cur-index=2></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].total}}</strong></h5>
-								</div><!--
-							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
-									<h4 align="center">{{user.redditUser.data.sentimentBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">#</a></h4>
-									<donut title="Subreddit" cur-index=3></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].total}}</strong></h5>
-								</div><!--
-							--><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
-									<h4 align="center">{{user.redditUser.data.sentimentBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">#</a></h4>
-									<donut title="Subreddit" cur-index=4></donut>
-									<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].total}}</strong></h5>
+			<div class="contentdisp">
+				<h1 class="content-header" align="center">Sentiment</h1>
+				
+				<div class="container">
+					<div class="row content-top-padding">
+					   	<h3 class="content-subheader" align="center">Sentences by Subreddit<h5 class="content-subheader" align="center">(sorted by sentence count)</h5></h3>
+
+<!-- 						   	<div style="margin:0 auto; width: 50%; text-align:center; background-color:#EAEAEA; border-radius:3px;">
+					   		<div class="row">
+					   			<div class="col-lg-4">
+					   				<div style="background-color:#1CEAEA; color:white;">
+					   					Positive
+					   				</div>
+					   			</div>
+					   			<div class="col-lg-4">
+					   				<div style="background-color:#5D5D5D; color:white;">
+					   					Neutral
+					   				</div>
+					   			</div>
+					   			<div class="col-lg-4">
+					   				<div style="background-color:#EA1C1C; color:white;">
+					   					Negative
+					   				</div>
+					   			</div>
+					   		</div>
+					   	</div> -->
+
+					   	<div style="margin: 0 auto; text-align:center;">
+					   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
+							<donut title="Subreddit" cur-index=0></donut>
+							<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].total}}</strong></h4>
+					   	</div>
+					   	<div style="margin: 0 auto; text-align:center;"><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
+								<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
+								<donut title="Subreddit" cur-index=1></donut>
+								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].total}}</strong></h5>
+							</div><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
+								<h4 align="center">{{user.redditUser.data.sentimentBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">#</a></h4>
+								<donut title="Subreddit" cur-index=2></donut>
+								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].total}}</strong></h5>
+							</div><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
+								<h4 align="center">{{user.redditUser.data.sentimentBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">#</a></h4>
+								<donut title="Subreddit" cur-index=3></donut>
+								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].total}}</strong></h5>
+							</div><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
+								<h4 align="center">{{user.redditUser.data.sentimentBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">#</a></h4>
+								<donut title="Subreddit" cur-index=4></donut>
+								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].total}}</strong></h5>
+							</div>
+						</div>
+					</div>
+<!-- 						<div class="row content-top-padding">
+					   	<h3 class="content-subheader" align="center">Comments</h3>
+						<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
+							<div style="width: 90%;">
+								<p class="content-text"><em ng-if="user.redditUser.example1" class="content-text">About</em> <strong>{{user.redditUser.data.negativePercentage}}% </strong> of comments have a <strong>negative</strong> connotation.</p>
+								<p ng-if="user.redditUser.example1" class="content-bold-text"><strong>Determined from comments like:</strong></p>
+								<div ng-if="user.redditUser.example1" id="need-space" style="margin-left:10px;">
+									<p class="no-new-line"><i>"{{user.redditUser.example1[0]}}<strong>{{user.redditUser.example1[1]}} </strong>{{user.redditUser.example1[2]}}"</i></p>
+								</div>
+								<div ng-if="user.redditUser.example2" id="need-space" style="margin-left:10px;">
+									<p class="no-new-line"><i>"{{user.redditUser.example2[0]}}<strong>{{user.redditUser.example2[1]}} </strong>{{user.redditUser.example2[2]}}"</i></p>
+								</div>
+								<div ng-if="user.redditUser.example3" id="need-space" style="margin-left:10px;">
+									<p class="no-new-line"><i>"{{user.redditUser.example3[0]}}<strong>{{user.redditUser.example3[1]}} </strong>{{user.redditUser.example3[2]}}"</i></p>
 								</div>
 							</div>
 						</div>
-						<div class="row content-top-padding">
-						   	<h3 class="content-subheader" align="center">Comments</h3><!--
-   						--><div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
-								<div style="width: 90%;">
-									<p class="content-text"><em ng-if="user.redditUser.example1" class="content-text">About</em> <strong>{{user.redditUser.data.negativePercentage}}% </strong> of comments have a <strong>negative</strong> connotation.</p>
-									<p ng-if="user.redditUser.example1" class="content-bold-text"><strong>Determined from comments like:</strong></p>
-									<div ng-if="user.redditUser.example1" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.redditUser.example1[0]}}<strong>{{user.redditUser.example1[1]}} </strong>{{user.redditUser.example1[2]}}"</i></p>
-									</div>
-									<div ng-if="user.redditUser.example2" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.redditUser.example2[0]}}<strong>{{user.redditUser.example2[1]}} </strong>{{user.redditUser.example2[2]}}"</i></p>
-									</div>
-									<div ng-if="user.redditUser.example3" id="need-space" style="margin-left:10px;">
-										<p class="no-new-line"><i>"{{user.redditUser.example3[0]}}<strong>{{user.redditUser.example3[1]}} </strong>{{user.redditUser.example3[2]}}"</i></p>
-									</div>
-								</div>
-							</div><!--
-							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px; text-align:center;">
-									<donut title="Comment"></donut>
-								</div>	
-						</div>
+							<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 vcenter" style="margin-top:30px; text-align:center;">
+								<donut title="Comment"></donut>
+							</div>	
+					</div> -->
 
-						<div class="row content-top-padding">
-							<h3 class="content-subheader">Adjectives</h3><!--
-							--><div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
-								<div style="width: 90%;">
-									<p class="content-text">About <strong>{{user.redditUser.data.vpPer}}% </strong> of adjectives used are <strong>very positive</strong>.
-									</p>
-								    <div>
-								    	<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vpEx track by $index" ng-if="$index%7==0">
-				  							<div class="row">
-					  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vpEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vpEx[$index+1].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vpEx[$index+2].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vpEx[$index+3].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vpEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vpEx[$index+1].adjective}}
-												</div>
+					<div class="row content-top-padding">
+						<h3 class="content-subheader">Adjectives</h3><!--
+						--><div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
+							<div style="width: 90%;">
+								<p class="content-text">About <strong>{{user.redditUser.data.vpPer}}% </strong> of adjectives used are <strong>very positive</strong>.
+								</p>
+							    <div>
+							    	<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vpEx track by $index" ng-if="$index%7==0">
+			  							<div class="row">
+				  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vpEx[$index].adjective}}
 											</div>
-						  				</div>
-									</div>
-									<hr style="margin-left: 10px;"/>
-									<p class="content-text">About <strong>{{user.redditUser.data.pPer}}% </strong> of adjectives used are <strong>positive</strong>.
-									</p>
-									<div>
-			 						 	<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.pEx track by $index" ng-if="$index%7==0">
-				  							<div class="row">
-					  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.pEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.pEx[$index+1].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.pEx[$index+2].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"  style="font-size: 12px;">
-					           				  		{{user.redditUser.data.pEx[$index+3].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"  style="font-size: 12px;">
-					           				  		{{user.redditUser.data.pEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.pEx[$index+1].adjective}}
-												</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vpEx[$index+1].adjective}}
 											</div>
-						  				</div>
-									</div>
-									<hr style="margin-left: 10px;"/>
-									<p class="content-text">About <strong>{{user.redditUser.data.nPer}}% </strong> of adjectives used are <strong>negative</strong>.
-									</p>
-									<div>
-			 						 	<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.nEx track by $index" ng-if="$index%7==0">
-				  							<div class="row">
-					  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.nEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.nEx[$index+1].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.nEx[$index+2].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.nEx[$index+3].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.nEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.nEx[$index+1].adjective}}
-												</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vpEx[$index+2].adjective}}
 											</div>
-						  				</div>
-									</div>
-									<hr style="margin-left: 10px;"/>
-									<p class="content-text">About <strong>{{user.redditUser.data.vnPer}}% </strong> of adjectives used are <strong>very negative</strong>.
-									</p>
-									<div>
-										<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vnEx track by $index" ng-if="$index%7==0">
-				  							<div class="row">
-					  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vnEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vnEx[$index+1].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vnEx[$index+2].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vnEx[$index+3].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vnEx[$index].adjective}}
-												</div>
-												<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-					           				  		{{user.redditUser.data.vnEx[$index+1].adjective}}
-												</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vpEx[$index+3].adjective}}
 											</div>
-						  				</div>
-									</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vpEx[$index].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vpEx[$index+1].adjective}}
+											</div>
+										</div>
+					  				</div>
 								</div>
-							</div><!--
-							--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-top:30px;margin: 0 auto; text-align:center;">
-									<donut title="Adjective"></donut>
-								</div>	
-						</div>
+								<hr style="margin-left: 10px;"/>
+								<p class="content-text">About <strong>{{user.redditUser.data.pPer}}% </strong> of adjectives used are <strong>positive</strong>.
+								</p>
+								<div>
+		 						 	<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.pEx track by $index" ng-if="$index%7==0">
+			  							<div class="row">
+				  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.pEx[$index].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.pEx[$index+1].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.pEx[$index+2].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"  style="font-size: 12px;">
+				           				  		{{user.redditUser.data.pEx[$index+3].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"  style="font-size: 12px;">
+				           				  		{{user.redditUser.data.pEx[$index].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.pEx[$index+1].adjective}}
+											</div>
+										</div>
+					  				</div>
+								</div>
+								<hr style="margin-left: 10px;"/>
+								<p class="content-text">About <strong>{{user.redditUser.data.nPer}}% </strong> of adjectives used are <strong>negative</strong>.
+								</p>
+								<div>
+		 						 	<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.nEx track by $index" ng-if="$index%7==0">
+			  							<div class="row">
+				  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.nEx[$index].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.nEx[$index+1].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.nEx[$index+2].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.nEx[$index+3].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.nEx[$index].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.nEx[$index+1].adjective}}
+											</div>
+										</div>
+					  				</div>
+								</div>
+								<hr style="margin-left: 10px;"/>
+								<p class="content-text">About <strong>{{user.redditUser.data.vnPer}}% </strong> of adjectives used are <strong>very negative</strong>.
+								</p>
+								<div>
+									<div style="margin-left: 10px;" ng-repeat="exampleAdj in user.redditUser.data.vnEx track by $index" ng-if="$index%7==0">
+			  							<div class="row">
+				  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vnEx[$index].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vnEx[$index+1].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vnEx[$index+2].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vnEx[$index+3].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vnEx[$index].adjective}}
+											</div>
+											<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
+				           				  		{{user.redditUser.data.vnEx[$index+1].adjective}}
+											</div>
+										</div>
+					  				</div>
+								</div>
+							</div>
+						</div><!--
+						--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-top:30px;margin: 0 auto; text-align:center;">
+								<donut title="Adjective"></donut>
+							</div>	
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- <div id="third-row" class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+			<div class="contentdisp">
+				<h1 class="content-header" align="center">Submissions</h1>
+				<div style="text-align:center; width=100%;">
+					<bar-chart title="Length/Score"></bar-chart>
+				</div>
+			</div>
+		</div>
+	</div> -->
 <!-- 			<div class="contentdisp">
 				<div class="row">
 					<div class="col-md-3 col-md-offset-3 vertical-center">
