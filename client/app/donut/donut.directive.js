@@ -105,11 +105,23 @@ angular.module('redreapApp')
 
         if (curAction == "Subreddit")
         {
-          svg.append("text")
-                 .attr('dy', '0.35em')
-                 .attr({
-                   "text-anchor": "middle",
-                 }).style({'fill': 'black', 'font-size': '50px'}).text(data.sentimentBySub[curIndex].avSentSent);
+          var curIndex = attrs.curIndex;
+          if (curIndex == 0)
+          {
+            svg.append("text")
+                   .attr('dy', '0.35em')
+                   .attr({
+                     "text-anchor": "middle",
+                   }).style({'fill': 'black', 'font-size': '60px'}).text(data.sentimentBySub[curIndex].avSentSent);
+          }
+          else
+          {
+            svg.append("text")
+                   .attr('dy', '0.35em')
+                   .attr({
+                     "text-anchor": "middle",
+                   }).style({'fill': 'black', 'font-size': '40px'}).text(data.sentimentBySub[curIndex].avSentSent);
+          }
         }
         else
         {

@@ -95,16 +95,16 @@
 					    <p class="bottomtext">You are</p>
 				    	<div style="margin-left: 50px; color: white;" ng-repeat="identifier in user.redditUser.data.descriptions track by $index" ng-if="$index%4==0">
   							<div class="row">
-	  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+	  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index]">
 	           				  		{{user.redditUser.data.descriptions[$index]}}
 								</div>
-								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+1]">
 	           				  		{{user.redditUser.data.descriptions[$index+1]}}
 								</div>
-								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+2]">
 	           				  		{{user.redditUser.data.descriptions[$index+2]}}
 								</div>
-								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;">
+								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+3]">
 	           				  		{{user.redditUser.data.descriptions[$index+3]}}
 								</div>
 							</div>
@@ -112,18 +112,18 @@
 				    </div>
 			    	<div ng-if="user.redditUser.data.familyMembers.length > 0">
 					    <p class="bottomtext">Your family members</p>
-				    		<div style="margin-left: 50px; color: white;" ng-repeat="identifier in user.redditUser.data.familyMembers track by $index">
+				    		<div style="margin-left: 50px; color: white;" ng-repeat="identifier in user.redditUser.data.familyMembers track by $index" ng-if="$index%4==0">
 	  							<div class="row">
-		  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
+		  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index]">
 		           				  		{{user.redditUser.data.familyMembers[$index]}}
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index+1]">
 		           				  		{{user.redditUser.data.familyMembers[$index+1]}}
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index+2]">
 		           				  		{{user.redditUser.data.familyMembers[$index+2]}}
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="$index%4==0">
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index+3]">
 		           				  		{{user.redditUser.data.familyMembers[$index+3]}}
 									</div>
 								</div>
@@ -247,7 +247,7 @@
 					</div>
 				</div>
  -->
-				<div style="text-align:center;">
+				<div style="text-align:center;" ng-if="user.redditUser.data.karma.totalCommentScore || user.redditUser.data.karma.totalLinkScore">
 					<p class="content-text" style="text=align:left;">Your account has <strong style="text-align:right;">{{user.redditUser.data.karma.totalCommentScore}} comment karma </strong> and <strong style="text-align:right;">{{user.redditUser.data.karma.totalLinkScore}} link karma</strong>.</p>
 				</div>
 
@@ -269,7 +269,7 @@
 				<h1 class="content-header" align="center">Sentiment</h1>
 				
 				<div class="container">
-					<div class="row content-top-padding">
+					<div class="row content-top-padding" ng-if="user.redditUser.data.sentimentBySub[0]">
 					   	<h3 class="content-subheader" align="center">Sentences by Subreddit<h5 class="content-subheader" align="center">(sorted by sentence count)</h5></h3>
 
 <!-- 						   	<div style="margin:0 auto; width: 50%; text-align:center; background-color:#EAEAEA; border-radius:3px;">
@@ -342,7 +342,7 @@
 							</div>	
 					</div> -->
 
-					<div class="row content-top-padding">
+					<div class="row content-extra-top-padding" ng-if="user.redditUser.data.vpEx || user.redditUser.data.pEx || user.redditUser.data.nEx || user.redditUser.data.vnEx">
 						<h3 class="content-subheader">Adjectives</h3><!--
 						--><div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
 							<div style="width: 90%;">
@@ -463,7 +463,46 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div id="third-row" class="row">
+	<hr style="width: 60%;">
+	<div id="third-row" class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+			<div class="contentdisp">
+				<h1 class="content-header" align="center">Language Complexity</h1>
+				<div class="row content-top-padding" ng-if="user.redditUser.data.sentimentBySub[0]">
+					<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.languageBySub[0]">
+						<div style="margin: 0 auto; text-align:center;">
+					   		<h3 align="center">{{user.redditUser.data.languageBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[0].sub}}">#</a></h3>
+							<h4 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[0].avSentComplexity}}</strong></h4>
+					 		<h4 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[0].avWordComplexity}}</strong></h4>
+					   	</div>
+					   	<div style="margin: 0 auto; text-align:center;"><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
+								<h4 align="center">{{user.redditUser.data.languageBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[1].sub}}">#</a></h4>
+								<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[1].avSentComplexity}}</strong></h5>
+								<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[1].avWordComplexity}}</strong></h5>
+							</div><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
+								<h4 align="center">{{user.redditUser.data.languageBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[2].sub}}">#</a></h4>
+								<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[2].avSentComplexity}}</strong></h5>
+								<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[2].avWordComplexity}}</strong></h5>
+							</div><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
+								<h4 align="center">{{user.redditUser.data.languageBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[3].sub}}">#</a></h4>
+								<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[3].avSentComplexity}}</strong></h5>
+								<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[3].avWordComplexity}}</strong></h5>
+							</div><!--
+						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
+								<h4 align="center">{{user.redditUser.data.languageBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[4].sub}}">#</a></h4>
+								<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[4].avSentComplexity}}</strong></h5>
+								<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[4].avWordComplexity}}</strong></h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div id="fourth-row" class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 			<div class="contentdisp">
 				<h1 class="content-header" align="center">Submissions</h1>
