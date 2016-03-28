@@ -1235,6 +1235,19 @@ function createUser(callback) {
                     });
                   });
 
+                  //POPULATING languageBySub WITH TEMP VALUES FOR DISPLAY
+                  var tempLangElement;
+                  tempLangElement = {sub: "worldnews", subid: "t5_2qh13", avSentComplexity: 3.12, avWordComplexity: 3.34}; 
+                  userData.languageBySub.push(tempLangElement);
+                  tempLangElement = {sub: "AskReddit", subid: "t5_2qh1i", avSentComplexity: 2.88, avWordComplexity:2.79};
+                  userData.languageBySub.push(tempLangElement);
+                  tempLangElement = {sub: "GlobalOffensive", subid: "t5_2sqho", avSentComplexity: 2.56, avWordComplexity: 2.96};
+                  userData.languageBySub.push(tempLangElement);
+                  tempLangElement = {sub: "videos", subid: "t5_2qh1e", avSentComplexity: 2.89, avWordComplexity: 3.11};
+                  userData.languageBySub.push(tempLangElement);
+                  tempLangElement = {sub: "PoliticalDiscussion", subid: "t5_2sfmf", avSentComplexity: 3.95, avWordComplexity: 3.76};
+                  userData.languageBySub.push(tempLangElement);
+
                   userData.totalSubmitted = totalSubmittedCount;
                   userData.genSubmittedData.submittedTotals.nsfwSubmitted = totalSubmittednsfw;
                   userData.genSubmittedData.submittedTotals.controversialSubmitted = totalSubmittedControversial;
