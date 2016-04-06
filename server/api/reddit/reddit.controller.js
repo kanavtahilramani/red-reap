@@ -393,65 +393,6 @@ function createUser(callback) {
 
 
 
-      //scours the parse tree in search of a subordinate clause
-      var sbarFound = false;
-
-      function findSBAR(tier) {
-        
-        numCalls++;
-        
-
-         if (tier.type.trim() == "SBAR") {
-            sbarFound = true;
-          
-          }
-
-         if (tier.children[0].hasOwnProperty('children')) {
-              tier.children.forEach(function(childThree){
-                findSBAR(childThree);
-              });
-              numCalls--;
-
-              if (numCalls === 0) {
-                isFinished = true;
-                return;
-              }
-              else
-                return;
-          }
-
-          else {
-            numCalls--;
-
-            if (numCalls === 0) {
-              isFinished = true;
-              return;
-            }
-            else
-              return;
-          }
-        }
-
-
-      //creates and populates the languageBySub feeding array in the UserSchema
-      function getSentenceStructureForSub(currentSentence, currentSubId, currentSub){
-          console.log("\n");
-          sbarFound = false;
-          //nestedS = false;
-          //countS = 0;
-          if (Array.isArray(currentSentence.tokens.token)){
-              currentSentence.tokens.token.forEach(function(thisToken){
-                  process.stdout.write(thisToken.word + " ");
-                });
-              findSBAR(currentSentence.parsedTree);
-                    if (sbarFound){
-                    console.log("==========SBAR===========")
-                    }
-          }
-      }
-
-
-
 
         comments.forEach(function(currentComment, commentIndex) {
             coreNLP.process(currentComment.data.body, function(err, result) {
@@ -466,7 +407,6 @@ function createUser(callback) {
                       //console.log(currentComment.data.body);
                   //}
                   storeSentimentForSub(x, currentComment.data.subreddit_id, currentComment.data.subreddit);
-                  //getSentenceStructureForSub(x, currentComment.data.subreddit_id, currentComment.data.subreddit);
                   sentenceCounter = sentenceCounter + 1;
                   if (Array.isArray(x.tokens.token)) {
                       x.tokens.token.forEach(function(y, index) {
@@ -1159,7 +1099,7 @@ function createUser(callback) {
                         item.negPer = ((item.negativeCount/item.total)*100).toPrecision(3);
                         item.neuPer = ((item.neutralCount/item.total)*100).toPrecision(3);
                         item.posPer = ((item.positiveCount/item.total)*100).toPrecision(3);
-                        item.avSentSent = ((item.positiveCount/item.total)*3 + (item.neutralCount/item.total)*2 + (item.negativeCount/item.total)*1).toPrecision(3);
+                        item.avSentSent = (item.positiveCount/item.total)*3 + (item.neutralCount/item.total)*2 + (item.negativeCount/item.total)*1;
 
                         if (outIndex == subredditSentiment.length-1){
                             if (subredditSentiment.length<=5){
