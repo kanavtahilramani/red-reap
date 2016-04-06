@@ -9,33 +9,8 @@ angular.module('mainService', [])
 		},
 		getUser: function(user, callback) {
 			$http.get('/api/reddit/' + user).then(function(data) {
-
                 data.data.genCommentData.avgCommentLength = Math.floor(data.data.genCommentData.avgCommentLength);
-                var i = 0;
-                var indexHolder = [];
-                var j = 0;
-				data.data.descriptions.forEach(function(entry) {
-				    if ((entry == "fucking ") || (entry == "undefined ") || (entry == "video taping something ") || (entry == "fatass ") || (entry == "20 haha ") || (entry == "silly American lol ") || (entry == "government ") || (entry == "element ") || (entry == "higher rank ") || (entry == "extremely pro choice ") || (entry == "switcher "))
-				    {
-				    	indexHolder.push(i);
-				    	j++;
-				    }
-				    i++;
-				});
 
-				i = 0;
-				var entryHolder = 0;
-				indexHolder.forEach(function(entry) {
-
-					entryHolder = entry-i;
-					
-					console.log(entryHolder);
-
-					data.data.descriptions.splice(entryHolder, 1);
-			    	i++;
-				});
-
-				//console.log(data.data.descriptions);
                 if (data.data.genCommentData.editingData.avgEditTime < 3600) {
 					if (data.data.genCommentData.editingData.avgEditTime < 60)
 					{
