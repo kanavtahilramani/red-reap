@@ -41,7 +41,7 @@
 
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: #EA1C1C;
   stroke-width: 1.5px;
 }
 
@@ -50,11 +50,11 @@
 }
 
 .bar {
-  fill: orange;
+  fill: #EA1C1C;
 }
 
 .bar:hover {
-  fill: orangered;
+  fill: #9F1B1B;
 }
 
 .x.axis path {
@@ -123,8 +123,18 @@ hr {
 }
 
 h1.intro {
-    color: white;
-    margin-bottom: 25px;
+  color: white;
+  margin-bottom: 25px;
+
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  color: rgba(255,255,255,1);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: 3px 3px 0 #000000 , 4px 4px 0 #000000 , 5px 5px 0 #000000 , 6px 6px 0 #000000 , 7px 7px 0 #000000 , 8px 8px 0 #000000;
 }
 
 h1.intro em{
@@ -182,6 +192,7 @@ p.bottomPrimary {
 h1.content-header {
   color: black;
   margin-left: 20px;
+  padding-bottom: 25px;
 }
 
 h3.content-subheader {
@@ -266,10 +277,6 @@ a:hover{
 }
 
 .content-top-padding {
-  padding-top: 30px;
-}
-
-.content-extra-top-padding {
   padding-top: 50px;
 }
 

@@ -193,7 +193,7 @@
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
 									<a href="http://www.reddit.com/r/television" title="/r/television">
-										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
+										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;" class="pop">
 											<div style="width: 100%; height:100%; background:url(http://c.thumbs.redditmedia.com/Jbol6Rj5xaRfAvgt.png) no-repeat;">
 											</div>
 										</div>
@@ -269,7 +269,7 @@
 				<h1 class="content-header" align="center">Sentiment</h1>
 				
 				<div class="container">
-					<div class="row content-top-padding" ng-if="user.redditUser.data.sentimentBySub[0]">
+					<div class="row" ng-if="user.redditUser.data.sentimentBySub[0]">
 					   	<h3 class="content-subheader" align="center">Sentences by Subreddit<h5 class="content-subheader" align="center">(sorted by sentence count)</h5></h3>
 
 <!-- 						   	<div style="margin:0 auto; width: 50%; text-align:center; background-color:#EAEAEA; border-radius:3px;">
@@ -342,7 +342,7 @@
 							</div>	
 					</div> -->
 
-					<div class="row content-extra-top-padding" ng-if="user.redditUser.data.vpEx || user.redditUser.data.pEx || user.redditUser.data.nEx || user.redditUser.data.vnEx">
+					<div class="row content-top-padding" ng-if="user.redditUser.data.vpEx || user.redditUser.data.pEx || user.redditUser.data.nEx || user.redditUser.data.vnEx">
 						<h3 class="content-subheader">Adjectives</h3><!--
 						--><div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-bottom:20px; margin-top:30px;">
 							<div style="width: 90%;">
