@@ -6,19 +6,26 @@ angular.module('redreapApp')
       template: '<div></div>',
       restrict: 'EA',
       link: function (scope, element, attrs) {
-        var data = User.getUserData().data.dateData;
-        var margin = {top: 40, right: 20, bottom: 30, left: 40},
-	    	width = 900 - margin.left - margin.right,
+        var data = User.getUserData().data;
+		var curAction = attrs.title;
+
+        var margin = {top: 30, right: 20, bottom: 30, left: 40},
+	    	width = 1000 - margin.left - margin.right,
 	    	height = 300 - margin.top - margin.bottom;
 
-	    var firstComment = new Date(String(data[data.length-1].year) + ", " + String(data[data.length-1].month) + ", " + String(data[data.length-1].date));
-	    var lastComment = new Date(String(data[0].year) + ", " + String(data[0].month) + ", " + String(data[0].date));
+	    // var firstComment = new Date(String(data[data.length-1].year) + ", " + String(data[data.length-1].month) + ", " + String(data[data.length-1].date));
+	    // var lastComment = new Date(String(data[0].year) + ", " + String(data[0].month) + ", " + String(data[0].date));
+
+		// var x = d3.scale.ordinal()
+		// 	.domain(data.map(function(d) {
+		// 		return new Date(d.year, d.month, d.date);
+		// 	}))
+		//     .rangeRoundBands([0, width], .1);
 
 		var x = d3.scale.ordinal()
-			.domain(data.map(function(d) {
-				return new Date(d.year, d.month, d.date);
-			}))
-		    .rangeRoundBands([0, width], .1);
+			.rangeRoundBands([0, width], .1);
+
+		var x1 = d3.scale.ordinal();
 
 		// var x = d3.time.scale()
 		// 	.domain([firstComment, lastComment])
@@ -29,62 +36,304 @@ angular.module('redreapApp')
 
 		var xAxis = d3.svg.axis()
 		    .scale(x)
-		    .orient("bottom")
-		    .tickSize(16, 0);
+		    .orient("bottom");
+		    //.tickSize(16, 0);
 		    // .ticks(6);
 		    // .tickFormat(d3.time.format("%B %y"));
 
 		var yAxis = d3.svg.axis()
 		    .scale(y)
-		    .orient("left");
-
-		var tip = d3.tip()
-		  .attr('class', 'd3-tip')
-		  .offset([-10, 0])
-		  .html(function(d) {
-		    return "<strong>karma</strong> <span style='color:red'>" + d.commentKarmaForMonth + "</span>";
-		  });
+		    .orient("left")
+		    .tickFormat(d3.format(".2s"));
 
 		var svg = d3.select(element[0]).append("svg")
 		    .attr("width", width + margin.left + margin.right)
-		    .attr("height", height + margin.top + margin.bottom)
+		    .attr("height", height + margin.top + margin.bottom + 30)
 		  	.append("g")
 		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		svg.call(tip);
+		var color, categoryTypes, categoryTypes2, categoryNames, group;
 
-		x.domain(data.map(function(d) { return d.month; }));
-		y.domain([0, d3.max(data, function(d) { return d.commentKarmaForMonth; })]);
+		if ((curAction == "Year Karma") || (curAction == "Week Karma") || (curAction == "Day Karma"))
+		{
+	        if (curAction == "Year Karma")
+	        {
+	        	var data2 = data.dateDataSub;
+				data = data.dateData;
 
-		svg.append("g")
-		  .attr("class", "x axis")
-		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxis);
+				color = d3.scale.ordinal()
+		    		.range(["#EA1C1C", "#5D5D5D"]);
 
-		svg.append("g")
-		  .attr("class", "y axis")
-		  .call(yAxis)
-		.append("text")
-		  .attr("transform", "rotate(-90)")
-		  .attr("y", 6)
-		  .attr("dy", ".71em")
-		  .style("text-anchor", "end")
-		  .text("comment karma");
+				categoryTypes = d3.keys(data[0]).filter(function(key) { return ((key !== "month") && (key !== "date") && (key !== "year") && (key !== "_id")); });
+				categoryTypes2 = d3.keys(data2[0]).filter(function(key) { return ((key !== "month") && (key !== "date") && (key !== "year") && (key !== "_id")); });
 
-		svg.selectAll(".bar")
-		  .data(data)
-		.enter().append("rect")
-		  .attr("class", "bar")
-		  .attr("x", function(d) { return x(d.month); })
-		  .attr("width", x.rangeBand())
-		  .attr("y", function(d) { return y(d.commentKarmaForMonth); })
-		  .attr("height", function(d) { return height - y(d.commentKarmaForMonth); })
-		  .on('mouseover', tip.show)
-		  .on('mouseout', tip.hide)
+				categoryNames = ["Karma", "Posts"];
 
-		function type(d) {
-		  d.commentKarmaForMonth = +d.commentKarmaForMonth;
-		  return d;
+				x.domain(data.map(function(d) { return d.month; }));
+
+				group = svg.selectAll(".group")
+			    .data(data)
+			    .enter().append("g")
+			      .attr("class", "month")
+			      .attr("transform", function(d) { return "translate(" + x(d.month) + ",0)"; });
+
+				data.forEach(function(d) {
+					d.categories = categoryTypes.map(function(name) { return {name: name, value: +d[name]}; });
+				});
+
+				data2.forEach(function(d) {
+					d.categories = categoryTypes2.map(function(name) { return {name: name, value: +d[name]}; });
+				});
+
+				for (var j = 0; j < data.length; j++)
+				{
+					data[j].categories[0].value += data2[j].categories[0].value;
+					data[j].categories[1].value += data2[j].categories[1].value;
+				}
+			}
+			else if (curAction == "Week Karma")
+			{
+				var data2 = data.daySub;
+				data = data.day;
+
+				color = d3.scale.ordinal()
+		    		.range(["#EA1C1C", "#5D5D5D"]);
+
+				categoryTypes = (d3.keys(data[0]).filter(function(key) { return ((key !== "day") && (key !== "_id")); })).reverse();
+				categoryTypes2 = (d3.keys(data2[0]).filter(function(key) { return ((key !== "day") && (key !== "_id")); })).reverse();
+
+				categoryNames = ["Karma", "Posts"];
+
+				data.forEach(function(d) {
+				switch(d.day) {
+				    case 0:
+				        d.day = "Sunday";
+				        break;
+				    case 1:
+						d.day = "Monday";
+				        break;
+				    case 2:
+						d.day = "Tuesday";
+				        break;
+				    case 3:
+						d.day = "Wednesday";
+				        break;
+				    case 4:
+						d.day = "Thursday";
+				        break;
+				    case 5:
+				        d.day = "Friday";
+				        break;
+				    case 6:
+				        d.day = "Saturday";
+				        break;
+				    default:
+				       	d.day = d.day;
+				       	break;
+				}
+				});
+
+				data.forEach(function(d) {
+				switch(d.day) {
+				    case 0:
+				        d.day = "Sunday";
+				        break;
+				    case 1:
+						d.day = "Monday";
+				        break;
+				    case 2:
+						d.day = "Tuesday";
+				        break;
+				    case 3:
+						d.day = "Wednesday";
+				        break;
+				    case 4:
+						d.day = "Thursday";
+				        break;
+				    case 5:
+				        d.day = "Friday";
+				        break;
+				    case 6:
+				        d.day = "Saturday";
+				        break;
+				    default:
+				       	d.day = d.day;
+				       	break;
+				}
+				});
+
+				x.domain(data.map(function(d) { return d.day; }));
+
+				group = svg.selectAll(".group")
+			    .data(data)
+			    .enter().append("g")
+			      .attr("class", "group")
+			      .attr("transform", function(d) { return "translate(" + x(d.day) + ",0)"; });
+
+				data.forEach(function(d) {
+					d.categories = categoryTypes.map(function(name) { return {name: name, value: +d[name]}; });
+				});
+
+				data2.forEach(function(d) {
+					d.categories = categoryTypes2.map(function(name) { return {name: name, value: +d[name]}; });
+				});
+
+				for (var j = 0; j < data.length; j++)
+				{
+					data[j].categories[0].value += data2[j].categories[0].value;
+					data[j].categories[1].value += data2[j].categories[1].value;
+				}
+			}
+			else if (curAction == "Day Karma")
+			{
+				var data2 = data.hourSub;
+				data = data.hour;
+
+				color = d3.scale.ordinal()
+		    		.range(["#EA1C1C", "#5D5D5D"]);
+
+				categoryTypes = (d3.keys(data[0]).filter(function(key) { return ((key !== "hour") && (key !== "_id")); })).reverse();
+				categoryTypes2 = (d3.keys(data2[0]).filter(function(key) { return ((key !== "hour") && (key !== "_id")); })).reverse();
+
+				categoryNames = ["Karma", "Posts"];
+
+				x.domain(data.map(function(d) { return d.hour; }));
+
+				group = svg.selectAll(".group")
+			    .data(data)
+			    .enter().append("g")
+			      .attr("class", "month")
+			      .attr("transform", function(d) { return "translate(" + x(d.hour) + ",0)"; });
+
+				data.forEach(function(d) {
+					d.categories = categoryTypes.map(function(name) { return {name: name, value: +d[name]}; });
+				});
+
+				data2.forEach(function(d) {
+					d.categories = categoryTypes2.map(function(name) { return {name: name, value: +d[name]}; });
+				});
+
+				for (var j = 0; j < data.length; j++)
+				{
+					data[j].categories[0].value += data2[j].categories[0].value;
+					data[j].categories[1].value += data2[j].categories[1].value;
+				}
+			}
+			var tip = d3.tip()
+			  .attr('class', 'd3-tip')
+			  .offset([-10, 0])
+			  .html(function(d) {
+			  	for (var i = 0; i < categoryTypes.length; i++) 
+			  	{ 
+	    			if (d.name == categoryTypes[i])
+	    			{
+	    				return "<strong>" + categoryNames[i]  + ":</strong><span style='color:red'> " + d.value + "</span>";
+	    			}
+				}
+			  });
+
+			svg.call(tip);
+
+			x1.domain(categoryTypes).rangeRoundBands([0, x.rangeBand()]);
+			y.domain([0, d3.max(data, function(d) { return d3.max(d.categories, function(d) { return d.value; }); })]);
+
+			svg.append("g")
+			  .attr("class", "x axis")
+			  .attr("transform", "translate(0," + height + ")")
+			  .call(xAxis);
+
+			svg.append("g")
+			  .attr("class", "y axis")
+			  .call(yAxis)
+			.append("text")
+			  .attr("transform", "rotate(-90)")
+			  .attr("y", 6)
+			  .attr("dy", ".71em")
+			  .style("text-anchor", "end");
+
+			group.selectAll("rect")
+			      .data(function(d) { return d.categories; })
+			    .enter().append("rect")
+			      .attr("width", x1.rangeBand())
+			      .attr("x", function(d) { return x1(d.name); })
+			      .attr("y", function(d) { return y(d.value); })
+			      .attr("height", function(d) { return height - y(d.value); })
+			      .style("fill", function(d) { return color(d.name); })
+			      .on('mouseover', tip.show)
+				  .on('mouseout', tip.hide);
+
+
+		  	var legend = svg.selectAll(".legend")
+		    	.data(categoryNames.slice())
+		    	.enter().append("g")
+		      		.attr("class", "legend")
+		      		.attr("transform", function(d, i) { return "translate(" + (-490 + i * 75) + ", 280)"; });
+
+		  	legend.append("rect")
+		      	.attr("x", width - 18)
+		      	.attr("width", 18)
+		      	.attr("height", 18)
+		      	.style("fill", color);
+
+		  	legend.append("text")
+		      	.attr("x", width - 24)
+		      	.attr("y", 9)
+		      	.attr("dy", ".35em")
+		      	.style("text-anchor", "end")
+		      	.style("font-weight", "bold")
+		      	.text(function(d) { return d; });
+
+			// svg.selectAll(".bar")
+			//   .data(data)
+			// .enter().append("rect")
+			//   .attr("class", "bar")
+			//   .attr("x", function(d) { return x(d.month); })
+			//   .attr("width", x.rangeBand())
+			//   .attr("y", function(d) { return y(d.commentKarmaForMonth); })
+			//   .attr("height", function(d) { return height - y(d.commentKarmaForMonth); })
+			//   .on('mouseover', tip.show)
+			//   .on('mouseout', tip.hide)
+
+			// function type(d) {
+			//   d.commentKarmaForMonth = +d.commentKarmaForMonth;
+			//   return d;
+			// }
+
+			// reset all the changes made to the data
+			data.forEach(function(d) {
+				delete d.categories;
+			});
+			if (curAction == "Week Karma")
+			{
+				data.forEach(function(d) {
+				switch(d.day) {
+				    case "Sunday":
+				        d.day = 0;
+				        break;
+				    case "Monday":
+						d.day = 1;
+				        break;
+				    case "Tuesday":
+						d.day = 2;
+				        break;
+				    case "Wednesday":
+						d.day = 3;
+				        break;
+				    case "Thursday":
+						d.day = 4;
+				        break;
+				    case "Friday":
+				        d.day = 5;
+				        break;
+				    case "Saturday":
+				        d.day = 6;
+				        break;
+				    default:
+				       	d.day = d.day;
+				       	break;
+				}
+				});
+			}
 		}
       }
     };

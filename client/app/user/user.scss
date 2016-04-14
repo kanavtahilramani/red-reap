@@ -126,7 +126,7 @@ h1.intro {
   color: white;
   margin-bottom: 25px;
 
-  -webkit-box-sizing: content-box;
+  /*-webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   border: none;
@@ -134,7 +134,7 @@ h1.intro {
   text-align: center;
   -o-text-overflow: clip;
   text-overflow: clip;
-  text-shadow: 3px 3px 0 #000000 , 4px 4px 0 #000000 , 5px 5px 0 #000000 , 6px 6px 0 #000000 , 7px 7px 0 #000000 , 8px 8px 0 #000000;
+  text-shadow: 3px 3px 0 #000000 , 4px 4px 0 #000000 , 5px 5px 0 #000000 , 6px 6px 0 #000000 , 7px 7px 0 #000000 , 8px 8px 0 #000000;*/
 }
 
 h1.intro em{
@@ -318,7 +318,6 @@ a:hover{
   transform: translateX(-1px);
 }
 
-
 .white-anchor {
   color: white;
 }
@@ -333,4 +332,8 @@ a.white-anchor:hover {
 
 a.black-anchor:hover {
   color: black;
+}
+
+.legend {
+  margin-left: -500px;
 }
