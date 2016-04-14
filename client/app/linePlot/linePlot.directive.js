@@ -50,11 +50,11 @@ angular.module('redreapApp')
 		var categoryNames = ["Karma", "Posts"];
 
 		data.forEach(function(d) {
-      		d.fullDate = formatDate.parse(d.month + '/' + 1 + 5 + '/' + d.year);
+      		d.fullDate = formatDate.parse(d.month + '/' + 1 + '/' + d.year);
       	});
 
 		data2.forEach(function(d) {
-      		d.fullDate = formatDate.parse(d.month + '/' + 1 + 5 + '/' + d.year);
+      		d.fullDate = formatDate.parse(d.month + '/' + 1 + '/' + d.year);
       	});
 
 	  	var categories = categoryTypes.map(function(name) {
