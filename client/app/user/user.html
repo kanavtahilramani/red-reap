@@ -92,7 +92,7 @@
 			    	</div>
 
 			    	<div ng-if="user.redditUser.data.descriptions.length > 0">
-					    <p class="bottomtext">You are</p>
+					    <p class="bottomtext">Description</p>
 				    	<div style="margin-left: 50px; color: white;" ng-repeat="identifier in user.redditUser.data.descriptions track by $index" ng-if="$index%4==0">
   							<div class="row">
 	  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index]">
@@ -111,7 +111,7 @@
 		  				</div>
 				    </div>
 			    	<div ng-if="user.redditUser.data.familyMembers.length > 0">
-					    <p class="bottomtext">Your family members</p>
+					    <p class="bottomtext">Family members</p>
 				    		<div style="margin-left: 50px; color: white;" ng-repeat="identifier in user.redditUser.data.familyMembers track by $index" ng-if="$index%4==0">
 	  							<div class="row">
 		  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index]">

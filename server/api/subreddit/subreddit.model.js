@@ -12,7 +12,11 @@ var SubredditSchema = new Schema({
 		subscribers: Number,
 		created_utc: Number,
 		subreddit_type: String,
-		submission_type: String
+		submission_type: String,
+		header_img: String,
+		banner_img: String,
+		lang: String,
+		over18: String
 	}
 });
 

@@ -10,8 +10,8 @@ angular.module('redreapApp')
         var curAction = attrs.title;
         var color = d3.scale.ordinal();
 
-        var svgWidth  = 375,
-            svgHeight = 375,
+        var svgWidth  = 450,
+            svgHeight = 510,
             radius = Math.min(svgWidth, svgHeight) / 2,
             donutWidth = 60;
 
@@ -45,12 +45,11 @@ angular.module('redreapApp')
 
               if (curIndex != 0)
               {
-                svgWidth  = 250,
-                svgHeight = 250,
+                svgWidth  = 265,
+                svgHeight = 330,
                 radius = Math.min(svgWidth, svgHeight) / 2,
                 donutWidth = 35;
               }
-
 
             /* Positive/Negative of Adjectives */
             var dataset = [
@@ -105,47 +104,90 @@ angular.module('redreapApp')
                         .on('mouseout', tip.hide)
                         .each(function(d) { this._current = d; });
 
-          if (curAction == "Subreddit")
+          var legend;
+          if ((curAction == "Adjective") || (curAction == "Subreddit"))
           {
-            var curIndex = attrs.curIndex;
-            if (curIndex == 0)
-            {
-              svg.append("text")
-                     .attr('dy', '0.35em')
-                     .attr({
-                       "text-anchor": "middle",
-                     }).style({'fill': 'black', 'font-size': '60px'}).text(data.sentimentBySub[curIndex].avSentSent);
-            }
-            else
-            {
-              svg.append("text")
-                     .attr('dy', '0.35em')
-                     .attr({
-                       "text-anchor": "middle",
-                     }).style({'fill': 'black', 'font-size': '40px'}).text(data.sentimentBySub[curIndex].avSentSent);
-            }
-          }
-          else
-          {
-            // Define the Legend
-            var legendRectSize = 18,
-                legendSpacing  = 4;              
+            if (curAction == "Subreddit")
+            { 
+              var curIndex = attrs.curIndex;
+              if (curIndex == 0)
+              {
+                svg.append("text")
+                       .attr('dy', '0.35em')
+                       .attr({
+                         "text-anchor": "middle",
+                       }).style({'fill': 'black', 'font-size': '30px'}).text(data.sentimentBySub[curIndex].avSentSent);
 
-
-            var legend = svg.selectAll('.legend')
+                legend = svg.selectAll('.legend')
                             .data(color.domain())
                             .enter()
                             .append('g')
-                              .attr('class', 'legend')
-                              .attr('transform', function(d, i) {
+                          .attr("class", "legend")
+                          .attr("transform", function(d, i) { return "translate(" + (-125 + i * 110) + ", 235)"; });
+              }
+              else
+              {
+                svg.append("text")
+                       .attr('dy', '0.35em')
+                       .attr({
+                         "text-anchor": "middle",
+                       }).style({'fill': 'black', 'font-size': '20px'}).text(data.sentimentBySub[curIndex].avSentSent);
 
-                                var height = legendRectSize + legendSpacing,
-                                    offset = height * color.domain().length / 2,
-                                    horz   = -2 * legendRectSize,
-                                    vert   = i * height - offset;
-                                return 'translate(' + horz + ',' + vert + ')';
+                legend = svg.selectAll('.legend')
+                            .data(color.domain())
+                            .enter()
+                            .append('g')
+                          .attr("class", "legend")
+                          .attr("transform", function(d, i) { return "translate(" + (-100 + i * 75) + ", 140)"; });
+              }
+            }
+            else
+            {
+              if ((data.vpPer >= data.pPer) && (data.vpPer >= data.nPer) && (data.vpPer >= data.vnPer))
+              {  
+                svg.append("text")
+                         .attr('dy', '0.35em')
+                         .attr({
+                           "text-anchor": "middle",
+                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Very Positive");
+              }
+              else if ((data.pPer > data.vpPer) && (data.pPer >= data.nPer) && (data.pPer >= data.vnPer))
+              {
+                svg.append("text")
+                         .attr('dy', '0.35em')
+                         .attr({
+                           "text-anchor": "middle",
+                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Positive");
+              }
+              else if ((data.nPer > data.vpPer) && (data.nPer > data.pPer) && (data.nPer >= data.vnPer))
+              {
+                svg.append("text")
+                         .attr('dy', '0.35em')
+                         .attr({
+                           "text-anchor": "middle",
+                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Negative");
+              }
+              else if ((data.vnPer > data.vpPer) && (data.vnPer > data.nPer) && (data.vnPer > data.nPer))
+              {
+                svg.append("text")
+                         .attr('dy', '0.35em')
+                         .attr({
+                           "text-anchor": "middle",
+                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Very Negative");
+              }
 
-                              });
+              legend = svg.selectAll('.legend')
+                            .data(color.domain())
+                            .enter()
+                            .append('g')
+                          .attr("class", "legend")
+                          .attr("transform", function(d, i) { return "translate(" + (-220 + i * 110) + ", 235)"; });
+            }
+          }
+
+            // Define the Legend
+            var legendRectSize = 18,
+                legendSpacing  = 4;              
 
             // Legend Content
             legend.append('rect')
@@ -191,9 +233,11 @@ angular.module('redreapApp')
 
             legend.append('text')
                     .attr('x', legendRectSize + legendSpacing)
-                    .attr('y', legendRectSize - legendSpacing)
+                    .attr('y', legendRectSize - legendSpacing - 1)
+                    .style("font-weight", "bold")
+                    .style({'fill': 'black', 'font-size': '10px'})
                     .text(function(d) { return d; }); 
-          }
+          
         }
       }
     };
