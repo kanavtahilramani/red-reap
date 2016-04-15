@@ -18,8 +18,10 @@ angular.module('redreapApp')
 		vm.searchSub = function(subreddit) {
 			vm.processing = true;
 			Subreddit.getSubreddit(subreddit, function() {
-				$location.path('/r/' + subreddit);
-				vm.processing = false;
+				Subreddit.setAge(function() {
+					$location.path('/r/' + subreddit);
+					vm.processing = false;
+                });
 			});
 		};
   });

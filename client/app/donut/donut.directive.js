@@ -7,13 +7,13 @@ angular.module('redreapApp')
       restrict: 'EA',
       link: function (scope, element, attrs) {
         var data = User.getUserData().data;
-        var curAction = attrs.title;
+        var curAction = attrs.action;
         var color = d3.scale.ordinal();
 
         var svgWidth  = 450,
-            svgHeight = 510,
-            radius = Math.min(svgWidth, svgHeight) / 2,
-            donutWidth = 60;
+            svgHeight = 470,
+            radius = (Math.min(svgWidth, svgHeight) / 2) - 25,
+            donutWidth = 50;
 
         if ((curAction == "Comment") || (curAction == "Adjective") || (curAction == "Subreddit"))
         {
@@ -116,14 +116,14 @@ angular.module('redreapApp')
                        .attr('dy', '0.35em')
                        .attr({
                          "text-anchor": "middle",
-                       }).style({'fill': 'black', 'font-size': '30px'}).text(data.sentimentBySub[curIndex].avSentSent);
+                       }).style({'fill': 'black', 'font-size': '60px'}).text(data.sentimentBySub[curIndex].avSentSent);
 
                 legend = svg.selectAll('.legend')
                             .data(color.domain())
                             .enter()
                             .append('g')
                           .attr("class", "legend")
-                          .attr("transform", function(d, i) { return "translate(" + (-125 + i * 110) + ", 235)"; });
+                          .attr("transform", function(d, i) { return "translate(" + (-125 + i * 110) + ", 210)"; });
               }
               else
               {
@@ -131,7 +131,7 @@ angular.module('redreapApp')
                        .attr('dy', '0.35em')
                        .attr({
                          "text-anchor": "middle",
-                       }).style({'fill': 'black', 'font-size': '20px'}).text(data.sentimentBySub[curIndex].avSentSent);
+                       }).style({'fill': 'black', 'font-size': '40px'}).text(data.sentimentBySub[curIndex].avSentSent);
 
                 legend = svg.selectAll('.legend')
                             .data(color.domain())
@@ -181,7 +181,7 @@ angular.module('redreapApp')
                             .enter()
                             .append('g')
                           .attr("class", "legend")
-                          .attr("transform", function(d, i) { return "translate(" + (-220 + i * 110) + ", 235)"; });
+                          .attr("transform", function(d, i) { return "translate(" + (-220 + i * 110) + ", 210)"; });
             }
           }
 

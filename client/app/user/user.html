@@ -137,70 +137,70 @@
 				    <p class="bottomPrimary">{{user.redditUser.data.topComment.body}}</p>
 				    <p style="color: white; font-size: 13px; margin-left:50px"><em style="font-style: normal; color: gray;">Score:</em> {{user.redditUser.data.topComment.score}}<em style="font-style: normal; color: gray; margin-left: 30px;">Subreddit: <a class="white-anchor" href="http://reddit.com/r/{{user.redditUser.data.topComment.subreddit}}">{{user.redditUser.data.topComment.subreddit}}</a></em><em style="font-style: normal; color: gray; margin-left: 30px;"><a class="white-anchor" href="{{user.redditUser.data.topComment.permalink}}">[Permalink]</a></em></p>
 
-				    <p class="bottomtext">Subreddits</p>
-<!-- 				    	<div style="margin-left:20px; margin-bottom: 30px;" class="container">
-			    		<div ng-repeat="userMeta in user.redditUser.data.comMeta">
-			      			<div class="col-lg-4">
-			      				<a href="http://reddit.com/r/{{userMeta.subreddit}}">
-				      				<div style="width: 120px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;">
-					    				{{userMeta.subreddit}}
-					    			</div>
-				    			</a>
-			    			</div>
-			  			</div>
-			  		</div> -->
-				    	<div class="container" style="margin-left: 30px;">
-							<div class="row">
-								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-								    <a href="http://www.reddit.com/r/funny" title="/r/funny">
-										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px; margin-bottom:30px;">
-											<div style="width: 100%; height:100%; background:url(http://b.thumbs.redditmedia.com/xPyD7fiUdH0H6utafcrp6gjpdLwIb8dkroTPDxCQ2rI.png) no-repeat;">
-											</div>
+				    <p class="bottomtext">Top Subreddits</p>
+<!-- 			    	<div class="container" style="margin: 0 auto; text-align:center;">
+						<div class="row" style="text-align:center; margin: 0 auto;">
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="text-align:center;">
+							    <a href="http://www.reddit.com/r/funny" title="/r/funny" style="margin: 0 auto; text-align:center;">
+									<div style="margin: 0 auto; text-align:center; width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px; margin-bottom:30px;">
+										<div style="width: 100%; height:100%; background:url(http://b.thumbs.redditmedia.com/xPyD7fiUdH0H6utafcrp6gjpdLwIb8dkroTPDxCQ2rI.png) no-repeat;">
 										</div>
-									</a>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-									<a href="http://www.reddit.com/r/gif" title="/r/gif">
-										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
-											<div style="width: 100%; height:100%; background:url(http://a.thumbs.redditmedia.com/cKfBMxMAUo7oFY-utIExaF3VxC9UUvAveor6KL2Qsl0.png) no-repeat;">
-											</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+								<a href="http://www.reddit.com/r/gif" title="/r/gif">
+									<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
+										<div style="width: 100%; height:100%; background:url(http://a.thumbs.redditmedia.com/cKfBMxMAUo7oFY-utIExaF3VxC9UUvAveor6KL2Qsl0.png) no-repeat;">
 										</div>
-									</a>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-									<a href="http://www.reddit.com/r/runescape" title="/r/runescape">
-										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
-											<div style="width: 100%; height:100%; background:url(http://a.thumbs.redditmedia.com/nDLokmD1Lg6e10snvj7LP6IcN6ihPDcDsadUrFgcTX0.png) no-repeat;">
-											</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+								<a href="http://www.reddit.com/r/runescape" title="/r/runescape">
+									<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
+										<div style="width: 100%; height:100%; background:url(http://a.thumbs.redditmedia.com/nDLokmD1Lg6e10snvj7LP6IcN6ihPDcDsadUrFgcTX0.png) no-repeat;">
 										</div>
-									</a>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-									<a href="http://www.reddit.com/r/nba" title="/r/nba">
-										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
-											<div style="width: 100%; height:100%; background:url(http://f.thumbs.redditmedia.com/ddHdMrluCS3dDbCS.png) no-repeat;">
-											</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+								<a href="http://www.reddit.com/r/nba" title="/r/nba">
+									<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
+										<div style="width: 100%; height:100%; background:url(http://f.thumbs.redditmedia.com/ddHdMrluCS3dDbCS.png) no-repeat;">
 										</div>
-									</a>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-									<a href="http://www.reddit.com/r/aww" title="/r/aww">
-										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
-											<div style="width: 100%; height:100%; background:url(http://b.thumbs.redditmedia.com/3VFHQjXVeV-OmHieNkhfywYjCgmcmEFJaEX5OTJGMjE.png) no-repeat;">
-											</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+								<a href="http://www.reddit.com/r/aww" title="/r/aww">
+									<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;">
+										<div style="width: 100%; height:100%; background:url(http://b.thumbs.redditmedia.com/3VFHQjXVeV-OmHieNkhfywYjCgmcmEFJaEX5OTJGMjE.png) no-repeat;">
 										</div>
-									</a>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-									<a href="http://www.reddit.com/r/television" title="/r/television">
-										<div style="width: 100px; height: 35px; background: #181818; overflow: hidden; border-radius: 7px;margin-bottom:30px;" class="pop">
-											<div style="width: 100%; height:100%; background:url(http://c.thumbs.redditmedia.com/Jbol6Rj5xaRfAvgt.png) no-repeat;">
-											</div>
-										</div>
-									</a>
-								</div>
+									</div>
+								</a>
 							</div>
 						</div>
+					</div> -->
+					<div style="margin-left: 50px; color: white;">
+	  					<div class="row">
+  							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.sentimentBySub[0]">
+           				  		<a class="white-anchor" href="http://www.reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">{{user.redditUser.data.sentimentBySub[0].sub}}</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.sentimentBySub[1]">
+           				  		<a class="white-anchor" href="http://www.reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">{{user.redditUser.data.sentimentBySub[1].sub}}</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.sentimentBySub[2]">
+           				  		<a class="white-anchor" href="http://www.reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">{{user.redditUser.data.sentimentBySub[2].sub}}</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.sentimentBySub[3]">
+           				  		<a class="white-anchor" href="http://www.reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">{{user.redditUser.data.sentimentBySub[3].sub}}</a>
+							</div>
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.sentimentBySub[4]">
+           				  		<a class="white-anchor" href="http://www.reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">{{user.redditUser.data.sentimentBySub[4].sub}}</a>
+							</div>
+						</div>
+					</div>
 		   		</div>
 		  	</div>
 		</div>
@@ -255,12 +255,12 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
 							<h3 class="content-subheader" align="center" style="margin-top:25px;">Timeline<h5 class="content-subheader" align="center">(submissions and comments combined)</h5></h3>
-							<line-plot></line-plot>
-							<!-- <bar-chart title="Year Karma"></bar-chart> -->
+							<line-plot action="Timeline"></line-plot>
+							<!-- <bar-chart action="Year Karma"></bar-chart> -->
 							<h3 class="content-subheader" align="center" style="margin-top:25px;">Weekly<h5 class="content-subheader" align="center">(submissions and comments combined)</h5></h3>
-							<bar-chart title="Week Karma"></bar-chart>
+							<bar-chart action="Week Karma"></bar-chart>
 							<h3 class="content-subheader" align="center" style="margin-top:25px;">Daily<h5 class="content-subheader" align="center">(submissions and comments combined, based on US Eastern time)</h5></h3>
-							<bar-chart title="Day Karma"></bar-chart>
+							<bar-chart action="Day Karma"></bar-chart>
 						</div>
 					</div>
 				</div>
@@ -299,28 +299,28 @@
 
 					   	<div style="margin: 0 auto; text-align:center;">
 					   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
-							<donut title="Subreddit" cur-index=0></donut>
+							<donut action="Subreddit" cur-index=0></donut>
 							<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].total}}</strong></h4>
 					   	</div>
 					   	<div style="margin: 0 auto; text-align:center;"><!--
 						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
 								<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
-								<donut title="Subreddit" cur-index=1></donut>
+								<donut action="Subreddit" cur-index=1></donut>
 								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].total}}</strong></h5>
 							</div><!--
 						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
 								<h4 align="center">{{user.redditUser.data.sentimentBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">#</a></h4>
-								<donut title="Subreddit" cur-index=2></donut>
+								<donut action="Subreddit" cur-index=2></donut>
 								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].total}}</strong></h5>
 							</div><!--
 						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
 								<h4 align="center">{{user.redditUser.data.sentimentBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">#</a></h4>
-								<donut title="Subreddit" cur-index=3></donut>
+								<donut action="Subreddit" cur-index=3></donut>
 								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].total}}</strong></h5>
 							</div><!--
 						--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
 								<h4 align="center">{{user.redditUser.data.sentimentBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">#</a></h4>
-								<donut title="Subreddit" cur-index=4></donut>
+								<donut action="Subreddit" cur-index=4></donut>
 								<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].total}}</strong></h5>
 							</div>
 						</div>
@@ -461,7 +461,7 @@
 							</div>
 						</div><!--
 						--><div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 vcenter" style="margin-top:30px;margin: 0 auto; text-align:center;">
-								<donut title="Adjective"></donut>
+								<donut action="Adjective"></donut>
 							</div>	
 					</div>
 				</div>
@@ -507,16 +507,19 @@
 			</div>
 		</div>
 	</div>
-<!-- 	<div id="fourth-row" class="row">
+	<hr style="width: 60%;">
+	<div id="fourth-row" class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 			<div class="contentdisp">
-				<h1 class="content-header" align="center">Submissions</h1>
+				<h1 class="content-header" align="center">Popularity</h1>
+				<h3 class="content-subheader" align="center" style="margin-top:25px;">Top Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
 				<div style="text-align:center; width=100%;">
-					<bar-chart title="Length/Score"></bar-chart>
+					<bar-chart action="Popularity"></bar-chart>
+					<!-- <line-plot action="submissionscore"></line-plot> -->
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 <!-- 			<div class="contentdisp">
 				<div class="row">
 					<div class="col-md-3 col-md-offset-3 vertical-center">

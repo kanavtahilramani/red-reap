@@ -308,6 +308,15 @@ a:hover{
 }
 
 #third-row {
+  box-shadow:
+          2px 2px #d0d0d0,
+          4px 4px #d0d0d0,
+          4px 4px #d0d0d0;
+  -webkit-transform: translateX(-1px);
+  transform: translateX(-1px);
+}
+
+#fourth-row {
   margin-bottom:10px;
 
   box-shadow:
