@@ -11,7 +11,7 @@ angular.module('redreapApp')
         var color = d3.scale.ordinal();
 
         var svgWidth  = 450,
-            svgHeight = 470,
+            svgHeight = 450,
             radius = (Math.min(svgWidth, svgHeight) / 2) - 25,
             donutWidth = 50;
 

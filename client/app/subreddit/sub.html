@@ -14,133 +14,118 @@
 	</div>
 </div>
 
-
-<div ng-if="!sub.processing" class="container">
-	<div id="jumbo-row" class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
-			<div class="jumbotron jumbotron-special nopadding" style="border-radius: 0px;padding-left:15px;padding-right:15px;">
-				<div class="row" style="text-align:center; background:url({{sub.subreddit.data.genData.banner_img}});">
-					<div style="width: 100%; min-height:300px; margin-top:-60px; padding-top:120px; padding-bottom:20px; background:rgba(0,0,0,0.5);">
-						<div ng-if="sub.subreddit.data.genData.header_img" style="width: 120px; height: 100px; background: #181818; overflow: hidden; border-radius: 30px; margin: 0 auto;">
-							<div style="width: 100%; height:100%; background:url({{sub.subreddit.data.genData.header_img}})">
-							</div>
-						</div>
-				    	<h1 class="intro" align="center"><a class="white-anchor" href="http://reddit.com/r/{{sub.subreddit.data.genData.display_name}}"><em>/r/</em>{{sub.subreddit.data.genData.display_name}}</a></h1>
-				    		<h4 class="intro" align="center" style="color:white;">{{sub.subreddit.data.genData.public_description}}</h4>
-			    	</div>
-		    	</div>
-		    	<div class="jumbotron-content">
-		    		<div class="row text-center">
-		    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-		    				<p class="toptext">Created</p>
-		    				<p class="primary">{{sub.subreddit.accountCreation.date}}</p>
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-		    				<p class="toptext">Subscribers</p>
-		    				<p class="primary">{{sub.subreddit.data.genData.subscribers}}</p>
-			    		</div>
-		    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Language</p>
-			    			<p class="primary">{{sub.subreddit.data.genData.lang}}</p> 
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Type</p>
-			    			<p class="primary">{{sub.subreddit.data.genData.subreddit_type}}</p>
-			    		</div>
-			    		<!-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-		    				<p class="toptext">Over 18</p>
-		    				<p class="primary">{{sub.subreddit.data.genData.over18}}</p>
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Total Submissions</p>
-			    			<p class="primary">{{user.redditUser.data.totalSubmitted}}</p> 
-			    		</div>
-		    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Total Comments</p>
-			    			<p class="primary">{{user.redditUser.data.totalComments}}</p> 
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Avg. Comment Length</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.avgCommentLength}}</p>
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Total Words</p>
-			    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalWords}}</p> 
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-		    				<p class="toptext">Total Gilded</p>
-		    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.gildedComments}}</p>
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-		    				<p class="toptext">Total Controversial</p>
-		    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.controversialComments}}</p>
-			    		</div>
-		    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Total NSFW</p>
-			    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.nsfwComments}}</p> 
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Total Flaired</p>
-			    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalFlaired}}</p> 
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Total Edited</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.totalEditedComments}}</p>
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Avg. Edit Time</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.avgEditTime}}</p>
-			    		</div>
-			    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-			    			<p class="toptext">Median Edit Time</p>
-			    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.medEditTime}}</p>
-			    		</div> -->
-			    	</div>
-		   		</div>
-		   </div>
-		</div>
-	</div>
-
-	<hr style="width: 60%;">
-	
-	<div id="first-row" class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
-		  	<div class="contentdisp">
-		  		<h1 class="content-header" align="center">Activity</h1>
-					
-<!-- 					<p style="margin-left: 20px;" class="content-header">Karma</p>
-				<p style="margin-left: 20px;" class="content-text">comment karma</p>
-				<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalCommentScore}}</p>
-				<p style="margin-left: 20px;" class="content-text">link karma</p>
-				<p style="margin-left: 20px;" class="content-text">{{user.redditUser.data.karma.totalLinkScore}}</p> -->
-<!-- 				<div class="panel panel-primary karma text-center">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							<strong>karma</strong>
-						</h3>
-					</div>
-					<div class="panel-body">
-						<dl class="dl-horizontal">
-							<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-								comment karma
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-								<strong>{{user.redditUser.data.karma.totalCommentScore}}</strong>
-							</div>
-							<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-								link karma
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-								<strong>{{user.redditUser.data.karma.totalLinkScore}}</strong>
-							</div>
-						</dl>
+	<div ng-if="!sub.processing">
+		<div class="row">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 nopadding">
+				<div style="padding-left:20px;">
+					<li><h3 style="color:black;">Categories</h3></li>
+					<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#top">Top of Page</a></li>
+					<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#first-row">Activity</a></li>
+					<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#second-row">Sentiment</a></li>
+					<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#third-row">Language Complexity</a></li>
+					<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#fourth-row">Popularity</a></li>
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 nopadding">
+				<div id="jumbo-row" class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+						<div class="jumbotron jumbotron-special" style="border-radius: 0px;padding-left:0px;padding-right:0px;">
+							<div style="text-align:center; background:url({{sub.subreddit.data.genData.banner_img}});">
+								<div style="width: 100%; min-height:300px; margin-top:-48px; padding-top:120px; padding-bottom:20px; background:rgba(0,0,0,0.5);">
+									<div ng-if="sub.subreddit.data.genData.header_img" style="width: 120px; height: 100px; background: #181818; overflow: hidden; border-radius: 30px; margin: 0 auto;">
+										<div style="width: 100%; height:100%; background:url({{sub.subreddit.data.genData.header_img}})">
+										</div>
+									</div>
+							    	<h1 class="intro" align="center"><a class="white-anchor" href="http://reddit.com/r/{{sub.subreddit.data.genData.display_name}}"><em>/r/</em>{{sub.subreddit.data.genData.display_name}}</a></h1>
+							    		<h4 class="intro" align="center" style="color:white;">{{sub.subreddit.data.genData.public_description}}</h4>
+						    	</div>
+					    	</div>
+					    	<div class="jumbotron-content">
+					    		<div class="row text-center">
+					    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    				<p class="toptext">Created</p>
+					    				<p class="primary">{{sub.subreddit.accountCreation.date}}</p>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    				<p class="toptext">Subscribers</p>
+					    				<p class="primary">{{sub.subreddit.data.genData.subscribers}}</p>
+						    		</div>
+					    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Language</p>
+						    			<p class="primary">{{sub.subreddit.data.genData.lang}}</p> 
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Type</p>
+						    			<p class="primary">{{sub.subreddit.data.genData.subreddit_type}}</p>
+						    		</div>
+						    		<!-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    				<p class="toptext">Over 18</p>
+					    				<p class="primary">{{sub.subreddit.data.genData.over18}}</p>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Total Submissions</p>
+						    			<p class="primary">{{user.redditUser.data.totalSubmitted}}</p> 
+						    		</div>
+					    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Total Comments</p>
+						    			<p class="primary">{{user.redditUser.data.totalComments}}</p> 
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Avg. Comment Length</p>
+						    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.avgCommentLength}}</p>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Total Words</p>
+						    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalWords}}</p> 
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    				<p class="toptext">Total Gilded</p>
+					    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.gildedComments}}</p>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    				<p class="toptext">Total Controversial</p>
+					    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.controversialComments}}</p>
+						    		</div>
+					    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Total NSFW</p>
+						    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.nsfwComments}}</p> 
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Total Flaired</p>
+						    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalFlaired}}</p> 
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Total Edited</p>
+						    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.totalEditedComments}}</p>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Avg. Edit Time</p>
+						    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.avgEditTime}}</p>
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						    			<p class="toptext">Median Edit Time</p>
+						    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.medEditTime}}</p>
+						    		</div> -->
+						    	</div>
+					   		</div>
+					   </div>
 					</div>
 				</div>
- -->
+
+				<hr style="width: 60%;">
 				
+				<div id="first-row" class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+					  	<div class="contentdisp">
+					  		<h1 class="content-header" align="center">Activity</h1>
+											
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 </body>
+
+<footer style="background-color: #EAEAEA;"></footer>
