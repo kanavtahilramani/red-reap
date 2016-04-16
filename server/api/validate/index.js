@@ -8,6 +8,6 @@ var router = express.Router();
 router.get('/', controller.startAuth);
 // router.get('/me', controller.myUser);
 router.get('/redirect', controller.storeAcct);
-// router.get('/refresh', controller.getRefreshToken);
+router.get('/refresh', controller.getRefreshToken);
 
 module.exports = router;

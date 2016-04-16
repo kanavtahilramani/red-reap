@@ -2,9 +2,9 @@ angular.module('mainService', [])
 
 .factory('User', function($http) {
 	var userData = {};
+	var progress = 0;
 	return {
 		getUserData: function() {
-			// console.log(userData);
 			return userData;
 		},
 		getUser: function(user, callback) {
@@ -35,6 +35,14 @@ angular.module('mainService', [])
 		},
 		getUsername: function() {
 			return userData.data.username;
+		},
+		fetchProgress: function() {
+			$http.get('/api/reddit/progress').then(function(data) {
+				console.log(progress + ' 1\n');
+				progress = data;
+			});
+
+			return progress;
 		},
 		setExamples: function(callback) {
 			var first, second, key;

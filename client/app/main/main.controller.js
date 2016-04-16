@@ -13,6 +13,11 @@ angular.module('redreapApp')
                   		});
                 	});
 				});
+
+				// setInterval(function(){ 
+    // 				var currentProgress = User.fetchProgress();
+    // 				// console.log(currentProgress + '\n');
+				// }, 1000);
 		};
 
 		vm.searchSub = function(subreddit) {

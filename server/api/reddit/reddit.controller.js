@@ -33,7 +33,7 @@ var config = {
 
 var coreNLP = new NLP.StanfordNLP(config);
 
-var username, subreddit;
+var username, subreddit, progress = 0;
 
 getRefresh().then(function(data) {
   reddit.setRefreshToken(data.refresh.toString());
@@ -866,6 +866,8 @@ function createUser(callback) {
     }
 
       getUserComments(function(allComments) { /* get all user comments */
+        // console.log("Progress: " + progress + '\n');
+        progress = 1;
         allComments.forEach(function(commentSlice) {
           commentSlice.data.children.forEach(function(currentComment) {
               userComments.push(currentComment);
@@ -891,6 +893,9 @@ function createUser(callback) {
         });
 
         getNLPData(userComments, function(youAre) {
+          // console.log("Progress: " + progress + '\n');
+            progress = 2;
+
             userData.totalComments = totalCommentCount;
             userData.genCommentData.editingData.totalEditedComments = totalEditedCommentCount;
             userData.genCommentData.editingData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
@@ -1128,6 +1133,8 @@ function createUser(callback) {
             userData.genCommentData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
 
             timeBasedData(userComments, function() {
+                // console.log("Progress: " + progress + '\n');
+                progress = 3;
                 userData.dateData = monthData; // fix
 
                 for (var i = 0; i < hourTracker.length; i++) { //store comment hourly data
@@ -1151,6 +1158,8 @@ function createUser(callback) {
                 ///////////////////////////////////////////////////
 
                 getUserSubmitted(function(allSubmitted) { /* get all user submissions */
+                  // console.log("Progress: " + progress + '\n');
+                  progress = 4;
                   allSubmitted.forEach(function(submittedSlice) {
                     submittedSlice.data.children.forEach(function(currentSubmitted) {
                         userSubmitted.push(currentSubmitted);
@@ -1193,6 +1202,7 @@ function createUser(callback) {
 
 
                   timeBasedDataSub(userSubmitted, function() {
+                      progress = 5;
                       userData.dateDataSub = monthDataSubmitted; //store monthly data for submissions
 
                       for (var i = 0; i < hourTracker2.length; i++) //store submitted hourly data
@@ -1214,6 +1224,7 @@ function createUser(callback) {
                       }
 
                       getKarmaAndDate(function(scores) { /* get total karma scores and creation timestamp */
+                        progress = 6;
                         userData.karma.totalCommentScore = scores.comments;
                         userData.karma.totalLinkScore = scores.submissions;
                         userData.creationTime = (scores.created)*1000;
@@ -1223,7 +1234,7 @@ function createUser(callback) {
 
                         getTopComment(function(topComment) {
                           userData.topComment = topComment;
-                          getTopSubmission(function(topSubmission) {
+                          getTopSubmission(function(topSubmission) {  
                             userData.topSubmission = topSubmission;
                             callback(userData);
                             return;
@@ -1237,6 +1248,10 @@ function createUser(callback) {
             }); 
         });
       });
+}
+
+function getToken() {
+
 }
 
 function createSubreddit(callback) {
@@ -1278,6 +1293,10 @@ export function checkUser (req, res) {
         });
       }
   });
+}
+
+export function getProgress (req, res) {
+    return res.send(progress);
 }
 
 // '/api/reddit/subreddit/:subreddit/'
