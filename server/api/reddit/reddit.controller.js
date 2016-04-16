@@ -1267,6 +1267,10 @@ function createSubreddit(callback) {
     subData.genData.created_utc = parseInt(about.data.created_utc);
     subData.genData.subreddit_type = about.data.subreddit_type;
     subData.genData.submission_type = about.data.submission_type;
+    subData.genData.header_img = about.data.header_img;
+    subData.genData.banner_img = about.data.banner_img;
+    subData.genData.lang = about.data.lang;
+    subData.genData.over18 = about.data.over18;
     //analyze!
     getSubredditHot(function(submissions) {
       callback(subData);
