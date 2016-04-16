@@ -18,7 +18,7 @@
 	<div id="jumbo-row" class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 			<div class="jumbotron jumbotron-special" style="border-radius: 0px;">
-		    	<h1 class="intro" align="center"><em>/u/</em>{{user.redditUser.data.username}}</h1>
+		    	<h1 class="intro" align="center"><a class="white-anchor" href="http://reddit.com/u/{{user.redditUser.data.username}}"><em>/u/</em>{{user.redditUser.data.username}}</a></h1>
 		    	<div style="width:100%; text-align:center;">
 					<img ng-if="user.redditUser.data.is_mod == 'true'" style="width: 45px; height: 25px; border-radius: 3px;" src="../../images/ModBadge.png"/>
 	        		<img ng-if="user.redditUser.data.is_gold == 'true'" style="width: 45px; height: 25px; border-radius: 3px;" src="../../images/GoldBadge.png"/>
@@ -512,10 +512,14 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 			<div class="contentdisp">
 				<h1 class="content-header" align="center">Popularity</h1>
-				<h3 class="content-subheader" align="center" style="margin-top:25px;">Top Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
-				<div style="text-align:center; width=100%;">
-					<bar-chart action="Popularity"></bar-chart>
-					<!-- <line-plot action="submissionscore"></line-plot> -->
+				<div class="container">
+					<div class="row" ng-if="user.redditUser.data.sentimentBySub.length">
+						<h3 class="content-subheader" align="center">Top Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
+						<div style="text-align:center; width=100%;">
+						<bar-chart action="Popularity"></bar-chart>
+				   <!-- <line-plot action="submissionscore"></line-plot> -->
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>

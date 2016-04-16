@@ -327,12 +327,29 @@ a:hover{
   transform: translateX(-1px);
 }
 
-.white-anchor {
+a.white-anchor {
   color: white;
+  text-decoration: none;
+}
+
+a.white-anchor:link {
+  color: white;
+  text-decoration: none;
+}
+
+a.white-anchor:visited {
+  color: white;
+  text-decoration: none;
 }
 
 a.white-anchor:hover {
-  color: gray;
+  color: white;
+  text-decoration: none;
+}
+
+a.white-anchor:active {
+  color: white;
+  text-decoration: none;
 }
 
 .black-anchor {
