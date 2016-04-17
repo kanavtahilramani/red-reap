@@ -345,7 +345,7 @@ angular.module('redreapApp')
 					}
 
 					var subScore = {sub: data2[i].sub, avgScore: Math.round(totalScore/scoreCount)};
-
+					console.log(subScore);
 					subScoreHolder.push(subScore);
 
 				}
