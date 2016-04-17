@@ -26,6 +26,4 @@ angular.module('redreapApp')
       // }
 
       vm.redditUser = User.getUserData();
-      vm.processing = false;
-
   });
