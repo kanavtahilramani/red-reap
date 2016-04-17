@@ -2,9 +2,9 @@ angular.module('mainService', [])
 
 .factory('User', function($http) {
 	var userData = {};
+	var progress = 0;
 	return {
 		getUserData: function() {
-			// console.log(userData);
 			return userData;
 		},
 		getUser: function(user, callback) {
@@ -13,8 +13,22 @@ angular.module('mainService', [])
                 data.data.avgCommentLength = Math.floor(data.data.genCommentData.avgCommentLength);
 
                 if (data.data.genCommentData.editingData.avgEditTime < 3600) {
-                  data.data.genCommentData.editingData.avgEditTime = "<1 hour";
-                } else {
+					if (data.data.genCommentData.editingData.avgEditTime < 60)
+					{
+						data.data.genCommentData.editingData.medEditTime = (data.data.genCommentData.editingData.avgEditTime).toString() + " seconds";
+					}
+					else
+					{
+					    var curAvgEditTime = Math.floor((data.data.genCommentData.editingData.avgEditTime)/60);
+						if (curAvgEditTime == 1) {
+						    data.data.genCommentData.editingData.avgEditTime = (curAvgEditTime).toString() + " minute";
+						}
+						else {
+						data.data.genCommentData.editingData.avgEditTime = (curAvgEditTime).toString() + " minutes";
+						}
+					}                
+                } 
+                 else {
                     var curAvgEditTime = Math.floor((data.data.genCommentData.editingData.avgEditTime)/3600);
 
                     if (curAvgEditTime == 1) {
@@ -22,6 +36,32 @@ angular.module('mainService', [])
                     }
                     else {
                       data.data.genCommentData.editingData.avgEditTime = (curAvgEditTime).toString() + " hours";
+                    }
+                }
+
+				if (data.data.genCommentData.editingData.medEditTime < 3600) {
+					if (data.data.genCommentData.editingData.medEditTime < 60)
+					{
+						data.data.genCommentData.editingData.medEditTime = (data.data.genCommentData.editingData.medEditTime).toString() + " seconds";
+                  	}
+                  	else
+                  	{
+                  		var curMedEditTime = Math.floor((data.data.genCommentData.editingData.medEditTime)/60);
+	                    if (curMedEditTime == 1) {
+	                      data.data.genCommentData.editingData.medEditTime = (curMedEditTime).toString() + " minute";
+	                    }
+	                    else {
+	                      data.data.genCommentData.editingData.medEditTime = (curMedEditTime).toString() + " minutes";
+	                    }
+                  	}
+                } else {
+                    var curMedEditTime = Math.floor((data.data.genCommentData.editingData.medEditTime)/3600);
+
+                    if (curMedEditTime == 1) {
+                      data.data.genCommentData.editingData.medEditTime = (curMedEditTime).toString() + " hour";
+                    }
+                    else {
+                      data.data.genCommentData.editingData.medEditTime = (curMedEditTime).toString() + " hours";
                     }
                 }
 
@@ -35,6 +75,14 @@ angular.module('mainService', [])
 		},
 		getUsername: function() {
 			return userData.data.username;
+		},
+		fetchProgress: function() {
+			$http.get('/api/reddit/progress').then(function(data) {
+				console.log(progress + ' 1\n');
+				progress = data;
+			});
+
+			return progress;
 		},
 		setExamples: function(callback) {
 			var first, second, key;

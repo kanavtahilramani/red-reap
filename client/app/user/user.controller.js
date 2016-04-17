@@ -3,7 +3,6 @@
 angular.module('redreapApp')
   .controller('UserCtrl', function (User, $routeParams) {
   		var vm = this;
-      vm.processing = true;
 
       var current = new Date(),
           creation;
@@ -25,5 +24,4 @@ angular.module('redreapApp')
       // }
 
       vm.redditUser = User.getUserData();
-      vm.processing = false;
   });

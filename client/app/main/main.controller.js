@@ -13,13 +13,20 @@ angular.module('redreapApp')
                   		});
                 	});
 				});
+
+				// setInterval(function(){ 
+    // 				var currentProgress = User.fetchProgress();
+    // 				// console.log(currentProgress + '\n');
+				// }, 1000);
 		};
 
 		vm.searchSub = function(subreddit) {
 			vm.processing = true;
 			Subreddit.getSubreddit(subreddit, function() {
-				$location.path('/r/' + subreddit);
-				vm.processing = false;
+				Subreddit.setAge(function() {
+					$location.path('/r/' + subreddit);
+					vm.processing = false;
+                });
 			});
 		};
   });
