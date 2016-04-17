@@ -33,7 +33,7 @@ var config = {
 
 var coreNLP = new NLP.StanfordNLP(config);
 
-var username, subreddit;
+var username, subreddit, progress = 0;
 
 getRefresh().then(function(data) {
   reddit.setRefreshToken(data.refresh.toString());
@@ -125,7 +125,8 @@ function createUser(callback) {
         veryPosAdEx = [],
         familyMems = [],
         filteredArray = [],
-        subredditSentiment = [];
+        subredditSentiment = [],
+        languageComplexityArray = [];
 
     var done = false;
 
@@ -392,7 +393,157 @@ function createUser(callback) {
       }
 
 
+             //scours the parse tree in search of a subordinate clause
+       var sbarFound = false;
+       var ccOrSemiFound = false;
+ 
+       function findSBAR(tier) {
+         
+         numCalls++;
+         
+ 
+          if (tier.type.trim() == "SBAR") {
+             sbarFound = true;
+           
+           }
+           if (tier.type.trim() == "CC") {
+             ccOrSemiFound = true;
+           
+           }
+           if (tier.type.trim() == ":" && tier.children[0].word == ";") {
+             ccOrSemiFound = true;
+           
+           }
+ 
+          if (tier.children[0].hasOwnProperty('children')) {
+               tier.children.forEach(function(childThree){
+                 findSBAR(childThree);
+               });
+               numCalls--;
+ 
+               if (numCalls === 0) {
+                 isFinished = true;
+                 return;
+               }
+               else
+                 return;
+           }
+ 
+           else {
+             numCalls--;
+ 
+             if (numCalls === 0) {
+               isFinished = true;
+               return;
+             }
+             else
+               return;
+           }
+         }
+ 
+ 
+      var ComplexitysubIdFound = false;
+      var tempComplexity;
+       //creates and populates the languageBySub feeding array in the UserSchema
+       function getSentenceStructureForSub(currentSentence, currentSubId, currentSub){
+           //console.log("\n");
+           sbarFound = false;
+           ccOrSemiFound = false;
+           ComplexitysubIdFound = false;
+           //nestedS = false;
+           //countS = 0;
+           if (Array.isArray(currentSentence.tokens.token)){
 
+
+                //rmove this print when possible
+               //if (currentSub == "GlobalOffensive"){currentSentence.tokens.token.forEach(function(thisToken){
+                 //  process.stdout.write(thisToken.word + " ");
+                 // });}
+               findSBAR(currentSentence.parsedTree);
+                    
+               
+
+
+
+
+                    //chyeck if this subreddit already has a language complexity element
+                    languageComplexityArray.forEach(function(eachObj){
+                      if (eachObj.subid == currentSubId){
+                        ComplexitysubIdFound = true;
+                      }
+                    });
+
+                    //if it does
+                    if (ComplexitysubIdFound){
+                      //console.log("found ELEMENT FOR: " + currentSub);
+                        languageComplexityArray.forEach(function(languageCompObj){
+                          //found the match so update the sentiment
+                            
+                          if (languageCompObj.subid == currentSubId){
+
+                            currentSentence.tokens.token.forEach(function(thisToken){
+                                if ((thisToken.word != ";") && (thisToken.word != ",") && (thisToken.word != ":") && (thisToken.word != ".") && (thisToken.word != "!") && (thisToken.word != "?")){
+                                  languageCompObj.totalCharacters = languageCompObj.totalCharacters+(thisToken.CharacterOffsetEnd-thisToken.CharacterOffsetBegin );
+                                  languageCompObj.totalWords = languageCompObj.totalWords+1;
+                                }  
+                              });
+
+                             if (sbarFound && ccOrSemiFound){
+                                languageCompObj.compoundComplex = languageCompObj.compoundComplex+1;
+                             }
+                             else if (sbarFound && !ccOrSemiFound){
+                                languageCompObj.complex = languageCompObj.complex+1;
+                             }
+                             else if(!sbarFound && ccOrSemiFound){
+                                languageCompObj.compound = languageCompObj.compound+1;
+                             }
+                             else {
+                                languageCompObj.simple = languageCompObj.simple+1;
+                             }
+
+                          }
+                        });
+                     }
+
+
+                     //if here, the elememt for this subreddit does not yet exist
+
+
+                    else{
+                        tempComplexity = {sub: currentSub, subid: currentSubId, simple: 0, compound: 0, complex: 0, compoundComplex: 0, avSentComplexity: 0, avWordComplexity: 0, totalWords: 0, totalCharacters: 0, avWordLength: 0, weightedSentenceStructureScore: 0, languageComplexityScore: 0};
+                  
+                      
+                              currentSentence.tokens.token.forEach(function(thisTokenN){
+                                 if ((thisTokenN.word != ";") && (thisTokenN.word != ",") && (thisTokenN.word != ":") && (thisTokenN.word != ".") && (thisTokenN.word != "!") && (thisTokenN.word != "?")){
+                                    tempComplexity.totalCharacters = tempComplexity.totalCharacters+(thisTokenN.CharacterOffsetEnd-thisTokenN.CharacterOffsetBegin);
+                                    tempComplexity.totalWords = tempComplexity.totalWords+1;
+                                  }
+                              });
+
+                             if (sbarFound && ccOrSemiFound){
+                                tempComplexity.compoundComplex = tempComplexity.compoundComplex+1;
+                             }
+                             else if (sbarFound && !ccOrSemiFound){
+                                tempComplexity.complex = tempComplexity.complex+1;
+                             }
+                             else if(!sbarFound && ccOrSemiFound){
+                                tempComplexity.compound = tempComplexity.compound+1;
+                             }
+                             else {
+                                tempComplexity.simple = tempComplexity.simple+1;
+                             }
+
+                          
+
+                        languageComplexityArray.push(tempComplexity);   
+                    }
+
+
+
+                  
+
+           }
+       }
 
         comments.forEach(function(currentComment, commentIndex) {
             coreNLP.process(currentComment.data.body, function(err, result) {
@@ -407,6 +558,7 @@ function createUser(callback) {
                       //console.log(currentComment.data.body);
                   //}
                   storeSentimentForSub(x, currentComment.data.subreddit_id, currentComment.data.subreddit);
+                  getSentenceStructureForSub(x, currentComment.data.subreddit_id, currentComment.data.subreddit);
                   sentenceCounter = sentenceCounter + 1;
                   if (Array.isArray(x.tokens.token)) {
                       x.tokens.token.forEach(function(y, index) {
@@ -866,6 +1018,8 @@ function createUser(callback) {
     }
 
       getUserComments(function(allComments) { /* get all user comments */
+        // console.log("Progress: " + progress + '\n');
+        progress = 1;
         allComments.forEach(function(commentSlice) {
           commentSlice.data.children.forEach(function(currentComment) {
               userComments.push(currentComment);
@@ -891,6 +1045,9 @@ function createUser(callback) {
         });
 
         getNLPData(userComments, function(youAre) {
+          // console.log("Progress: " + progress + '\n');
+            progress = 2;
+
             userData.totalComments = totalCommentCount;
             userData.genCommentData.editingData.totalEditedComments = totalEditedCommentCount;
             userData.genCommentData.editingData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
@@ -1031,6 +1188,41 @@ function createUser(callback) {
               }
             });
 
+
+
+
+
+            var totalSent = 0;
+            
+            languageComplexityArray.forEach(function(thisone, compIndex){
+                      //console.log("sub: " + thisone.sub);
+                      //console.log("simple: " + thisone.simple);
+                      //console.log("compound: " + thisone.compound);
+                      //console.log("complex: " + thisone.complex);
+                      //console.log("compoundComplex: " + thisone.compoundComplex);
+                      //console.log("totalWords: " + thisone.totalWords);
+                      //console.log("totalCharacters: " + thisone.totalCharacters);
+                      totalSent = thisone.simple + thisone.compound + thisone.complex + thisone.compoundComplex;
+                      thisone.avWordLength = (thisone.totalCharacters/thisone.totalWords);
+                      thisone.weightedSentenceStructureScore = 1*(thisone.simple/totalSent) + 2*(thisone.compound/totalSent) + 3*(thisone.complex/totalSent) + 4*(thisone.compoundComplex/totalSent);
+                      thisone.weightedSentenceStructureScore = thisone.weightedSentenceStructureScore;
+                      
+                      thisone.languageComplexityScore = thisone.weightedSentenceStructureScore+thisone.avWordLength;
+                      thisone.weightedSentenceStructureScore = thisone.weightedSentenceStructureScore.toPrecision(3);
+                      thisone.avWordLength = thisone.avWordLength.toPrecision(3);
+                      thisone.languageComplexityScore = thisone.languageComplexityScore.toPrecision(3); 
+                      if (compIndex == languageComplexityArray.length-1){
+                        userData.languageBySub = languageComplexityArray;
+                        }
+
+                      });
+
+
+
+
+
+
+
             
             userData.familyMembers = familyMems;
 
@@ -1099,7 +1291,7 @@ function createUser(callback) {
                         item.negPer = ((item.negativeCount/item.total)*100).toPrecision(3);
                         item.neuPer = ((item.neutralCount/item.total)*100).toPrecision(3);
                         item.posPer = ((item.positiveCount/item.total)*100).toPrecision(3);
-                        item.avSentSent = (item.positiveCount/item.total)*3 + (item.neutralCount/item.total)*2 + (item.negativeCount/item.total)*1;
+                        item.avSentSent = ((item.positiveCount/item.total)*3 + (item.neutralCount/item.total)*2 + (item.negativeCount/item.total)*1).toPrecision(3);
 
                         if (outIndex == subredditSentiment.length-1){
                             if (subredditSentiment.length<=5){
@@ -1128,6 +1320,8 @@ function createUser(callback) {
             userData.genCommentData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
 
             timeBasedData(userComments, function() {
+                // console.log("Progress: " + progress + '\n');
+                progress = 3;
                 userData.dateData = monthData; // fix
 
                 for (var i = 0; i < hourTracker.length; i++) { //store comment hourly data
@@ -1151,6 +1345,8 @@ function createUser(callback) {
                 ///////////////////////////////////////////////////
 
                 getUserSubmitted(function(allSubmitted) { /* get all user submissions */
+                  // console.log("Progress: " + progress + '\n');
+                  progress = 4;
                   allSubmitted.forEach(function(submittedSlice) {
                     submittedSlice.data.children.forEach(function(currentSubmitted) {
                         userSubmitted.push(currentSubmitted);
@@ -1193,6 +1389,7 @@ function createUser(callback) {
 
 
                   timeBasedDataSub(userSubmitted, function() {
+                      progress = 5;
                       userData.dateDataSub = monthDataSubmitted; //store monthly data for submissions
 
                       for (var i = 0; i < hourTracker2.length; i++) //store submitted hourly data
@@ -1214,6 +1411,7 @@ function createUser(callback) {
                       }
 
                       getKarmaAndDate(function(scores) { /* get total karma scores and creation timestamp */
+                        progress = 6;
                         userData.karma.totalCommentScore = scores.comments;
                         userData.karma.totalLinkScore = scores.submissions;
                         userData.creationTime = (scores.created)*1000;
@@ -1223,7 +1421,7 @@ function createUser(callback) {
 
                         getTopComment(function(topComment) {
                           userData.topComment = topComment;
-                          getTopSubmission(function(topSubmission) {
+                          getTopSubmission(function(topSubmission) {  
                             userData.topSubmission = topSubmission;
                             callback(userData);
                             return;
@@ -1237,6 +1435,10 @@ function createUser(callback) {
             }); 
         });
       });
+}
+
+function getToken() {
+
 }
 
 function createSubreddit(callback) {
@@ -1282,6 +1484,10 @@ export function checkUser (req, res) {
         });
       }
   });
+}
+
+export function getProgress (req, res) {
+    return res.send(progress);
 }
 
 // '/api/reddit/subreddit/:subreddit/'

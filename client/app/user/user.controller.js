@@ -4,7 +4,6 @@ angular.module('redreapApp')
   .value('duScrollDuration', 1000)
   .controller('UserCtrl', function (User, $routeParams, $document) {
   		var vm = this;
-      vm.processing = true;
 
       var current = new Date(),
           creation;
