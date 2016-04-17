@@ -241,7 +241,6 @@ h1.chart-header {
 
 .jumbotron-content {
   margin-top: 10px;
-  margin-left:15px;
   width: 95%;
 }
 
@@ -388,4 +387,18 @@ li
 .row{
     margin-left: 0;
     margin-right: 0;
+}
+
+#side-nav {
+  font-size:15px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color:white;
+    background-color:#d9230f;
+}
+
+.nav>li>a:focus {
+    text-decoration: none;
+    background-color: transparent;
 }

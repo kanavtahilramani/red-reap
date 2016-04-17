@@ -10,9 +10,9 @@ angular.module('redreapApp')
         var curAction = attrs.action;
         var color = d3.scale.ordinal();
 
-        var svgWidth  = 450,
-            svgHeight = 450,
-            radius = (Math.min(svgWidth, svgHeight) / 2) - 25,
+        var svgWidth  = 410,
+            svgHeight = 470,
+            radius = (Math.min(svgWidth, svgHeight) / 2) - 35,
             donutWidth = 50;
 
         if ((curAction == "Comment") || (curAction == "Adjective") || (curAction == "Subreddit"))
@@ -47,7 +47,7 @@ angular.module('redreapApp')
               {
                 svgWidth  = 265,
                 svgHeight = 330,
-                radius = Math.min(svgWidth, svgHeight) / 2,
+                radius = (Math.min(svgWidth, svgHeight) / 2) - 10,
                 donutWidth = 35;
               }
 
@@ -181,7 +181,7 @@ angular.module('redreapApp')
                             .enter()
                             .append('g')
                           .attr("class", "legend")
-                          .attr("transform", function(d, i) { return "translate(" + (-220 + i * 110) + ", 210)"; });
+                          .attr("transform", function(d, i) { return "translate(" + (-190 + i * 100) + ", 210)"; });
             }
           }
 

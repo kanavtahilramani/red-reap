@@ -16,16 +16,16 @@
 
 <div ng-if="!user.processing">
 	<div class="row">
-		<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 nopadding">
-			<div style="padding-left:20px;">
-				<li><h3 style="color:black;">Categories</h3></li>
-				<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#top">Top of Page</a></li>
-				<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#first-row">Activity</a></li>
-				<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#second-row">Sentiment</a></li>
-				<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#third-row">Language Complexity</a></li>
-				<li style="padding-bottom:3px;"><a style="font-size:15px;" class="black-anchor" href="#fourth-row">Popularity</a></li>
-			</div>
-		</div>
+		<nav class="col-lg-2 col-md-3 hidden-sm hidden-xs" style="margin-top:15%;">
+      		<ul id="side-nav" class="nav nav-pills nav-stacked affix">
+      			<li du-scrollspy="top"><a href="#top" du-smooth-scroll="top" class="black-anchor">Top</a></li>
+				<li du-scrollspy="jumbo-row"><a href="#jumbo-row" du-smooth-scroll="jumbo-row" class="black-anchor">User Information</a></li>
+				<li du-scrollspy="first-row"><a href="#first-row" du-smooth-scroll="first-row" class="black-anchor">Activity</a></li>
+				<li du-scrollspy="second-row"><a href="#second-row" du-smooth-scroll="second-row" class="black-anchor">Sentiment</a></li>
+				<li du-scrollspy="third-row"><a href="#third-row" du-smooth-scroll="third-row" class="black-anchor">Language Complexity</a></li>
+				<li du-scrollspy="fourth-row"><a href="#fourth-row" du-smooth-scroll="fourth-row" class="black-anchor">Popularity</a></li>
+			</ul>
+		</nav>
 		<div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 nopadding">
 			<div id="jumbo-row" class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
@@ -307,28 +307,38 @@
 
 							   	<div style="margin: 0 auto; text-align:center;">
 							   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
-									<donut action="Subreddit" cur-index=0></donut>
+									<div style="margin-top:-35px;">
+										<donut action="Subreddit" cur-index=0></donut>
+									</div>
 									<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].total}}</strong></h4>
 							   	</div>
 							   	<div style="margin: 0 auto; text-align:center;"><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
-										<donut action="Subreddit" cur-index=1></donut>
+										<div style="margin-top:-35px;">
+											<donut action="Subreddit" cur-index=1></donut>
+										</div>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].total}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">#</a></h4>
-										<donut action="Subreddit" cur-index=2></donut>
+										<div style="margin-top:-35px;">
+											<donut action="Subreddit" cur-index=2></donut>
+										</div>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].total}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">#</a></h4>
-										<donut action="Subreddit" cur-index=3></donut>
+										<div style="margin-top:-35px;">
+											<donut action="Subreddit" cur-index=3></donut>
+										</div>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].total}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">#</a></h4>
-										<donut action="Subreddit" cur-index=4></donut>
+										<div style="margin-top:-35px;">
+											<donut action="Subreddit" cur-index=4></donut>
+										</div>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].total}}</strong></h5>
 									</div>
 								</div>

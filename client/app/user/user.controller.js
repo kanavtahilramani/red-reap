@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('redreapApp')
-  .controller('UserCtrl', function (User, $routeParams) {
+  .value('duScrollDuration', 1000)
+  .controller('UserCtrl', function (User, $routeParams, $document) {
   		var vm = this;
       vm.processing = true;
 
@@ -26,4 +27,5 @@ angular.module('redreapApp')
 
       vm.redditUser = User.getUserData();
       vm.processing = false;
+
   });
