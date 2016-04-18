@@ -1211,7 +1211,22 @@ function createUser(callback) {
                       thisone.weightedSentenceStructureScore = thisone.weightedSentenceStructureScore.toPrecision(3);
                       thisone.avWordLength = thisone.avWordLength.toPrecision(3);
                       thisone.languageComplexityScore = thisone.languageComplexityScore.toPrecision(3); 
+
+
+
+
+
+
+
+
+
                       if (compIndex == languageComplexityArray.length-1){
+
+
+                        languageComplexityArray.sort(function(a, b) {
+                            return parseFloat(b.languageComplexityScore) - parseFloat(a.languageComplexityScore);
+                        });
+
                         userData.languageBySub = languageComplexityArray;
                         }
 
