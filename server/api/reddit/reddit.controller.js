@@ -510,7 +510,7 @@ function createUser(callback) {
 
 
                     else{
-                        tempComplexity = {sub: currentSub, subid: currentSubId, simple: 0, compound: 0, complex: 0, compoundComplex: 0, avSentComplexity: 0, avWordComplexity: 0, totalWords: 0, totalCharacters: 0, avWordLength: 0, weightedSentenceStructureScore: 0, languageComplexityScore: 0};
+                        tempComplexity = {sub: currentSub, subid: currentSubId, simple: 0, compound: 0, complex: 0, compoundComplex: 0, totalWords: 0, totalCharacters: 0, avWordLength: 0, weightedSentenceStructureScore: 0, languageComplexityScore: 0};
                   
                       
                               currentSentence.tokens.token.forEach(function(thisTokenN){
