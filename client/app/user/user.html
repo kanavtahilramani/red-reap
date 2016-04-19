@@ -263,12 +263,18 @@
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
 									<h3 class="content-subheader" align="center" style="margin-top:25px;">Timeline<h5 class="content-subheader" align="center">(submissions and comments combined)</h5></h3>
-									<line-plot action="Timeline"></line-plot>
+									<div style="overflow:auto;">
+										<line-plot action="Timeline"></line-plot>
+									</div>
 									<!-- <bar-chart action="Year Karma"></bar-chart> -->
 									<h3 class="content-subheader" align="center" style="margin-top:25px;">Weekly<h5 class="content-subheader" align="center">(submissions and comments combined)</h5></h3>
-									<bar-chart action="Week Karma"></bar-chart>
+									<div style="overflow:auto;">
+										<bar-chart action="Week Karma"></bar-chart>
+									</div>
 									<h3 class="content-subheader" align="center" style="margin-top:25px;">Daily<h5 class="content-subheader" align="center">(submissions and comments combined, based on US Eastern time)</h5></h3>
-									<bar-chart action="Day Karma"></bar-chart>
+									<div style="overflow:auto;">
+										<bar-chart action="Day Karma"></bar-chart>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -305,19 +311,21 @@
 							   		</div>
 							   	</div> -->
 
-							   	<div style="margin: 0 auto; text-align:center;">
+							   	<div style="margin: 0 auto; text-align:center;overflow:auto;">
 							   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
-									<div style="margin-top:-35px;">
+									<div style="margin-top:-35px;overflow:auto;">
 										<donut action="Subreddit" cur-index=0></donut>
 									</div>
+									<h4 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[0].avSentSent}}</strong></h4>
 									<h4 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[0].total}}</strong></h4>
 							   	</div>
-							   	<div style="margin: 0 auto; text-align:center;"><!--
+							   	<div style="margin: 0 auto; text-align:center;overflow:auto;"><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
 										<div style="margin-top:-35px;">
 											<donut action="Subreddit" cur-index=1></donut>
 										</div>
+										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[1].avSentSent}}</strong></h5>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[1].total}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
@@ -325,6 +333,7 @@
 										<div style="margin-top:-35px;">
 											<donut action="Subreddit" cur-index=2></donut>
 										</div>
+										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[2].avSentSent}}</strong></h5>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[2].total}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
@@ -332,6 +341,7 @@
 										<div style="margin-top:-35px;">
 											<donut action="Subreddit" cur-index=3></donut>
 										</div>
+										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[3].avSentSent}}</strong></h5>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[3].total}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
@@ -339,6 +349,7 @@
 										<div style="margin-top:-35px;">
 											<donut action="Subreddit" cur-index=4></donut>
 										</div>
+										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[4].avSentSent}}</strong></h5>
 										<h5 align="center">Sentence Count: <strong>{{user.redditUser.data.sentimentBySub[4].total}}</strong></h5>
 									</div>
 								</div>
@@ -478,7 +489,7 @@
 										</div>
 									</div>
 								</div><!--
-								--><div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 vcenter" style="margin-top:30px;margin: 0 auto; text-align:center;">
+								--><div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 vcenter" style="margin-top:30px;margin: 0 auto; text-align:center;overflow:auto;">
 										<donut action="Adjective"></donut>
 									</div>	
 							</div>
@@ -491,7 +502,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 					<div class="contentdisp">
 						<h1 class="content-header" align="center">Language Complexity</h1>
-						<div class="row content-top-padding" ng-if="user.redditUser.data.sentimentBySub[0]">
+						<div class="row" ng-if="user.redditUser.data.sentimentBySub[0]">
 							<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.languageBySub[0]">
 								<h3 class="content-subheader" align="center">Top 5<h5 class="content-subheader" align="center"></h5></h3>
 								<div style="margin: 0 auto; text-align:center;">
@@ -569,7 +580,7 @@
 			<hr style="width: 60%;">
 			<div id="fourth-row" class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
-					<div class="contentdisp">
+					<div class="contentdisp" style="overflow:auto;">
 						<h1 class="content-header" align="center">Popularity</h1>
 						<div class="container" style="width:100%;">
 							<div class="row" ng-if="user.redditUser.data.sentimentBySub.length">

@@ -10,10 +10,10 @@ angular.module('redreapApp')
         var curAction = attrs.action;
         var color = d3.scale.ordinal();
 
-        var svgWidth  = 410,
-            svgHeight = 470,
-            radius = (Math.min(svgWidth, svgHeight) / 2) - 35,
-            donutWidth = 50;
+        var svgWidth,
+            svgHeight,
+            radius,
+            donutWidth;
 
         if ((curAction == "Comment") || (curAction == "Adjective") || (curAction == "Subreddit"))
         {
@@ -29,6 +29,11 @@ angular.module('redreapApp')
           }
           else if (curAction == "Adjective")
           {
+            svgWidth  = 405,
+            svgHeight = 470,
+            radius = (Math.min(svgWidth+40, svgHeight) / 2) - 35,
+            donutWidth = 50;
+
             /* Positive/Negative of Adjectives */
             var dataset = [
               { label: 'Very Positive', count: data.vpPer, enabled: true },
@@ -50,7 +55,13 @@ angular.module('redreapApp')
                 radius = (Math.min(svgWidth, svgHeight) / 2) - 10,
                 donutWidth = 35;
               }
-
+              else
+              {
+                svgWidth  = 360,
+                svgHeight = 470,
+                radius = (Math.min(svgWidth+35, svgHeight) / 2) - 35,
+                donutWidth = 50;
+              }
             /* Positive/Negative of Adjectives */
             var dataset = [
               { label: 'Positive', count: data.sentimentBySub[curIndex].posPer, enabled: true },
@@ -112,11 +123,11 @@ angular.module('redreapApp')
               var curIndex = attrs.curIndex;
               if (curIndex == 0)
               {
-                svg.append("text")
-                       .attr('dy', '0.35em')
-                       .attr({
-                         "text-anchor": "middle",
-                       }).style({'fill': 'black', 'font-size': '60px'}).text(data.sentimentBySub[curIndex].avSentSent);
+                // svg.append("text")
+                //        .attr('dy', '0.35em')
+                //        .attr({
+                //          "text-anchor": "middle",
+                //        }).style({'fill': 'black', 'font-size': '60px'}).text(data.sentimentBySub[curIndex].avSentSent);
 
                 legend = svg.selectAll('.legend')
                             .data(color.domain())
@@ -127,11 +138,11 @@ angular.module('redreapApp')
               }
               else
               {
-                svg.append("text")
-                       .attr('dy', '0.35em')
-                       .attr({
-                         "text-anchor": "middle",
-                       }).style({'fill': 'black', 'font-size': '40px'}).text(data.sentimentBySub[curIndex].avSentSent);
+                // svg.append("text")
+                //        .attr('dy', '0.35em')
+                //        .attr({
+                //          "text-anchor": "middle",
+                //        }).style({'fill': 'black', 'font-size': '40px'}).text(data.sentimentBySub[curIndex].avSentSent);
 
                 legend = svg.selectAll('.legend')
                             .data(color.domain())
@@ -143,38 +154,38 @@ angular.module('redreapApp')
             }
             else
             {
-              if ((data.vpPer >= data.pPer) && (data.vpPer >= data.nPer) && (data.vpPer >= data.vnPer))
-              {  
-                svg.append("text")
-                         .attr('dy', '0.35em')
-                         .attr({
-                           "text-anchor": "middle",
-                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Very Positive");
-              }
-              else if ((data.pPer > data.vpPer) && (data.pPer >= data.nPer) && (data.pPer >= data.vnPer))
-              {
-                svg.append("text")
-                         .attr('dy', '0.35em')
-                         .attr({
-                           "text-anchor": "middle",
-                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Positive");
-              }
-              else if ((data.nPer > data.vpPer) && (data.nPer > data.pPer) && (data.nPer >= data.vnPer))
-              {
-                svg.append("text")
-                         .attr('dy', '0.35em')
-                         .attr({
-                           "text-anchor": "middle",
-                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Negative");
-              }
-              else if ((data.vnPer > data.vpPer) && (data.vnPer > data.nPer) && (data.vnPer > data.nPer))
-              {
-                svg.append("text")
-                         .attr('dy', '0.35em')
-                         .attr({
-                           "text-anchor": "middle",
-                         }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Very Negative");
-              }
+              // if ((data.vpPer >= data.pPer) && (data.vpPer >= data.nPer) && (data.vpPer >= data.vnPer))
+              // {  
+              //   svg.append("text")
+              //            .attr('dy', '0.35em')
+              //            .attr({
+              //              "text-anchor": "middle",
+              //            }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Very Positive");
+              // }
+              // else if ((data.pPer > data.vpPer) && (data.pPer >= data.nPer) && (data.pPer >= data.vnPer))
+              // {
+              //   svg.append("text")
+              //            .attr('dy', '0.35em')
+              //            .attr({
+              //              "text-anchor": "middle",
+              //            }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Positive");
+              // }
+              // else if ((data.nPer > data.vpPer) && (data.nPer > data.pPer) && (data.nPer >= data.vnPer))
+              // {
+              //   svg.append("text")
+              //            .attr('dy', '0.35em')
+              //            .attr({
+              //              "text-anchor": "middle",
+              //            }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Negative");
+              // }
+              // else if ((data.vnPer > data.vpPer) && (data.vnPer > data.nPer) && (data.vnPer > data.nPer))
+              // {
+              //   svg.append("text")
+              //            .attr('dy', '0.35em')
+              //            .attr({
+              //              "text-anchor": "middle",
+              //            }).style({'fill': 'black', 'font-size': '30px'}).text("Mostly Very Negative");
+              // }
 
               legend = svg.selectAll('.legend')
                             .data(color.domain())
