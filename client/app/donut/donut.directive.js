@@ -77,7 +77,31 @@ angular.module('redreapApp')
           var tip = d3.tip()
             .attr('class', 'd3-tip')
             .html(function(d) {
-              return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + d.data.count + "%</span>";
+              if (d.data.enabled)
+              {
+                var tempTotal = 0;
+                var disabledExist = false;
+                dataset.forEach(function(c) {
+                  if (c.enabled == true)
+                  {
+                    tempTotal += c.count;
+                  }
+                  else
+                  {
+                    disabledExist = true;
+                  }
+                });
+
+                if (disabledExist == false)
+                {
+                  return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + d.data.count + "%</span>";
+                }
+                else
+                {
+                  return "<strong>" + d.data.label + "</strong> <span style='color:red'>" + Math.round((d.data.count/tempTotal)*100) + "%</span>";
+                }
+
+              }
             });
 
           var svg = d3.select(element[0])
