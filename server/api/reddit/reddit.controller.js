@@ -510,7 +510,7 @@ function createUser(callback) {
 
 
                     else{
-                        tempComplexity = {sub: currentSub, subid: currentSubId, simple: 0, compound: 0, complex: 0, compoundComplex: 0, avSentComplexity: 0, avWordComplexity: 0, totalWords: 0, totalCharacters: 0, avWordLength: 0, weightedSentenceStructureScore: 0, languageComplexityScore: 0};
+                        tempComplexity = {sub: currentSub, subid: currentSubId, simple: 0, compound: 0, complex: 0, compoundComplex: 0, totalWords: 0, totalCharacters: 0, avWordLength: 0, weightedSentenceStructureScore: 0, languageComplexityScore: 0};
                   
                       
                               currentSentence.tokens.token.forEach(function(thisTokenN){
@@ -1211,7 +1211,22 @@ function createUser(callback) {
                       thisone.weightedSentenceStructureScore = thisone.weightedSentenceStructureScore.toPrecision(3);
                       thisone.avWordLength = thisone.avWordLength.toPrecision(3);
                       thisone.languageComplexityScore = thisone.languageComplexityScore.toPrecision(3); 
+
+
+
+
+
+
+
+
+
                       if (compIndex == languageComplexityArray.length-1){
+
+
+                        languageComplexityArray.sort(function(a, b) {
+                            return parseFloat(b.languageComplexityScore) - parseFloat(a.languageComplexityScore);
+                        });
+
                         userData.languageBySub = languageComplexityArray;
                         }
 

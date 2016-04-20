@@ -153,7 +153,7 @@ var UserSchema = new Schema({
 	negativePercentage: Number,
 	negativeExample: [{content: String, trigger: String}],
 	sentimentBySub: [{sub: String, subid: String, negativeCount: Number, neutralCount: Number, positiveCount: Number, total: Number, negPer: Number, neuPer: Number, posPer: Number, avSentSent: Number}],
-	languageBySub: [{sub: String, subid: String, simple: Number, compound: Number, complex: Number, compoundComplex: Number, avSentComplexity: Number, avWordComplexity: Number, totalWords: Number, totalCharacters: Number, avWordLength: Number, weightedSentenceStructureScore: Number, languageComplexityScore: Number}],
+	languageBySub: [{sub: String, subid: String, simple: Number, compound: Number, complex: Number, compoundComplex: Number, totalWords: Number, totalCharacters: Number, avWordLength: Number, weightedSentenceStructureScore: Number, languageComplexityScore: Number}],
 
 }, { collection: 'user'});
 
