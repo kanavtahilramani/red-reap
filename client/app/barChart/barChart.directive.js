@@ -344,7 +344,7 @@ angular.module('redreapApp')
 						} 
 					}
 
-					var subScore = {sub: data2[i].sub, avgScore: (totalScore/scoreCount).toFixed(3)};
+					var subScore = {sub: data2[i].sub, avgScore: (totalScore/scoreCount).toFixed(2)};
 
 					subScoreHolder.push(subScore);
 

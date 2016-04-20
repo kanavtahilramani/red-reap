@@ -256,7 +256,7 @@
 						</div>
 		 -->
 						<div style="text-align:center;" ng-if="user.redditUser.data.karma.totalCommentScore || user.redditUser.data.karma.totalLinkScore">
-							<p class="content-text" style="text=align:left;">Your account has <strong style="text-align:right;">{{user.redditUser.data.karma.totalCommentScore}} comment karma </strong> and <strong style="text-align:right;">{{user.redditUser.data.karma.totalLinkScore}} link karma</strong>.</p>
+							<p class="content-text" style="text=align:left;">This account has <strong style="text-align:right;">{{user.redditUser.data.karma.totalCommentScore}} comment karma </strong> and <strong style="text-align:right;">{{user.redditUser.data.karma.totalLinkScore}} link karma</strong>.</p>
 						</div>
 
 				    	<div class="container" style="width:100%;">
@@ -504,7 +504,7 @@
 						<h1 class="content-header" align="center">Language Complexity</h1>
 						<div class="row" ng-if="user.redditUser.data.sentimentBySub[0]">
 							<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.languageBySub[0]">
-								<h3 class="content-subheader" align="center">Top 5<h5 class="content-subheader" align="center"></h5></h3>
+								<h3 class="content-subheader" align="center">Top 5 Subreddits<h5 class="content-subheader" align="center"></h5></h3>
 								<div style="margin: 0 auto; text-align:center;">
 							   		<h3 align="center">{{user.redditUser.data.languageBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[0].sub}}">#</a></h3>
 							   		<h4 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[0].languageComplexityScore}}</strong></h4>
@@ -539,7 +539,7 @@
 								</div>
 							</div>
 							<div class="content-top-padding" style="text-align:center; width=100%;" ng-if="((user.redditUser.data.languageBySub.length-5 > 4) && (user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5]))">
-								<h3 class="content-subheader" align="center">Bottom 5<h5 class="content-subheader" align="center"></h5></h3>
+								<h3 class="content-subheader" align="center">Bottom 5 Subreddits<h5 class="content-subheader" align="center"></h5></h3>
 							   	<div style="margin: 0 auto; text-align:center;"><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].sub}}">#</a></h4>
@@ -584,7 +584,7 @@
 						<h1 class="content-header" align="center">Popularity</h1>
 						<div class="container" style="width:100%;">
 							<div class="row" ng-if="user.redditUser.data.sentimentBySub.length">
-								<h3 class="content-subheader" align="center">Top Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
+								<h3 class="content-subheader" align="center">Top 5 Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
 								<div style="text-align:center; width=100%;">
 								<bar-chart action="Popularity"></bar-chart>
 						   <!-- <line-plot action="submissionscore"></line-plot> -->
