@@ -124,6 +124,9 @@ function createUser(callback) {
         posAdEx = [],
         veryPosAdEx = [],
         familyMems = [],
+        locationTemp = [],
+        maleCount = 0,
+        femaleCount = 0,
         filteredArray = [],
         subredditSentiment = [],
         languageComplexityArray = [];
@@ -335,8 +338,22 @@ function createUser(callback) {
             }
         }
 
+        
+        function getLocNlp(currentWord, secWord, thirdWord, fourthWord){
 
-
+            if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "from") && (fourthWord.POS != "DT")){
+                locationTemp.push(fourthWord.word);
+            }
+            if ((currentWord.lemma == "I") && (secWord.lemma == "live") && (thirdWord.lemma == "in") && (fourthWord.POS != "DT")){
+                locationTemp.push(fourthWord.word);
+            }
+            if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "a") && ((fourthWord.lemma != "man") || (fourthWord.lemma != "dude")|| (fourthWord.lemma != "guy")|| (fourthWord.lemma != "male"))){
+                maleCount++;
+            }
+            if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "a") && ((fourthWord.lemma != "woman") || (fourthWord.lemma != "girl")|| (fourthWord.lemma != "female"))){
+                femaleCount++;
+            }
+        }
 
 
 
@@ -564,6 +581,9 @@ function createUser(callback) {
                       x.tokens.token.forEach(function(y, index) {
                           if (index < x.tokens.token.length -1) {
                             getFamilyMembers(y, x.tokens.token[index+1]);
+                          }
+                          if (index < x.tokens.token.length -3) {
+                            getLocNlp(y, x.tokens.token[index+1], x.tokens.token[index+2], x.tokens.token[index+3]);
                           }
                         
                           //checking and counting sentiment if its an adjective
@@ -1081,6 +1101,18 @@ function createUser(callback) {
             userData.nEx = negAdEx;
             userData.pEx = posAdEx;
             userData.vpEx = veryPosAdEx;
+            userData.myLocation = locationTemp;
+            
+            if ((maleCount>=femaleCount) && (maleCount!=0)){
+            userData.gender = "male";
+            }
+            if ((maleCount==femaleCount) && (maleCount==0)){
+            userData.gender = "unknown";
+            }
+            if ((maleCount<femaleCount)){
+            userData.gender = "female";
+            }
+
 
             if (adjPerVN)
               userData.vnPer = adjPerVN.toPrecision(3);
