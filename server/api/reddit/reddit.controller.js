@@ -31,7 +31,7 @@ var config = {
     }
 };
 
-// var coreNLP = new NLP.StanfordNLP(config);
+var coreNLP = new NLP.StanfordNLP(config);
 
 var username, subreddit, progress = 0;
 var total = 0;
@@ -126,8 +126,12 @@ function createUser(callback) {
         posAdEx = [],
         veryPosAdEx = [],
         familyMems = [],
+        locationTemp = [],
+        maleCount = 0,
+        femaleCount = 0,
         filteredArray = [],
-        subredditSentiment = [];
+        subredditSentiment = [],
+        languageComplexityArray = [];
 
     var done = false;
 
@@ -335,6 +339,22 @@ function createUser(callback) {
                 }
             }
         }
+        
+        function getLocNlp(currentWord, secWord, thirdWord, fourthWord){
+
+            if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "from") && (fourthWord.POS != "DT")){
+                locationTemp.push(fourthWord.word);
+            }
+            if ((currentWord.lemma == "I") && (secWord.lemma == "live") && (thirdWord.lemma == "in") && (fourthWord.POS != "DT")){
+                locationTemp.push(fourthWord.word);
+            }
+            if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "a") && ((fourthWord.lemma != "man") || (fourthWord.lemma != "dude")|| (fourthWord.lemma != "guy")|| (fourthWord.lemma != "male"))){
+                maleCount++;
+            }
+            if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "a") && ((fourthWord.lemma != "woman") || (fourthWord.lemma != "girl")|| (fourthWord.lemma != "female"))){
+                femaleCount++;
+            }
+        }
 
       //var subredditSentiment = []; //store sentiment objects, one per subreddit
       var tempSubSentiment;    
@@ -389,7 +409,157 @@ function createUser(callback) {
       }
 
 
+             //scours the parse tree in search of a subordinate clause
+       var sbarFound = false;
+       var ccOrSemiFound = false;
+ 
+       function findSBAR(tier) {
+         
+         numCalls++;
+         
+ 
+          if (tier.type.trim() == "SBAR") {
+             sbarFound = true;
+           
+           }
+           if (tier.type.trim() == "CC") {
+             ccOrSemiFound = true;
+           
+           }
+           if (tier.type.trim() == ":" && tier.children[0].word == ";") {
+             ccOrSemiFound = true;
+           
+           }
+ 
+          if (tier.children[0].hasOwnProperty('children')) {
+               tier.children.forEach(function(childThree){
+                 findSBAR(childThree);
+               });
+               numCalls--;
+ 
+               if (numCalls === 0) {
+                 isFinished = true;
+                 return;
+               }
+               else
+                 return;
+           }
+ 
+           else {
+             numCalls--;
+ 
+             if (numCalls === 0) {
+               isFinished = true;
+               return;
+             }
+             else
+               return;
+           }
+         }
+ 
+ 
+      var ComplexitysubIdFound = false;
+      var tempComplexity;
+       //creates and populates the languageBySub feeding array in the UserSchema
+       function getSentenceStructureForSub(currentSentence, currentSubId, currentSub){
+           //console.log("\n");
+           sbarFound = false;
+           ccOrSemiFound = false;
+           ComplexitysubIdFound = false;
+           //nestedS = false;
+           //countS = 0;
+           if (Array.isArray(currentSentence.tokens.token)){
 
+
+                //rmove this print when possible
+               //if (currentSub == "GlobalOffensive"){currentSentence.tokens.token.forEach(function(thisToken){
+                 //  process.stdout.write(thisToken.word + " ");
+                 // });}
+               findSBAR(currentSentence.parsedTree);
+                    
+               
+
+
+
+
+                    //chyeck if this subreddit already has a language complexity element
+                    languageComplexityArray.forEach(function(eachObj){
+                      if (eachObj.subid == currentSubId){
+                        ComplexitysubIdFound = true;
+                      }
+                    });
+
+                    //if it does
+                    if (ComplexitysubIdFound){
+                      //console.log("found ELEMENT FOR: " + currentSub);
+                        languageComplexityArray.forEach(function(languageCompObj){
+                          //found the match so update the sentiment
+                            
+                          if (languageCompObj.subid == currentSubId){
+
+                            currentSentence.tokens.token.forEach(function(thisToken){
+                                if ((thisToken.word != ";") && (thisToken.word != ",") && (thisToken.word != ":") && (thisToken.word != ".") && (thisToken.word != "!") && (thisToken.word != "?")){
+                                  languageCompObj.totalCharacters = languageCompObj.totalCharacters+(thisToken.CharacterOffsetEnd-thisToken.CharacterOffsetBegin );
+                                  languageCompObj.totalWords = languageCompObj.totalWords+1;
+                                }  
+                              });
+
+                             if (sbarFound && ccOrSemiFound){
+                                languageCompObj.compoundComplex = languageCompObj.compoundComplex+1;
+                             }
+                             else if (sbarFound && !ccOrSemiFound){
+                                languageCompObj.complex = languageCompObj.complex+1;
+                             }
+                             else if(!sbarFound && ccOrSemiFound){
+                                languageCompObj.compound = languageCompObj.compound+1;
+                             }
+                             else {
+                                languageCompObj.simple = languageCompObj.simple+1;
+                             }
+
+                          }
+                        });
+                     }
+
+
+                     //if here, the elememt for this subreddit does not yet exist
+
+
+                    else{
+                        tempComplexity = {sub: currentSub, subid: currentSubId, simple: 0, compound: 0, complex: 0, compoundComplex: 0, totalWords: 0, totalCharacters: 0, avWordLength: 0, weightedSentenceStructureScore: 0, languageComplexityScore: 0};
+                  
+                      
+                              currentSentence.tokens.token.forEach(function(thisTokenN){
+                                 if ((thisTokenN.word != ";") && (thisTokenN.word != ",") && (thisTokenN.word != ":") && (thisTokenN.word != ".") && (thisTokenN.word != "!") && (thisTokenN.word != "?")){
+                                    tempComplexity.totalCharacters = tempComplexity.totalCharacters+(thisTokenN.CharacterOffsetEnd-thisTokenN.CharacterOffsetBegin);
+                                    tempComplexity.totalWords = tempComplexity.totalWords+1;
+                                  }
+                              });
+
+                             if (sbarFound && ccOrSemiFound){
+                                tempComplexity.compoundComplex = tempComplexity.compoundComplex+1;
+                             }
+                             else if (sbarFound && !ccOrSemiFound){
+                                tempComplexity.complex = tempComplexity.complex+1;
+                             }
+                             else if(!sbarFound && ccOrSemiFound){
+                                tempComplexity.compound = tempComplexity.compound+1;
+                             }
+                             else {
+                                tempComplexity.simple = tempComplexity.simple+1;
+                             }
+
+                          
+
+                        languageComplexityArray.push(tempComplexity);   
+                    }
+
+
+
+                  
+
+           }
+       }
 
         comments.forEach(function(currentComment, commentIndex) {
             coreNLP.process(currentComment.data.body, function(err, result) {
@@ -404,11 +574,15 @@ function createUser(callback) {
                       //console.log(currentComment.data.body);
                   //}
                   storeSentimentForSub(x, currentComment.data.subreddit_id, currentComment.data.subreddit);
+                  getSentenceStructureForSub(x, currentComment.data.subreddit_id, currentComment.data.subreddit);
                   sentenceCounter = sentenceCounter + 1;
                   if (Array.isArray(x.tokens.token)) {
                       x.tokens.token.forEach(function(y, index) {
                           if (index < x.tokens.token.length -1) {
                             getFamilyMembers(y, x.tokens.token[index+1]);
+                          }
+                          if (index < x.tokens.token.length -3) {
+                            getLocNlp(y, x.tokens.token[index+1], x.tokens.token[index+2], x.tokens.token[index+3]);
                           }
                         
                           //checking and counting sentiment if its an adjective
@@ -926,6 +1100,18 @@ function createUser(callback) {
             userData.nEx = negAdEx;
             userData.pEx = posAdEx;
             userData.vpEx = veryPosAdEx;
+            userData.myLocation = locationTemp;
+            
+            if ((maleCount>=femaleCount) && (maleCount!=0)){
+            userData.gender = "male";
+            }
+            if ((maleCount==femaleCount) && (maleCount==0)){
+            userData.gender = "unknown";
+            }
+            if ((maleCount<femaleCount)){
+            userData.gender = "female";
+            }
+
 
             if (adjPerVN)
               userData.vnPer = adjPerVN.toPrecision(3);
@@ -1033,6 +1219,56 @@ function createUser(callback) {
               }
             });
 
+
+
+
+
+            var totalSent = 0;
+            
+            languageComplexityArray.forEach(function(thisone, compIndex){
+                      //console.log("sub: " + thisone.sub);
+                      //console.log("simple: " + thisone.simple);
+                      //console.log("compound: " + thisone.compound);
+                      //console.log("complex: " + thisone.complex);
+                      //console.log("compoundComplex: " + thisone.compoundComplex);
+                      //console.log("totalWords: " + thisone.totalWords);
+                      //console.log("totalCharacters: " + thisone.totalCharacters);
+                      totalSent = thisone.simple + thisone.compound + thisone.complex + thisone.compoundComplex;
+                      thisone.avWordLength = (thisone.totalCharacters/thisone.totalWords);
+                      thisone.weightedSentenceStructureScore = 1*(thisone.simple/totalSent) + 2*(thisone.compound/totalSent) + 3*(thisone.complex/totalSent) + 4*(thisone.compoundComplex/totalSent);
+                      thisone.weightedSentenceStructureScore = thisone.weightedSentenceStructureScore;
+                      
+                      thisone.languageComplexityScore = thisone.weightedSentenceStructureScore+thisone.avWordLength;
+                      thisone.weightedSentenceStructureScore = thisone.weightedSentenceStructureScore.toPrecision(3);
+                      thisone.avWordLength = thisone.avWordLength.toPrecision(3);
+                      thisone.languageComplexityScore = thisone.languageComplexityScore.toPrecision(3); 
+
+
+
+
+
+
+
+
+
+                      if (compIndex == languageComplexityArray.length-1){
+
+
+                        languageComplexityArray.sort(function(a, b) {
+                            return parseFloat(b.languageComplexityScore) - parseFloat(a.languageComplexityScore);
+                        });
+
+                        userData.languageBySub = languageComplexityArray;
+                        }
+
+                      });
+
+
+
+
+
+
+
             
             userData.familyMembers = familyMems;
 
@@ -1101,7 +1337,7 @@ function createUser(callback) {
                         item.negPer = ((item.negativeCount/item.total)*100).toPrecision(3);
                         item.neuPer = ((item.neutralCount/item.total)*100).toPrecision(3);
                         item.posPer = ((item.positiveCount/item.total)*100).toPrecision(3);
-                        item.avSentSent = (item.positiveCount/item.total)*3 + (item.neutralCount/item.total)*2 + (item.negativeCount/item.total)*1;
+                        item.avSentSent = ((item.positiveCount/item.total)*3 + (item.neutralCount/item.total)*2 + (item.negativeCount/item.total)*1).toPrecision(3);
 
                         if (outIndex == subredditSentiment.length-1){
                             if (subredditSentiment.length<=5){

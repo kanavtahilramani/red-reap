@@ -344,14 +344,15 @@ angular.module('redreapApp')
 						} 
 					}
 
-					var subScore = {sub: data2[i].sub, avgScore: Math.round(totalScore/scoreCount)};
+					var subScore = {sub: data2[i].sub, avgScore: (totalScore/scoreCount).toFixed(2)};
 
 					subScoreHolder.push(subScore);
 
 				}
 
 				x.domain(subScoreHolder.map(function(d) { return d.sub; }));
-				y.domain([0, d3.max(subScoreHolder, function(d) { return d.avgScore; })]);
+				y.domain([Math.min(0, d3.min(subScoreHolder, function(d) { return +d.avgScore; })), d3.max(subScoreHolder, function(d) { return +d.avgScore; })]);
+
 
 				var tip = d3.tip()
 				  .attr('class', 'd3-tip')
@@ -371,10 +372,7 @@ angular.module('redreapApp')
 				    .attr("class", "y axis")
 				    .call(yAxis)
 				    .append("text")
-				      .attr("transform", "rotate(-90)")
-				      .attr("y", 6)
-				      .attr("dy", ".71em")
-				      .style("text-anchor", "end");
+				      .attr("transform", "rotate(-90)");
 
 				svg.selectAll("rect")
 				    .data(subScoreHolder)
@@ -382,8 +380,8 @@ angular.module('redreapApp')
 				      .attr("class", "rect")
 				      .attr("x", function(d) { return x(d.sub); })
 				      .attr("width", x.rangeBand())
-				      .attr("y", function(d) { return y(d.avgScore); })
-				      .attr("height", function(d) { return height - y(d.avgScore); })
+				      .attr("y", function(d) { return y(Math.max(0, d.avgScore)); })
+				      .attr("height", function(d) { return Math.abs(y(d.avgScore) - y(0)); })
 				      .style("fill", function(d) { return color; })
 				      .on('mouseover', tip.show)
 					  .on('mouseout', tip.hide);

@@ -105,6 +105,7 @@ html,body
 .jumbotron-special {
   background-color: #282828;
   margin-bottom: 0px;
+  padding-top:1px;
 }
 
 .jumbotron-special::-webkit-scrollbar { 
@@ -159,7 +160,7 @@ p.bottomtext {
   color: #949DA2;
   font-size: 15px;
   margin-top: 20px;
-  margin-left: 70px;
+  margin-left: 50px;
   margin-right: 50px;
 }
 
@@ -167,7 +168,7 @@ p.bottomPrimary {
   color: white;
   font-size: 17px;
   font-style: normal;
-  margin-left: 72px;
+  margin-left: 50px;
   margin-right: 50px;
 }
 
@@ -239,7 +240,7 @@ h1.chart-header {
 }
 
 .jumbotron-content {
-  margin-top: 40px;
+  margin-top: 10px;
   width: 95%;
 }
 
@@ -386,4 +387,23 @@ li
 .row{
     margin-left: 0;
     margin-right: 0;
+}
+
+#side-nav {
+  font-size:15px;
+  margin-left:-17px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color:white;
+  background-color:#d9230f;
+
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.nav>li>a:focus {
+  text-decoration: none;
+  background-color: transparent;
 }

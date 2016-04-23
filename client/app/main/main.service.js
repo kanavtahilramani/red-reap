@@ -1,4 +1,4 @@
-angular.module('mainService', [])
+angular.module('mainService', ['duScroll'])
 
 .factory('User', function($http) {
 	var userData = {};
