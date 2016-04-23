@@ -31,9 +31,11 @@ var config = {
     }
 };
 
-var coreNLP = new NLP.StanfordNLP(config);
+// var coreNLP = new NLP.StanfordNLP(config);
 
 var username, subreddit, progress = 0;
+var total = 0;
+var subComments = [];
 
 getRefresh().then(function(data) {
   reddit.setRefreshToken(data.refresh.toString());
@@ -146,7 +148,7 @@ function createUser(callback) {
     var commentLengths = []; //store lengths of comments
     var commentSubreddits = []; //store subreddits comments are in
 
-
+    
     
 
     function getNLPData (comments, callback) {
@@ -333,11 +335,6 @@ function createUser(callback) {
                 }
             }
         }
-
-
-
-
-
 
       //var subredditSentiment = []; //store sentiment objects, one per subreddit
       var tempSubSentiment;    
@@ -1444,11 +1441,6 @@ export function getSubredditHot (callback) {
   });
 }
 
-/* ======================================================================== */
-/* ======================================================================== */
-/* ===============================NOT USED================================= */
-/* ======================================================================== */
-
 export function getAbout (req, res) {
     reddit('/user/' + req.params.username + '/about/').get().then(function(response) {
     var details = {};
@@ -1460,7 +1452,76 @@ export function getAbout (req, res) {
 }
 
 export function getSubmissionComments (req, res) {
-  reddit('/r/AskReddit/comments/463u73').get().then(function(data) {
-    return res.send(data);
+  var calls = 0;
+  var tester = 0;
+
+  getHottest(req.params.subreddit, function(slice) {
+        slice.get.data.children.forEach(function(submission, submissionIndex) {
+            calls++;
+            reddit('/r/' + submission.data.subreddit + '/comments/' + submission.data.id).get().then(function(data) {
+                parseSubComments(data[1].data.children, function() {
+                    tester++;
+                    calls--;
+                    console.log(tester + '\n'); // tracks how many submissions we're pulling from
+
+                    if (tester === 90) {
+                      console.log("Total comments parsed: " + subComments.length + '\n');
+                      var subbingComments = subComments;
+                      var subDatabase = new Subreddit({subreddit: req.params.subreddit});
+
+                      subbingComments.forEach(function(comment, commentIndex) {
+                          // console.log(commentIndex + '\n' + comment + '\n');
+                          subDatabase.comments.push(comment);
+
+                          if (commentIndex === subbingComments.length-1) {
+                              saveSubreddit(subDatabase, function() {
+                                  return res.send("Saved subreddit in database!");
+                              });
+                          }
+                      });
+                      // return res.send(subComments);
+                    }
+                });
+            }).catch(function(error) {
+              console.log(error);
+            })
+        });
   });
+}
+
+function getHottest (sub, callback) {
+  reddit('/r/' + sub + '/hot').listing({ limit: 100 }).then(function(slice) {
+    // console.log("SLICE LENGTH: " + slice.length);
+    callback(slice);
+  });
+}
+
+function parseSubComments (commentTree, callback) {
+    var submissionComments = [];
+
+    function recurse (comment) {
+        if (comment.data.body) {
+            subComments.push(comment.data.body);
+        }
+
+        if (comment.data.replies) {
+            comment.data.replies.data.children.forEach(function(reply) {
+                recurse(reply);
+            });
+        }
+
+        else {
+          return;
+        }
+    }
+
+    var originalLength = subComments.length;
+
+    commentTree.forEach(function(current, index) {
+        recurse(current);
+        if (index == commentTree.length-1) {
+          console.log("Pushing " + (subComments.length-originalLength) + " comments..\n");
+          callback();
+        }
+    });
 }

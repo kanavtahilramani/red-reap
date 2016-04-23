@@ -17,7 +17,8 @@ var SubredditSchema = new Schema({
 		banner_img: String,
 		lang: String,
 		over18: String
-	}
+	},
+	comments: [String]
 });
 
 module.exports = mongoose.model('Subreddit', SubredditSchema);

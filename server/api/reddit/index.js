@@ -14,5 +14,7 @@ router.get('/:username/allSubmissions', controller.getUserSubmitted);
 router.get('/:username/about', controller.getAbout);
 router.get('/subreddit/:subreddit', controller.checkSubreddit);
 router.get('/progress', controller.getProgress);
+router.get('/hottest/:subreddit', controller.getSubmissionComments);
+// router.get('/testing', controller.getSubmissionComments);
 
 module.exports = router;
