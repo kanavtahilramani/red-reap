@@ -23,7 +23,7 @@ var server = http.createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
 
-server.timeout = 360000;
+server.timeout = 600000;
 
 // Start server
 function startServer() {

@@ -8,21 +8,18 @@ angular.module('redreapApp')
       var current = new Date(),
           creation;
 
-      // if ($routeParams.username) {
-      //     vm.username = $routeParams.username;
+      if ($routeParams.username) {
+          vm.processing = true;
+          vm.username = $routeParams.username;
 
-          // User.getUser(vm.username, function(userData) {
-          //   User.setAge(function() {
-          //         User.setExamples(function() {
-          //           vm.redditUser = userData;
-          //           vm.processing = false;
-          //         });
-          //       });
-          // });
+          User.getUser(vm.username, function() {
+            vm.redditUser = User.getUserData();
+            User.setAge(function() {
+                  User.setExamples(function() {
+                    vm.processing = false;
+                  });
+                });
+          });
   
-      // } else {
-          
-      // }
-
-      vm.redditUser = User.getUserData();
+      }
   });
