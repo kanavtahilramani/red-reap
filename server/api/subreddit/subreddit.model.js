@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var SubredditSchema = new Schema({
 	subreddit: String,
+	subreddit2: String,
 	test: String,
 	genData: {
 		wiki_enabled: String,

@@ -1720,7 +1720,8 @@ export function getSubmissionComments (req, res) {
                     if (tester === 10) {
                       console.log("Total comments parsed: " + subComments.length + '\n');
                       var subbingComments = subComments;
-                      var subDatabase = new Subreddit({subreddit: req.params.subreddit});
+
+                      var subDatabase = new Subreddit({subreddit2: req.params.subreddit});
 
                       subbingComments.forEach(function(comment, commentIndex) {
                           
