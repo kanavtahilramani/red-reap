@@ -1730,6 +1730,8 @@ export function getSubmissionComments (req, res) {
                             coreNLP.process(comment, function(err, resultt) {
                               // console.log("in first line of core");
                                     //comment has more than one sentencet
+
+                                    if (resultt) {
                                     if (Array.isArray(resultt.document.sentences.sentence)) {
                                           resultt.document.sentences.sentence.forEach(function(x) {
                                             foundThemHillary = false;
@@ -1888,6 +1890,7 @@ export function getSubmissionComments (req, res) {
                                         }
 
                                     }
+                                  }
                                     console.log(commentIndex);
                                         //saving comment block on last iteration
                                         if (commentIndex == subbingComments.length-1) {
