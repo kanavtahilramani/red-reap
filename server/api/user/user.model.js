@@ -79,6 +79,38 @@ var UserSchema = new Schema({
 		title: String,
 		permalink: String
 	},
+	topComments: {
+		indices: [Number],
+		content: [String],
+		avgScore: Number,
+		avgLength: Number,
+		avgLinkType: Number,
+		avgLevel: Number
+	},
+	topSubmissions: {
+		indices: [Number],
+		content: [String],
+		avgScore: Number,
+		avgLength: Number,
+		avgLinkType: Number,
+		avgComments: Number
+	},
+	bottomComments: {
+		indices: [Number],
+		content: [String],
+		avgScore: Number,
+		avgLength: Number,
+		avgLinkType: Number,
+		avgLevel: Number
+	},
+	bottomSubmissions: {
+		indices: [Number],
+		content: [String],
+		avgScore: Number,
+		avgLength: Number,
+		avgLinkType: Number,
+		avgComments: Number
+	},
 	karma: {
 		totalCommentScore: Number,
 		totalLinkScore: Number,

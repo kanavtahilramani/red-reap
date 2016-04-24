@@ -95,6 +95,15 @@ function createUser(callback) {
         totalDistinguished = 0,
         totalReplyComments = 0;
 
+    var avgCTopScore = 0,
+        avgCTopLength = 0,
+        avgCTopLinkType = 0,
+        avgCTopLevel = 0,
+        avgCBottomScore = 0,
+        avgCBottomLength = 0,
+        avgCBottomLinkType = 0,
+        avgCBottomLevel = 0;
+
     var currentPostLength = 0,
         totalSubmittedCount = 0,
         totalSubmittednsfw = 0,
@@ -106,6 +115,15 @@ function createUser(callback) {
         totalSubmittedDistinguished = 0,
         totalCommentsOnSubmitted = 0,
         totalSelfPosts = 0;
+
+    var avgSTopScore = 0,
+        avgSTopLength = 0,
+        avgSTopLinkType = 0,
+        avgSTopComments = 0,
+        avgSBottomScore = 0,
+        avgSBottomLength = 0,
+        avgSBottomLinkType = 0,
+        avgSBottomComments = 0;
 
     var submittedSubreddits = []; //store subreddits submissions are in
     var submittedLengths = []; //store lengths of self posts
@@ -1063,6 +1081,87 @@ function createUser(callback) {
           });
         });
 
+        ///////////////////////////////////////////
+        //Get top 5 comments, and their averages
+        ///////////////////////////////////////////
+        var topcommentindices = []; //will hold indexes of userData.comMeta with the top 5 comments
+        var topcommentcontent = []; //will hold content of top comments
+        for (var ij = 0; ij < userData.comMeta.length; ij++)
+        {
+          topcommentindices.push(ij);
+          if (topcommentindices.length > 5)
+          {
+            topcommentindices.sort(function(a, b) {return userData.comMeta[b].score - userData.comMeta[a].score;});
+            topcommentindices.pop();
+          }
+        }
+
+        var Cscoresum = 0,
+            Clengthsum = 0,
+            Clinktypesum = 0,
+            Clevelsum = 0;
+        for (var ijk = 0; ijk < topcommentindices.length; ijk++)
+        {
+          topcommentcontent[ijk] = userComments[topcommentindices[ijk]].data.body;
+          Cscoresum += userData.comMeta[topcommentindices[ijk]].score;
+          Clengthsum += userData.comMeta[topcommentindices[ijk]].length;
+          Clinktypesum += userData.comMeta[topcommentindices[ijk]].linkType;
+          Clevelsum += userData.comMeta[topcommentindices[ijk]].level;
+        }
+
+        avgCTopScore = Math.round(Cscoresum / 5),
+        avgCTopLength = Math.round(Clengthsum / 5),
+        avgCTopLinkType = Math.round(Clinktypesum / 5), //0 means link, 1 means selfpost
+        avgCTopLevel = Math.round(Clevelsum / 5); //0 means reply to OP, 1 means reply to other comment
+
+        userData.topComments.indices = topcommentindices;
+        userData.topComments.content = topcommentcontent;
+        userData.topComments.avgScore = avgCTopScore;
+        userData.topComments.avgLength = avgCTopLength;
+        userData.topComments.avgLinkType = avgCTopLinkType;
+        userData.topComments.avgLevel = avgCTopLevel;
+
+        ///////////////////////////////////////////
+        //Get bottom 5 comments, and their averages
+        ///////////////////////////////////////////
+        var bottomcommentindices = []; //will hold indexes of userData.comMeta with the bottom 5 comments
+        var bottomcommentcontent = []; //will hold content of bottom comments
+        for (var ij = 0; ij < userData.comMeta.length; ij++)
+        {
+          bottomcommentindices.push(ij);
+          if (bottomcommentindices.length > 5)
+          {
+            bottomcommentindices.sort(function(a, b) {return userData.comMeta[a].score - userData.comMeta[b].score;});
+            bottomcommentindices.pop();
+          }
+        }
+
+        var Cscoresum = 0,
+            Clengthsum = 0,
+            Clinktypesum = 0,
+            Clevelsum = 0;
+        for (var ijk = 0; ijk < bottomcommentindices.length; ijk++)
+        {
+          bottomcommentcontent[ijk] = userComments[bottomcommentindices[ijk]].data.body;
+          Cscoresum += userData.comMeta[bottomcommentindices[ijk]].score;
+          Clengthsum += userData.comMeta[bottomcommentindices[ijk]].length;
+          Clinktypesum += userData.comMeta[bottomcommentindices[ijk]].linkType;
+          Clevelsum += userData.comMeta[bottomcommentindices[ijk]].level;
+        }
+
+        avgCBottomScore = Math.round(Cscoresum / 5),
+        avgCBottomLength = Math.round(Clengthsum / 5),
+        avgCBottomLinkType = Math.round(Clinktypesum / 5), //0 means link, 1 means selfpost
+        avgCBottomLevel = Math.round(Clevelsum / 5); //0 means reply to OP, 1 means reply to other comment
+
+        userData.bottomComments.indices = bottomcommentindices;
+        userData.bottomComments.content = bottomcommentcontent;
+        userData.bottomComments.avgScore = avgCBottomScore;
+        userData.bottomComments.avgLength = avgCBottomLength;
+        userData.bottomComments.avgLinkType = avgCBottomLinkType;
+        userData.bottomComments.avgLevel = avgCBottomLevel;
+
+
         getNLPData(userComments, function(youAre) {
           // console.log("Progress: " + progress + '\n');
             progress = 2;
@@ -1416,6 +1515,86 @@ function createUser(callback) {
                         });
                     });
                   });
+
+                  ///////////////////////////////////////////
+                  //Get top 5 submissions, and their averages
+                  ///////////////////////////////////////////
+                  var topsubmissionindices = []; //will hold indexes of userData.comMeta with the top 5 submissions
+                  var topsubmissioncontent = []; //will hold content of top submissions
+                  for (var ij = 0; ij < userData.subMeta.length; ij++)
+                  {
+                    topsubmissionindices.push(ij);
+                    if (topsubmissionindices.length > 5)
+                    {
+                      topsubmissionindices.sort(function(a, b) {return userData.subMeta[b].score - userData.subMeta[a].score;});
+                      topsubmissionindices.pop();
+                    }
+                  }
+
+                  var Sscoresum = 0,
+                      Slengthsum = 0,
+                      Slinktypesum = 0,
+                      Scommentssum = 0;
+                  for (var ijk = 0; ijk < topsubmissionindices.length; ijk++)
+                  {
+                    topsubmissioncontent[ijk] = userSubmitted[topsubmissionindices[ijk]].data.title;
+                    Sscoresum += userData.subMeta[topsubmissionindices[ijk]].score;
+                    Slengthsum += userData.subMeta[topsubmissionindices[ijk]].length;
+                    Slinktypesum += userData.subMeta[topsubmissionindices[ijk]].linkType;
+                    Scommentssum += userData.subMeta[topsubmissionindices[ijk]].comments;
+                  }
+
+                  avgSTopScore = Math.round(Sscoresum / 5);
+                  avgSTopLength = Math.round(Slengthsum / 5); //length is 0 if regular link
+                  avgSTopLinkType = Math.round(Slinktypesum / 5); //0 means link, 1 means selfpost
+                  avgSTopComments = Math.round(Scommentssum / 5);
+
+                  userData.topSubmissions.indices = topsubmissionindices;
+                  userData.topSubmissions.content = topsubmissioncontent;
+                  userData.topSubmissions.avgScore = avgSTopScore;
+                  userData.topSubmissions.avgLength = avgSTopLength;
+                  userData.topSubmissions.avgLinkType = avgSTopLinkType;
+                  userData.topSubmissions.avgComments = avgSTopComments;
+
+                  ///////////////////////////////////////////
+                  //Get bottom 5 submissions, and their averages
+                  ///////////////////////////////////////////
+                  var bottomsubmissionindices = []; //will hold indexes of userData.comMeta with the bottom 5 submissions
+                  var bottomsubmissioncontent = []; //will hold content of bottom submissions
+                  for (var ij = 0; ij < userData.subMeta.length; ij++)
+                  {
+                    bottomsubmissionindices.push(ij);
+                    if (bottomsubmissionindices.length > 5)
+                    {
+                      bottomsubmissionindices.sort(function(a, b) {return userData.subMeta[a].score - userData.subMeta[b].score;});
+                      bottomsubmissionindices.pop();
+                    }
+                  }
+
+                  var Sscoresum = 0,
+                      Slengthsum = 0,
+                      Slinktypesum = 0,
+                      Scommentssum = 0;
+                  for (var ijk = 0; ijk < bottomsubmissionindices.length; ijk++)
+                  {
+                    bottomsubmissioncontent[ijk] = userSubmitted[bottomsubmissionindices[ijk]].data.title;
+                    Sscoresum += userData.subMeta[bottomsubmissionindices[ijk]].score;
+                    Slengthsum += userData.subMeta[bottomsubmissionindices[ijk]].length;
+                    Slinktypesum += userData.subMeta[bottomsubmissionindices[ijk]].linkType;
+                    Scommentssum += userData.subMeta[bottomsubmissionindices[ijk]].comments;
+                  }
+
+                  avgSBottomScore = Math.round(Sscoresum / 5);
+                  avgSBottomLength = Math.round(Slengthsum / 5); //length is 0 if regular link
+                  avgSBottomLinkType = Math.round(Slinktypesum / 5); //0 means link, 1 means selfpost
+                  avgSBottomComments = Math.round(Scommentssum / 5);
+
+                  userData.bottomSubmissions.indices = bottomsubmissionindices;
+                  userData.bottomSubmissions.content = bottomsubmissioncontent;
+                  userData.bottomSubmissions.avgScore = avgSBottomScore;
+                  userData.bottomSubmissions.avgLength = avgSBottomLength;
+                  userData.bottomSubmissions.avgLinkType = avgSBottomLinkType;
+                  userData.bottomSubmissions.avgComments = avgSBottomComments;
 
                   userData.totalSubmitted = totalSubmittedCount;
                   userData.genSubmittedData.submittedTotals.nsfwSubmitted = totalSubmittednsfw;
