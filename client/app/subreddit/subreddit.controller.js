@@ -10,9 +10,12 @@ angular.module('redreapApp')
       	if ($routeParams.subreddit) {
           vm.processing = true;
           Subreddit.getSubreddit($routeParams.subreddit, function() {
-            Subreddit.setAge(function() {
-                vm.subreddit = Subreddit.getSubData();
-                vm.processing = false;
+            Subreddit.getSubreddit2($routeParams.subreddit, function() {
+                Subreddit.setAge(function() {
+                    vm.subreddit = Subreddit.getSubData();
+                    vm.subreddit2 = Subreddit.getSubTwoData();
+                    vm.processing = false;
+                });
             });
           });
       	}

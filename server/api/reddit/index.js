@@ -13,6 +13,7 @@ router.get('/:username/allComments', controller.getUserComments);
 router.get('/:username/allSubmissions', controller.getUserSubmitted);
 router.get('/:username/about', controller.getAbout);
 router.get('/subreddit/:subreddit', controller.checkSubreddit);
+router.get('/subreddit2/:subreddit', controller.getSubredditNLP);
 router.get('/progress', controller.getProgress);
 router.get('/hottest/:subreddit', controller.getSubmissionComments);
 // router.get('/testing', controller.getSubmissionComments);

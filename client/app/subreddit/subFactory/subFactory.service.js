@@ -3,7 +3,7 @@
 angular.module('redreapApp')
   .factory('Subreddit', function ($http) {
     var subredditData = {};
-
+    var subreddit2Data = {};
     return {
       getSubreddit: function (subreddit, callback) {
         $http.get('/api/reddit/subreddit/' + subreddit).then(function(data) {
@@ -14,8 +14,19 @@ angular.module('redreapApp')
             // pre frontend
         });
       },
+      getSubreddit2: function(subreddit, callback) {
+        $http.get('/api/reddit/subreddit2/' + subreddit).then(function(data) {
+            if (data != null) {
+                subreddit2Data = data;
+            }
+            callback();
+        });
+      },
       getSubData: function () {
         return subredditData;
+      },
+      getSubTwoData: function () {
+        return subreddit2Data;
       },
       getSubredditName: function () {
         return subredditData.data.subreddit;

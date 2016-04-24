@@ -1556,6 +1556,13 @@ export function checkSubreddit (req, res) {
   });
 }
 
+// '/api/reddit/subreddit2/:subreddit/'
+export function getSubredditNLP (req, res) {
+    Subreddit.findOne({ 'subreddit2': req.params.subreddit}).then(function(data) {
+        return res.send(data);
+    });
+}
+
 export function getKarmaAndDate (callback) {
   reddit('/user/' + username + '/about/').get().then(function(response) {
     var details = {};
