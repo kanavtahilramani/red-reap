@@ -1,12 +1,15 @@
 'use strict';
 
 angular.module('redreapApp')
-  .directive('donut', function (User) {
+  .directive('donut', function (User, Subreddit) {
     return {
       template: '<div></div>',
       restrict: 'EA',
       link: function (scope, element, attrs) {
         var data = User.getUserData().data;
+        var subData = Subreddit.getSubData().data;
+        var sub2Data = Subreddit.getSubTwoData().data;
+
         var curAction = attrs.action;
         var color = d3.scale.ordinal();
 
@@ -15,7 +18,7 @@ angular.module('redreapApp')
             radius,
             donutWidth;
 
-        if ((curAction == "Comment") || (curAction == "Adjective") || (curAction == "Subreddit"))
+        if ((curAction == "Comment") || (curAction == "Adjective") || (curAction == "Subreddit") || (curAction == "Politics"))
         {
           if (curAction == "Comment")
           {
@@ -71,7 +74,24 @@ angular.module('redreapApp')
 
             color.range(['#1CEAEA','#5D5D5D','#EA1C1C']); 
           }
+          else if (curAction == "Politics")
+          {
+            var curIndex = attrs.curIndex;
 
+            svgWidth  = 360,
+            svgHeight = 400,
+            radius = (Math.min(svgWidth+35, svgHeight) / 2) - 35,
+            donutWidth = 50;
+            
+            /* Positive/Negative of Adjectives */
+            var dataset = [
+              { label: 'Positive', count: sub2Data.trendSent[curIndex].posPerr, enabled: true },
+              { label: 'Neutral', count: sub2Data.trendSent[curIndex].neuPerr, enabled: true }, 
+              { label: 'Negative', count: sub2Data.trendSent[curIndex].negPerr, enabled: true },
+              ];
+            console.log(dataset);
+            color.range(['#1CEAEA','#5D5D5D','#EA1C1C']); 
+          }
           //var color = d3.scale.category10();    
        
           var tip = d3.tip()
@@ -140,7 +160,7 @@ angular.module('redreapApp')
                         .each(function(d) { this._current = d; });
 
           var legend;
-          if ((curAction == "Adjective") || (curAction == "Subreddit"))
+          if ((curAction == "Adjective") || (curAction == "Subreddit") || (curAction == "Politics"))
           {
             if (curAction == "Subreddit")
             { 
@@ -176,7 +196,7 @@ angular.module('redreapApp')
                           .attr("transform", function(d, i) { return "translate(" + (-100 + i * 75) + ", 140)"; });
               }
             }
-            else
+            else if (curAction == "Adjective")
             {
               // if ((data.vpPer >= data.pPer) && (data.vpPer >= data.nPer) && (data.vpPer >= data.vnPer))
               // {  
@@ -217,6 +237,15 @@ angular.module('redreapApp')
                             .append('g')
                           .attr("class", "legend")
                           .attr("transform", function(d, i) { return "translate(" + (-190 + i * 100) + ", 210)"; });
+            }
+            else if (curAction == "Politics")
+            {
+              legend = svg.selectAll('.legend')
+                            .data(color.domain())
+                            .enter()
+                            .append('g')
+                          .attr("class", "legend")
+                          .attr("transform", function(d, i) { return "translate(" + (-120 + i * 100) + ", 175)"; });
             }
           }
 

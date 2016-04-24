@@ -8,7 +8,12 @@ angular.module('redreapApp')
       getSubreddit: function (subreddit, callback) {
         $http.get('/api/reddit/subreddit/' + subreddit).then(function(data) {
             // post backend
-            console.log(data);
+            if (data.data.subreddit == "politics")
+            {            
+              data.data.genData.banner_img = "../../images/PoliticsBanner.png";
+              data.data.genData.header_img = "../../images/PoliticsHeader.png";
+            }
+
             subredditData = data;
             callback();
             // pre frontend
@@ -41,7 +46,7 @@ angular.module('redreapApp')
 
       var accountCreation = {}; /* to be returned */
       var i = 0; /* keeps track of number of units tracked, max two */
-      var registrationTime = new Date(subredditData.data.genData.created_utc);
+      var registrationTime = new Date((subredditData.data.genData.created_utc)*1000);
       var currentTime = new Date(); /* Date object representing current time */
       accountCreation.date = (registrationTime.getMonth() + '/' + registrationTime.getDate() + '/' + registrationTime.getFullYear().toString().substring(2,4));
       var difference = new Date(Math.round((currentTime.getTime()-subredditData.data.genData.created_utc))); /* Date object representing difference between creation and current time */

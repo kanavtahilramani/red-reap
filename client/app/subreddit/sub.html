@@ -20,9 +20,9 @@
 	      		<ul id="side-nav" class="nav nav-pills nav-stacked affix">
 	      			<li du-scrollspy="top"><a href="#top" du-smooth-scroll="top" class="black-anchor">Top</a></li>
 					<li du-scrollspy="jumbo-row"><a href="#jumbo-row" du-smooth-scroll="jumbo-row" class="black-anchor">Subreddit Information</a></li>
-<!-- 					<li du-scrollspy="first-row"><a href="#first-row" du-smooth-scroll="first-row" class="black-anchor">Activity</a></li> -->
-<!-- 					<li du-scrollspy="second-row"><a href="#second-row" du-smooth-scroll="second-row" class="black-anchor">Sentiment</a></li>
-					<li du-scrollspy="third-row"><a href="#third-row" du-smooth-scroll="third-row" class="black-anchor">Language Complexity</a></li>
+					<li du-scrollspy="first-row"><a href="#first-row" du-smooth-scroll="first-row" class="black-anchor">Sentiment Search</a></li>
+<!-- 					<li du-scrollspy="second-row"><a href="#second-row" du-smooth-scroll="second-row" class="black-anchor">Comments</a></li>
+ --><!-- 					<li du-scrollspy="third-row"><a href="#third-row" du-smooth-scroll="third-row" class="black-anchor">Language Complexity</a></li>
 					<li du-scrollspy="fourth-row"><a href="#fourth-row" du-smooth-scroll="fourth-row" class="black-anchor">Popularity</a></li> -->
 				</ul>
 			</nav>
@@ -32,7 +32,7 @@
 						<div class="jumbotron jumbotron-special" style="border-radius: 0px;padding-left:0px;padding-right:0px;">
 							<div style="text-align:center; background:url({{sub.subreddit.data.genData.banner_img}});">
 								<div style="width: 100%; min-height:300px; padding-top:120px; padding-bottom:20px; background:rgba(0,0,0,0.5);">
-									<div ng-if="sub.subreddit.data.genData.header_img" style="width: 120px; height: 100px; background: #181818; overflow: hidden; border-radius: 30px; margin: 0 auto;">
+									<div ng-if="sub.subreddit.data.genData.header_img" style="width: 110px; height: 100px; background: #181818; overflow: hidden; border-radius: 30px; margin: 0 auto;">
 										<div style="width: 100%; height:100%; background:url({{sub.subreddit.data.genData.header_img}})">
 										</div>
 									</div>
@@ -114,11 +114,43 @@
 
 				<hr style="width: 60%;">
 				
-				<div id="first-row" class="row">
+				<div id="first-row" class="row" style="margin-bottom:10px;">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 					  	<div class="contentdisp">
-					  		<h1 class="content-header" align="center">Activity</h1>
-											
+					  		<h1 class="content-header" align="center">Sentiment Search</h1>
+							<div class="row" ng-if="sub.subreddit.data.subreddit == 'politics'">
+								<h3 class="content-subheader" align="center">Presidential Candidates</h3>
+								<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" ng-if="sub.subreddit2.data.trendSent[0]">
+										<div style="margin-top:20px; text-align:center;" class="row">
+											<h3 align="center">{{sub.subreddit2.data.trendSent[0].objSent}}</h3>
+											<h4 align="center">Search Terms: <strong>"{{sub.subreddit2.data.trendSent[0].keywordss[0]}}"</strong><strong ng-repeat="keyword in sub.subreddit2.data.trendSent[0].keywordss track by $index"><strong ng-if="$index > 0">, "{{keyword}}"</strong></strong></h4>
+											<h4 align="center">Sentences mentioned in: <strong>{{sub.subreddit2.data.trendSent[0].mentionedSentences}}</strong></h4>
+											<div style="overflow:auto;">
+												<donut action="Politics" cur-index=0></donut>
+											</div>
+										</div>
+								</div>
+								<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" ng-if="sub.subreddit2.data.trendSent[1]">
+										<div style="margin-top:20px; text-align:center;" class="row">
+											<h3 align="center">{{sub.subreddit2.data.trendSent[1].objSent}}</h3>
+											<h4 align="center">Search Terms: <strong>"{{sub.subreddit2.data.trendSent[1].keywordss[0]}}"</strong><strong ng-repeat="keyword in sub.subreddit2.data.trendSent[1].keywordss track by $index"><strong ng-if="$index > 0">, "{{keyword}}"</strong></strong></h4>
+											<h4 align="center">Sentences mentioned in: <strong>{{sub.subreddit2.data.trendSent[1].mentionedSentences}}</strong></h4>
+											<div style="overflow:auto;">
+												<donut action="Politics" cur-index=1></donut>
+											</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="sub.subreddit2.data.trendSent[2]">
+										<div style="text-align:center;" class="row">
+											<h3 align="center">{{sub.subreddit2.data.trendSent[2].objSent}}</h3>
+											<h4 align="center">Search Terms: <strong>"{{sub.subreddit2.data.trendSent[2].keywordss[0]}}"</strong><strong ng-repeat="keyword in sub.subreddit2.data.trendSent[2].keywordss track by $index"><strong ng-if="$index > 0">, "{{keyword}}"</strong></strong></h4>
+											<h4 align="center">Sentences mentioned in: <strong>{{sub.subreddit2.data.trendSent[2].mentionedSentences}}</strong></h4>
+											<div style="overflow:auto;">
+												<donut action="Politics" cur-index=2></donut>
+											</div>
+										</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
