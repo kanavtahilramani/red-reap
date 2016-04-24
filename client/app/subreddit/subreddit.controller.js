@@ -7,16 +7,18 @@ angular.module('redreapApp')
       	// var current = new Date(),
        //    	creation;
 
-      	// if ($routeParams.subreddit) {
-       //    vm.subreddit = $routeParams.subreddit;
-      	// } else {
-       //    vm.subreddit = User.getSubredditName();
-      	// }
+      	if ($routeParams.subreddit) {
+          vm.processing = true;
+          Subreddit.getSubreddit($routeParams.subreddit, function() {
+            Subreddit.setAge(function() {
+                vm.subreddit = Subreddit.getSubData();
+                vm.processing = false;
+            });
+          });
+      	}
 
       	// Subreddit.getSubreddit(vm.subreddit, function() {
       	// 	return;
       	// });
 
-  		vm.subreddit = Subreddit.getSubData();
-      	vm.processing = false;
   });
