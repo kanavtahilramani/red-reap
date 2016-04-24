@@ -18,7 +18,8 @@ var SubredditSchema = new Schema({
 		lang: String,
 		over18: String
 	},
-	comments: [String]
+	comments: [String],
+	trendSent: [{objSent: String, keywordss: [String], senteneceEx: [String], mentionedSentences: Number, negCountt:Number, neuCountt: Number, posCountt: Number, negPerr: Number, neuPerr:Number, posPerr: Number}]
 });
 
 module.exports = mongoose.model('Subreddit', SubredditSchema);

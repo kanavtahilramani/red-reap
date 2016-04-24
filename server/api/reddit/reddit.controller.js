@@ -1547,6 +1547,7 @@ export function checkSubreddit (req, res) {
         subreddit = req.params.subreddit;
         createSubreddit(function(sub) {
           console.log("\n\nSaving subreddit.\n\n");
+
           saveSubreddit(sub, function() {
             return res.send(sub);
           });
@@ -1687,11 +1688,27 @@ export function getAbout (req, res) {
   });
 }
 
+
+
+
+
+
+
+
+
 export function getSubmissionComments (req, res) {
   var calls = 0;
   var tester = 0;
-
+  var foundThemHillary = false;
+  var foundThemBernie = false;
+  var foundThemTrump = false;
+  var tempTrend = [];
+  var tempObjClinton = {objSent: "Hillary Clinton", keywordss: ["hillary", "clinton"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0};
+  var tempObjSanders = {objSent: "Bernie Sanders", keywordss: ["bernie", "sanders", "bernard"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0};
+  var tempObjTrump = {objSent: "Donald Trump",keywordss: ["donald", "trump"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0};
+  
   getHottest(req.params.subreddit, function(slice) {
+        slice.get.data.children.shift();
         slice.get.data.children.forEach(function(submission, submissionIndex) {
             calls++;
             reddit('/r/' + submission.data.subreddit + '/comments/' + submission.data.id).get().then(function(data) {
@@ -1700,20 +1717,202 @@ export function getSubmissionComments (req, res) {
                     calls--;
                     console.log(tester + '\n'); // tracks how many submissions we're pulling from
 
-                    if (tester === 90) {
+                    if (tester === 10) {
                       console.log("Total comments parsed: " + subComments.length + '\n');
                       var subbingComments = subComments;
                       var subDatabase = new Subreddit({subreddit: req.params.subreddit});
 
                       subbingComments.forEach(function(comment, commentIndex) {
-                          // console.log(commentIndex + '\n' + comment + '\n');
+                          
                           subDatabase.comments.push(comment);
+                          
+                            //running stanford on each comment
+                            coreNLP.process(comment, function(err, resultt) {
+                              // console.log("in first line of core");
+                                    //comment has more than one sentencet
+                                    if (Array.isArray(resultt.document.sentences.sentence)) {
+                                          resultt.document.sentences.sentence.forEach(function(x) {
+                                            foundThemHillary = false;
+                                            foundThemBernie = false;
+                                            foundThemTrump = false;
+                                          //comments.data.subreddit==
+                                          
+                                          //comment is multi sentence multi word
+                                          if (Array.isArray(x.tokens.token)) {
+                                              x.tokens.token.forEach(function(y, index) {
+                                                //if in politics
+                                                if (req.params.subreddit=="politics"){
+                                                    //console.log("we are in politics top check");
+                                                    //if hillary is mentioned
+                                                    tempObjClinton.keywordss.forEach(function(m){
+                                                        if ((y.word.toLowerCase()==m) && (foundThemHillary == false)){
+                                                          foundThemHillary = true;
+                                                            //save sentiment and example
+                                                           
+                                                            if (x.$.sentiment=="Negative"){
+                                                               tempObjClinton.mentionedSentences++;
+                                                                tempObjClinton.negCountt++;
+                                                            }
+                                                            if (x.$.sentiment=="Neutral"){
+                                                               tempObjClinton.mentionedSentences++;
+                                                                tempObjClinton.neuCountt++;
+                                                            }
+                                                            if (x.$.sentiment=="Positive"){
+                                                               tempObjClinton.mentionedSentences++;
+                                                                tempObjClinton.posCountt++;
+                                                            }
+                                                        }
+                                                    });
+                                                    //if bernie is mentioned
+                                                    tempObjSanders.keywordss.forEach(function(m){
+                                                        if ((y.word.toLowerCase()==m) && (foundThemBernie == false)){
+                                                          foundThemBernie = true;
+                                                            //save sentiment and example
+                                                           
+                                                            if (x.$.sentiment=="Negative"){
+                                                                tempObjSanders.mentionedSentences++;
+                                                               tempObjSanders.negCountt++;
+                                                            }
+                                                            if (x.$.sentiment=="Neutral"){
+                                                               tempObjSanders.mentionedSentences++;
+                                                                tempObjSanders.neuCountt++;
+                                                            }
+                                                            if (x.$.sentiment=="Positive"){
+                                                               tempObjSanders.mentionedSentences++;
+                                                                tempObjSanders.posCountt++;
+                                                            }
+                                                        }
+                                                    });
+                                                    //if trump is mentioned
+                                                    tempObjTrump.keywordss.forEach(function(m){
+                                                        if ((y.word.toLowerCase()==m) && (foundThemTrump == false)){
+                                                          foundThemTrump = true;
+                                                            //save sentiment and example
+                                                          
+                                                            if (x.$.sentiment=="Negative"){
+                                                                tempObjTrump.mentionedSentences++;
+                                                                tempObjTrump.negCountt++;
+                                                            }
+                                                            if (x.$.sentiment=="Neutral"){
+                                                                tempObjTrump.mentionedSentences++;
+                                                                tempObjTrump.neuCountt++;
+                                                            }
+                                                            if (x.$.sentiment=="Positive"){
+                                                                tempObjTrump.mentionedSentences++;
+                                                                tempObjTrump.posCountt++;
+                                                            }
+                                                        }
+                                                    });
 
-                          if (commentIndex === subbingComments.length-1) {
-                              saveSubreddit(subDatabase, function() {
-                                  return res.send("Saved subreddit in database!");
-                              });
-                          }
+                                                }
+                                                  
+                                              });
+                                          }
+                                       
+                                      });
+                                    }
+
+                                    //comment is a single sentenece
+                                    else {
+                                       
+                                        //this sentence is multiple words
+                                        if (Array.isArray(resultt.document.sentences.sentence.tokens.token)) {
+                                          resultt.document.sentences.sentence.tokens.token.forEach(function(plk) {
+                                            //if in politics
+                                                if (req.params.subreddit=="politics"){
+                                                  //console.log("we are in politics bottom check");
+                                                    
+                                                    //if hillary is mentioned
+                                                    tempObjClinton.keywordss.forEach(function(m){
+                                                        if (plk.word.toLowerCase()==m){
+                                                            //save sentiment and example
+                                                            
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Negative"){
+                                                              tempObjClinton.mentionedSentences++;
+                                                                tempObjClinton.negCountt++;
+                                                            }
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Neutral"){
+                                                              tempObjClinton.mentionedSentences++;
+                                                               tempObjClinton. neuCountt++;
+                                                            }
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Positive"){
+                                                              tempObjClinton.mentionedSentences++;
+                                                                tempObjClinton.posCountt++;
+                                                            }
+                                                        }
+                                                    });
+                                                    
+                                                    //if bernie is mentioned
+                                                    tempObjSanders.keywordss.forEach(function(m){
+                                                        if (plk.word.toLowerCase()==m){
+                                              
+                                                            //save sentiment and example
+                                                            
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Negative"){
+                                                              tempObjSanders.mentionedSentences++;
+                                                                tempObjSanders.negCountt++;
+                                                            }
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Neutral"){
+                                                              tempObjSanders.mentionedSentences++;
+                                                                tempObjSanders.neuCountt++;
+                                                            }
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Positive"){
+                                                              tempObjSanders.mentionedSentences++;
+                                                                tempObjSanders.posCountt++;
+                                                            }
+                                                        }
+                                                    });
+
+                                                    //if trump is mentioned
+                                                    tempObjTrump.keywordss.forEach(function(m){
+                                                        if (plk.word.toLowerCase()==m){
+                                                       
+                                                            //save sentiment and example
+                                                            
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Negative"){
+                                                              tempObjTrump.mentionedSentences++;
+                                                                tempObjTrump.negCountt++;
+                                                            }
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Neutral"){
+                                                              tempObjTrump.mentionedSentences++;
+                                                                tempObjTrump.neuCountt++;
+                                                            }
+                                                            if (resultt.document.sentences.sentence.$.sentiment=="Positive"){
+                                                              tempObjTrump.mentionedSentences++;
+                                                                tempObjTrump.posCountt++;
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                              });
+                                        }
+
+                                    }
+                                    console.log(commentIndex);
+                                        //saving comment block on last iteration
+                                        if (commentIndex == subbingComments.length-1) {
+                                          console.log("WE FOUND THE END===============================================");
+                                          tempTrend.push(tempObjClinton);
+                                          tempTrend.push(tempObjSanders);
+                                          tempTrend.push(tempObjTrump);
+
+                                          tempTrend.forEach(function(x, xIndex){
+                                              x.negPerr = (100*(x.negCountt/x.mentionedSentences)).toPrecision(3);
+                                              x.neuPerr = (100*(x.neuCountt/x.mentionedSentences)).toPrecision(3);
+                                              x.posPerr = (100*(x.posCountt/x.mentionedSentences)).toPrecision(3);
+
+                                              if (xIndex == tempTrend.length-1){
+                                                subDatabase.trendSent=tempTrend;
+                                                saveSubreddit(subDatabase, function() {
+                                                console.log("WE SAVIN BOYS!!!");
+                                                res.send("Saved subreddit in database!");
+                                                });
+                                              }
+
+                                          });
+                                          
+                                        }
+                          });
                       });
                       // return res.send(subComments);
                     }
@@ -1726,7 +1925,7 @@ export function getSubmissionComments (req, res) {
 }
 
 function getHottest (sub, callback) {
-  reddit('/r/' + sub + '/hot').listing({ limit: 100 }).then(function(slice) {
+  reddit('/r/' + sub + '/hot').listing({ limit: 10 }).then(function(slice) {
     // console.log("SLICE LENGTH: " + slice.length);
     callback(slice);
   });
@@ -1756,7 +1955,7 @@ function parseSubComments (commentTree, callback) {
     commentTree.forEach(function(current, index) {
         recurse(current);
         if (index == commentTree.length-1) {
-          console.log("Pushing " + (subComments.length-originalLength) + " comments..\n");
+          // console.log("Pushing " + (subComments.length-originalLength) + " comments..\n");
           callback();
         }
     });
