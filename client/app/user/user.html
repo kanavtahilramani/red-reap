@@ -22,8 +22,8 @@
 				<li du-scrollspy="jumbo-row"><a href="#jumbo-row" du-smooth-scroll="jumbo-row" class="black-anchor">User Information</a></li>
 				<li du-scrollspy="first-row"><a href="#first-row" du-smooth-scroll="first-row" class="black-anchor">Activity</a></li>
 				<li du-scrollspy="second-row"><a href="#second-row" du-smooth-scroll="second-row" class="black-anchor">Sentiment</a></li>
-				<li du-scrollspy="third-row"><a href="#third-row" du-smooth-scroll="third-row" class="black-anchor">Language Complexity</a></li>
-				<li du-scrollspy="fourth-row"><a href="#fourth-row" du-smooth-scroll="fourth-row" class="black-anchor">Popularity</a></li>
+				<li du-scrollspy="third-row"><a href="#third-row" du-smooth-scroll="third-row" class="black-anchor">Content Rating</a></li>
+				<li du-scrollspy="fourth-row"><a href="#fourth-row" du-smooth-scroll="fourth-row" class="black-anchor">Language Complexity</a></li>
 			</ul>
 		</nav>
 		<div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 nopadding">
@@ -51,11 +51,11 @@
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 					    			<p class="toptext">Gender</p>
-					    			<p class="primary">Male</p>
+					    			<p class="primary">{{user.redditUser.data.gender}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-				    				<p class="toptext">Location</p>
-				    				<p class="primary">Maine, US</p>
+				    				<p class="toptext">Comment / Link Karma</p>
+				    				<p class="primary">{{user.redditUser.data.karma.totalCommentScore}} / {{user.redditUser.data.karma.totalLinkScore}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 					    			<p class="toptext">Total Submissions</p>
@@ -120,6 +120,25 @@
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+3]">
 				           				  		{{user.redditUser.data.descriptions[$index+3]}}
+											</div>
+										</div>
+					  				</div>
+							    </div>
+							    <div ng-if="user.redditUser.data.myLocation.length > 0">
+								    <p class="bottomtext">Locations</p>
+							    	<div style="margin-left: 35px; color: white;" ng-repeat="identifier in user.redditUser.data.myLocation track by $index" ng-if="$index%4==0">
+			  							<div class="row">
+				  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index]">
+				           				  		{{user.redditUser.data.myLocation[$index]}}
+											</div>
+											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+1]">
+				           				  		{{user.redditUser.data.myLocation[$index+1]}}
+											</div>
+											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+2]">
+				           				  		{{user.redditUser.data.myLocation[$index+2]}}
+											</div>
+											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+3]">
+				           				  		{{user.redditUser.data.myLocation[$index+3]}}
 											</div>
 										</div>
 					  				</div>
@@ -255,14 +274,11 @@
 							</div>
 						</div>
 		 -->
-						<div style="text-align:center;" ng-if="user.redditUser.data.karma.totalCommentScore || user.redditUser.data.karma.totalLinkScore">
-							<p class="content-text" style="text=align:left;">This account has <strong style="text-align:right;">{{user.redditUser.data.karma.totalCommentScore}} comment karma </strong> and <strong style="text-align:right;">{{user.redditUser.data.karma.totalLinkScore}} link karma</strong>.</p>
-						</div>
 
 				    	<div class="container" style="width:100%;">
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
-									<h3 class="content-subheader" align="center" style="margin-top:25px;">Timeline<h5 class="content-subheader" align="center">(submissions and comments combined)</h5></h3>
+									<h3 class="content-subheader" align="center">Timeline<h5 class="content-subheader" align="center">(submissions and comments combined)</h5></h3>
 									<div style="overflow:auto;">
 										<line-plot action="Timeline"></line-plot>
 									</div>
@@ -500,6 +516,23 @@
 			<hr style="width: 60%;">
 			<div id="third-row" class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+					<div class="contentdisp" style="overflow:auto;">
+						<h1 class="content-header" align="center">Content Rating</h1>
+						<div class="container" style="width:100%;">
+							<div class="row" ng-if="user.redditUser.data.sentimentBySub.length">
+								<h3 class="content-subheader" align="center">Top 5 Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
+								<div style="text-align:center; width=100%;">
+								<bar-chart action="Popularity"></bar-chart>
+						   <!-- <line-plot action="submissionscore"></line-plot> -->
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr style="width: 60%;">
+			<div id="fourth-row" class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 					<div class="contentdisp">
 						<h1 class="content-header" align="center">Language Complexity</h1>
 						<div class="row" ng-if="user.redditUser.data.sentimentBySub[0]">
@@ -573,23 +606,6 @@
 							 		<h4 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].avWordLength}}</strong></h4>
 							   	</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr style="width: 60%;">
-			<div id="fourth-row" class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
-					<div class="contentdisp" style="overflow:auto;">
-						<h1 class="content-header" align="center">Popularity</h1>
-						<div class="container" style="width:100%;">
-							<div class="row" ng-if="user.redditUser.data.sentimentBySub.length">
-								<h3 class="content-subheader" align="center">Top 5 Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
-								<div style="text-align:center; width=100%;">
-								<bar-chart action="Popularity"></bar-chart>
-						   <!-- <line-plot action="submissionscore"></line-plot> -->
-							</div>
-						</div>
 						</div>
 					</div>
 				</div>
