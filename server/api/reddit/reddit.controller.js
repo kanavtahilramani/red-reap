@@ -1564,8 +1564,15 @@ function createUser(callback) {
                 });
             });
 
-            var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
-            userData.genCommentData.avgCommentLength = Math.round(comLengthSum / commentLengths.length); //store average length
+            if (commentLengths.length > 0)
+            {
+              var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
+              userData.genCommentData.avgCommentLength = Math.round(comLengthSum / commentLengths.length); //store average length
+            }
+            else
+            {
+              userData.genCommentData.avgCommentLength = 0;
+            }
 
             timeBasedData(userComments, function() {
                 // console.log("Progress: " + progress + '\n');
@@ -1806,8 +1813,15 @@ function createUser(callback) {
                   userData.genSubmittedData.submittedTotals.totalSelfPosts = totalSelfPosts;
                   userData.genSubmittedData.submittedTotals.totalLinkPosts = totalSubmittedCount - totalSelfPosts;
 
-                  var subLengthSum = submittedLengths.reduce(function(a, b) { return a + b; });
-                  userData.genSubmittedData.avgSelfPostLength = Math.round(subLengthSum / submittedLengths.length); //store average length
+                  if (submittedLengths.length > 0)
+                  {
+                    var subLengthSum = submittedLengths.reduce(function(a, b) { return a + b; });
+                    userData.genSubmittedData.avgSelfPostLength = Math.round(subLengthSum / submittedLengths.length); //store average length
+                  }
+                  else
+                  {
+                    userData.genSubmittedData.avgSelfPostLength = 0;
+                  }
 
 
                   timeBasedDataSub(userSubmitted, function() {
