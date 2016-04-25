@@ -1262,9 +1262,17 @@ function createUser(callback) {
 
             userData.totalComments = totalCommentCount;
             userData.genCommentData.editingData.totalEditedComments = totalEditedCommentCount;
-            userData.genCommentData.editingData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
-            editedTimes.sort(); //sort lowest to highest
-            userData.genCommentData.editingData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
+            if (totalEditedCommentCount > 0)
+            {
+              userData.genCommentData.editingData.avgEditTime = totalEditedTimeRange / totalEditedCommentCount; //this is in seconds
+              editedTimes.sort(); //sort lowest to highest
+              userData.genCommentData.editingData.medEditTime = editedTimes[Math.floor(editedTimes.length/2)]; //store median time
+            }
+            else
+            {
+              userData.genCommentData.editingData.avgEditTime = 0;
+              userData.genCommentData.editingData.medEditTime = 0;
+            }
             userData.genCommentData.commentTotals.nsfwComments = totalnsfw;
             userData.genCommentData.commentTotals.controversialComments = totalControversial;
             userData.genCommentData.commentTotals.gildedComments = totalCommentsGilded;
