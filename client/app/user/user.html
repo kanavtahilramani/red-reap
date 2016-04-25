@@ -58,48 +58,64 @@
 				    				<p class="primary">{{user.redditUser.data.karma.totalCommentScore}} / {{user.redditUser.data.karma.totalLinkScore}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Submissions</p>
-					    			<p class="primary">{{user.redditUser.data.totalSubmitted}}</p> 
+					    			<p class="toptext">Comments / Submissions</p>
+					    			<p class="primary">{{user.redditUser.data.totalComments}} / {{user.redditUser.data.totalSubmitted}}</p> 
 					    		</div>
 				    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Comments</p>
-					    			<p class="primary">{{user.redditUser.data.totalComments}}</p> 
+					    			<p class="toptext">Avg. Comment Length / Text Post Length</p>
+					    			<p class="primary"text-align="center">{{user.redditUser.data.genCommentData.avgCommentLength}} / {{user.redditUser.data.genSubmittedData.avgSelfPostLength}} characters</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Avg. Comment Length</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.avgCommentLength}}</p>
-					    		</div>
-					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Words</p>
-					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalWords}}</p> 
+					    			<p class="toptext">Total Words in Comments / Text Posts</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalWords}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedWords}}</p> 
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 				    				<p class="toptext">Total Gilded</p>
-				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.gildedComments}}</p>
+				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.gildedComments}} / {{user.redditUser.data.genSubmittedData.submittedTotals.gildedSubmitted}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 				    				<p class="toptext">Total Controversial</p>
-				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.controversialComments}}</p>
+				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.controversialComments}} / {{user.redditUser.data.genSubmittedData.submittedTotals.controversialSubmitted}}</p>
 					    		</div>
 				    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 					    			<p class="toptext">Total NSFW</p>
-					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.nsfwComments}}</p> 
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.nsfwComments}} / {{user.redditUser.data.genSubmittedData.submittedTotals.nsfwSubmitted}}</p> 
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 					    			<p class="toptext">Total Flaired</p>
-					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalFlaired}}</p> 
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalFlaired}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedFlaired}}</p> 
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Edited</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.totalEditedComments}}</p>
+					    			<p class="toptext">Total Gilds Including Multiples</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalGilds}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedGilds}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Avg. Edit Time</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.avgEditTime}}</p>
+					    			<p class="toptext">Total Distinguished</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalDistinguished}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedDistinguished}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Median Edit Time</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.medEditTime}}</p>
+					    			<p class="toptext">Submitted Links / Text Posts</p>
+					    			<p class="primary">{{user.redditUser.data.genSubmittedData.submittedTotals.totalLinkPosts}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSelfPosts}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Replies to Comments / Submissions</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalReplyComments}} / {{user.redditUser.data.genCommentData.commentTotals.totalRegComments}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Edited Comments</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.editingData.totalEditedComments}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Avg. / Median Comment Edit Time</p>
+					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.avgEditTime}} / {{user.redditUser.data.genCommentData.editingData.medEditTime}} s</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Total Comments on Submissions</p>
+					    			<p class="primary">{{user.redditUser.data.genSubmittedData.totalCommentsOnSubmitted}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Avg. Comments on Submission</p>
+					    			<p class="primary" text-align="center">{{user.redditUser.data.genSubmittedData.avgCommentsOnSubmitted}}</p>
 					    		</div>
 					    	</div>
 					    </div>

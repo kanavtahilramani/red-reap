@@ -1179,6 +1179,7 @@ function createUser(callback) {
             userData.genCommentData.commentTotals.totalFlaired = totalFlaired;
             userData.genCommentData.commentTotals.totalDistinguished = totalDistinguished;
             userData.genCommentData.commentTotals.totalReplyComments = totalReplyComments;
+            userData.genCommentData.commentTotals.totalRegComments = totalCommentCount - totalReplyComments;
             userData.availableFrom = earliestComment*1000;
 
             adjPerVN = 100*((adjVN)/(adjVN+adjN+adjP+adjVP));
@@ -1462,7 +1463,7 @@ function createUser(callback) {
             });
 
             var comLengthSum = commentLengths.reduce(function(a, b) { return a + b; });
-            userData.genCommentData.avgCommentLength = comLengthSum / commentLengths.length; //store average length
+            userData.genCommentData.avgCommentLength = Math.round(comLengthSum / commentLengths.length); //store average length
 
             timeBasedData(userComments, function() {
                 // console.log("Progress: " + progress + '\n');
@@ -1605,12 +1606,12 @@ function createUser(callback) {
                   userData.genSubmittedData.submittedTotals.totalSubmittedFlaired = totalSubmittedFlaired;
                   userData.genSubmittedData.submittedTotals.totalSubmittedDistinguished = totalSubmittedDistinguished;
                   userData.genSubmittedData.totalCommentsOnSubmitted = totalCommentsOnSubmitted;
-                  userData.genSubmittedData.avgCommentsOnSubmitted = totalCommentsOnSubmitted / totalSubmittedCount;
+                  userData.genSubmittedData.avgCommentsOnSubmitted = Math.round(totalCommentsOnSubmitted / totalSubmittedCount);
                   userData.genSubmittedData.submittedTotals.totalSelfPosts = totalSelfPosts;
                   userData.genSubmittedData.submittedTotals.totalLinkPosts = totalSubmittedCount - totalSelfPosts;
 
                   var subLengthSum = submittedLengths.reduce(function(a, b) { return a + b; });
-                  userData.genSubmittedData.avgSelfPostLength = subLengthSum / submittedLengths.length; //store average length
+                  userData.genSubmittedData.avgSelfPostLength = Math.round(subLengthSum / submittedLengths.length); //store average length
 
 
                   timeBasedDataSub(userSubmitted, function() {
