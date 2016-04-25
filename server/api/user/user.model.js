@@ -77,7 +77,8 @@ var UserSchema = new Schema({
 		score: Number,
 		subreddit: String,
 		title: String,
-		permalink: String
+		permalink: String,
+		avgComments: Number
 	},
 	topComments: {
 		indices: [Number],
@@ -85,7 +86,8 @@ var UserSchema = new Schema({
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
-		avgLevel: Number
+		avgLevel: Number,
+		avgSentiment: Number
 	},
 	topSubmissions: {
 		indices: [Number],
@@ -93,7 +95,8 @@ var UserSchema = new Schema({
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
-		avgComments: Number
+		avgComments: Number,
+		avgSentiment: Number
 	},
 	bottomComments: {
 		indices: [Number],
@@ -101,7 +104,8 @@ var UserSchema = new Schema({
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
-		avgLevel: Number
+		avgLevel: Number,
+		avgSentiment: Number
 	},
 	bottomSubmissions: {
 		indices: [Number],
@@ -109,7 +113,8 @@ var UserSchema = new Schema({
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
-		avgComments: Number
+		avgComments: Number,
+		avgSentiment: Number
 	},
 	karma: {
 		totalCommentScore: Number,

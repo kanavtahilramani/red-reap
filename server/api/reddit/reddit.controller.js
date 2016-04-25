@@ -99,10 +99,13 @@ function createUser(callback) {
         avgCTopLength = 0,
         avgCTopLinkType = 0,
         avgCTopLevel = 0,
+        avgCTopSentiment = 0,
         avgCBottomScore = 0,
         avgCBottomLength = 0,
         avgCBottomLinkType = 0,
-        avgCBottomLevel = 0;
+        avgCBottomLevel = 0,
+        avgCBottomSentiment;
+
 
     var currentPostLength = 0,
         totalSubmittedCount = 0,
@@ -1086,6 +1089,7 @@ function createUser(callback) {
         ///////////////////////////////////////////
         var topcommentindices = []; //will hold indexes of userData.comMeta with the top 5 comments
         var topcommentcontent = []; //will hold content of top comments
+
         for (var ij = 0; ij < userData.comMeta.length; ij++)
         {
           topcommentindices.push(ij);
@@ -1100,6 +1104,12 @@ function createUser(callback) {
             Clengthsum = 0,
             Clinktypesum = 0,
             Clevelsum = 0;
+
+        var topCtempSentSum = 0,
+            botCtempSentSum = 0,
+            topCcCount = 0,
+            botCcCount = 0;
+
         for (var ijk = 0; ijk < topcommentindices.length; ijk++)
         {
           topcommentcontent[ijk] = userComments[topcommentindices[ijk]].data.body;
@@ -1108,6 +1118,45 @@ function createUser(callback) {
           Clinktypesum += userData.comMeta[topcommentindices[ijk]].linkType;
           Clevelsum += userData.comMeta[topcommentindices[ijk]].level;
         }
+
+        //nlp on comments
+          topcommentcontent.forEach(function(comment, commentIndex) {
+                          
+              
+                      //running stanford on each comment
+                      coreNLP.process(comment, function(err, resultt) {
+                          if (resultt) {
+                              //comment has more than one sentence
+                              if (Array.isArray(resultt.document.sentences.sentence)) {
+                                    resultt.document.sentences.sentence.forEach(function(x) {
+                                      topCcCount++;
+                                    topCtempSentSum = topCtempSentSum + parseInt(x.$.sentimentValue);
+                                 
+                                });
+                              }
+
+                              //comment is a single sentenece
+                              else {
+                                  topCcCount++;
+                                  topCtempSentSum = topCtempSentSum + parseInt(resultt.document.sentences.sentence.$.sentimentValue);
+
+                              }
+                          
+                           
+                          }
+
+                          if (commentIndex == topcommentcontent.length-1){
+
+                            userData.topComments.avgSentiment = (topCtempSentSum/topCcCount).toPrecision(3);
+
+                          
+                          }
+                      });
+
+      });
+
+
+
 
         avgCTopScore = Math.round(Cscoresum / 5),
         avgCTopLength = Math.round(Clengthsum / 5),
@@ -1148,6 +1197,51 @@ function createUser(callback) {
           Clinktypesum += userData.comMeta[bottomcommentindices[ijk]].linkType;
           Clevelsum += userData.comMeta[bottomcommentindices[ijk]].level;
         }
+
+
+
+
+        //nlp on comments
+          bottomcommentcontent.forEach(function(comment, commentIndex) {
+                          
+              
+                      //running stanford on each comment
+                      coreNLP.process(comment, function(err, resultt) {
+                          if (resultt) {
+                              //comment has more than one sentence
+                              if (Array.isArray(resultt.document.sentences.sentence)) {
+                                    resultt.document.sentences.sentence.forEach(function(x) {
+                                      botCcCount++;
+                                    botCtempSentSum = botCtempSentSum + parseInt(x.$.sentimentValue);
+                                 
+                                });
+                              }
+
+                              //comment is a single sentenece
+                              else {
+                                  botCcCount++;
+                                  botCtempSentSum = botCtempSentSum + parseInt(resultt.document.sentences.sentence.$.sentimentValue);
+
+                              }
+                          
+                           
+                          }
+
+                          if (commentIndex == bottomcommentcontent.length-1){
+                          
+
+                            userData.bottomComments.avgSentiment = (botCtempSentSum/botCcCount).toPrecision(3);
+
+                       
+                          }
+                      });
+
+      });
+
+
+
+
+
 
         avgCBottomScore = Math.round(Cscoresum / 5),
         avgCBottomLength = Math.round(Clengthsum / 5),
@@ -1519,6 +1613,12 @@ function createUser(callback) {
                   ///////////////////////////////////////////
                   //Get top 5 submissions, and their averages
                   ///////////////////////////////////////////
+
+                  var topSubSentTemp = 0,
+                      botSubSentTemp = 0,
+                      topScCount = 0,
+                      botScCount = 0;
+
                   var topsubmissionindices = []; //will hold indexes of userData.comMeta with the top 5 submissions
                   var topsubmissioncontent = []; //will hold content of top submissions
                   for (var ij = 0; ij < userData.subMeta.length; ij++)
@@ -1530,6 +1630,10 @@ function createUser(callback) {
                       topsubmissionindices.pop();
                     }
                   }
+
+
+
+
 
                   var Sscoresum = 0,
                       Slengthsum = 0,
@@ -1543,6 +1647,44 @@ function createUser(callback) {
                     Slinktypesum += userData.subMeta[topsubmissionindices[ijk]].linkType;
                     Scommentssum += userData.subMeta[topsubmissionindices[ijk]].comments;
                   }
+
+
+
+                                                      //nlp on comments
+                      topsubmissioncontent.forEach(function(comment, commentIndex) {
+                                      
+                          
+                                  //running stanford on each comment
+                                  coreNLP.process(comment, function(err, resultt) {
+                                      if (resultt) {
+                                          //comment has more than one sentence
+                                          if (Array.isArray(resultt.document.sentences.sentence)) {
+                                                resultt.document.sentences.sentence.forEach(function(x) {
+                                                  topScCount++;
+                                                topSubSentTemp = topSubSentTemp + parseInt(x.$.sentimentValue);
+                                             
+                                            });
+                                          }
+
+                                          //comment is a single sentenece
+                                          else {
+                                             topScCount++;
+                                              topSubSentTemp = topSubSentTemp + parseInt(resultt.document.sentences.sentence.$.sentimentValue);
+
+                                          }
+                                      
+                                       
+                                      }
+
+                                      if (commentIndex == topsubmissioncontent.length-1){
+
+                                        userData.topSubmissions.avgSentiment = (topSubSentTemp/topScCount).toPrecision(3);
+
+                                      
+                                      }
+                                  });
+
+                  });
 
                   avgSTopScore = Math.round(Sscoresum / 5);
                   avgSTopLength = Math.round(Slengthsum / 5); //length is 0 if regular link
@@ -1571,6 +1713,10 @@ function createUser(callback) {
                     }
                   }
 
+
+                    
+
+
                   var Sscoresum = 0,
                       Slengthsum = 0,
                       Slinktypesum = 0,
@@ -1583,6 +1729,48 @@ function createUser(callback) {
                     Slinktypesum += userData.subMeta[bottomsubmissionindices[ijk]].linkType;
                     Scommentssum += userData.subMeta[bottomsubmissionindices[ijk]].comments;
                   }
+
+
+
+                                //nlp on comments
+                      bottomsubmissioncontent.forEach(function(comment, commentIndex) {
+                                      
+                          
+                                  //running stanford on each comment
+                                  coreNLP.process(comment, function(err, resultt) {
+                                      if (resultt) {
+                                          //comment has more than one sentence
+                                          if (Array.isArray(resultt.document.sentences.sentence)) {
+                                                resultt.document.sentences.sentence.forEach(function(x) {
+                                                  botScCount++;
+                                                botSubSentTemp = botSubSentTemp + parseInt(x.$.sentimentValue);
+                                             
+                                            });
+                                          }
+
+                                          //comment is a single sentenece
+                                          else {
+                                             botScCount++;
+                                              botSubSentTemp = botSubSentTemp + parseInt(resultt.document.sentences.sentence.$.sentimentValue);
+
+                                          }
+                                      
+                                       
+                                      }
+
+                                      if (commentIndex == bottomsubmissioncontent.length-1){
+
+                                        userData.bottomSubmissions.avgSentiment = (botSubSentTemp/botScCount).toPrecision(3);
+
+                                      
+                                      }
+                                  });
+
+                  });
+
+
+
+
 
                   avgSBottomScore = Math.round(Sscoresum / 5);
                   avgSBottomLength = Math.round(Slengthsum / 5); //length is 0 if regular link
