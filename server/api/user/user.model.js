@@ -139,6 +139,7 @@ var UserSchema = new Schema({
 			controversialComments: Number,
 			nsfwComments: Number,
 			totalReplyComments: Number,
+			totalRegComments: Number,
 			gildedComments: Number,
 			totalGilds: Number,
 			totalWords: Number,

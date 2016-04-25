@@ -58,48 +58,64 @@
 				    				<p class="primary">{{user.redditUser.data.karma.totalCommentScore}} / {{user.redditUser.data.karma.totalLinkScore}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Submissions</p>
-					    			<p class="primary">{{user.redditUser.data.totalSubmitted}}</p> 
+					    			<p class="toptext">Comments / Submissions</p>
+					    			<p class="primary">{{user.redditUser.data.totalComments}} / {{user.redditUser.data.totalSubmitted}}</p> 
 					    		</div>
 				    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Comments</p>
-					    			<p class="primary">{{user.redditUser.data.totalComments}}</p> 
+					    			<p class="toptext">Avg. Comment / Submission Length</p>
+					    			<p class="primary"text-align="center">{{user.redditUser.data.genCommentData.avgCommentLength}} / {{user.redditUser.data.genSubmittedData.avgSelfPostLength}} characters</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Avg. Comment Length</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.avgCommentLength}}</p>
+					    			<p class="toptext">Words in Comments / Submissions</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalWords}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedWords}}</p> 
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Words</p>
-					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalWords}}</p> 
+				    				<p class="toptext">Gilded</p>
+				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.gildedComments}} / {{user.redditUser.data.genSubmittedData.submittedTotals.gildedSubmitted}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-				    				<p class="toptext">Total Gilded</p>
-				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.gildedComments}}</p>
-					    		</div>
-					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-				    				<p class="toptext">Total Controversial</p>
-				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.controversialComments}}</p>
+				    				<p class="toptext">Controversial</p>
+				    				<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.controversialComments}} / {{user.redditUser.data.genSubmittedData.submittedTotals.controversialSubmitted}}</p>
 					    		</div>
 				    			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total NSFW</p>
-					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.nsfwComments}}</p> 
+					    			<p class="toptext">NSFW</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.nsfwComments}} / {{user.redditUser.data.genSubmittedData.submittedTotals.nsfwSubmitted}}</p> 
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Flaired</p>
-					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalFlaired}}</p> 
+					    			<p class="toptext">Flaired</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalFlaired}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedFlaired}}</p> 
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Total Edited</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.totalEditedComments}}</p>
+					    			<p class="toptext">Gilded with Multiples</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalGilds}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedGilds}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Avg. Edit Time</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.avgEditTime}}</p>
+					    			<p class="toptext">Distinguished</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalDistinguished}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSubmittedDistinguished}}</p>
 					    		</div>
 					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-					    			<p class="toptext">Median Edit Time</p>
-					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.medEditTime}}</p>
+					    			<p class="toptext">Links / Text Posts</p>
+					    			<p class="primary">{{user.redditUser.data.genSubmittedData.submittedTotals.totalLinkPosts}} / {{user.redditUser.data.genSubmittedData.submittedTotals.totalSelfPosts}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Replies to Comments/Submissions</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.commentTotals.totalReplyComments}} / {{user.redditUser.data.genCommentData.commentTotals.totalRegComments}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Edited Comments</p>
+					    			<p class="primary">{{user.redditUser.data.genCommentData.editingData.totalEditedComments}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Avg. / Median Comment Edit Time</p>
+					    			<p class="primary" text-align="center">{{user.redditUser.data.genCommentData.editingData.avgEditTime}} / {{user.redditUser.data.genCommentData.editingData.medEditTime}} s</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Comments on Submissions</p>
+					    			<p class="primary">{{user.redditUser.data.genSubmittedData.totalCommentsOnSubmitted}}</p>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+					    			<p class="toptext">Avg. Comments on Submission</p>
+					    			<p class="primary" text-align="center">{{user.redditUser.data.genSubmittedData.avgCommentsOnSubmitted}}</p>
 					    		</div>
 					    	</div>
 					    </div>
@@ -535,6 +551,12 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 					<div class="contentdisp">
 						<h1 class="content-header" align="center">Language Complexity</h1>
+						<div style="text-align:center;padding-bottom:40px;margin-left:20px;">
+							<span style="font-size:17px"><strong>1: </strong>Simple&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+							<span style="font-size:17px;"><strong>2: </strong>Compound&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+							<span style="font-size:17px;"><strong>3: </strong>Complex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+							<span style="font-size:17px;"><strong>4: </strong>Compound Complex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+						</div>
 						<div class="row" ng-if="user.redditUser.data.sentimentBySub[0]">
 							<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.languageBySub[0]">
 								<h3 class="content-subheader" align="center">Top 5 Subreddits<h5 class="content-subheader" align="center"></h5></h3>
@@ -542,32 +564,32 @@
 							   		<h3 align="center">{{user.redditUser.data.languageBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[0].sub}}">#</a></h3>
 							   		<h4 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[0].languageComplexityScore}}</strong></h4>
 									<h4 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[0].weightedSentenceStructureScore}}</strong></h4>
-							 		<h4 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[0].avWordLength}}</strong></h4>
+							 		<h4 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[0].avWordLength}}</strong></h4>
 							   	</div>
 							   	<div style="margin: 0 auto; text-align:center;"><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[1]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[1].sub}}">#</a></h4>
 										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[1].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[1].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[1].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[1].avWordLength}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[2]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[2].sub}}">#</a></h4>
 										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[2].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[2].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[2].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[2].avWordLength}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[3]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[3].sub}}">#</a></h4>
 										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[3].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[3].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[3].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[3].avWordLength}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[4]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[4].sub}}">#</a></h4>
 										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[4].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[4].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[4].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[4].avWordLength}}</strong></h5>
 									</div>
 								</div>
 							</div>
@@ -576,34 +598,34 @@
 							   	<div style="margin: 0 auto; text-align:center;"><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].sub}}">#</a></h4>
-										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].languageComplexityScore}}</strong></h5>
+										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-5].avWordLength}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4].sub}}">#</a></h4>
-										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4].languageComplexityScore}}</strong></h5>
+										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-4].avWordLength}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-13 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3].sub}}">#</a></h4>
-										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3].languageComplexityScore}}</strong></h5>
+										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-3].avWordLength}}</strong></h5>
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-22 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2]">
 										<h4 align="center">{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2].sub}}">#</a></h4>
-										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2].languageComplexityScore}}</strong></h5>
+										<h5 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2].languageComplexityScore}}</strong></h5>
 										<h5 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2].weightedSentenceStructureScore}}</strong></h5>
-										<h5 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2].avWordLength}}</strong></h5>
+										<h5 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-2].avWordLength}}</strong></h5>
 									</div>
 								</div>
 								<div style="margin: 0 auto; text-align:center;">
 							   		<h3 align="center">{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].sub}}">#</a></h3>
-									<h4 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].languageComplexityScore}}</strong></h4>
+									<h4 align="center">Language Complexity Score: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].languageComplexityScore}}</strong></h4>
 									<h4 align="center">Average Sentence Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].weightedSentenceStructureScore}}</strong></h4>
-							 		<h4 align="center">Average Word Complexity: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].avWordLength}}</strong></h4>
+							 		<h4 align="center">Average Word Length: <strong>{{user.redditUser.data.languageBySub[(user.redditUser.data.languageBySub.length)-1].avWordLength}}</strong></h4>
 							   	</div>
 							</div>
 						</div>
