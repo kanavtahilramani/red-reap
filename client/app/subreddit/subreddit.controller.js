@@ -14,6 +14,7 @@ angular.module('redreapApp')
                 Subreddit.setAge(function() {
                     vm.subreddit = Subreddit.getSubData();
                     vm.subreddit2 = Subreddit.getSubTwoData();
+                    console.log(vm.subreddit2);
                     vm.processing = false;
                 });
             });
