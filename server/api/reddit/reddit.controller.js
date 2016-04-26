@@ -154,6 +154,8 @@ function createUser(callback) {
         subredditSentiment = [],
         languageComplexityArray = [];
 
+    var familyPermalinks = [];
+    var locationPermalinks = [];
     var done = false;
 
     var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -337,7 +339,8 @@ function createUser(callback) {
           }
         }
 
-        function getFamilyMembers (currentWord, nextWord) {
+       
+        function getFamilyMembers (currentWord, nextWord, currentComment) {
             if (currentWord.word == "My" || currentWord.word == "my") {
                 if (nextWord.word=="mom" ||
                     nextWord.word=="Mom" ||
@@ -357,17 +360,20 @@ function createUser(callback) {
                     nextWord.word=="cat" 
                     ) {
                       familyMems.push(nextWord.word);
+                      familyPermalinks.push('https://www.reddit.com/r/' + currentComment.data.subreddit.toString() + "/comments/" + currentComment.data.link_id.toString().replace('t3_','') + "/_/" + currentComment.data.id.toString());
                 }
             }
         }
         
-        function getLocNlp(currentWord, secWord, thirdWord, fourthWord){
+        function getLocNlp(currentWord, secWord, thirdWord, fourthWord, currentComment){
 
             if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "from") && (fourthWord.POS != "DT")){
                 locationTemp.push(fourthWord.word);
+                locationPermalinks.push('https://www.reddit.com/r/' + currentComment.data.subreddit.toString() + "/comments/" + currentComment.data.link_id.toString().replace('t3_','') + "/_/" + currentComment.data.id.toString());
             }
             if ((currentWord.lemma == "I") && (secWord.lemma == "live") && (thirdWord.lemma == "in") && (fourthWord.POS != "DT")){
                 locationTemp.push(fourthWord.word);
+                locationPermalinks.push('https://www.reddit.com/r/' + currentComment.data.subreddit.toString() + "/comments/" + currentComment.data.link_id.toString().replace('t3_','') + "/_/" + currentComment.data.id.toString());
             }
             if ((currentWord.lemma == "I") && (secWord.lemma == "be") && (thirdWord.lemma == "a") && ((fourthWord.lemma != "man") || (fourthWord.lemma != "dude")|| (fourthWord.lemma != "guy")|| (fourthWord.lemma != "male"))){
                 maleCount++;
@@ -600,10 +606,10 @@ function createUser(callback) {
                   if (Array.isArray(x.tokens.token)) {
                       x.tokens.token.forEach(function(y, index) {
                           if (index < x.tokens.token.length -1) {
-                            getFamilyMembers(y, x.tokens.token[index+1]);
+                            getFamilyMembers(y, x.tokens.token[index+1], currentComment);
                           }
                           if (index < x.tokens.token.length -3) {
-                            getLocNlp(y, x.tokens.token[index+1], x.tokens.token[index+2], x.tokens.token[index+3]);
+                            getLocNlp(y, x.tokens.token[index+1], x.tokens.token[index+2], x.tokens.token[index+3], currentComment);
                           }
                         
                           //checking and counting sentiment if its an adjective
@@ -1305,6 +1311,7 @@ function createUser(callback) {
             userData.pEx = posAdEx;
             userData.vpEx = veryPosAdEx;
             userData.myLocation = locationTemp;
+            userData.locPermalinks = locationPermalinks;
             
             if ((maleCount>=femaleCount) && (maleCount!=0)){
             userData.gender = "male";
@@ -1483,7 +1490,8 @@ function createUser(callback) {
 
             
             userData.familyMembers = familyMems;
-
+            userData.famPermalinks = familyPermalinks;
+            
             //filter subredditSentiment to only contain the top 5 most frequently contributed to subreddits
             //sort array then take the top 5, if less than equal to 5 elements take the whole thing
             //selection sort
