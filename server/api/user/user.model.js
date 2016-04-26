@@ -86,7 +86,7 @@ var UserSchema = new Schema({
 		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
-		avgLinkType: Number,
+		avgLinkType: String,
 		avgLevel: Number,
 		avgSentiment: Number
 	},
@@ -96,7 +96,7 @@ var UserSchema = new Schema({
 		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
-		avgLinkType: Number,
+		avgLinkType: String,
 		avgComments: Number,
 		avgSentiment: Number
 	},
@@ -106,7 +106,7 @@ var UserSchema = new Schema({
 		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
-		avgLinkType: Number,
+		avgLinkType: String,
 		avgLevel: Number,
 		avgSentiment: Number
 	},
@@ -116,7 +116,7 @@ var UserSchema = new Schema({
 		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
-		avgLinkType: Number,
+		avgLinkType: String,
 		avgComments: Number,
 		avgSentiment: Number
 	},

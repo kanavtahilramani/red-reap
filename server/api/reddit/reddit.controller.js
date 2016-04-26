@@ -1189,7 +1189,10 @@ function createUser(callback) {
         userData.topComments.permalinks = topcommentlinks;
         userData.topComments.avgScore = avgCTopScore;
         userData.topComments.avgLength = avgCTopLength;
-        userData.topComments.avgLinkType = avgCTopLinkType;
+        if (avgCTopLinkType == 0)
+          userData.topComments.avgLinkType = "Link";
+        else
+          userData.topComments.avgLinkType = "Text";
         userData.topComments.avgLevel = avgCTopLevel;
 
         ///////////////////////////////////////////
@@ -1278,7 +1281,10 @@ function createUser(callback) {
         userData.bottomComments.permalinks = bottomcommentlinks;
         userData.bottomComments.avgScore = avgCBottomScore;
         userData.bottomComments.avgLength = avgCBottomLength;
-        userData.bottomComments.avgLinkType = avgCBottomLinkType;
+        if (avgCBottomLinkType == 0)
+          userData.bottomComments.avgLinkType = "Link";
+        else
+          userData.bottomComments.avgLinkType = "Text";
         userData.bottomComments.avgLevel = avgCBottomLevel;
 
 
@@ -1757,7 +1763,10 @@ function createUser(callback) {
                   userData.topSubmissions.permalinks = topsubmissionlinks;
                   userData.topSubmissions.avgScore = avgSTopScore;
                   userData.topSubmissions.avgLength = avgSTopLength;
-                  userData.topSubmissions.avgLinkType = avgSTopLinkType;
+                  if (avgSTopLinkType == 0)
+                    userData.topSubmissions.avgLinkType = "Link";
+                  else
+                    userData.topSubmissions.avgLinkType = "Text";
                   userData.topSubmissions.avgComments = avgSTopComments;
 
                   ///////////////////////////////////////////
@@ -1847,7 +1856,10 @@ function createUser(callback) {
                   userData.bottomSubmissions.permalinks = bottomsubmissionlinks;
                   userData.bottomSubmissions.avgScore = avgSBottomScore;
                   userData.bottomSubmissions.avgLength = avgSBottomLength;
-                  userData.bottomSubmissions.avgLinkType = avgSBottomLinkType;
+                  if (avgSBottomLinkType == 0)
+                    userData.bottomSubmissions.avgLinkType = "Link";
+                  else
+                    userData.bottomSubmissions.avgLinkType = "Text";
                   userData.bottomSubmissions.avgComments = avgSBottomComments;
 
                   userData.totalSubmitted = totalSubmittedCount;
