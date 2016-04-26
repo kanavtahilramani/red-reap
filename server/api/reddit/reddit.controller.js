@@ -1984,7 +1984,10 @@ export function checkSubreddit (req, res) {
 // '/api/reddit/subreddit2/:subreddit/'
 export function getSubredditNLP (req, res) {
     Subreddit.findOne({ 'subreddit2': req.params.subreddit}).then(function(data) {
-        return res.send(data);
+        if (data != null)
+          return res.send(data);
+        else
+          getSubmissionComments(req, res);
     });
 }
 
@@ -2133,6 +2136,14 @@ export function getSubmissionComments (req, res) {
   var tester = 0;
   var foundThemHillary = false;
   var foundThemBernie = false;
+  var totalSentimentNeutral = 0;
+  var totalSentimentNegative = 0;
+  var totalSentimentPositive = 0;
+  var totalSentimentSentenceCount = 0;
+  var totalNeutralPercentage = 0;
+  var totalNegativePercentage = 0;
+  var totalPositivePercentage = 0;
+  var totalAverageSentiment = 0;
   var foundThemTrump = false;
   var tempTrend = [];
   var tempObjClinton = {objSent: "Hillary Clinton", keywordss: ["hillary", "clinton"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0};
@@ -2144,12 +2155,19 @@ export function getSubmissionComments (req, res) {
         slice.get.data.children.forEach(function(submission, submissionIndex) {
             calls++;
             reddit('/r/' + submission.data.subreddit + '/comments/' + submission.data.id).get().then(function(data) {
+              // console.log("Tree Length: " + data[1].data.children.length + '\n');
+              // if (submission.data.id == "4gk2vs") {
+              //   console.log("Length!: " + data[1].data.children.length + '\n');
+              //   return res.send(data);
+              // }
+              if (data[1].data.children.length > 0) {
+                console.log("Submission: " + submission.data.id + '\n');
                 parseSubComments(data[1].data.children, function() {
                     tester++;
                     calls--;
                     console.log(tester + '\n'); // tracks how many submissions we're pulling from
 
-                    if (tester === 10) {
+                    if (tester === slice.get.data.children.length) {
                       console.log("Total comments parsed: " + subComments.length + '\n');
                       var subbingComments = subComments;
 
@@ -2167,6 +2185,22 @@ export function getSubmissionComments (req, res) {
                                     if (resultt) {
                                     if (Array.isArray(resultt.document.sentences.sentence)) {
                                           resultt.document.sentences.sentence.forEach(function(x) {
+                                            //save general sentiment of sentence
+
+                                          if (x.$.sentiment=="Negative"){
+                                             totalSentimentSentenceCount++;
+                                             totalSentimentNegative++;
+                                          }
+                                          if (x.$.sentiment=="Neutral"){
+                                             totalSentimentSentenceCount++;
+                                             totalSentimentNeutral++;
+                                          }
+                                          if (x.$.sentiment=="Positive"){
+                                             totalSentimentSentenceCount++;
+                                             totalSentimentPositive++;
+                                          }
+
+
                                             foundThemHillary = false;
                                             foundThemBernie = false;
                                             foundThemTrump = false;
@@ -2249,7 +2283,21 @@ export function getSubmissionComments (req, res) {
 
                                     //comment is a single sentenece
                                     else {
-                                       
+                                        
+
+                                        if (resultt.document.sentences.sentence.$.sentiment=="Negative"){
+                                           totalSentimentSentenceCount++;
+                                           totalSentimentNegative++;
+                                        }
+                                        if (resultt.document.sentences.sentence.$.sentiment=="Neutral"){
+                                           totalSentimentSentenceCount++;
+                                           totalSentimentNeutral++;
+                                        }
+                                        if (resultt.document.sentences.sentence.$.sentiment=="Positive"){
+                                           totalSentimentSentenceCount++;
+                                           totalSentimentPositive++;
+                                        }
+
                                         //this sentence is multiple words
                                         if (Array.isArray(resultt.document.sentences.sentence.tokens.token)) {
                                           resultt.document.sentences.sentence.tokens.token.forEach(function(plk) {
@@ -2328,9 +2376,23 @@ export function getSubmissionComments (req, res) {
                                         //saving comment block on last iteration
                                         if (commentIndex == subbingComments.length-1) {
                                           console.log("WE FOUND THE END===============================================");
+
+                                          totalNegativePercentage = (totalSentimentNegative/totalSentimentSentenceCount).toPrecision(3);
+                                          totalNeutralPercentage = (totalSentimentNeutral/totalSentimentSentenceCount).toPrecision(3);
+                                          totalPositivePercentage = (totalSentimentPositive/totalSentimentSentenceCount).toPrecision(3);
+                                          totalAverageSentiment = ((totalNegativePercentage*1)+ (totalNeutralPercentage*2) + (totalPositivePercentage*3)).toPrecision(3);
+
+                                          subDatabase.negativePer = totalNegativePercentage;
+                                          subDatabase.neutralPer = totalNeutralPercentage;
+                                          subDatabase.positivePer = totalPositivePercentage;
+                                          subDatabase.weightedSentiment = totalAverageSentiment;
+
+                                          if (req.params.subreddit=="politics"){
+
                                           tempTrend.push(tempObjClinton);
                                           tempTrend.push(tempObjSanders);
                                           tempTrend.push(tempObjTrump);
+
 
                                           tempTrend.forEach(function(x, xIndex){
                                               x.negPerr = (100*(x.negCountt/x.mentionedSentences)).toPrecision(3);
@@ -2345,14 +2407,32 @@ export function getSubmissionComments (req, res) {
                                                 });
                                               }
 
+
+
+
+
                                           });
-                                          
+                                          }
+
+                                          else {
+
+                                        saveSubreddit(subDatabase, function() {
+                                                console.log("NOT POLITICS BUT STILL SAVIN!!!");
+                                                res.send("Saved subreddit in database!");
+                                                });
+                                        }
+
+
                                         }
                           });
                       });
                       // return res.send(subComments);
                     }
                 });
+              }
+              else {
+                tester++;
+              }
             }).catch(function(error) {
               console.log(error);
             })
@@ -2361,7 +2441,7 @@ export function getSubmissionComments (req, res) {
 }
 
 function getHottest (sub, callback) {
-  reddit('/r/' + sub + '/hot').listing({ limit: 10 }).then(function(slice) {
+  reddit('/r/' + sub + '/hot').listing({ limit: 9 }).then(function(slice) {
     // console.log("SLICE LENGTH: " + slice.length);
     callback(slice);
   });
@@ -2391,7 +2471,6 @@ function parseSubComments (commentTree, callback) {
     commentTree.forEach(function(current, index) {
         recurse(current);
         if (index == commentTree.length-1) {
-          // console.log("Pushing " + (subComments.length-originalLength) + " comments..\n");
           callback();
         }
     });
