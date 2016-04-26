@@ -126,16 +126,16 @@
 							    	<div style="margin-left: 35px; color: white;" ng-repeat="identifier in user.redditUser.data.descriptions track by $index" ng-if="$index%4==0">
 			  							<div class="row">
 				  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index]">
-				           				  		{{user.redditUser.data.descriptions[$index]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.descriptionsPermalinks[$index]}}">{{user.redditUser.data.descriptions[$index]}}
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+1]">
-				           				  		{{user.redditUser.data.descriptions[$index+1]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.descriptionsPermalinks[$index+1]}}">{{user.redditUser.data.descriptions[$index+1]}}
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+2]">
-				           				  		{{user.redditUser.data.descriptions[$index+2]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.descriptionsPermalinks[$index+2]}}">{{user.redditUser.data.descriptions[$index+2]}}
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+3]">
-				           				  		{{user.redditUser.data.descriptions[$index+3]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.descriptionsPermalinks[$index+3]}}">{{user.redditUser.data.descriptions[$index+3]}}
 											</div>
 										</div>
 					  				</div>
@@ -145,16 +145,16 @@
 							    	<div style="margin-left: 35px; color: white;" ng-repeat="identifier in user.redditUser.data.myLocation track by $index" ng-if="$index%4==0">
 			  							<div class="row">
 				  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index]">
-				           				  		{{user.redditUser.data.myLocation[$index]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.locPermalinks[$index]}}">{{user.redditUser.data.myLocation[$index]}}</a>
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+1]">
-				           				  		{{user.redditUser.data.myLocation[$index+1]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.locPermalinks[$index+1]}}">{{user.redditUser.data.myLocation[$index+1]}}</a>
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+2]">
-				           				  		{{user.redditUser.data.myLocation[$index+2]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.locPermalinks[$index+2]}}">{{user.redditUser.data.myLocation[$index+2]}}</a>
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.descriptions[$index+3]">
-				           				  		{{user.redditUser.data.myLocation[$index+3]}}
+				           				  		<a class="white-anchor" href="{{user.redditUser.data.locPermalinks[$index+3]}}">{{user.redditUser.data.myLocation[$index+3]}}</a>
 											</div>
 										</div>
 					  				</div>
@@ -164,16 +164,16 @@
 							    		<div style="margin-left: 35px; color: white;" ng-repeat="identifier in user.redditUser.data.familyMembers track by $index" ng-if="$index%4==0">
 				  							<div class="row">
 					  							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index]">
-					           				  		{{user.redditUser.data.familyMembers[$index]}}
+					           				  		<a class="white-anchor" href="{{user.redditUser.data.famPermalinks[$index]}}">{{user.redditUser.data.familyMembers[$index]}}</a>
 												</div>
 												<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index+1]">
-					           				  		{{user.redditUser.data.familyMembers[$index+1]}}
+					           				  		<a class="white-anchor" href="{{user.redditUser.data.famPermalinks[$index+1]}}">{{user.redditUser.data.familyMembers[$index+1]}}</a>
 												</div>
 												<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index+2]">
-					           				  		{{user.redditUser.data.familyMembers[$index+2]}}
+					           				  		<a class="white-anchor" href="{{user.redditUser.data.famPermalinks[$index+2]}}">{{user.redditUser.data.familyMembers[$index+2]}}</a>
 												</div>
 												<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="font-size: 17px; margin-bottom:10px;" ng-if="user.redditUser.data.familyMembers[$index+3]">
-					           				  		{{user.redditUser.data.familyMembers[$index+3]}}
+					           				  		<a class="white-anchor" href="{{user.redditUser.data.famPermalinks[$index+3]}}">{{user.redditUser.data.familyMembers[$index+3]}}</a>
 												</div>
 											</div>
 					  				</div>
@@ -349,7 +349,7 @@
 
 							   	<div style="margin: 0 auto; text-align:center;overflow:auto;">
 							   		<h3 align="center">{{user.redditUser.data.sentimentBySub[0].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[0].sub}}">#</a></h3>
-									<div style="margin-top:-35px;overflow:auto;">
+									<div style="margin-top:-15px;overflow:auto;">
 										<donut action="Subreddit" cur-index=0></donut>
 									</div>
 									<h4 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[0].avSentSent}}</strong></h4>
@@ -358,7 +358,7 @@
 							   	<div style="margin: 0 auto; text-align:center;overflow:auto;"><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[1]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[1].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[1].sub}}">#</a></h4>
-										<div style="margin-top:-35px;">
+										<div style="margin-top:-15px">
 											<donut action="Subreddit" cur-index=1></donut>
 										</div>
 										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[1].avSentSent}}</strong></h5>
@@ -366,7 +366,7 @@
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[2]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[2].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[2].sub}}">#</a></h4>
-										<div style="margin-top:-35px;">
+										<div style="margin-top:-15px">
 											<donut action="Subreddit" cur-index=2></donut>
 										</div>
 										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[2].avSentSent}}</strong></h5>
@@ -374,7 +374,7 @@
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[3]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[3].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[3].sub}}">#</a></h4>
-										<div style="margin-top:-35px;">
+										<div style="margin-top:-15px">
 											<donut action="Subreddit" cur-index=3></donut>
 										</div>
 										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[3].avSentSent}}</strong></h5>
@@ -382,7 +382,7 @@
 									</div><!--
 								--><div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 vcenter" style="margin-top:30px;" ng-if="user.redditUser.data.sentimentBySub[4]">
 										<h4 align="center">{{user.redditUser.data.sentimentBySub[4].sub}}<a href="http://reddit.com/r/{{user.redditUser.data.sentimentBySub[4].sub}}">#</a></h4>
-										<div style="margin-top:-35px;">
+										<div style="margin-top:-15px">
 											<donut action="Subreddit" cur-index=4></donut>
 										</div>
 										<h5 align="center">Average Sentiment: <strong>{{user.redditUser.data.sentimentBySub[4].avSentSent}}</strong></h5>
@@ -488,10 +488,10 @@
 						           				  		{{user.redditUser.data.nEx[$index+3].adjective}}
 													</div>
 													<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-						           				  		{{user.redditUser.data.nEx[$index].adjective}}
+						           				  		{{user.redditUser.data.nEx[$index+4].adjective}}
 													</div>
 													<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-						           				  		{{user.redditUser.data.nEx[$index+1].adjective}}
+						           				  		{{user.redditUser.data.nEx[$index+5].adjective}}
 													</div>
 												</div>
 							  				</div>
@@ -515,10 +515,10 @@
 						           				  		{{user.redditUser.data.vnEx[$index+3].adjective}}
 													</div>
 													<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-						           				  		{{user.redditUser.data.vnEx[$index].adjective}}
+						           				  		{{user.redditUser.data.vnEx[$index+4].adjective}}
 													</div>
 													<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="font-size: 12px;">
-						           				  		{{user.redditUser.data.vnEx[$index+1].adjective}}
+						           				  		{{user.redditUser.data.vnEx[$index+5].adjective}}
 													</div>
 												</div>
 							  				</div>
@@ -536,6 +536,89 @@
 			<hr style="width: 60%;">
 			<div id="third-row" class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+					<div class="contentdisp">
+						<h1 class="content-header" align="center">Content Rating</h1>
+						<div style="font-size:17px;padding-bottom:10px;text-align:center;"><strong>Comment Level</strong></div>
+						<div style="text-align:center;padding-bottom:40px;margin-left:50px;">
+							<span style="font-size:17px"><strong>0: </strong>Reply to Post&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+							<span style="font-size:17px;"><strong>1: </strong>Reply to Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+						</div>
+						<div class="container" style="width:100%;">
+							<div class="row" ng-if="user.redditUser.data.sentimentBySub.length">
+								<h3 class="content-subheader" align="center">Top 5 Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
+								<div style="text-align:center; width=100%; overflow:auto;">
+								<bar-chart action="Popularity"></bar-chart>
+								</div>
+							</div>
+						</div>
+						<div class="row" ng-if="user.redditUser.data.topSubmissions" style="padding-bottom:50px;padding-top:20px;">
+							<h3 class="content-subheader" align="center">Submissions</h3>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-if="user.redditUser.data.topSubmissions" style="padding-top:20px;">
+								<div style="text-align:center; width=100%;">
+									<h4 align="center" style="font-size:20px;"><strong>Top 5</strong></h4>
+									<div style="font-size:17px" style="text-align:center;"><a ng-if="user.redditUser.data.topSubmissions.permalinks[0]" href="{{user.redditUser.data.topSubmissions.permalinks[0]}}">[1]</a> <a ng-if="user.redditUser.data.topSubmissions.permalinks[1]" href="{{user.redditUser.data.topSubmissions.permalinks[1]}}">[2]</a> <a ng-if="user.redditUser.data.topSubmissions.permalinks[2]" href="{{user.redditUser.data.topSubmissions.permalinks[2]}}">[3]</a> <a ng-if="user.redditUser.data.topSubmissions.permalinks[3]" href="{{user.redditUser.data.topSubmissions.permalinks[3]}}">[4]</a> <a ng-if="user.redditUser.data.topSubmissions.permalinks[4]" href="{{user.redditUser.data.topSubmissions.permalinks[4]}}">[5]</a>
+									</div>
+									<div style="margin: 0 auto; text-align:center;">
+								   		<h4 align="center">Average Sentiment: <strong>{{user.redditUser.data.topSubmissions.avgSentiment}}</strong></h4>
+										<h4 align="center">Average Score: <strong>{{user.redditUser.data.topSubmissions.avgScore}}</strong></h4>
+										<h4 align="center">Average # of Comments: <strong>{{user.redditUser.data.topSubmissions.avgComments}}</strong></h4>
+								 		<h4 align="center">Average Length: <strong>{{user.redditUser.data.topSubmissions.avgLength}}</strong></h4>
+								 		<h4 align="center">Average Type of Post: <strong>{{user.redditUser.data.topSubmissions.avgLinkType}}</strong></h4>
+								   	</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-if="user.redditUser.data.bottomSubmissions" style="padding-top:20px;">
+								<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.bottomSubmissions">
+									<h4 align="center" style="font-size:20px;"><strong>Bottom 5</strong></h4>
+									<div style="font-size:17px" style="text-align:center;"><a ng-if="user.redditUser.data.bottomSubmissions.permalinks[0]" href="{{user.redditUser.data.bottomSubmissions.permalinks[0]}}">[1]</a> <a ng-if="user.redditUser.data.bottomSubmissions.permalinks[1]" href="{{user.redditUser.data.bottomSubmissions.permalinks[1]}}">[2]</a> <a ng-if="user.redditUser.data.bottomSubmissions.permalinks[2]" href="{{user.redditUser.data.bottomSubmissions.permalinks[2]}}">[3]</a> <a ng-if="user.redditUser.data.bottomSubmissions.permalinks[3]" href="{{user.redditUser.data.bottomSubmissions.permalinks[3]}}">[4]</a> <a ng-if="user.redditUser.data.bottomSubmissions.permalinks[4]" href="{{user.redditUser.data.bottomSubmissions.permalinks[4]}}">[5]</a>
+									</div>
+									<div style="margin: 0 auto; text-align:center;">
+								   		<h4 align="center">Average Sentiment: <strong>{{user.redditUser.data.bottomSubmissions.avgSentiment}}</strong></h4>
+										<h4 align="center">Average Score: <strong>{{user.redditUser.data.bottomSubmissions.avgScore}}</strong></h4>
+										<h4 align="center">Average # of Comments: <strong>{{user.redditUser.data.bottomSubmissions.avgComments}}</strong></h4>
+								 		<h4 align="center">Average Length: <strong>{{user.redditUser.data.bottomSubmissions.avgLength}}</strong></h4>
+								 		<h4 align="center">Average Type of Post: <strong>{{user.redditUser.data.bottomSubmissions.avgLinkType}}</strong></h4>
+								   	</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" ng-if="user.redditUser.data.topComments" style="padding-bottom:50px;">
+							<h3 class="content-subheader" align="center">Comments</h3>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-if="user.redditUser.data.topComments" style="padding-top:20px;">
+								<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.topComments">
+									<h4 align="center" style="font-size:20px;"><strong>Top 5</strong></h4>
+									<div style="font-size:17px" style="text-align:center;"><a ng-if="user.redditUser.data.topComments.permalinks[0]" href="{{user.redditUser.data.topComments.permalinks[0]}}">[1]</a> <a ng-if="user.redditUser.data.topComments.permalinks[1]" href="{{user.redditUser.data.topComments.permalinks[1]}}">[2]</a> <a ng-if="user.redditUser.data.topComments.permalinks[2]" href="{{user.redditUser.data.topComments.permalinks[2]}}">[3]</a> <a ng-if="user.redditUser.data.topComments.permalinks[3]" href="{{user.redditUser.data.topComments.permalinks[3]}}">[4]</a> <a ng-if="user.redditUser.data.topComments.permalinks[4]" href="{{user.redditUser.data.topComments.permalinks[4]}}">[5]</a>
+									</div>
+									<div style="margin: 0 auto; text-align:center;">
+								   		<h4 align="center">Average Sentiment: <strong>{{user.redditUser.data.topComments.avgSentiment}}</strong></h4>
+										<h4 align="center">Average Score: <strong>{{user.redditUser.data.topComments.avgScore}}</strong></h4>
+										<h4 align="center">Average Level: <strong>{{user.redditUser.data.topComments.avgLevel}}</strong></h4>
+								 		<h4 align="center">Average Length: <strong>{{user.redditUser.data.topComments.avgLength}}</strong></h4>
+								 		<h4 align="center">Average Type of Post: <strong>{{user.redditUser.data.topComments.avgLinkType}}</strong></h4>
+								   	</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-if="user.redditUser.data.bottomComments" style="padding-top:20px;">
+								<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.bottomComments">
+									<h4 align="center" style="font-size:20px;"><strong>Bottom 5</strong></h4>
+									<div style="font-size:17px" style="text-align:center;"><a ng-if="user.redditUser.data.bottomComments.permalinks[0]" href="{{user.redditUser.data.bottomComments.permalinks[0]}}">[1]</a> <a ng-if="user.redditUser.data.bottomComments.permalinks[1]" href="{{user.redditUser.data.bottomComments.permalinks[1]}}">[2]</a> <a ng-if="user.redditUser.data.bottomComments.permalinks[2]" href="{{user.redditUser.data.bottomComments.permalinks[2]}}">[3]</a> <a ng-if="user.redditUser.data.bottomComments.permalinks[3]" href="{{user.redditUser.data.bottomComments.permalinks[3]}}">[4]</a> <a ng-if="user.redditUser.data.bottomComments.permalinks[4]" href="{{user.redditUser.data.bottomComments.permalinks[4]}}">[5]</a>
+									</div>
+									<div style="margin: 0 auto; text-align:center;">
+								   		<h4 align="center">Average Sentiment: <strong>{{user.redditUser.data.bottomComments.avgSentiment}}</strong></h4>
+										<h4 align="center">Average Score: <strong>{{user.redditUser.data.bottomComments.avgScore}}</strong></h4>
+										<h4 align="center">Average Level: <strong>{{user.redditUser.data.bottomComments.avgLevel}}</strong></h4>
+								 		<h4 align="center">Average Length: <strong>{{user.redditUser.data.bottomComments.avgLength}}</strong></h4>
+								 		<h4 align="center">Average Type of Post: <strong>{{user.redditUser.data.bottomComments.avgLinkType}}</strong></h4>
+								   	</div>								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 			<hr style="width: 60%;">
+			<div id="fourth-row" class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 					<div class="contentdisp" style="overflow:auto;">
 						<h1 class="content-header" align="center">Content Rating</h1>
 						<div class="container" style="width:100%;">
@@ -543,13 +626,12 @@
 								<h3 class="content-subheader" align="center">Top 5 Subreddit Average Scores<h5 class="content-subheader" align="center"></h5></h3>
 								<div style="text-align:center; width=100%;">
 								<bar-chart action="Popularity"></bar-chart>
-						   <!-- <line-plot action="submissionscore"></line-plot> -->
+								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<hr style="width: 60%;">
 			<div id="fourth-row" class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
@@ -561,7 +643,7 @@
 							<span style="font-size:17px;"><strong>3: </strong>Complex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
 							<span style="font-size:17px;"><strong>4: </strong>Compound Complex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
 						</div>
-						<div class="row" ng-if="user.redditUser.data.sentimentBySub[0]">
+						<div class="row" ng-if="user.redditUser.data.languageBySub[0]">
 							<div style="text-align:center; width=100%;" ng-if="user.redditUser.data.languageBySub[0]">
 								<h3 class="content-subheader" align="center">Top 5 Subreddits<h5 class="content-subheader" align="center"></h5></h3>
 								<div style="margin: 0 auto; text-align:center;">
@@ -793,4 +875,4 @@
 </div> -->
 </body>
 
-<footer style="background-color: #EAEAEA;"></footer>
+<footer></footer>
