@@ -346,6 +346,14 @@ function createUser(callback) {
         function getFamilyMembers (currentWord, nextWord, currentComment) {
             if (currentWord.word == "My" || currentWord.word == "my") {
                 if (nextWord.word=="mom" ||
+                    nextWord.word=="mother" ||
+                    nextWord.word=="Mother"||
+                    nextWord.word=="Wife"||
+                    nextWord.word=="girlfriend"||
+                    nextWord.word=="wife"||
+                    nextWord.word=="Girlfriend"||
+                    nextWord.word=="father"||
+                    nextWord.word=="Father"||
                     nextWord.word=="Mom" ||
                     nextWord.word=="Dad" ||
                     nextWord.word=="dad" ||
@@ -1408,7 +1416,7 @@ function createUser(callback) {
             youAre.forEach(function(eachYouAre, youAreIndex){
               console.log("Starting description filtering");
                 foundInFiltered = false;
-                if (youAreFiltered.length == 0){
+                if ((youAreFiltered.length == 0) && (eachYouAre.indexOf("undefined")==-1) && (eachYouAre.indexOf("ing")==-1)){
 
                     youAreFiltered.push(eachYouAre);
                     youAreFilteredPermalinks.push(filteredDescriptorArray[youAreIndex]);
@@ -1427,7 +1435,7 @@ function createUser(callback) {
                     //check if we are on the last element in the filtered array so that we can decide to push or not since we have seen all elements present
                     if (youAreFilteredIndex == youAreFiltered.length-1){
 
-                        if (!foundInFiltered){
+                        if ((!foundInFiltered) && (eachYouAre.indexOf("undefined")==-1) && (eachYouAre.indexOf("ing")==-1)){
                           console.log("Pushing a descriptor from you are to filtered")
                           youAreFiltered.push(eachYouAre);
                           youAreFilteredPermalinks.push(filteredDescriptorArray[youAreIndex]);
