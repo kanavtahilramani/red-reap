@@ -1108,6 +1108,7 @@ function createUser(callback) {
         ///////////////////////////////////////////
         var topcommentindices = []; //will hold indexes of userData.comMeta with the top 5 comments
         var topcommentcontent = []; //will hold content of top comments
+        var topcommentlinks = [];
 
         for (var ij = 0; ij < userData.comMeta.length; ij++)
         {
@@ -1132,6 +1133,7 @@ function createUser(callback) {
         for (var ijk = 0; ijk < topcommentindices.length; ijk++)
         {
           topcommentcontent[ijk] = userComments[topcommentindices[ijk]].data.body;
+          topcommentlinks[ijk] = "https://reddit.com/r/" + userComments[topcommentindices[ijk]].data.subreddit.toString() + "/comments/" + userComments[topcommentindices[ijk]].data.link_id.toString().replace('t3_','') + "/_/" + userComments[topcommentindices[ijk]].data.id.toString();
           Cscoresum += userData.comMeta[topcommentindices[ijk]].score;
           Clengthsum += userData.comMeta[topcommentindices[ijk]].length;
           Clinktypesum += userData.comMeta[topcommentindices[ijk]].linkType;
@@ -1184,6 +1186,7 @@ function createUser(callback) {
 
         userData.topComments.indices = topcommentindices;
         userData.topComments.content = topcommentcontent;
+        userData.topComments.permalinks = topcommentlinks;
         userData.topComments.avgScore = avgCTopScore;
         userData.topComments.avgLength = avgCTopLength;
         userData.topComments.avgLinkType = avgCTopLinkType;
@@ -1194,6 +1197,8 @@ function createUser(callback) {
         ///////////////////////////////////////////
         var bottomcommentindices = []; //will hold indexes of userData.comMeta with the bottom 5 comments
         var bottomcommentcontent = []; //will hold content of bottom comments
+        var bottomcommentlinks = [];
+
         for (var ij = 0; ij < userData.comMeta.length; ij++)
         {
           bottomcommentindices.push(ij);
@@ -1211,6 +1216,7 @@ function createUser(callback) {
         for (var ijk = 0; ijk < bottomcommentindices.length; ijk++)
         {
           bottomcommentcontent[ijk] = userComments[bottomcommentindices[ijk]].data.body;
+          bottomcommentlinks[ijk] = "https://reddit.com/r/" + userComments[bottomcommentindices[ijk]].data.subreddit.toString() + "/comments/" + userComments[bottomcommentindices[ijk]].data.link_id.toString().replace('t3_','') + "/_/" + userComments[bottomcommentindices[ijk]].data.id.toString();
           Cscoresum += userData.comMeta[bottomcommentindices[ijk]].score;
           Clengthsum += userData.comMeta[bottomcommentindices[ijk]].length;
           Clinktypesum += userData.comMeta[bottomcommentindices[ijk]].linkType;
@@ -1269,6 +1275,7 @@ function createUser(callback) {
 
         userData.bottomComments.indices = bottomcommentindices;
         userData.bottomComments.content = bottomcommentcontent;
+        userData.bottomComments.permalinks = bottomcommentlinks;
         userData.bottomComments.avgScore = avgCBottomScore;
         userData.bottomComments.avgLength = avgCBottomLength;
         userData.bottomComments.avgLinkType = avgCBottomLinkType;
@@ -1672,6 +1679,8 @@ function createUser(callback) {
 
                   var topsubmissionindices = []; //will hold indexes of userData.comMeta with the top 5 submissions
                   var topsubmissioncontent = []; //will hold content of top submissions
+                  var topsubmissionlinks =[];
+
                   for (var ij = 0; ij < userData.subMeta.length; ij++)
                   {
                     topsubmissionindices.push(ij);
@@ -1693,6 +1702,7 @@ function createUser(callback) {
                   for (var ijk = 0; ijk < topsubmissionindices.length; ijk++)
                   {
                     topsubmissioncontent[ijk] = userSubmitted[topsubmissionindices[ijk]].data.title;
+                    topsubmissionlinks[ijk] = 'https://www.reddit.com' + userSubmitted[topsubmissionindices[ijk]].data.permalink;
                     Sscoresum += userData.subMeta[topsubmissionindices[ijk]].score;
                     Slengthsum += userData.subMeta[topsubmissionindices[ijk]].length;
                     Slinktypesum += userData.subMeta[topsubmissionindices[ijk]].linkType;
@@ -1744,6 +1754,7 @@ function createUser(callback) {
 
                   userData.topSubmissions.indices = topsubmissionindices;
                   userData.topSubmissions.content = topsubmissioncontent;
+                  userData.topSubmissions.permalinks = topsubmissionlinks;
                   userData.topSubmissions.avgScore = avgSTopScore;
                   userData.topSubmissions.avgLength = avgSTopLength;
                   userData.topSubmissions.avgLinkType = avgSTopLinkType;
@@ -1754,6 +1765,8 @@ function createUser(callback) {
                   ///////////////////////////////////////////
                   var bottomsubmissionindices = []; //will hold indexes of userData.comMeta with the bottom 5 submissions
                   var bottomsubmissioncontent = []; //will hold content of bottom submissions
+                  var bottomsubmissionlinks = [];
+
                   for (var ij = 0; ij < userData.subMeta.length; ij++)
                   {
                     bottomsubmissionindices.push(ij);
@@ -1775,6 +1788,7 @@ function createUser(callback) {
                   for (var ijk = 0; ijk < bottomsubmissionindices.length; ijk++)
                   {
                     bottomsubmissioncontent[ijk] = userSubmitted[bottomsubmissionindices[ijk]].data.title;
+                    bottomsubmissionlinks[ijk] = 'https://www.reddit.com' + userSubmitted[bottomsubmissionindices[ijk]].data.permalink;
                     Sscoresum += userData.subMeta[bottomsubmissionindices[ijk]].score;
                     Slengthsum += userData.subMeta[bottomsubmissionindices[ijk]].length;
                     Slinktypesum += userData.subMeta[bottomsubmissionindices[ijk]].linkType;
@@ -1830,6 +1844,7 @@ function createUser(callback) {
 
                   userData.bottomSubmissions.indices = bottomsubmissionindices;
                   userData.bottomSubmissions.content = bottomsubmissioncontent;
+                  userData.bottomSubmissions.permalinks = bottomsubmissionlinks;
                   userData.bottomSubmissions.avgScore = avgSBottomScore;
                   userData.bottomSubmissions.avgLength = avgSBottomLength;
                   userData.bottomSubmissions.avgLinkType = avgSBottomLinkType;

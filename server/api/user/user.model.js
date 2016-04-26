@@ -83,6 +83,7 @@ var UserSchema = new Schema({
 	topComments: {
 		indices: [Number],
 		content: [String],
+		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
@@ -92,6 +93,7 @@ var UserSchema = new Schema({
 	topSubmissions: {
 		indices: [Number],
 		content: [String],
+		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
@@ -101,6 +103,7 @@ var UserSchema = new Schema({
 	bottomComments: {
 		indices: [Number],
 		content: [String],
+		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
@@ -110,6 +113,7 @@ var UserSchema = new Schema({
 	bottomSubmissions: {
 		indices: [Number],
 		content: [String],
+		permalinks: [String],
 		avgScore: Number,
 		avgLength: Number,
 		avgLinkType: Number,
