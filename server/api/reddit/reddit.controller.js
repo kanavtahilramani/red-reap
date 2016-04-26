@@ -1179,10 +1179,10 @@ function createUser(callback) {
 
 
 
-        avgCTopScore = Math.round(Cscoresum / 5),
-        avgCTopLength = Math.round(Clengthsum / 5),
-        avgCTopLinkType = Math.round(Clinktypesum / 5), //0 means link, 1 means selfpost
-        avgCTopLevel = Math.round(Clevelsum / 5); //0 means reply to OP, 1 means reply to other comment
+        avgCTopScore = Math.round(Cscoresum / topcommentindices.length),
+        avgCTopLength = Math.round(Clengthsum / topcommentindices.length),
+        avgCTopLinkType = Math.round(Clinktypesum / topcommentindices.length), //0 means link, 1 means selfpost
+        avgCTopLevel = Math.round(Clevelsum / topcommentindices.length); //0 means reply to OP, 1 means reply to other comment
 
         userData.topComments.indices = topcommentindices;
         userData.topComments.content = topcommentcontent;
@@ -1271,10 +1271,10 @@ function createUser(callback) {
 
 
 
-        avgCBottomScore = Math.round(Cscoresum / 5),
-        avgCBottomLength = Math.round(Clengthsum / 5),
-        avgCBottomLinkType = Math.round(Clinktypesum / 5), //0 means link, 1 means selfpost
-        avgCBottomLevel = Math.round(Clevelsum / 5); //0 means reply to OP, 1 means reply to other comment
+        avgCBottomScore = Math.round(Cscoresum / bottomcommentindices.length),
+        avgCBottomLength = Math.round(Clengthsum / bottomcommentindices.length),
+        avgCBottomLinkType = Math.round(Clinktypesum / bottomcommentindices.length), //0 means link, 1 means selfpost
+        avgCBottomLevel = Math.round(Clevelsum / bottomcommentindices.length); //0 means reply to OP, 1 means reply to other comment
 
         userData.bottomComments.indices = bottomcommentindices;
         userData.bottomComments.content = bottomcommentcontent;
@@ -1753,10 +1753,10 @@ function createUser(callback) {
 
                   });
 
-                  avgSTopScore = Math.round(Sscoresum / 5);
-                  avgSTopLength = Math.round(Slengthsum / 5); //length is 0 if regular link
-                  avgSTopLinkType = Math.round(Slinktypesum / 5); //0 means link, 1 means selfpost
-                  avgSTopComments = Math.round(Scommentssum / 5);
+                  avgSTopScore = Math.round(Sscoresum / topsubmissionindices.length);
+                  avgSTopLength = Math.round(Slengthsum / topsubmissionindices.length); //length is 0 if regular link
+                  avgSTopLinkType = Math.round(Slinktypesum / topsubmissionindices.length); //0 means link, 1 means selfpost
+                  avgSTopComments = Math.round(Scommentssum / topsubmissionindices.length);
 
                   userData.topSubmissions.indices = topsubmissionindices;
                   userData.topSubmissions.content = topsubmissioncontent;
@@ -1846,10 +1846,10 @@ function createUser(callback) {
 
 
 
-                  avgSBottomScore = Math.round(Sscoresum / 5);
-                  avgSBottomLength = Math.round(Slengthsum / 5); //length is 0 if regular link
-                  avgSBottomLinkType = Math.round(Slinktypesum / 5); //0 means link, 1 means selfpost
-                  avgSBottomComments = Math.round(Scommentssum / 5);
+                  avgSBottomScore = Math.round(Sscoresum / bottomsubmissionindices.length);
+                  avgSBottomLength = Math.round(Slengthsum / bottomsubmissionindices.length); //length is 0 if regular link
+                  avgSBottomLinkType = Math.round(Slinktypesum / bottomsubmissionindices.length); //0 means link, 1 means selfpost
+                  avgSBottomComments = Math.round(Scommentssum / bottomsubmissionindices.length);
 
                   userData.bottomSubmissions.indices = bottomsubmissionindices;
                   userData.bottomSubmissions.content = bottomsubmissioncontent;
