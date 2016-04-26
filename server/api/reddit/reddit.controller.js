@@ -1292,6 +1292,8 @@ function createUser(callback) {
             if (negativeSentenceCount > 0 && sentenceCounter > 0) {
                 userData.negativePercentage = (negativeSentenceCount / sentenceCounter).toPrecision(3) * 100;
             }
+            else
+              userData.negativePercentage = 0;
 
             userData.negativeExample = negativeComments;
             userData.veryNegativeAdjs = adjVN;
@@ -1317,12 +1319,20 @@ function createUser(callback) {
 
             if (adjPerVN)
               userData.vnPer = adjPerVN.toPrecision(3);
+            else
+              userData.vnPer = 0;
             if (adjPerN)
               userData.nPer = adjPerN.toPrecision(3);
+            else
+              userData.nPer = 0;
             if (adjPerP)
               userData.pPer = adjPerP.toPrecision(3);
+            else
+              userData.pPer = 0;
             if (adjPerVP)
               userData.vpPer = adjPerVP.toPrecision(3);
+            else
+              userData.vpPer = 0;
 
             //filtering youAre to remove verbs
             //JULIAN's BROKEN FILTERING: REMOVED VERBS, PROBLEMATIC DUE TO LENGTH OF NLP EXECUTION
