@@ -178,6 +178,7 @@ var UserSchema = new Schema({
 	vpEx: [{adjective: String}],
 	lastUpdated: Number,
 	descriptions: [String],
+	descriptionsPermalinks: [String],
 	familyMembers: [String],
 	famPermalinks: [String],
 	dateData: [MonthSchema],

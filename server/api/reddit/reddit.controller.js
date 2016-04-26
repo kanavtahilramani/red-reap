@@ -151,6 +151,7 @@ function createUser(callback) {
         maleCount = 0,
         femaleCount = 0,
         filteredArray = [],
+        filteredDescriptorArray = [],
         subredditSentiment = [],
         languageComplexityArray = [];
 
@@ -189,6 +190,7 @@ function createUser(callback) {
           currentCommentIndex = 0,
           totalDescriptions = [],
           descriptorSet = [],
+          descriptorPermalinks = [],
           copySet = [],
           adverbExists = false,
           adverbExistsTwo = false,
@@ -272,7 +274,8 @@ function createUser(callback) {
                 }
             });
             // console.log("\n\n" + descriptor + "\n\n");
-            descriptorSet.push(descriptor);              
+            descriptorSet.push(descriptor);
+            descriptorPermalinks.push('https://www.reddit.com/r/' + thisComment.data.subreddit.toString() + "/comments/" + thisComment.data.link_id.toString().replace('t3_','') + "/_/" + thisComment.data.id.toString());              
             descriptor = "";
             descriptorNounFound = false;
             descriptorNonNounFound = false;
@@ -717,9 +720,11 @@ function createUser(callback) {
                                     if (tokenziedIdentifier.document.sentences.sentence.tokens.token[0].POS == "DT") {
                                         //console.log("after filter: " + identifier.substring(parseInt(tokenziedIdentifier.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1) + "\n");
                                         filteredArray.push(identifier.substring(parseInt(tokenziedIdentifier.document.sentences.sentence.tokens.token[0].CharacterOffsetEnd)+1));
+                                        filteredDescriptorArray.push(descriptorPermalinks[identifierIndex]);
                                     }
                                     else {
                                         filteredArray.push(identifier);
+                                        filteredDescriptorArray.push(descriptorPermalinks[identifierIndex]);
                                     }
                                 }
                                 if (identifierIndex == (descriptorSet.length-1)) {
@@ -1397,6 +1402,7 @@ function createUser(callback) {
                         //     });
                         // });
             var youAreFiltered = [];
+            var youAreFilteredPermalinks = [];
             var foundInFiltered = false;
             //iterate through each description in the youAre array
             youAre.forEach(function(eachYouAre, youAreIndex){
@@ -1405,6 +1411,7 @@ function createUser(callback) {
                 if (youAreFiltered.length == 0){
 
                     youAreFiltered.push(eachYouAre);
+                    youAreFilteredPermalinks.push(filteredDescriptorArray[youAreIndex]);
 
                 }
                 else{
@@ -1423,12 +1430,14 @@ function createUser(callback) {
                         if (!foundInFiltered){
                           console.log("Pushing a descriptor from you are to filtered")
                           youAreFiltered.push(eachYouAre);
+                          youAreFilteredPermalinks.push(filteredDescriptorArray[youAreIndex]);
                         }
 
                         //if on the last iteration of the youAre array, then we write back when we reach the end of the inner array
                         if (youAreIndex == youAre.length-1){
                             console.log("saving youAreFiltered to userData.descriptions! ");
                             userData.descriptions = youAreFiltered;
+                            userData.descriptionsPermalinks = youAreFilteredPermalinks; 
 
                         }
                     }
