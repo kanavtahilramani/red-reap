@@ -149,4 +149,13 @@ body {
     margin: 0 0 65px; /* bottom = footer height */
 }
 
-//for sub.html
+footer {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid #E5E5E5;
+  width: 100%;
+  height: 65px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
