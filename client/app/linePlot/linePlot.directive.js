@@ -49,61 +49,83 @@ angular.module('redreapApp')
 				    .x(function(d) { return x(d.fullDate); })
 				    .y(function(d) { return y(d.categoryValue); });
 
-				var categoryTypes = d3.keys(data[0]).filter(function(key) { return ((key !== "month") && (key !== "date") && (key !== "year") && (key !== "_id")); });
-				var categoryTypes2 = d3.keys(data2[0]).filter(function(key) { return ((key !== "month") && (key !== "date") && (key !== "year") && (key !== "_id")); });
-
-				var categoryNames = ["Karma", "Posts"];
-
-				data.forEach(function(d) {
-		      		d.fullDate = formatDate.parse(d.month + '/' + 1 + '/' + d.year);
-		      	});
-
-				data2.forEach(function(d) {
-		      		d.fullDate = formatDate.parse(d.month + '/' + 1 + '/' + d.year);
-		      	});
-
-			  	var categories = categoryTypes.map(function(name) {
-			    	return {
-			      		name: name,
-			      		values: data.map(function(d) {
-			        		return {name: name, fullDate: d.fullDate, categoryValue: +d[name]};
-			      		})
-			    	};
-			 	});
-
-			  	var categories2 = categoryTypes2.map(function(name) {
-			    	return {
-			      		name: name,
-			      		values: data2.map(function(d) {
-			        		return {name: name, fullDate: d.fullDate, categoryValue: +d[name]};
-			      		})
-			    	};
-			 	});
-			  	var categoriesUsed = categories;
-			  	var categoryTypesUsed = categoryTypes;
-				if (categories[0].values.length >= categories2[0].values.length)
+				if ((data.length > 0) || (data2.length > 0))
 				{
-					for (var j = 0; j < categories2[0].values.length; j++)
-					{
-						categories[0].values[j].categoryValue += categories2[0].values[j].categoryValue;
-						categories[1].values[j].categoryValue += categories2[1].values[j].categoryValue;
-					}
-					categoriesUsed = categories;
-					categoryTypesUsed = categoryTypes;
-					x.domain(d3.extent(data, function(d) { return d.fullDate; }));
-				}
-				else
-				{
-					for (var j = 0; j < categories[0].values.length; j++)
-					{
-						categories2[0].values[j].categoryValue += categories[0].values[j].categoryValue;
-						categories2[1].values[j].categoryValue += categories[1].values[j].categoryValue;
-					}
-					categoriesUsed = categories2;
-					categoryTypesUsed = categoryTypes2;
-					x.domain(d3.extent(data2, function(d) { return d.fullDate; }));
-				}
+				
+					var categoryTypes = d3.keys(data[0]).filter(function(key) { return ((key !== "month") && (key !== "date") && (key !== "year") && (key !== "_id")); });
 
+					var categoryNames = ["Karma", "Posts"];
+
+					data.forEach(function(d) {
+			      		d.fullDate = formatDate.parse(d.month + '/' + 1 + '/' + d.year);
+			      	});
+
+				  	var categories = categoryTypes.map(function(name) {
+				    	return {
+				      		name: name,
+				      		values: data.map(function(d) {
+				        		return {name: name, fullDate: d.fullDate, categoryValue: +d[name]};
+				      		})
+				    	};
+				 	});
+
+					var categoryTypes2 = d3.keys(data2[0]).filter(function(key) { return ((key !== "month") && (key !== "date") && (key !== "year") && (key !== "_id")); });
+
+					data2.forEach(function(d) {
+			      		d.fullDate = formatDate.parse(d.month + '/' + 1 + '/' + d.year);
+			      	});
+
+				  	var categories2 = categoryTypes2.map(function(name) {
+				    	return {
+				      		name: name,
+				      		values: data2.map(function(d) {
+				        		return {name: name, fullDate: d.fullDate, categoryValue: +d[name]};
+				      		})
+				    	};
+				 	});
+
+
+				  	var categoriesUsed;
+				  	var categoryTypesUsed;
+
+					if ((data.length > 0) && (!(data2.length > 0)))
+					{
+					  	categoriesUsed = categories;
+					  	categoryTypesUsed = categoryTypes;
+					  	x.domain(d3.extent(data, function(d) { return d.fullDate; }));
+					}
+					else if (!(data.length > 0) && (data2.length > 0))
+					{
+					  	categoriesUsed = categories2;
+					  	categoryTypesUsed = categoryTypes2;
+					  	x.domain(d3.extent(data, function(d) { return d.fullDate; }));
+					}
+					else
+					{
+						if (categories[0].values.length >= categories2[0].values.length)
+						{
+							for (var j = 0; j < categories2[0].values.length; j++)
+							{
+								categories[0].values[j].categoryValue += categories2[0].values[j].categoryValue;
+								categories[1].values[j].categoryValue += categories2[1].values[j].categoryValue;
+							}
+							categoriesUsed = categories;
+							categoryTypesUsed = categoryTypes;
+							x.domain(d3.extent(data, function(d) { return d.fullDate; }));
+						}
+						else
+						{
+							for (var j = 0; j < categories[0].values.length; j++)
+							{
+								categories2[0].values[j].categoryValue += categories[0].values[j].categoryValue;
+								categories2[1].values[j].categoryValue += categories[1].values[j].categoryValue;
+							}
+							categoriesUsed = categories2;
+							categoryTypesUsed = categoryTypes2;
+							x.domain(d3.extent(data2, function(d) { return d.fullDate; }));
+						}
+					}
+				}
 				var tip = d3.tip()
 				  .attr('class', 'd3-tip')
 				  .style("text-align", "center")
