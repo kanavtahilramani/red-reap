@@ -20,7 +20,7 @@ var SubredditSchema = new Schema({
 		over18: String
 	},
 	comments: [String],
-	trendSent: [{objSent: String, keywordss: [String], senteneceEx: [String], mentionedSentences: Number, negCountt:Number, neuCountt: Number, posCountt: Number, negPerr: Number, neuPerr:Number, posPerr: Number}],
+	trendSent: [{objSent: String, keywordss: [String], senteneceEx: [String], mentionedSentences: Number, negCountt:Number, neuCountt: Number, posCountt: Number, negPerr: Number, neuPerr:Number, posPerr: Number, weightedSent: Number}],
 	negativePer: Number,
 	neutralPer: Number,
 	positivePer: Number,

@@ -2173,9 +2173,9 @@ export function getSubmissionComments (req, res) {
   var totalAverageSentiment = 0;
   var foundThemTrump = false;
   var tempTrend = [];
-  var tempObjClinton = {objSent: "Hillary Clinton", keywordss: ["hillary", "clinton"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0};
-  var tempObjSanders = {objSent: "Bernie Sanders", keywordss: ["bernie", "sanders", "bernard"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0};
-  var tempObjTrump = {objSent: "Donald Trump",keywordss: ["donald", "trump"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0};
+  var tempObjClinton = {objSent: "Hillary Clinton", keywordss: ["hillary", "clinton"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0, weightedSent: 0};
+  var tempObjSanders = {objSent: "Bernie Sanders", keywordss: ["bernie", "sanders", "bernard"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0, weightedSent: 0};
+  var tempObjTrump = {objSent: "Donald Trump",keywordss: ["donald", "trump"], sentenceEx: [], mentionedSentences: 0, negCountt:0, neuCountt: 0, posCountt: 0, negPerr: 0, neuPerr:0, posPerr: 0, weightedSent: 0};
   
   getHottest(req.params.subreddit, function(slice) {
         slice.get.data.children.shift();
@@ -2409,9 +2409,10 @@ export function getSubmissionComments (req, res) {
                                           totalPositivePercentage = (totalSentimentPositive/totalSentimentSentenceCount).toPrecision(3);
                                           totalAverageSentiment = ((totalNegativePercentage*1)+ (totalNeutralPercentage*2) + (totalPositivePercentage*3)).toPrecision(3);
 
-                                          subDatabase.negativePer = totalNegativePercentage;
-                                          subDatabase.neutralPer = totalNeutralPercentage;
-                                          subDatabase.positivePer = totalPositivePercentage;
+
+                                          subDatabase.negativePer = (totalNegativePercentage*100).toPrecision(3);
+                                          subDatabase.neutralPer = (totalNeutralPercentage*100).toPrecision(3);
+                                          subDatabase.positivePer = (totalPositivePercentage*100).toPrecision(3);
                                           subDatabase.weightedSentiment = totalAverageSentiment;
 
                                           if (req.params.subreddit=="politics"){
@@ -2422,9 +2423,11 @@ export function getSubmissionComments (req, res) {
 
 
                                           tempTrend.forEach(function(x, xIndex){
+                                              
                                               x.negPerr = (100*(x.negCountt/x.mentionedSentences)).toPrecision(3);
                                               x.neuPerr = (100*(x.neuCountt/x.mentionedSentences)).toPrecision(3);
                                               x.posPerr = (100*(x.posCountt/x.mentionedSentences)).toPrecision(3);
+                                              x.weightedSent = ((x.negCountt/x.mentionedSentences)*1 + (x.neuCountt/x.mentionedSentences)*2 + (x.posCountt/x.mentionedSentences)*3).toPrecision(3);
 
                                               if (xIndex == tempTrend.length-1){
                                                 subDatabase.trendSent=tempTrend;
