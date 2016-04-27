@@ -2430,7 +2430,8 @@ export function getSubmissionComments (req, res) {
                                                 subDatabase.trendSent=tempTrend;
                                                 saveSubreddit(subDatabase, function() {
                                                 console.log("WE SAVIN BOYS!!!");
-                                                res.send("Saved subreddit in database!");
+                                                // res.send("Saved subreddit in database!");
+                                                return res.send(subDatabase);
                                                 });
                                               }
 
@@ -2445,7 +2446,8 @@ export function getSubmissionComments (req, res) {
 
                                         saveSubreddit(subDatabase, function() {
                                                 console.log("NOT POLITICS BUT STILL SAVIN!!!");
-                                                res.send("Saved subreddit in database!");
+                                                // res.send("Saved subreddit in database!");
+                                                return res.send(subDatabase);
                                                 });
                                         }
 
