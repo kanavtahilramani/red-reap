@@ -1079,6 +1079,39 @@ function createUser(callback) {
       getUserComments(function(allComments) { /* get all user comments */
         // console.log("Progress: " + progress + '\n');
         progress = 1;
+
+        if (allComments[0].data.children.length == 0)
+        {
+          console.log("no comments");
+          getKarmaAndDate(function(scores) { /* get total karma scores and creation timestamp */
+            progress = 6;
+            userData.karma.totalCommentScore = scores.comments;
+            userData.karma.totalLinkScore = scores.submissions;
+            userData.creationTime = (scores.created)*1000;
+            userData.is_gold = scores.is_gold;
+            userData.is_mod = scores.is_mod;
+            userData.has_verified_email = scores.has_verified_email;
+
+            userData.veryNegativeAdjs = 0;
+            userData.negativeAdjs = 0;
+            userData.positiveAdjs = 0;
+            userData.veryPositiveAdjs = 0;
+            userData.vnPer = 0;
+            userData.nPer = 0;
+            userData.pPer = 0;
+            userData.vpPer = 0;
+            userData.negativePercentage = 0;
+            userData.gender = "unknown";
+            userData.availableFrom = (scores.created)*1000;
+            userData.totalComments = 0;
+            userData.totalSubmitted = 0;
+
+            callback(userData);
+            return;
+          });
+        }
+        else {
+
         allComments.forEach(function(commentSlice) {
           commentSlice.data.children.forEach(function(currentComment) {
               userComments.push(currentComment);
@@ -1650,6 +1683,34 @@ function createUser(callback) {
                 getUserSubmitted(function(allSubmitted) { /* get all user submissions */
                   // console.log("Progress: " + progress + '\n');
                   progress = 4;
+
+                  if (allSubmitted[0].data.children.length == 0)
+                  {
+                    console.log("no submissions");
+                    getKarmaAndDate(function(scores) { /* get total karma scores and creation timestamp */
+                      progress = 6;
+                      userData.karma.totalCommentScore = scores.comments;
+                      userData.karma.totalLinkScore = scores.submissions;
+                      userData.creationTime = (scores.created)*1000;
+                      userData.is_gold = scores.is_gold;
+                      userData.is_mod = scores.is_mod;
+                      userData.has_verified_email = scores.has_verified_email;
+
+                      //userData.totalSubmitted = 0;
+                      //userData.genSubmittedData.avgCommentsOnSubmitted = 0;
+
+                      getTopComment(function(topComment) {
+                          userData.topComment = topComment;
+
+                          callback(userData);
+                          return;
+                      });
+                    });
+                  }
+                  else {
+
+                  console.log("escaped");
+
                   allSubmitted.forEach(function(submittedSlice) {
                     submittedSlice.data.children.forEach(function(currentSubmitted) {
                         userSubmitted.push(currentSubmitted);
@@ -1926,12 +1987,12 @@ function createUser(callback) {
                           });
                         });
                       });
-                  });
+                  });}
                 });
 
                 
             }); 
-        });
+        });}
       });
 }
 
@@ -2056,6 +2117,8 @@ export function getUserComments (callback) {
 
   reddit('/user/' + username + '/comments/').get({ limit: 100 }).then(function(firstSlice) {
     if (firstSlice.data.children.length == 0) {
+      slices.push(firstSlice);
+      callback(slices);
       return;
     }
     slices.push(firstSlice);
@@ -2086,6 +2149,8 @@ export function getUserSubmitted (callback) {
 
   reddit('/user/' + username + '/submitted/').get({ limit: 100 }).then(function(firstSlice) {
     if (firstSlice.data.children.length == 0) {
+      slices.push(firstSlice);
+      callback(slices);
       return;
     }
     slices.push(firstSlice);
